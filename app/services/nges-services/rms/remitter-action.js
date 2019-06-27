@@ -1,20 +1,12 @@
 import Service, {inject as service} from '@ember/service';
-import config from 'frontend-engine/config/environment';
 
 
 export default Service.extend({
   store: service(),
   appRestTemplate: service('app-rest-template'),
-  rmsSetup: service('nges-services/rms/rms-setup'),
+  serviceInitializer: service('nges-services/service-initializer'),
 
 
-  getServiceRouteInformation() {
-    let routeInfo = this.store.peekRecord('nges-core/engine-route-information', 1);
-
-    if(!routeInfo) routeInfo = this.store.peekRecord('nges-core/engine-route-information', 2);
-
-    return routeInfo;
-  },
 
 
   addNewRemitter(accessToken, remitterData) {
@@ -25,7 +17,7 @@ export default Service.extend({
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
-    let baseUrl = this.rmsSetup.getServiceBaseHostURL();
+    let baseUrl = this.serviceInitializer.getServiceBaseHostURL();
     let url = baseUrl + "/remitters";
     return this.appRestTemplate.httpRestClient(url, "POST",
       data, {}, beforeSend
@@ -40,7 +32,7 @@ export default Service.extend({
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
-    let baseUrl = this.rmsSetup.getServiceBaseHostURL();
+    let baseUrl = this.serviceInitializer.getServiceBaseHostURL();
     let url = baseUrl + "/remitters/"+remId;
     return this.appRestTemplate.httpRestClient(url, "PUT",
       data, {}, beforeSend
@@ -53,7 +45,7 @@ export default Service.extend({
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
-    let baseUrl = this.rmsSetup.getServiceBaseHostURL();
+    let baseUrl = this.serviceInitializer.getServiceBaseHostURL();
     let url = baseUrl + "/remitters/"+remitterId;
     return this.appRestTemplate.httpRestClient(url, "GET",
       null, {}, beforeSend

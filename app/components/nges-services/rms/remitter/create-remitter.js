@@ -13,6 +13,7 @@ export default Component.extend({
   rmsSetupService: service('nges-services/rms/rms-setup'),
   remitterActionService: service('nges-services/rms/remitter-action'),
   rmsBaseService: service('nges-services/rms/rms-base-service'),
+  serviceInitializer: service('nges-services/service-initializer'),
   notifier: service(),
   init() {
     this._super(...arguments);
@@ -257,7 +258,7 @@ export default Component.extend({
     let accessToken = this.appConfiguration.getAccessToken();
     let roleId = this.appConfiguration.getUserRoleId();
 
-    this.rmsBaseService.getClassType(accessToken).then(function (result) {
+    this.serviceInitializer.getClassType(accessToken).then(function (result) {
       let classTypeId = result.data;//remitter classtype id
       console.log('classTypeId--classTypeId', classTypeId);
       let actionEventName = "create";

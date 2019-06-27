@@ -9,8 +9,8 @@ export default Component.extend({
   appWelcome: service('nges-core/app-welcome'),
   store: service(),
   appConfiguration: service('app-configuration'),
-  rmsBaseService: service('nges-services/rms/rms-base-service'),
   ngesTabTableService: service('nges-elements/nges-tab-table'),
+  serviceInitializer: service('nges-services/service-initializer'),
   notifier: service(),
 
   init() {
@@ -26,9 +26,9 @@ export default Component.extend({
     let roleId = this.appConfiguration.getUserRoleId();
     let accessToken = this.appConfiguration.getAccessToken();
 
-    this.rmsBaseService.getClassType(accessToken).then(function (result) {
+    this.serviceInitializer.getClassType(accessToken).then(function (result) {
       let classTypeId = result.data;
-      context.rmsBaseService.getUserAbilityToCreate(accessToken, "create", classTypeId, roleId).then(function (result) {
+      context.serviceInitializer.getUserAbilityToCreate(accessToken, "create", classTypeId, roleId).then(function (result) {
         try {
           if (result.status === 204) {
             context.set("viewCreateButton", false);
@@ -145,7 +145,7 @@ export default Component.extend({
     let roleId = this.appConfiguration.getUserRoleId();
 
     let context = this;
-    context.rmsBaseService.getClassType(accessToken).then(function (result) {
+    context.serviceInitializer.getClassType(accessToken).then(function (result) {
       let classTypeId = result.data;
 
       let getNextAllowableStatePayload = {
@@ -155,7 +155,7 @@ export default Component.extend({
         actionEventId: actionEventId
       };
 
-      context.rmsBaseService.getNextAllowableState(accessToken, getNextAllowableStatePayload).then(function (result) {
+      context.serviceInitializer.getNextAllowableState(accessToken, getNextAllowableStatePayload).then(function (result) {
         try {
           let status = result.data.id;
           let itemId = item.id;
@@ -167,7 +167,7 @@ export default Component.extend({
               }
             }
           };
-          context.rmsBaseService.stateActionUpdate(accessToken, itemId, payload).then(function (result) {
+          context.serviceInitializer.stateActionUpdate(accessToken, itemId, payload).then(function (result) {
             context.get('notifier').success('Secondary notification');
           })
         } catch (e) {
@@ -186,7 +186,7 @@ export default Component.extend({
     let stateId = tab.id;
 
 
-    this.rmsBaseService.getClassType(accessToken).then(function (result) {
+    this.serviceInitializer.getClassType(accessToken).then(function (result) {
       let classTypeId = result.data;
 
       let data = {
@@ -194,7 +194,7 @@ export default Component.extend({
         roleId: roleId,
         stateId: stateId,
       };
-      context.rmsBaseService.getAllAllowableCrudAction(accessToken, data).then(function (result) {
+      context.serviceInitializer.getAllAllowableCrudAction(accessToken, data).then(function (result) {
         try {
           console.log('message--result', result);
           if (result.status === 204) {

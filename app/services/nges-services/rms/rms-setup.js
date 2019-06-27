@@ -1,31 +1,13 @@
 import Service, {inject as service} from '@ember/service';
-import config from 'frontend-engine/config/environment';
 
 
 export default Service.extend({
   store: service(),
   appRestTemplate: service('app-rest-template'),
+  serviceInitializer: service('nges-services/service-initializer'),
 
 
-  //generate service Host Url base on params
-  getServiceBaseHostURL() {
-    let routeInfo = this.store.peekRecord('nges-core/engine-route-information', 1);
-
-    if(!routeInfo) routeInfo = this.store.peekRecord('nges-core/engine-route-information', 2);
-    let hostUrl = 'http://' + routeInfo.appCode + '.' + routeInfo.appModuleCode + '-apps.115.127.24.184.nip.io';
-    return hostUrl;
-  },
-
-  getServiceRouteInformation() {
-    let routeInfo = this.store.peekRecord('nges-core/engine-route-information', 1);
-
-    if(!routeInfo) routeInfo = this.store.peekRecord('nges-core/engine-route-information', 2);
-
-    return routeInfo;
-  },
   getAllCountries(accessToken) {
-
-
 
 
     let beforeSend = function (xhr) {
@@ -33,8 +15,20 @@ export default Service.extend({
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
-    let baseUrl = this.getServiceBaseHostURL();
+    let baseUrl = this.serviceInitializer.getServiceBaseHostURL();
     let url = baseUrl + "/countries";
+    return this.appRestTemplate.httpRestClient(url, "GET",
+      null, {}, beforeSend
+    );
+  },
+  getAllPhotoIdTypes(accessToken) {
+    let beforeSend = function (xhr) {
+      xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+      xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
+    };
+
+    let baseUrl = this.serviceInitializer.getServiceBaseHostURL();
+    let url = baseUrl + "/photoIdTypes";
     return this.appRestTemplate.httpRestClient(url, "GET",
       null, {}, beforeSend
     );
@@ -45,7 +39,7 @@ export default Service.extend({
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
-    let baseUrl = this.getServiceBaseHostURL();
+    let baseUrl = this.serviceInitializer.getServiceBaseHostURL();
     let url = baseUrl + "/countries/" + countryId + "/states";
     return this.appRestTemplate.httpRestClient(url, "GET",
       null, {}, beforeSend
@@ -57,20 +51,8 @@ export default Service.extend({
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
-    let baseUrl = this.getServiceBaseHostURL();
+    let baseUrl = this.serviceInitializer.getServiceBaseHostURL();
     let url = baseUrl + "/countries/" + countryId + "/states/" + stateId + "/towns";
-    return this.appRestTemplate.httpRestClient(url, "GET",
-      null, {}, beforeSend
-    );
-  },
-  getAllPhotoIdTypes(accessToken) {
-    let beforeSend = function (xhr) {
-      xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
-      xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
-    };
-
-    let baseUrl = this.getServiceBaseHostURL();
-    let url = baseUrl + "/photoIdTypes";
     return this.appRestTemplate.httpRestClient(url, "GET",
       null, {}, beforeSend
     );
@@ -84,7 +66,7 @@ export default Service.extend({
       xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken);
     };
 
-    let baseUrl = this.getServiceBaseHostURL();
+    let baseUrl = this.serviceInitializer.getServiceBaseHostURL();
     let url = baseUrl + "/countries";
     return this.appRestTemplate.httpRestClient(url, "POST",
       data, {}, beforeSend
@@ -99,7 +81,7 @@ export default Service.extend({
       xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken);
     };
 
-    let baseUrl = this.getServiceBaseHostURL();
+    let baseUrl = this.serviceInitializer.getServiceBaseHostURL();
     let url = baseUrl + "/countries";
     return this.appRestTemplate.httpRestClient(url, "POST",
       data, {}, beforeSend
@@ -114,7 +96,7 @@ export default Service.extend({
       xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken);
     };
 
-    let baseUrl = this.getServiceBaseHostURL();
+    let baseUrl = this.serviceInitializer.getServiceBaseHostURL();
     let url = baseUrl + "/countries";
     return this.appRestTemplate.httpRestClient(url, "POST",
       data, {}, beforeSend
@@ -126,7 +108,7 @@ export default Service.extend({
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
-    let baseUrl = this.getServiceBaseHostURL();
+    let baseUrl = this.serviceInitializer.getServiceBaseHostURL();
     let url = baseUrl + "/remittanceTypes";
     return this.appRestTemplate.httpRestClient(url, "GET",
       null, {}, beforeSend
@@ -138,7 +120,7 @@ export default Service.extend({
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
-    let baseUrl = this.getServiceBaseHostURL();
+    let baseUrl = this.serviceInitializer.getServiceBaseHostURL();
     let url = baseUrl + "/remittancePurposes";
     return this.appRestTemplate.httpRestClient(url, "GET",
       null, {}, beforeSend
@@ -150,7 +132,7 @@ export default Service.extend({
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
-    let baseUrl = this.getServiceBaseHostURL();
+    let baseUrl = this.serviceInitializer.getServiceBaseHostURL();
     let url = baseUrl + "/fundSources";
     return this.appRestTemplate.httpRestClient(url, "GET",
       null, {}, beforeSend
@@ -162,7 +144,7 @@ export default Service.extend({
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
-    let baseUrl = this.getServiceBaseHostURL();
+    let baseUrl = this.serviceInitializer.getServiceBaseHostURL();
     let url = baseUrl + "/deliveryAgents";
     return this.appRestTemplate.httpRestClient(url, "GET",
       null, {}, beforeSend
@@ -174,7 +156,7 @@ export default Service.extend({
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
-    let baseUrl = this.getServiceBaseHostURL();
+    let baseUrl = this.serviceInitializer.getServiceBaseHostURL();
     let url = baseUrl + "/banks";
     return this.appRestTemplate.httpRestClient(url, "GET",
       null, {}, beforeSend
@@ -186,7 +168,7 @@ export default Service.extend({
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
-    let baseUrl = this.getServiceBaseHostURL();
+    let baseUrl = this.serviceInitializer.getServiceBaseHostURL();
     let url = baseUrl + "/banks/" + bankId + "/branches";
     return this.appRestTemplate.httpRestClient(url, "GET",
       null, {}, beforeSend
@@ -198,7 +180,7 @@ export default Service.extend({
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
-    let baseUrl = this.getServiceBaseHostURL();
+    let baseUrl = this.serviceInitializer.getServiceBaseHostURL();
     let url = baseUrl + "/currencies";
     return this.appRestTemplate.httpRestClient(url, "GET",
       null, {}, beforeSend
@@ -224,7 +206,7 @@ export default Service.extend({
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
-    let baseUrl = this.getServiceBaseHostURL();
+    let baseUrl = this.serviceInitializer.getServiceBaseHostURL();
     let url = baseUrl + "/paymentModes";
     return this.appRestTemplate.httpRestClient(url, "GET",
       null, {}, beforeSend
@@ -233,4 +215,3 @@ export default Service.extend({
 });
 
 
-// mukit working
