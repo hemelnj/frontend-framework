@@ -1,0 +1,35 @@
+{{!json dataList}}
+
+
+
+
+<div style="overflow-y: auto; max-height: 500px; max-width: 500px; overflow-x: auto; background: #bebec5;">
+
+  <ul class="list-group">
+    <li class="list-group-item active" style="" {{action 'allSelectedAction' }}>
+      {{#if isAllChecked}}  <input type="checkbox" checked> {{/if}}
+      {{#unless isAllChecked}}  <input type="checkbox"> {{/unless}}
+      {{ groupLabel}}
+    </li>
+
+    {{#each selectBoxDataLists as |item|}}
+
+      <li class="list-group-item">
+
+
+        <input type="checkbox" checked={{item.selected}} onclick={{action
+          (action 'selectedItemAction' item) value="target.checked"}}>
+
+        {{!--  <span>{{item.name}}</span> --}}
+        <span>{{item.name}} - {{item.selected}}</span>
+
+      </li>
+
+    {{/each}}
+  </ul>
+
+
+</div>
+
+<br>
+

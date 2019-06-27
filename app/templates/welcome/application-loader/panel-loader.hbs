@@ -1,0 +1,37 @@
+<div class="wrapper">
+
+
+  <!--left sidebar parent is panel-loader.hbs-->
+  <div class="">
+    {{nges-base/app-left-sidebar
+      isSidebarHidden=isSidebarHidden
+      appName=appName
+      appPanelInformation = model.appPanelInformation
+      moduleList = model.moduleList
+    }}
+  </div>
+
+
+
+  {{#nges-base/app-top-navbar
+
+    isSidebarHidden = isSidebarHidden
+    toggleNavSidebarAction = (action 'toggleNavSidebarAction')
+    signOut = (action "signOut")
+    logoutAll = (action "logoutAll")
+    navigateToUpdatePassword = (action 'navigateToUpdatePassword')
+    serviceList = model.serviceList
+  }}
+
+
+    <!--main content-->
+    <div class="container-fluid">
+
+      {{outlet}}
+
+
+    </div>
+
+  {{/nges-base/app-top-navbar}}
+
+</div>

@@ -1,0 +1,42 @@
+
+{{!nges-core/json tableData}}
+
+<div class="card">
+
+  <div class="card-body">
+
+    {{#if viewCreateButton}}
+
+      {{!log serviceActionableRoute.create.routePath}}
+      {{nges-core/nges-link
+        route = 'welcome.application-loader.panel-loader.module-loader.service-holder-loader.menu-template-loader.submenu-template-loader.submenu-detail-template-loader'
+        routePath = serviceActionableRoute.create.routePath
+        label =  serviceActionableRoute.create.label
+      }}
+
+    {{/if}}
+
+    <br>
+    <br>
+
+
+    {{nges-elements/nges-tab-table
+
+      activeTabInfo = activeTabInfo
+      stateList = stateList
+      defaultFunction = defaultFunction
+      defaultLocation = defaultLocation
+      stateActions = stateActions
+      actionAccess = actionAccess
+
+
+      tableData = tableData
+      serviceActionableRoute = serviceActionableRoute
+
+      onSelectedTabCallBack = (action 'onSelectedTabCallBack')
+      onSelectedSingleStateCallBack = (action 'onSelectedSingleStateCallBack')
+      onSelectedMultipleStateCallBack = (action 'onSelectedMultipleStateCallBack')
+    }}
+
+  </div>
+</div>

@@ -1,0 +1,44 @@
+
+{{!nges-core/json dataList}}
+
+<select class="js-select2" style="z-index: +999999; position: absolute" onchange={{action 'getSelectedItem' value="target.value"}}>
+  <option value="">{{message}}</option>
+  {{#each dataList as |data|}}
+    <option value={{nges-engines/olm/object-to-string data}}>{{data.attributes.name}}</option>
+  {{/each}}
+</select>
+
+
+<!--
+
+<select class="js-select2">
+  <option>Select A</option>
+  <option>Select B</option>
+  <option>Select C</option>
+  <option>Select D</option>
+  <optgroup label="Data">
+    <option>dddd</option>
+    <option>eeee</option>
+  </optgroup>
+</select>
+
+-->
+
+<!--
+
+<label>Select Multiple</label>
+<select class="js-select2-multi" multiple="multiple">
+  <option>Select A</option>
+  <option>Select B</option>
+  <option>Select C</option>
+  <option>Select D</option>
+</select>
+
+-->
+
+{{!--
+
+
+https://codepen.io/uzmaW/pen/NMrgGO
+
+ --}}

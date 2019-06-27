@@ -1,0 +1,38 @@
+<style>
+
+  .dropdown-menu {
+    width: 200px;
+    height: 200px;
+    left: -55%;
+    margin: 6px;
+
+  }
+  .dropdown-item{
+    color: black;
+  }
+
+</style>
+
+
+
+<div class="dropdown">
+  <div style="color: #fff;"  class="nav-link " data-toggle="dropdown">System Setting</div>
+
+  <div class="dropdown-menu">
+
+
+    <!--<div class="row">
+      <div class="col-sm-6">
+        FFFFFF
+      </div>
+      <div class="col-sm-6">
+        EEEEE
+      </div>
+    </div>-->
+
+
+    <div class="dropdown-item"><div style="cursor: pointer;" onclick={{action signOut}} class="nav-link">Sign out</div></div>
+    <!-- <div class="dropdown-item"><div style="cursor: pointer;" onclick={{action logoutAll}} class="nav-link">Single Logout</div></div>-->
+    <div class="dropdown-item"><div style="cursor: pointer;" onclick={{action navigateToUpdatePassword}} class="nav-link">Change Password</div></div>
+  </div>
+</div>

@@ -1,0 +1,182 @@
+<div style="border: 1px solid gainsboro;">
+
+
+  <div class="tabTableHeader">
+    <ul class="nav nav-tabs">
+
+      {{#each tabsData as |tab|}}
+        {{#if (nges-engines/olm/filterStartEndState tab.name)}}
+          <li {{action 'selectedTabData' (nges-engines/olm/object-to-string tab) }} class="nav-item">
+            <a style="min-height: 70px" class="nav-link {{tab.tabTitleClass}}" data-toggle="tab">{{tab.name}}</a>
+          </li>
+        {{/if}}
+      {{/each}}
+    </ul>
+  </div>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    {{#each tabsData as |tab|}}
+
+
+      <div class="tab-pane {{tab.tabContentClass}}" style="padding: 10px"><br>
+
+
+        {{!-- Show Table Entries --}}
+        <div class="row">
+          <div class="col-md-9">
+            <select class="form-control" style="width: 150px" onChange={{action (action 'onSelectedShowEntries') value="target.value"}}>
+              {{#each tableShowEntries as |entire|}}
+                <option value="{{entire}}">{{entire}}</option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="col-md-3">
+            {{!input class="form-control pull-right" placeholder="Search"}}
+
+            <input class="form-control pull-right" placeholder="Search" onkeyup={{action 'onSearchKeyUpAction' value="target.value" }}>
+          </div>
+        </div>
+
+
+
+
+        <div style="overflow-y: auto;">
+
+          <table class="table table-bordered" style="border-collapse: collapse;">
+            <thead>
+            <tr>
+              <th class="table-header-select-box" style="" {{action 'allSelectedAction' }}>
+                {{#if isAllChecked}}  <input type="checkbox" checked> {{/if}}
+                {{#unless isAllChecked}}  <input type="checkbox"> {{/unless}}
+              </th>
+
+              {{#each tableData.tableHeaderPropertyList as |key|}}
+                {{!--#if (not-eq (nges-core/make-lowercase key.visibleName) 'id') }}
+                  <th class="table-header-title" style="">{{key.visibleName}}</th>
+                {{/if--}}
+                <th class="table-header-title" style="">{{key.visibleName}}</th>
+              {{/each}}
+
+              {{! each item single state action populated --}}
+              {{#unless (or isAllChecked isMultipleChecked) }}
+                <th class="table-header-title" align="center"> Action</th>
+              {{/unless}}
+            </tr>
+            </thead>
+            <tbody>
+
+
+            {{#each tableData.data as |item|}}
+
+
+              <tr>
+                {{! all selection checkbox --}}
+                <td align="center">
+                  {{!--#if isAllChecked}}<input type="checkbox" checked={{isAllChecked}} onclick={{action "selectedItemAction" value="target.checked"}}>{{/if--}}
+                  <input type="checkbox" checked={{isAllChecked}} onclick={{action
+                    (action 'onSelectedItemAction' item) value="target.checked"}}>
+                </td>
+
+                {{#each tableData.tableHeaderPropertyList as |tableHeader|}}
+                  {{!--#if (not-eq (nges-core/make-lowercase tableHeader.name) 'id') }}
+                    <td>{{nges-elements/table-data-populator item.attributes tableHeader}}</td>
+                  {{/if--}}
+                  <td>{{nges-elements/table-data-populator item.attributes tableHeader}}</td>
+                {{/each}}
+
+
+                {{! load table data comes from service}}
+                {{!-- #each-in items as |item|}}
+                  {{#if (not-eq (nges-core/make-lowercase itemKey) 'id') }}
+                    <td>{{item.attributes.name}}</td>
+                  {{/if}}
+                {{/each-in--}}
+                {{!for singleState visible list of state action--}}
+
+
+                {{#unless (or isAllChecked isMultipleChecked) }}
+                  <td align="center">
+
+                    {{#unless (eq activeTabInfo.code DEFAULT_SELECTED_TAB_CODE) }}
+
+
+                      {{#if actionAccess.view }}
+                        {{nges-core/nges-link
+                          route = 'welcome.application-loader.panel-loader.module-loader.service-holder-loader.menu-template-loader.submenu-template-loader.submenu-detail-template-loader'
+                          routePath = serviceActionableRoute.edit.routePath
+                          label =  serviceActionableRoute.edit.label
+                          params = (nges-elements/action-access-permission actionAccess item tabInformation)
+
+                        }}
+                      {{/if}}
+
+
+                      <br><br>
+                      {{!log stateActions}}
+                      <select onChange={{action (action 'onSelectedSingleState' item) value="target.value"}} >
+                        <option value="">--Select Action Event--</option>
+                        {{#each stateActions as |state|}}
+                          <option value="{{state.attributes.id}}">{{state.attributes.name}}</option>
+                        {{/each}}
+                      </select>
+                    {{/unless}}
+                  </td>
+                {{/unless}}
+              </tr>
+            {{/each}}
+
+
+            </tbody>
+          </table>
+
+        </div>
+
+
+        {{!-- Pagination Controll --}}
+        {{#if  (and pageNavigation  pageNavigation.isVisible) }}
+          <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-end">
+              <li class="page-item {{pageNavigation.isPrevious}}"><span class="page-link" {{action 'onPreviousAction' pageNavigation.previous }} > Previous</span></li>
+              {{#each pageNavigation.paginates as |data|}}
+
+                {{#if (eq pageNavigation.currentPage data.page) }}
+                  <li class="page-item"><span class="page-link pagination-active" {{action 'onPageAction' data.page }} >{{data.page}}</span></li>
+                {{/if}}
+
+                {{#if (not-eq pageNavigation.currentPage data.page) }}
+                  <li class="page-item"><span class="page-link" {{action 'onPageAction' data.page }}  >{{data.page}}</span></li>
+                {{/if}}
+
+              {{/each}}
+              <li class="page-item {{pageNavigation.isNext}}"><span class="page-link" {{action 'onNextAction' pageNavigation.next }} >Next</span>
+              </li>
+            </ul>
+          </nav>
+        {{/if}}
+
+
+
+        {{!-- if multiple item checked --}}
+        {{!if all selected then visible bottom action --}}
+        {{#if (or isAllChecked isMultipleChecked) }}
+          {{#unless (eq activeTabInfo.code DEFAULT_SELECTED_TAB_CODE) }}
+            <select onChange={{action (action 'onSelectedMultipleState') value="target.value"}} >
+              <option value="">--Select Action Event--</option>
+              {{#each stateActions as |state|}}
+                <option value="{{state.attributes.id}}">{{state.attributes.name}}</option>
+              {{/each}}
+            </select>
+            <input class="btn btn-success" {{action 'onSaveChanges'}} type="button" value="Save">
+          {{/unless}}
+        {{/if}}
+
+      </div>
+
+    {{/each}}
+  </div>
+
+
+</div>
+
+

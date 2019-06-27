@@ -1,0 +1,240 @@
+<style>
+  .layout-title {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 1.825rem;
+    font-weight: 400;
+    color: #123F62;
+    display: block;
+  }
+
+  .te-top-hr-line {
+    margin-top: -3px;
+    border: 1.5px solid #123F62;
+  }
+
+  .te-bottom-hr-line {
+    border: 0;
+    max-width: 70%;
+    margin-left: 0;
+    margin-top: -8px;
+    border-top: 2px solid;
+    border-color: #666666;
+  }
+
+
+  .input-field-label {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+    display: inline-block;
+    color: #6D6766;
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 0 1rem 0 .75rem;
+    margin-bottom: .125rem;
+  }
+
+  .input-field {
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    border-bottom: 1.1px solid #747474;
+    width: 100%;
+    -webkit-transition: border .1s linear, background-color .1s linear;
+    transition: border .1s linear, background-color .1s linear;
+    display: inline-block;
+    padding: 0 1rem 0 .75rem;
+    font-size: .75rem;
+    line-height: 1.875rem;
+    min-height: calc(1.875rem + (1px * 2));
+    margin-bottom: .125rem;
+    background: #FAFAFA;
+  }
+
+  .input-field:focus {
+    outline: none;
+    border-bottom: 1.5px solid rgba(81, 203, 238, 1);
+  }
+
+  .te-button-all {
+    position: relative;
+    display: inline-block;
+    padding: 0;
+    background: transparent;
+    background-clip: border-box;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    line-height: 1.275rem;
+    text-decoration: none;
+  //color: #0070d2;
+    -webkit-appearance: none;
+    white-space: normal;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-size: .75rem;
+    white-space: nowrap;
+    position: relative;
+  }
+
+  .te-button-save {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    font-weight: 200;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #123F62;
+    border-color: #123F62;
+    -webkit-transition: border 0.15s linear;
+    transition: border 0.15s linear;
+    color: #E8F0FE;
+  }
+
+  .te-button-save:hover {
+    background-color: #12466b;
+    border-color: #12466b;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .te-button-danger {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #c23934;
+    -webkit-transition: border 0.15s linear;
+    transition: border 0.15s linear;
+    background-color: #c23934;
+    color: #fff;
+  }
+
+  .te-button-danger:hover {
+    background-color: #a61a14;
+    border-color: #a61a14;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .te-button-edit {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #dddbda;
+    -webkit-transition: border 0.15s linear;
+    transition: border 0.15s linear;
+    border-color: #dddbda;
+    background-color: #fff;
+    border-color: #0070d2;
+  }
+
+  .te-button-edit:hover {
+    background-color: #f4f6f9;
+    border-color: #0070d2;
+    color: #000;
+    cursor: pointer;
+  }
+
+</style>
+
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+
+
+      <div class="col-sm-12">
+        <div>
+          <!--<h1 style="font-size: 20px" class="layout-title">Default Location & Function Assignment</h1>-->
+          <h1 style="font-size: 20px" class="layout-title">User Functions & Location</h1>
+          <hr class="header-label-line">
+
+          <div class="row">
+
+            <div class="col-sm-2">
+              <label style="font-size: 13px" class="input-field-label">Select  User</label>
+            </div>
+            <div class="col-md-6" style="margin-top: -3px; margin-left: -50px;" >
+              {{nges-core/nges-searchable-dropdown
+                dataList=userList
+                  message = "Select a User"
+                autocompleteOnSelect=(action 'autocompleteOnSelectAction')
+              }}
+            </div>
+          </div>
+
+          <br>
+
+
+          <!--<input placeholder="name" class="form-control " name="name"  onkeyup={{action (mut userInfo.name)
+                                                                                            value='target.value'}}>-->
+
+
+          <!--<div style="padding-bottom: 20px">
+              <label class="">Password:</label>
+              <input placeholder="password" class="form-control " name="password"  onkeyup={{action
+            (mut userInfo.password) value='target.value'}}>
+            </div>-->
+
+
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="card">
+                <div class="card-body"
+                     style="overflow-y: auto; max-height: 500px; overflow-x: auto; background: #f0faff; padding: 10px; color: black;">
+                  <label class="">Function:</label>
+
+                  <li style="list-style: none; color: #000;">{{dataContextFunctionTree.name}}</li>
+                  {{nges-elements/data-context-tree-maker
+                    dataContextTree=dataContextFunctionTree.children
+                    treeDataModifiedAction = (action 'treeDataFunctionModifiedAction')
+                  }}
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="card"
+                   style="overflow-y: auto; max-height: 500px; overflow-x: auto; background: #edf7fc; padding: 10px; color: black;">
+
+                <div class="card-body">
+                  <label class="">Location:</label>
+                  <li style="list-style: none; color: #000; ">{{dataContextLocationTree.name}}</li>
+                  {{nges-elements/data-context-tree-maker
+                    dataContextTree=dataContextLocationTree.children
+                    treeDataModifiedAction = (action 'treeDataLocationModifiedAction')
+                  }}
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <br>
+
+          <!--<div style="padding-bottom: 20px">
+              &lt;!&ndash; populated items with relative selected into box for selection&ndash;&gt;
+              {{nges-elements/ngfs-item-selector-box-simple
+            dataList = (mut listUserRoles)
+            listGroupLabel = 'Select User Roles'
+            selectedResult = selectedResult
+          }}
+            </div>-->
+
+
+          <hr class="te-bottom-hr-line" style="margin-left: 30%">
+          <button class="te-button-all te-button-save float-right" {{action 'savedUserInfo'}} >Save User</button>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+</div>

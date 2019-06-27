@@ -1,0 +1,28 @@
+{{outlet}}
+
+
+
+<!--<h1 style="text-align: center; margin-top: 200px">Selected panel-loader Main View Page</h1>-->
+
+
+{{!nges-core/json model.appPanelInformation}}
+
+
+
+{{#if (eq model.appPanelInformation.appPanelCode 'operation') }}
+
+  <h1>Operational Dashboard</h1>
+
+{{/if}}
+
+{{#if (eq model.appPanelInformation.appPanelCode 'admin-panel') }}
+
+  <h1>Admin Dashboard</h1>
+
+{{/if}}
+
+
+
+
+{{nges-base/app-panel-dashboard}}
+

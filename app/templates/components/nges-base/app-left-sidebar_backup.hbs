@@ -1,0 +1,132 @@
+{{yield}}
+
+
+<nav id="sidebar" class={{if isSidebarHidden 'active'}}>
+  <div id="container-fluid card">
+    <div class="sidebar-header">
+
+      {{!--#link-to 'welcome.index' class="navbar-brand app-base-logo" }} {{appName}} {{/link-to--}}
+
+
+      {{#link-to 'welcome.index' class="" }}
+        <div class="app-base-logo"></div>
+      {{/link-to}}
+
+
+    </div>
+
+    <ul class="list-unstyled">
+
+
+      {{#each moduleList as |module moduleIndex|}}
+
+
+        <!-- super-admin = role menu -->
+        {{#if (eq module.code "user-management") }}
+
+          {{nges-base/app-submenu-admin-panel
+            moduleCode = module.code
+            serviceHolderCode = 'serviceHolderCode'
+            menuCode = serviceHolder.code
+          }}
+
+        {{/if}}
+
+
+        <!-- user-admin = roles menu -->
+        {{#unless (eq module.code "user-management")}}
+          <li>
+            <a href="#pageSubmenu{{moduleIndex}}" data-toggle="collapse" aria-expanded="true"
+               class="dropdown-toggle">{{module.name}}</a>
+            <ul class="list-unstyled collapse show" id="pageSubmenu{{moduleIndex}}">
+
+              {{#each module.serviceHolders as |serviceHolder|}}
+
+
+                <!--microservice user -->
+                {{#if (eq serviceHolder.menuTreeTemplate.code "MICROSERVICE") }}
+                  <li style="padding-left: 5px; padding-top: 5px">
+                    <a href="#pageSubMenuList{{serviceHolderIndex}}" data-toggle="collapse" aria-expanded="true"
+                       class="dropdown-toggle">{{serviceHolder.name}}</a>
+                    <ul class="list-unstyled collapse show" id="pageSubMenuList{{serviceHolderIndex}}">
+
+                      {{#each serviceHolder.children as |menu menuIndex|}}
+
+                      {{!-- old one
+                      <li style="padding-left: 5px; padding-top: 5px">
+                        <a href="#pageMenuList{{index}}" data-toggle="collapse" aria-expanded="true"
+                           class="dropdown-toggle">{{menu.name}}</a>
+                        <ul class="list-unstyled collapse show" id="pageMenuList{{menuIndex}}">
+
+                          {{#each menu.subMenuList as |subMenu|}}
+                            <li class="nav-link">
+                              {{#link-to
+                                'welcome.application-loader.panel-loader.module-loader.service-holder-loader.menu-template-loader.submenu-template-loader.index'
+                                module.code serviceHolder.menuTreeTemplate.code  menu.code subMenu.code
+                                class="nav-link nav-link-active" }} {{subMenu.name}} {{/link-to}}
+                            </li>
+                          {{/each}}
+                        </ul>
+                      </li>
+                      --}}
+
+                        <!--new one-->
+                        {{#each menu.subMenuList as |subMenu|}}
+                          <li class="">
+                            {{#link-to
+                              'welcome.application-loader.panel-loader.module-loader.service-holder-loader.menu-template-loader.submenu-template-loader.index'
+                              module.code serviceHolder.menuTreeTemplate.code  menu.code subMenu.code
+                              class="nav-link nav-link-active" }} {{subMenu.name}} {{/link-to}}
+                          </li>
+                        {{/each}}
+
+                      {{/each}}
+                    </ul>
+                  </li>
+                {{/if}}
+
+
+                <!--function admin -->
+                {{#if (eq serviceHolder.menuTreeTemplate.code "FUNCTION") }}
+
+                  <li style="padding-left: 5px; padding-top: 5px">
+                    <a href="#pageSubMenuList{{serviceHolderIndex}}" data-toggle="collapse" aria-expanded="true"
+                       class="dropdown-toggle">{{serviceHolder.name}}</a>
+                    <ul class="list-unstyled collapse show" id="pageSubMenuList{{serviceHolderIndex}}">
+
+                      {{#each serviceHolder.subMenuList as |subMenu|}}
+
+                        {{#link-to
+                          'welcome.application-loader.panel-loader.module-loader.service-holder-loader.menu-template-loader.submenu-template-loader.index'
+                          module.code serviceHolder.menuTreeTemplate.code serviceHolder.code subMenu.code
+                          class="nav-link nav-link-active" }} {{subMenu.name}} {{/link-to}}
+                      {{/each}}
+                    </ul>
+                  </li>
+
+
+
+                  {{nges-base/app-submenu-olm-setup
+                    moduleCode = module.code
+                    serviceHolderCode = serviceHolder.menuTreeTemplate.code
+                    menuCode = serviceHolder.code
+                  }}
+
+                {{/if}}
+
+              {{!log serviceHolder}}
+
+              {{/each}}
+            </ul>
+          </li>
+        {{/unless}}
+
+
+      {{!log module}}
+
+
+      {{/each}}
+    </ul>
+
+  </div>
+</nav>

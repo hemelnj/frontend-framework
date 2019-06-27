@@ -1,0 +1,31 @@
+
+
+{{!nges-core/json componentData}}
+
+
+<div class="container row">
+
+  <select id={{componentData.itemId}} class="" multiple="multiple">
+    {{#each-in componentData.initialData as |key group|}}
+
+
+    {{!-- <optgroup label={{group.label}}> --}}
+
+      {{#each-in group.data as |k item|}}
+        <option value="{{item.value}}" selected={{item.selected}} disabled={{item.disabled}} >{{item.view}}</option>
+      {{/each-in}}
+
+    {{!-- </optgroup> --}}
+
+
+    {{/each-in}}
+  </select>
+
+
+
+  <button class="badge-success" {{action 'clickMe'}}>Get Values</button>
+
+
+</div>
+
+

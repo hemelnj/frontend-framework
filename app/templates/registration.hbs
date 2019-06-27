@@ -1,0 +1,38 @@
+
+
+
+<div class="container">
+
+  <div class="card-body">
+    <div class="row">
+
+      <div class="col-sm-12">
+        <div>
+          <fieldset class="">
+            <legend style="font-size: 16px" class="">User Registration</legend>
+
+
+            <div style="padding-bottom: 20px">
+              <label class="">Name:</label>
+              <input placeholder="name" class="form-control " name="name"
+                     onkeyup={{action (mut userInfo.name) value='target.value'}}>
+            </div>
+            <div style="padding-bottom: 20px">
+              <label class="">Password:</label>
+              <input placeholder="password" class="form-control " name="password" onkeyup={{action
+                (mut userInfo.password) value='target.value'}}>
+            </div>
+
+
+            <button class="btn btn-success" {{action 'savedUserInfo'}} >Save User</button>
+          </fieldset>
+
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+</div>

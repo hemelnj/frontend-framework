@@ -1,0 +1,339 @@
+{{yield}}
+
+
+
+<style>
+  .olm-diagram-button-all {
+    position: relative;
+    display: inline-block;
+    padding: 0;
+    background: transparent;
+    background-clip: border-box;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    line-height: 1.675rem;
+    text-decoration: none;
+  //color: #0070d2;
+    -webkit-appearance: none;
+    white-space: normal;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-size: .75rem;
+    white-space: nowrap;
+    position: relative;
+  }
+
+  .olm-diagram-button-save {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    font-weight: 200;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #123F62;
+    border-color: #123F62;
+    -webkit-transition: border 0.15s linear;
+    transition: border 0.15s linear;
+    color: #E8F0FE;
+  }
+
+  .olm-diagram-button-save:hover {
+    background-color: #12466b;
+    border-color: #12466b;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .tools {
+    cursor: pointer;
+    background-color: white;
+  }
+
+  .tools:hover {
+    color: red;
+  }
+
+  .form-container {
+    border: 1px solid black;
+    margin: auto;
+    margin-top: 50px;
+    width: 800px;
+    padding: 50px;
+  }
+
+  .parent-container {
+
+    box-shadow: 0 0 10px 1px #80808066;
+    /*background-image: url("./bgimage.jpg");*/
+  }
+
+  .tools-container {
+    position: absolute;
+
+    float: left;
+    z-index: +10;
+    display: inline-block;
+    margin: 20px;
+  }
+
+  .tools-container div {
+    padding: 5px;
+    border: 1px solid gray;
+    text-align: center;
+  }
+
+  .diagram-tool {
+    position: relative;
+  }
+
+  .active-tool {
+    color: red;
+  }
+
+  .color-modal {
+    width: 400px;
+    background-color: white;
+    box-shadow: 0 0 10px -1px gray;
+    margin: auto;
+    margin-top: 100px;
+
+  }
+
+  .colors {
+
+  }
+
+  .color {
+    height: 25px;
+    width: 25px;
+    display: inline-block;
+    margin: 10px;
+    cursor: pointer;
+
+  }
+
+  .modal-title {
+    padding: 10px;
+  }
+
+  .color-modal-footer {
+    text-align: right;
+    padding: 10px;
+  }
+
+  .diagram-modal-container {
+    display: none;
+    height: 600px;
+
+    background: rgba(164, 164, 164, 0.5);
+
+    position: absolute;
+
+    width: 100%;
+
+    z-index: +9999999999;
+  }
+
+  .form {
+    padding: 50px;
+    display: none;
+
+  }
+
+  .form-fields {
+    max-width: 500px;
+    margin: auto;
+  }
+
+</style>
+
+<div class="row">
+
+  <div class="col-sm-6">
+
+    {{nges-core/nges-searchable-dropdown
+      dataList=classtypes
+        message="Select OLM Object"
+      autocompleteOnSelect=(action 'onChangeClassTypes')
+    }}
+
+  </div>
+  <div class="col-sm-6">
+    <button class="olm-diagram-button-all olm-diagram-button-save float-right" {{action "saveDiagram"}}> Save</button>
+  </div>
+
+</div>
+<div class="diagram-tool">
+
+  <div class="diagram-modal-container">
+    <div class="color-modal">
+      <div class="color-modal-header">
+        <div class="modal-title">
+          Please select a color
+        </div>
+      </div>
+      <div class="color-modal-body">
+        <div class="color-picker">
+          <div class="colors">
+            {{#each colors as |item|}}
+
+              <div class="color" style="background-color:{{item}}"></div>
+
+            {{/each}}
+
+          </div>
+        </div>
+
+      </div>
+      <div class="color-modal-footer">
+        <button class="btn btn-danger" id="cancel-btn">Cancel</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="tools-container">
+    <div class="tools active-tool" id="hand">
+      Hand
+    </div>
+    <div class="tools " id="start">
+      START
+    </div>
+    <div class="tools" id="end">
+      END
+    </div>
+
+    <div class="tools" id="ellipse">
+      STATE
+    </div>
+
+    <div class="tools" id="connect">
+      EVENT
+    </div>
+
+    <div class="tools" id="circle" style="display:none">
+      STATE
+    </div>
+    <div class="tools" id="circularedge" style="display:none">
+      CRUD
+    </div>
+
+    <div class="tools" id="remove">
+      REMOVE
+    </div>
+
+  </div>
+  <div style="text-align:center" class="parent-container">
+
+    <div id="container">
+
+
+    </div>
+
+    <!-- zoom range input  -->
+    <!--<div style="padding: 5px;">
+      <input onchange={{action 'zoomSliderChange' value='target.value' }} style="margin-top: 50px;" type="range" min="1"
+             max="200" value="100" class="zoomRange" id="zoomRange">
+      <span style="padding: 2px;" class="rangeValue">{{zoomRangeValue}}</span>
+    </div>-->
+  </div>
+
+  <div class="property-form-container">
+    <form class="form form-for-event">
+      <div class="form-fields">
+
+        <div class="form-group">
+          <label for="event">Event</label>
+
+          <select class="form-control" id="event" onchange={{action "selectEvent" value="target.value"}}>
+
+            {{#each actionevents as |actionevent|}}
+              {{#if (nges-engines/olm/removenoidelement actionevent.id)}}
+                <option value="{{actionevent.attributes.id}}"
+                        class="event-opt"> {{actionevent.attributes.name}}</option>
+              {{/if}}
+            {{/each}}
+
+          </select>
+
+        </div>
+
+        <div class="form-group">
+          <label for="role">Role</label>
+          <select class="form-control" id="role" name="role" multiple="multiple">
+
+
+            {{#each roles as |role|}}
+
+              <option value={{role.attributes.id}}  class="role-opt">{{role.attributes.name}}</option>
+
+            {{/each}}
+          </select>
+        </div>
+        <button {{action "submitForm"}} class="btn btn-info">Apply</button>
+
+      </div>
+    </form>
+    <form class="form form-for-state">
+      <div class="form-fields">
+
+        <div class="form-group">
+          <label for="state">State</label>
+
+          <select class="js-select2" style="z-index: +999999; position: absolute" id="stateOption">
+
+            <option class="state-opt" value="" selected="selected"> ----Select State---- </option>
+
+            {{#each states as |state index|}}
+
+              {{#if (nges-engines/olm/filterStartEndState state.name)}}
+                <option value="{{state.id}}" class="state-opt"> {{state.name}}</option>
+              {{/if}}
+            {{/each}}
+
+          </select>
+
+
+        </div>
+        <div class="form-group">
+          <label for="view">View</label>
+
+          <select class="form-control" id="view" name="view" multiple="multiple">
+
+            {{#each roles as |role|}}
+
+              <option value={{role.attributes.id}}  class="view-opt">{{role.attributes.name}}</option>
+
+            {{/each}}
+
+
+          </select>
+
+
+        </div>
+        <div class="form-group">
+          <label for="edit">Edit</label>
+          <select class="form-control" id="edit" name="edit" multiple="multiple">
+
+            {{#each roles as |role|}}
+
+              <option value={{role.attributes.id}}  class="edit-opt">{{role.attributes.name}}</option>
+
+            {{/each}}
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="delete">Delete</label>
+          {{input type="text"  class="form-control" id="delete" value=delete  disabled="disabled"}}
+        </div>
+        <button {{action "submitStateForm"}} class="btn btn-info">Apply</button>
+
+      </div>
+    </form>
+
+
+  </div>
+
+
+</div>

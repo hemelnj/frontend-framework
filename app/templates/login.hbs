@@ -1,0 +1,101 @@
+<style>
+  .width-400 {
+    width: 400px;
+  }
+
+  .width-400 input {
+    margin-top: 18px;
+  }
+
+
+  .login-box {
+    box-shadow: 0 0 10px -1px gray;
+    margin-top: 100px;
+  / / padding: 50 px;
+  }
+
+  .button-login {
+    height: 35px;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    font-weight: 200px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #dddbda;
+    border-radius: .25rem;
+    -webkit-transition: border 0.15s linear;
+    transition: border 0.15s linear;
+    border-color: #3A3D44;
+    color: white;
+    background-color: #3A3D44;
+  }
+
+  .button-login:hover {
+    background-color: #3A3D44;
+    border-color: #3A3D44;
+    color: white;
+    cursor: pointer;
+  }
+
+</style>
+
+
+<div class="container width-400 login-box" style="padding-left: 0; padding-right: 0;">
+  <div class="login-logo-bg">
+    <img src="/app-logo.png" style="height: 60%;width: 100%; padding: 15px">
+  </div>
+
+  <form class="form-signin">
+    <br>
+    <h2 class="form-signin-heading layout-title" style="font-size: x-large; margin-left: 6%; color: #373B42;">Login</h2>
+
+
+    <div style="padding: 25px;margin-top: -8%">
+      <label for="inputName" class="sr-only">User name</label>
+      <input id="inputName" placeholder="Name" class="form-control" value={{userInformation.name}}
+             oninput={{action (mut userInformation.name) value="target.value"}}>
+
+
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input id="inputPassword" type="password" placeholder="Password" class="form-control"
+             value={{userInformation.password}}
+             oninput={{action (mut userInformation.password) value="target.value"}}>
+
+      <h2 style="font-size:13px; color: blue; margin-top: 6px">{{#link-to "forget-password"}}
+        Forgot Password?{{/link-to}}</h2>
+
+
+      <div class="form-check" style="margin-left: -12px;">
+        <label class="form-check-label input-field-label">
+          <input type="checkbox" class="form-check-input" onclick="myFunction()" style="margin-top: 2px;">Show Password
+        </label>
+      </div>
+
+
+      <script>
+        function myFunction() {
+          var x = document.getElementById("inputPassword");
+          if (x.type === "password") {
+            x.type = "text";
+          } else {
+            x.type = "password";
+          }
+        }
+      </script>
+
+      {{#if isLoadingIconVisible}}
+        <img src="/loading-icon.gif" style="margin-top: 10px; height: 40px;width: 40px;">
+      {{/if}}
+
+      <button class="button-login float-right" style="margin-top: 10px; width: 40%;" {{action "signin"
+                                                                                              userInformation}}>Sign In
+      </button>
+      <br>
+      <br>
+    </div>
+
+    {{!--  <a href="http://localhost:4400" target="_blank" class="btn btn-lg btn-warning btn-block"> Auth Server </a> --}}
+  </form>
+
+</div>
+

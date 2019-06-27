@@ -1,0 +1,332 @@
+<style>
+  .layout-title {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 2.125rem;
+    font-weight: 400;
+    color: #123F62;
+    display: block;
+  }
+
+  .auth-var-line {
+    border-left: 1px solid #E5E5E5;
+    height: 500px;
+  }
+
+  .auth-hr-line {
+    margin-top: -3px;
+    border: 1.5px solid #123F62;
+  }
+
+  .auth-button-all {
+    position: relative;
+    display: inline-block;
+    padding: 0;
+    background: transparent;
+    background-clip: border-box;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    line-height: 1.275rem;
+    text-decoration: none;
+    color: #0070d2;
+    -webkit-appearance: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-size: .75rem;
+    white-space: nowrap;
+    position: relative;
+  }
+
+  .auth-button-save {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #dddbda;
+    -webkit-transition: border 0.15s linear;
+    transition: border 0.15s linear;
+    color: #fff;
+    border-color: #dddbda;
+    background-color: #123F62;
+    border-color: #123F62;
+  }
+
+  .auth-button-save:hover {
+    background-color: #12466b;
+    border-color: #12466b;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .button-danger {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #dddbda;
+    -webkit-transition: border 0.15s linear;
+    transition: border 0.15s linear;
+    background-color: #c23934;
+    border-color: #c23934;
+    color: #fff;
+  }
+
+  .button-danger:hover {
+    background-color: #a61a14;
+    border-color: #a61a14;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .auth-button-edit {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #dddbda;
+    -webkit-transition: border 0.15s linear;
+    transition: border 0.15s linear;
+    border-color: #dddbda;
+    background-color: #fff;
+    border-color: #0070d2;
+  }
+
+  .auth-button-edit:hover {
+    background-color: #f4f6f9;
+    border-color: #0070d2;
+    color: #000;
+    cursor: pointer;
+  }
+
+
+  .form-group {
+    position: relative;
+    min-width: 0;
+  }
+
+  .input-field-label {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+    display: inline-block;
+    color: #707275;
+    font-size: .75rem;
+    font-weight: bolder;
+    padding: 0 1rem 0 .75rem;
+    margin-bottom: .125rem;
+  }
+
+  .input-field {
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    border-bottom: 1.1px solid #747474;
+    width: 100%;
+    -webkit-transition: border .1s linear, background-color .1s linear;
+    transition: border .1s linear, background-color .1s linear;
+    display: inline-block;
+    padding: 0 1rem 0 .75rem;
+    font-size: .75rem;
+    line-height: 1.875rem;
+    min-height: calc(1.875rem + (1px * 2));
+    margin-bottom: .125rem;
+    background: #FAFAFA;
+  }
+
+  .input-field:focus {
+    outline: none;
+    border-bottom: 1.5px solid rgba(81, 203, 238, 1);
+  }
+
+  .form-control {
+    clear: left;
+    position: relative;
+  }
+
+  .has-search .input-field {
+    padding-left: 4.275rem;
+  }
+
+  .has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 4.375rem;
+    height: 4.375rem;
+    line-height: 1.875rem;
+    min-height: calc(1.875rem + (1px * 2));
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+  }
+
+  .muliti-select-item {
+    padding: 0.25rem 0.25rem;
+    color: #3e3e3c;
+    font-size: .75rem;
+    white-space: nowrap;
+  }
+
+  .table-all thead th {
+    background-color: #FEFEFE;
+    color: #313131;
+    font-size: .75rem;
+    font-weight: bold;
+    line-height: normal;
+    font-weight: bolder;
+    border-collapse: separate;
+    border-top: 1px solid #EDEEEF;
+    border-bottom: 1px solid #EDEEEF;
+  }
+
+  .table-all td {
+    padding: 0.25rem 0.25rem;
+    color: #3e3e3c;
+    font-size: .75rem;
+    white-space: nowrap;
+    position: relative;
+    line-height: normal;
+  }
+
+  .table-bordered {
+    border-collapse: separate;
+    border-top: 1px solid #dddbda;
+    border-bottom: 1px solid #dddbda;
+  }
+
+  .table-data {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+</style>
+
+
+<br>
+
+<div class="card">
+  <div class="card-body">
+    <div class="col-md-11">
+      <!--<label class="layout-title" style="font-size: 20px">Role Creation</label>-->
+      <label class="layout-title" style="font-size: 20px">User Roles</label>
+      <hr class="header-label-line">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group has-search" style="margin-top:10px;">
+            <span class="fa fa-search form-control-feedback"></span>
+            <input type="text" class="input-field" onkeyup={{action 'getFilterKey' value='target.value'}}
+                   placeholder="Type to Search">
+          </div>
+
+          <div class="table-container"
+               style="overflow-y: auto; max-height: 250px; overflow-x: auto; margin-top:10px;">
+            <table class="table-all">
+              <thead>
+              <tr class="line-height-reset">
+                <th class="table-data table-bordered">
+                  <div>
+                    Role Id
+                  </div>
+                </th>
+                <th class="table-data table-bordered">
+                  <div>
+                    Name
+                  </div>
+                </th>
+
+                <th class="table-data table-bordered">
+                  <div>
+                    Action
+                  </div>
+                </th>
+              </tr>
+              </thead>
+              <tbody>
+
+
+              {{#each roleList as |item index|}}
+                <tr>
+                  <td class="table-data table-bordered">
+                    <div>
+                      {{item.attributes.id}}
+                    </div>
+                  </td>
+                  <td class="table-data table-bordered">
+                    <div>
+                      {{item.attributes.name}}
+                    </div>
+                  </td>
+                  <td class="table-data table-bordered">
+                    <div>
+                      <button data-toggle="modal" data-target="#actionEventModal" {{action 'editActionEvent' item }}
+                              style="width: 100px;" class="auth-button-all auth-button-edit">Edit
+                      </button>
+                      <!--<button {{action 'deleteActionEvent'
+                                           item }} style="width: 100px; margin-bottom: 5px" class="button-all button-danger">Delete</button>-->
+                    </div>
+                  </td>
+                </tr>
+              {{/each}}
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div id="actionEventInfo" class="adjust-card-style field-form max-width" method="post">
+            <div class="row" style="margin-top:10px;">
+              <div class="col-md-3">
+                <label for="name" class="input-field-label" style="margin-top:15px;">Name</label>
+              </div>
+              <div class="col-md-9">
+                {{input type="text" class="input-field" id="role"  name="role"
+                        placeholder="Enter Role Name"
+                        value=name}}
+              </div>
+            </div>
+            <div class="row" style="margin-top:15px;">
+              <div class="col-md-3">
+                <label for="code" class="input-field-label" style="margin-top:15px;">Code</label>
+              </div>
+              <div class="col-md-9">
+                {{input type="text" class="input-field" id="roleCode" name="roleCode"
+                        placeholder="Role Code"  value=(nges-engines/auth-engine/code-generator name)}}
+              </div>
+
+
+            </div>
+
+            <div class="row" style="margin-top:15px;">
+              <div class="col-md-3">
+                <label for="description" class="input-field-label" style="margin-top:15px;">Description</label>
+              </div>
+              <div class="col-md-9">
+                {{input type="text" class="input-field" id="roleDescription" name="roleDescription"
+                        placeholder="Enter Description" value=description}}
+              </div>
+
+
+            </div>
+
+            <div class="form-btn-container float-right" style="margin-top:25px">
+              <div class="auth-button-all auth-button-save" style="width: 100px; margin-bottom: 5px" {{action "save"}}>
+                Save
+              </div>
+            </div>
+          </div>
+          <br>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

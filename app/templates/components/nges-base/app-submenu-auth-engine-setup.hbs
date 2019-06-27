@@ -1,0 +1,19 @@
+<li style="padding-left: 5px; padding-top: 5px">
+  <a href="#pageSubmenu-auth-engine" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"> Auth Engine</a>
+  <ul class="list-unstyled collapse show" id="pageSubmenu-auth-engine">
+
+    <li>
+
+      {{#link-to
+        'welcome.application-loader.panel-loader.module-loader.service-holder-loader.menu-template-loader.submenu-template-loader.index'
+        moduleCode 'service-holder' 'auth-engine' 'role-creation' class="nav-link" }}
+        Role Creation {{/link-to}}
+
+      {{#link-to
+        'welcome.application-loader.panel-loader.module-loader.service-holder-loader.menu-template-loader.submenu-template-loader.index'
+        moduleCode 'service-holder' 'auth-engine' 'user-creation' class="nav-link" }}
+        User Creation {{/link-to}}
+
+    </li>
+  </ul>
+</li>

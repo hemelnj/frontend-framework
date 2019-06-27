@@ -1,0 +1,21 @@
+{{yield}}
+
+
+
+<!--
+<p>main-content-viewer.hbs</p>
+-->
+
+
+
+{{!nges-core/json serviceInformation.templateInformation}}
+
+{{component
+  serviceInformation.completeTemplateName
+  serviceInformation = serviceInformation
+
+}}
+
+
+
+{{!component (template-name-formatter serviceInformation.templateInformation) }}

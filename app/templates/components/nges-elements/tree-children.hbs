@@ -1,0 +1,13 @@
+{{yield}}
+
+
+
+{{#each items as |item|}}
+  <li>{{item.name}}
+    {{#if item.items}}
+      <ul>
+        {{nges-elements/tree-children items=item.items}}
+      </ul>
+    {{/if}}
+  </li>
+{{/each}}

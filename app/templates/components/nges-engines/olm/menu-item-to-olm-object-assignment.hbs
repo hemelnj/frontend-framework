@@ -1,0 +1,363 @@
+{{yield}}
+
+<style>
+  .layout-title {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 1.825rem;
+    font-weight: 400;
+    color: #123F62;
+    display: block;
+  }
+
+  .te-top-hr-line {
+    margin-top: -3px;
+    border: 1.5px solid #123F62;
+  }
+
+  .te-bottom-hr-line {
+    border: 0;
+    max-width: 70%;
+    margin-left: 0;
+    margin-top: -8px;
+    border-top: 2px solid;
+    border-color: #666666;
+  }
+
+  .te-button-all {
+    position: relative;
+    display: inline-block;
+    padding: 0;
+    background: transparent;
+    background-clip: border-box;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    line-height: 1.275rem;
+    text-decoration: none;
+  / / color: #0070d2;
+    -webkit-appearance: none;
+    white-space: normal;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-size: .75rem;
+    white-space: nowrap;
+    position: relative;
+  }
+
+  .te-button-save {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    font-weight: 200;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #123F62;
+    border-color: #123F62;
+    -webkit-transition: border 0.15s linear;
+    transition: border 0.15s linear;
+    color: #E8F0FE;
+  }
+
+  .te-button-save:hover {
+    background-color: #12466b;
+    border-color: #12466b;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .te-button-danger {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #c23934;
+    -webkit-transition: border 0.15s linear;
+    transition: border 0.15s linear;
+    background-color: #c23934;
+    color: #fff;
+  }
+
+  .te-button-danger:hover {
+    background-color: #a61a14;
+    border-color: #a61a14;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .te-button-edit {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #dddbda;
+    -webkit-transition: border 0.15s linear;
+    transition: border 0.15s linear;
+    border-color: #dddbda;
+    background-color: #fff;
+    border-color: #0070d2;
+  }
+
+  .te-button-edit:hover {
+    background-color: #f4f6f9;
+    border-color: #0070d2;
+    color: #000;
+    cursor: pointer;
+  }
+
+  .input-field-label {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+    display: inline-block;
+    color: #6D6766;
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 0 1rem 0 .75rem;
+    margin-bottom: .125rem;
+  }
+
+  .input-field {
+    background-color: #fff;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    border-bottom: 1.1px solid #747474;
+    width: 100%;
+    -webkit-transition: border .1s linear, background-color .1s linear;
+    transition: border .1s linear, background-color .1s linear;
+    display: inline-block;
+    padding: 0 1rem 0 .75rem;
+    font-size: .75rem;
+    line-height: 1.875rem;
+    min-height: calc(1.875rem + (1px * 2));
+    margin-bottom: .125rem;
+  }
+
+  .input-field:focus {
+    outline: none;
+    border-bottom: 1.5px solid rgba(81, 203, 238, 1);
+  }
+
+  .table-all thead th {
+    background-color: #FEFEFE;
+    color: #666666;
+    font-size: .75rem;
+    font-weight: bold;
+    line-height: normal;
+    font-weight: bolder;
+    border-collapse: separate;
+    border-top: 1px solid #EDEEEF;
+    border-bottom: 1px solid #EDEEEF;
+  }
+
+  .table-all td {
+    padding: 0.25rem 0.25rem;
+    color: #3e3e3c;
+    font-size: .75rem;
+    white-space: nowrap;
+    position: relative;
+    line-height: normal;
+  }
+
+  .table-bordered {
+    border-collapse: separate;
+    border-top: 1px solid #dddbda;
+    border-bottom: 1px solid #dddbda;
+  }
+
+  .table-data {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+</style>
+
+<div class="card">
+  <div class="card-body">
+    <div>
+      <h1 style="font-size: 20px" class="layout-title">Menu Mapping and Resource Configuration </h1>
+      <hr class="header-label-line">
+    </div>
+
+    {{!nges-engines/tree-engine/object-to-string menuItems}}
+
+    <div class="row">
+      <div class="col-md-5">
+
+        {{#if subMenuList}}
+          <h5 class="input-field-label">Menu Item Object Data</h5>
+          <div class="table-container" style="overflow-y: auto; max-height: 350px; overflow-x: auto; margin-top:10px;">
+            <table class="table-all" style="width: 100%">
+              <thead>
+              <tr>
+                <th class="table-data table-bordered">
+                  <span>Name</span>
+                  |
+                  <span style="color: #003bb3;">Code</span>
+
+                </th>
+                <th class="table-data table-bordered">Data</th>
+                <th class="table-data table-bordered">Action</th>
+              </tr>
+              </thead>
+              <tbody>
+
+              {{#each subMenuList as |item|}}
+                <tr>
+                  <td class="table-data table-bordered">
+
+                    <span> {{item.name}} </span>|
+
+                    <span style="color: #003bb3;">{{item.code}}</span>
+                  </td>
+                  <td class="table-data table-bordered">
+                    {{#each item.stateList as |value|}}
+                      <span>{{value.name}},</span><br>
+                    {{/each}}
+                  </td>
+                  <td class="table-data table-bordered">
+                    <button {{action 'editItemAction' item }} class="te-button-all te-button-edit">Edit</button>
+                    <!--<button {{action 'removeItemAction'
+                                         item }} class="te-button-all te-button-danger">Delete</button>-->
+                  </td>
+                </tr>
+              {{/each}}
+
+              </tbody>
+            </table>
+          </div>
+
+
+        {{/if}}
+
+        {{#unless subMenuList}}
+          <h1 class="input-field-label">Select Menu Item and OLM Object</h1>
+        {{/unless}}
+
+      </div>
+
+      <div class="col-md-7">
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-3" style="margin-top: 10px">
+              <label for="menuItems" class="input-field-label">Menu Item</label>
+            </div>
+
+            <div class="col-md-9">
+              {{nges-core/nges-searchable-dropdown
+                dataList=menuItems
+                autocompleteOnSelect=(action 'selectMenuItem')
+              }}
+            </div>
+            <!--<div class="col-md-9">
+              <select class="input-field" id="menuItems" onchange={{action (mut formData.menuItem)
+
+                                                                           value="target.value"}}>
+
+                <option>Select Menu Items</option>
+                {{#each menuItems as |item|}}
+                  <option value={{nges-engines/tree-engine/object-to-string item}} >{{item.attributes.name}}</option>
+                {{/each}}
+              </select>
+
+            </div>-->
+          </div>
+
+
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-3" style="margin-top: 10px">
+              <label for="olmObject" class="input-field-label">OLM Object</label>
+            </div>
+
+            <div class="col-md-9">
+              {{nges-core/nges-searchable-dropdown
+                dataList=olmObjects
+                autocompleteOnSelect=(action 'selectOlmObject')
+              }}
+            </div>
+
+          </div>
+
+
+        </div>
+
+
+        {{nges-elements/sadhan-dual-list-box
+          dualBoxData = dualBoxData
+        }}
+        {{!nges-engines/tree-engine/object-to-string dualBoxData}}
+
+        <div class="form-group" style="margin-top: 10px">
+          <div class="row">
+            <div class="col-md-3" style="margin-top: 10px">
+              <label for="stateName" class="input-field-label">Display Name</label>
+            </div>
+            <div class="col-md-9">
+              <input type="text" placeholder="Enter Label Name" class="input-field" id="stateName"
+                     value={{formData.stateName}}
+                     oninput={{action (mut formData.stateName) value="target.value"}}>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-3" style="margin-top: 10px">
+              <label for="stateName" class="input-field-label">Choose Resource</label>
+            </div>
+
+            <div class="col-md-9" style="margin-top: 11px">
+              {{nges-core/nges-searchable-dropdown
+                dataList=templateList
+                autocompleteOnSelect=(action 'selectTemplateList')
+              }}
+            </div>
+
+          </div>
+
+          <div class="row" style="display: none">
+            <div class="col-md-3" style="margin-top: 10px">
+              <label for="stateName" class="input-field-label">Selected Template Code</label>
+            </div>
+            <div class="col-md-9">
+              <input disabled type="text" class="input-field" id="stateName" value={{formData.individualSubmenuCode}}
+                     oninput={{action (mut formData.individualSubmenuCode) value="target.value"}}>
+            </div>
+          </div>
+
+        </div>
+
+        <div>
+          <button {{action 'addSubMenu'}} class="olm-button-all olm-button-edit float-right">Select SubMenu</button>
+          <br>
+        </div>
+
+
+        <div>
+          <br>
+          <hr class="te-bottom-hr-line" style="margin-left: 30%">
+          <button class="te-button-all te-button-save float-right" {{action 'saveData' }} >Save Information</button>
+
+          <!--<button style="margin-right: 30px;" class="button-save float-right" {{action 'updateData' }} >Update
+            Information
+          </button>-->
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

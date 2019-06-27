@@ -1,0 +1,108 @@
+
+<style>
+  .form-control{
+    color: #666666;
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 0 1rem 0 .75rem;
+    margin-bottom: .125rem;
+  }
+
+
+  .button-all {
+    position: relative;
+    display: inline-block;
+    padding: 0;
+    background: transparent;
+    background-clip: border-box;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    line-height: 1.575rem;
+    text-decoration: none;
+    color: #0070d2;
+    -webkit-appearance: none;
+    white-space: normal;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-size: .75rem;
+  }
+
+  .button-edit {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #dddbda;
+    -webkit-transition: border 0.15s linear;
+    transition: border 0.15s linear;
+    border-color: #dddbda;
+    background-color: #fff;
+    border-color: #0070d2;
+  }
+
+  .button-edit:hover {
+    background-color: #f4f6f9;
+    border-color: #0070d2;
+    color: #000;
+    cursor: pointer;
+  }
+
+
+  .button-logout {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #a12b2b;
+    -webkit-transition: border 0.15s linear;
+    transition: border 0.15s linear;
+    border-color: #a12b2b;
+    background-color: #fff;
+    color: #c23934;
+  }
+
+  .button-logout:hover {
+    background-color: #f4f6f9;
+    color: #a12b2b;
+    cursor: pointer;
+  }
+
+</style>
+
+
+{{!nges-engines/tree-engine/object-to-string  dualBoxData.available}}
+
+
+<div class="row">
+  <div class="col-md-5 available">
+    <select class="form-control" multiple style="min-height: 200px;" onchange={{action 'availableOnChange' value="target.value" }}>
+      {{#each (mut dualBoxData.available) as | item |}}
+        <option value={{nges-engines/tree-engine/object-to-string  item}}>{{item.attributes.name}}</option>
+      {{/each}}
+    </select>
+  </div>
+  <div class="col-md-2" style="margin-top: 20px">
+      <button {{action 'addClick' }} style="width: 100%; margin-top: 10px;" type="button" class="button-all button-edit"> {{dualBoxConfig.addButton}} </button>
+      <button {{action 'removeClick' }} style="width: 100%; margin-top: 10px;" type="button" class="button-all button-logout"> {{dualBoxConfig.removeButton}} </button>
+      <button {{action 'addAllClick' }} style="width: 100%; margin-top: 10px;" type="button" class="button-all button-edit"> {{dualBoxConfig.addAllButton}} </button>
+      <button {{action 'removeAllClick' }} style="width: 100%; margin-top: 10px;" type="button" class="button-all button-logout"> {{dualBoxConfig.removeAllButton}} </button>
+  </div>
+  <div class="col-md-5 selected">
+    <select id="" class="form-control" multiple style="min-height: 200px;" onchange={{action 'removeOnChange' value="target.value" }}>
+      {{#each (mut dualBoxData.selected) as | item|}}
+
+        <option value={{nges-engines/tree-engine/object-to-string  item}}>{{item.attributes.name}}
+        </option>
+      {{/each}}
+    </select>
+  </div>
+</div>
+
+{{!--
+<button class="button btn-success pull-right" {{action 'getDualBoxValue' }}> Dual Box Data </button>
+
+--}}
+
+

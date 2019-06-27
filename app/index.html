@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Frontend as Service</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {{content-for "head"}}
+
+    <link integrity="" rel="stylesheet" href="{{rootURL}}assets/vendor.css">
+    <link integrity="" rel="stylesheet" href="{{rootURL}}assets/frontend-engine.css">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+          crossorigin="anonymous">
+
+    <link rel="shortcut icon" type="image/png" href="/favicon.ico"/>
+
+    <!--add css here...-->
+    <link href="/css/nges-multi-select-box.css" rel="stylesheet">
+    <link href="/css/nges-autocomplete.css" rel="stylesheet">
+    <link href="/css/select2.min.css" rel="stylesheet">
+
+    {{content-for "head-footer"}}
+  </head>
+  <body>
+    {{content-for "body"}}
+
+    <script src="/testem.js" integrity=""></script>
+    <script src="{{rootURL}}assets/vendor.js"></script>
+    <script src="{{rootURL}}assets/frontend-engine.js"></script>
+
+    {{content-for "body-footer"}}
+
+    <!--add js here...-->
+    <script src="/js/nges-multi-select-box.js"></script>
+    <script src="/js/select2.full.js"></script>
+
+
+
+
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="" crossorigin="anonymous"></script>
+
+
+
+  </body>
+</html>

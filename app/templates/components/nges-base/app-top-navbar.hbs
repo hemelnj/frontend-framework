@@ -1,0 +1,60 @@
+
+
+
+
+
+
+<div id="content" class={{if isSidebarHidden 'active'}}>
+
+  <!-- top nav bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <!-- left icon -->
+    <button style="display: block; border: none!important;outline: none;"
+            class="navbar-toggler" type="button" data-toggle="collapse" onclick={{action toggleNavSidebarAction}}>
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    {{#link-to 'welcome' class="navbar-brand d-block d-sm-none"}} {{appName}} {{/link-to}}
+
+
+
+
+    <!-- right icon -->
+    <button style="border: none!important;outline: none;"
+            class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" style="padding: 4px;">
+      <ul class="navbar-nav mr-auto">
+        {{#each serviceList as |service|}}
+          <li class="nav-item">
+
+            {{!nges-core/json service}}
+
+            {{#link-to 'welcome.application-loader.panel-loader' service.routeName class="nav-link" }} {{nges-core/capitalize-first-letter service.displayName}} {{/link-to}}
+
+          </li>
+        {{/each}}
+      </ul>
+
+
+
+      <div class="menu-right">
+        {{nges-base/app-application-popup
+          signOut = signOut
+          navigateToUpdatePassword = navigateToUpdatePassword
+          logoutAll = logoutAll
+        }}
+      </div>
+    </div>
+  </nav>
+
+  {{yield}}  {{!-- injected view loaded here --}}
+
+
+</div>

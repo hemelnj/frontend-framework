@@ -1,0 +1,63 @@
+<style>
+  .input-field-label {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+    display: inline-block;
+    color: #666666;
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 0 1rem 0 .75rem;
+    margin-bottom: .125rem;
+  }
+
+  .input-field-component {
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    border-bottom: 1.1px solid #747474;
+    width: 100%;
+    -webkit-transition: border .1s linear, background-color .1s linear;
+    transition: border .1s linear, background-color .1s linear;
+    display: inline-block;
+    font-size: 14px;
+    height: 24px;
+    /*font-size: .75rem;
+    padding: 0 1rem 0 .75rem;
+    line-height: 1.875rem;*/
+    /*min-height: calc(1.875rem + (1px * 2));*/
+    margin-bottom: .125rem;
+  }
+
+  .input-field-component:focus {
+    outline: none;
+    border-bottom: 1.5px solid rgba(81, 203, 238, 1);
+  }
+</style>
+
+{{message}}
+
+<div class="form-group">
+
+  <div class="row">
+    <div class="{{sectionFirst}}">
+      <label class="input-field-label" style="margin-top: 15px;">{{input-field-name}}</label>
+    </div>
+    <div class="{{sectionLast}}">
+      {{input class="input-field-component" model=model type=type value=updatedValue placeholder=placeholder name=valuePath maxlength=maxLength}}
+      <div class='input-error'>
+        {{#if showErrorMessage}}
+          <div class='error float-right'>
+            <h1 style="color: red;font-size: 12px;">{{v-get model valuePath 'message'}}</h1>
+          </div>
+        {{/if}}
+      </div>
+
+    </div>
+  </div>
+
+
+</div>
+

@@ -1,0 +1,19 @@
+import { helper } from '@ember/component/helper';
+
+export function capitalizeFirstLetter(params/*, hash*/) {
+
+  let str = params[0];
+
+  let splitStr = str.toLowerCase().split(' ');
+  for (let i = 0; i < splitStr.length; i++) {
+    // You do not need to check if i is larger than splitStr length, as your for does that for you
+    // Assign it back to the array
+    splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+  }
+  // Directly return the joined string
+  return splitStr.join(' ');
+
+  //return (text !== undefined && text !== null) ? text.toLowerCase() : '';
+}
+
+export default helper(capitalizeFirstLetter);

@@ -1,0 +1,67 @@
+
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+
+
+
+
+  {{!--#link-to 'welcome.index' class="navbar-brand" }} <div style="font-weight: bold">  {{appName}} </div> {{/link-to--}}
+  {{#link-to 'welcome.index' class="" }}
+    {{nges-base/app-logo-viewer
+      appLogo = appLogo
+    }}
+  {{/link-to}}
+
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+
+
+    <ul class="navbar-nav  mr-auto">
+      {{#each serviceList as |service|}}
+        <li class="nav-item ">
+          {{#link-to 'welcome.application-loader.panel-loader'
+                     service.applicationRouteName
+                     service.routeName
+                     class="nav-link"
+          }} {{nges-core/capitalize-first-letter service.displayName}} {{/link-to}}
+        </li>
+      {{/each}}
+    </ul>
+
+
+
+
+
+    <div class="menu-right">
+      {{nges-base/app-application-popup
+        signOut = (action 'signOut')
+        navigateToUpdatePassword = (action 'navigateToUpdatePassword')
+
+
+      }}
+    </div>
+  </div>
+</nav>
+
+<br>
+
+<div class="container">
+
+  <h1 style="text-align: center; margin-top: 200px">Welcome To {{appName}}</h1>
+  <h1 style="text-align: center;">{{t "grettings"}} </h1>
+
+  {{!--<h1>{{t "price_banner" product="Mobile" price="10" number="1" BDT="Tk" }}</h1> --}}
+
+
+  <center>
+    <button  {{action  'changeLocaleENG'}}> ENG</button>
+    <button  {{action  'changeLocaleBNG'}}> BNG</button>
+  </center>
+
+
+</div>
+
+
