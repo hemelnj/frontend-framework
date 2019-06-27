@@ -16,11 +16,6 @@ export default Service.extend({
   },
 
   //  generate service Host Url base on params
-  getServiceHostUrl(serviceInformation) {
-    let hostUrl = 'http://' + serviceInformation.appCode + '.' + serviceInformation.appModuleCode + '-apps.115.127.24.184.nip.io';
-    return hostUrl;
-  },
-
   getServiceBaseHostURL() {
     let routeInfo = this.store.peekRecord('nges-core/engine-route-information', 1);
 

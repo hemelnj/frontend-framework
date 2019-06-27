@@ -5,21 +5,9 @@ import config from 'frontend-engine/config/environment';
 export default Service.extend({
   store: service(),
   appRestTemplate: service('app-rest-template'),
+  rmsSetup: service('nges-services/rms/rms-setup'),
 
-  // generate service Host Url base on params
-  getServiceHostUrl(serviceInformation) {
-    let hostUrl = 'http://' + serviceInformation.appCode + '.' + serviceInformation.appModuleCode + '-apps.115.127.24.184.nip.io';
-    return hostUrl;
-  },
 
-  getServiceBaseHostURL() {
-    let routeInfo = this.store.peekRecord('nges-core/engine-route-information', 1);
-
-    if(!routeInfo) routeInfo = this.store.peekRecord('nges-core/engine-route-information', 2);
-
-    let hostUrl = 'http://' + routeInfo.appCode + '.' + routeInfo.appModuleCode + '-apps.115.127.24.184.nip.io';
-    return hostUrl;
-  },
   getServiceRouteInformation() {
     let routeInfo = this.store.peekRecord('nges-core/engine-route-information', 1);
 
@@ -27,7 +15,6 @@ export default Service.extend({
 
     return routeInfo;
   },
-
 
 
   addNewRemitter(accessToken, remitterData) {
@@ -38,7 +25,7 @@ export default Service.extend({
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
-    let baseUrl = this.getServiceBaseHostURL();
+    let baseUrl = this.rmsSetup.getServiceBaseHostURL();
     let url = baseUrl + "/remitters";
     return this.appRestTemplate.httpRestClient(url, "POST",
       data, {}, beforeSend
@@ -53,7 +40,7 @@ export default Service.extend({
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
-    let baseUrl = this.getServiceBaseHostURL();
+    let baseUrl = this.rmsSetup.getServiceBaseHostURL();
     let url = baseUrl + "/remitters/"+remId;
     return this.appRestTemplate.httpRestClient(url, "PUT",
       data, {}, beforeSend
@@ -66,7 +53,7 @@ export default Service.extend({
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
-    let baseUrl = this.getServiceBaseHostURL();
+    let baseUrl = this.rmsSetup.getServiceBaseHostURL();
     let url = baseUrl + "/remitters/"+remitterId;
     return this.appRestTemplate.httpRestClient(url, "GET",
       null, {}, beforeSend

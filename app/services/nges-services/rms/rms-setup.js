@@ -6,19 +6,16 @@ export default Service.extend({
   store: service(),
   appRestTemplate: service('app-rest-template'),
 
+
   //generate service Host Url base on params
-  getServiceHostUrl(serviceInformation) {
-    let hostUrl = 'http://' + serviceInformation.appCode + '.' + serviceInformation.appModuleCode + '-apps.115.127.24.184.nip.io';
-    return hostUrl;
-  },
   getServiceBaseHostURL() {
     let routeInfo = this.store.peekRecord('nges-core/engine-route-information', 1);
 
     if(!routeInfo) routeInfo = this.store.peekRecord('nges-core/engine-route-information', 2);
-
     let hostUrl = 'http://' + routeInfo.appCode + '.' + routeInfo.appModuleCode + '-apps.115.127.24.184.nip.io';
     return hostUrl;
   },
+
   getServiceRouteInformation() {
     let routeInfo = this.store.peekRecord('nges-core/engine-route-information', 1);
 

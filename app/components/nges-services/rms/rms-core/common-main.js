@@ -9,7 +9,6 @@ export default Component.extend({
   appWelcome: service('nges-core/app-welcome'),
   store: service(),
   appConfiguration: service('app-configuration'),
-  rmsSetupService: service('nges-services/rms/rms-setup'),
   rmsBaseService: service('nges-services/rms/rms-base-service'),
   ngesTabTableService: service('nges-elements/nges-tab-table'),
   notifier: service(),
@@ -20,8 +19,6 @@ export default Component.extend({
     this.createButtonAccess();
 
     let serviceInformation = this.get('serviceInformation');
-    let hostUrl = this.rmsSetupService.getServiceHostUrl(serviceInformation);
-    this.set('serviceBaseHostUrl', hostUrl);
   },
 
   createButtonAccess() {
@@ -80,7 +77,6 @@ export default Component.extend({
     let defaultLocation = 1;
     this.set('defaultFunction', defaultFunction);
     this.set('defaultLocation', defaultLocation);
-    let serviceBaseHostUrl = this.get('serviceBaseHostUrl');
 
 
     let accessToken = context.appConfiguration.getAccessToken();
@@ -93,8 +89,7 @@ export default Component.extend({
       defaultLocation,
       roleList,
       stateList,
-      accessToken,
-      serviceBaseHostUrl
+      accessToken
     ).then(function (result) {
       //console.log('message', JSON.stringify(result));
 
