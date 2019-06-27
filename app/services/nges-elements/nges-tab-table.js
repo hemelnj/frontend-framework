@@ -23,7 +23,7 @@ export default Service.extend({
 
       if (
         //defaultActiveTab.id === tabMetaInfo[i].id ||
-        //ignoreCaseAndRemoveSpace(defaultActiveTab.code) === ignoreCaseAndRemoveSpace(tabMetaInfo[i].code) ||
+      //ignoreCaseAndRemoveSpace(defaultActiveTab.code) === ignoreCaseAndRemoveSpace(tabMetaInfo[i].code) ||
         ignoreCaseAndRemoveSpace(defaultActiveTab.name) === ignoreCaseAndRemoveSpace(tabMetaInfo[i].name)
       ) {
 
