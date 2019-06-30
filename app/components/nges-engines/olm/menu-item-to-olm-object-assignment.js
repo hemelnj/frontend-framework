@@ -8,8 +8,8 @@ export default Component.extend({
 
   treeEngineHost: config.NGES_SERVICE_HOSTS.TREE_SERVICE_HOST,
   olcmHost: config.NGES_SERVICE_HOSTS.OLM_SERVICE_HOST,
-  rmsHost: config.NGES_SERVICE_HOSTS.RMS_OLM_SERVICE_HOST,
-  rmsOLMHost: config.NGES_SERVICE_HOSTS.RMS_OLM_SERVICE_HOST,
+  rmsHost: config.NGES_SERVICE_HOSTS.APP_OLM_SERVICE_HOST,
+  rmsOLMHost: config.NGES_SERVICE_HOSTS.APP_OLM_SERVICE_HOST,
   tree_engine_object_assignment: service('nges-engines/tree-engine/tree-engine-object-assignment'),
   appTreeEngine: service('nges-engines/tree-engine/app-tree-engine'),
   appConfiguration: service('app-configuration'),

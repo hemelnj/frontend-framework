@@ -5,9 +5,9 @@ export default Service.extend({
   store: service(),
   appRestTemplate: service('app-rest-template'),
   appConfiguration: service('app-configuration'),
-  rmsServiceHost: config.NGES_SERVICE_HOSTS.RMS_OLM_SERVICE_HOST,
+  rmsServiceHost: config.NGES_SERVICE_HOSTS.APP_OLM_SERVICE_HOST,
   treeEngineHost: config.NGES_SERVICE_HOSTS.TREE_SERVICE_HOST,
-  rmsOLMServiceHost: config.NGES_SERVICE_HOSTS.RMS_OLM_SERVICE_HOST,
+  rmsOLMServiceHost: config.NGES_SERVICE_HOSTS.APP_OLM_SERVICE_HOST,
 
   init() {
     this._super(...arguments);

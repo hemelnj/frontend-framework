@@ -168,7 +168,7 @@ Frontend Framework manageability and versioning policy for multiple product team
   - `nges-services` folder contains services, services layouts and it's logical implementations as resource.
   - `nges-engines` folder contains engines, workflow implementations as resource libraries.
 
-```handlebars
+```
 // sample structure
  app
   ├── components
@@ -237,7 +237,8 @@ To create static models config adapters and models manually
 
 > Define model in `models/nges-engines/person.js`
 
-```js
+```javascript
+
   import config from 'frontend-engine/config/environment';
   import DS from 'ember-data';
 
@@ -246,11 +247,13 @@ To create static models config adapters and models manually
     name: DS.attr('string'),
     surname: DS.attr('string')
   });
+  
 ```
 
 > Define adapter `adapters/nges-engines/person.js`
 
-```js
+```javascript
+
  import config from 'frontend-engine/config/environment';
 
   export default DS.JSONAPIAdapter.extend({
@@ -272,7 +275,7 @@ To create static models config adapters and models manually
 
 #### Dynamic Model Creation
 
-```js
+```javascript
 
 export default Component.extend({
 
@@ -317,9 +320,9 @@ export default Component.extend({
 
 #### NGES-Engines Resource Meta Configurations
 
-open `app/nges-engines/nges-engines-configuration.js`
+open `app/nges-engines/nges-engines-configuration.js` file,
 
- ```js
+ ```javascript
  
   let enginePath = 'nges-engines';
   export default [
@@ -361,7 +364,7 @@ open `app/nges-engines/nges-engines-configuration.js`
 
 > open `app/nges-services/pom/nges-services-configuration.js`
  
- ```js
+ ```javascript
  
   let servicePath = 'nges-services';
   export default [
@@ -401,7 +404,7 @@ open `app/nges-engines/nges-engines-configuration.js`
 
 create ember service then call, create function, like below
 
-```js
+```javascript
 
 export default Service.extend({
 
@@ -435,18 +438,20 @@ export default Service.extend({
 
 > To Framework meta configuration,  `config/environment.js`
 
-```handlebars
+```
 
 APP: {
   appName: 'Frontend Framework',        // change application name
   appTitle: 'Frontend as Service',      // change application title 
   appLogo: 'logo.png'                   // change application logo, [Put logo in public folder]
 }
+
 ```
 
 > NGES all UI HOST configuration
 
-```js
+```javascript
+
 ENV.NGES_UI_HOSTS = {
   TREE_ENGINE_UI_HOST: 'http://localhost:4300',
   AUTH_ENGINE_UI_HOST: 'http://localhost:4400',
@@ -454,11 +459,13 @@ ENV.NGES_UI_HOSTS = {
   
   //... more ui hosts
 };
+
 ```
 
 > NGES all backend services host configuration
 
-```js
+```javascript
+
 ENV.FRONTEND_SERVICE_HOSTS = {
   OLM_SERVICE_HOST: 'http://www.example.com',
   TREE_SERVICE_HOST: 'http://www.example.com',
@@ -467,11 +474,13 @@ ENV.FRONTEND_SERVICE_HOSTS = {
   
   //.. more Backend Service hosts
 };
+
 ```
 
 > `Optional:` if want to configuration you engine in different environment then define your environment here..
 
-```js
+```javascript
+
 if (environment === 'development') {
 
 ENV.FRONTEND_SERVICE_HOSTS['AUTH_SERVICE_HOST'] = 'http://www.example.com';
@@ -479,6 +488,7 @@ ENV.FRONTEND_SERVICE_HOSTS['OLM_SERVICE_HOST'] = 'http://www.example.com';
 
 //.. more Backend and UI Hosts
 }
+
 ```
 
 > `Notes`: Change or include host url or environment meta if needed.
@@ -498,7 +508,8 @@ ENV.FRONTEND_SERVICE_HOSTS['OLM_SERVICE_HOST'] = 'http://www.example.com';
 
 Create `app/components/nges-services/rms-example/rms-example-file.js` and includes
 
-```js
+```javascript
+
 let  serviceActionableRoute = {
       create: {
         routePath: 'create-remitter',
@@ -511,6 +522,7 @@ let  serviceActionableRoute = {
     };
 
 this.set('serviceActionableRoute', serviceActionableRoute)
+
 ```
 
 Create `app/templates/components/nges-services/rms-example/rms-example-file.hbs` and includes
@@ -528,7 +540,8 @@ Create `app/templates/components/nges-services/rms-example/rms-example-file.hbs`
 
 Create `app/components/nges-services/rms-example/rms-example-file.js` and includes
 
-```js
+```javascript
+
 let sampleDataList = [
       {"id": 1, "disabled": false, "selected": false, "displayName": "Dhaka", "value": "dhaka"},
       {"id": 3, "disabled": false, "selected": false, "displayName": "Nazipur", "value": "nazipur"},
@@ -542,6 +555,7 @@ actions() {
     console.log('message', selectedValue);
   }
 }
+
 ```
 
 Create `app/templates/components/nges-services/rms-example/rms-example-file.hbs` and includes
@@ -561,7 +575,8 @@ Create `app/templates/components/nges-services/rms-example/rms-example-file.hbs`
 
 Create `app/components/nges-services/rms-example/rms-example-file.js` and includes
 
-```js
+```javascript
+
  let componentData = {
       itemId: 'itemIdWillBeUnique',   // it should be unique in same view page
       initialData: [
@@ -601,7 +616,7 @@ Create `app/templates/components/nges-services/rms-example/rms-example-file.hbs`
 
 Create `app/components/nges-services/rms-example/rms-example-file.js` and includes
 
-```js
+```javascript
 
 this.set('selectBoxDataLists', [
     {'name': 'Bangladesh', 'selected': false,},
@@ -614,6 +629,7 @@ actions: {
     console.log('message', JSON.stringify(this.get('selectBoxDataLists')));
   }
 }
+
 ```
 
 Create `app/templates/components/nges-services/rms-example/rms-example-file.hbs` and includes
@@ -630,7 +646,7 @@ Create `app/templates/components/nges-services/rms-example/rms-example-file.hbs`
 
 Create `app/components/nges-services/rms-example/rms-example-file.js` and includes
 
-```js
+```javascript
 
   let data_available = [
     {attributes: {id: 1, name: "Dhaka"}},
@@ -646,6 +662,7 @@ Create `app/components/nges-services/rms-example/rms-example-file.js` and includ
   };
 
   this.set('dualBoxData', data);  // selected values automatically updated
+  
 ```
 
 Create `app/templates/components/nges-services/rms-example/rms-example-file.hbs` and includes
