@@ -5,13 +5,15 @@
 @import 'base/color';
 @import 'base/style';
 @import 'base/loading';
-@import 'base/custom_btn';
 @import 'vendors/sidebar';
 
 
 @import "ember-notifier";
 
 
+@import 'base/nges-button-theme';
+
 /* nges-engines styles */
 @import 'nges-engines/olm/olm-base.scss';
+
 
