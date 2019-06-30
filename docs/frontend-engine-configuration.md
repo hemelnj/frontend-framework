@@ -1,6 +1,20 @@
-## NGES - Frontend Engine Architectural Specifications and Implementation Documentation
 
-Frontend Engine Two Types of Meta Configuration:
+# NGES Frontend Framework Contents
+1. [Architectural Specifications](#frontend-framework-architectural-specifications)
+2. [Frontend Framework Manageability](#frontend-framework-manageability)
+    - [Frontend Framework manageability](#frontend-framework-manageability)
+      - [Versioning policy for multiple product team](#versioning-policy-for-multiple-product-team)
+      - [Framework Project Layout](#framework-project-layout)
+      - [Framework Ember Data Support](#framework-ember-data-support)
+      - [Rest Http Client For Restful Request](#rest-http-client-for-restful-request)
+      - [Framework Environment Meta Information](#framework-environment-meta-information)
+
+
+
+
+# Frontend Framework Architectural Specifications
+
+Frontend Framework Two Types of Meta Configuration:
 
   -	[Design Meta].
   -	[Business Meta].
@@ -28,13 +42,26 @@ Frontend Engine Two Types of Meta Configuration:
 | - Components (Developed as resource library and isolated)                   |
 
 
+# Frontend Framework manageability
+
+Frontend Framework manageability and versioning policy for multiple product team.
 
 
-## NGES Frontend Framework Project Layout.
+## Versioning policy for multiple product team.
 
+
+- [ ] Always Front Framework on one Baseline Version (`latest`, `stable`). 
+- [ ] Development Team will `start` with `stable version`. 
+- [ ] NGES team will `continuously improve` the `stable` changing the `version` number in 2nd and 3rd digit. `v1.0.1, v1.0.2,...`
+- [ ] The `development team` will `pull this manually` but the `compatibility and TODO guideline` should always be provided by NGES team.
+
+
+
+#### Framework Project Layout
+
+Project layout is important to organize service and other resouces
 
 ```
-
  app
   ├── adapters
   |   ├── nges-core
@@ -103,7 +130,7 @@ Frontend Engine Two Types of Meta Configuration:
   |   |   ├── rms
   |   |   └── ...more
   |
-  ├── model
+  ├── models
   |   ├── nges-core
   |   ├── nges-elements
   |   ├── nges-engines
@@ -133,47 +160,53 @@ Frontend Engine Two Types of Meta Configuration:
   |   |   └── ...more
 ```
 
-##### Description:
-
-`components`,`templates`,`service`,`helpers`,`mixins` package contains `nges-core`, `nges-elements` and `nges-services`. 
+> Description: `components`,`templates`,`services`,`helpers`,`mixins`,`adapter`,`models`,`style` directory contains `nges-base`, `nges-core`, `nges-elements` and `nges-services`. 
+  
   - `nges-base` folder contains frame work resources.
   - `nges-core` folder contains atomic components so that those can be maximum reusable for future resource libraries.
   - `nges-elements` folder contains complex ui, using groups of `nges-core` components as `resource libraries`.
   - `nges-services` folder contains services, services layouts and it's logical implementations as resource.
   - `nges-engines` folder contains engines, workflow implementations as resource libraries.
 
-  ```bash
-  // sample structure
-   app
-    ├── components
-    |   ├── nges-core
-    |   ├── nges-elements
-    |   ├── nges-engines
-    |   |   ├── olm
-    |   |   ├── ppe
-    |   |   ├── rue
-    |   |   ├── tee
-    |   |   └── more..
-    |   ├── nges-services
-    |   |   ├── cbs
-    |   |   ├── rms
-    |   |   └── ...more
+```handlebars
+// sample structure
+ app
+  ├── components
+  |   ├── nges-core
+  |   ├── nges-elements
+  |   ├── nges-engines
+  |   |   ├── olm
+  |   |   ├── ppe
+  |   |   ├── rue
+  |   |   ├── tee
+  |   |   └── more..
+  |   ├── nges-services
+  |   |   ├── cbs
+  |   |   ├── rms
+  |   |   └── ...more
   
-  ```
+```
   
   
-## Frontend Engine Adapters & Models
+  
+  
+  
+  
+
+#### Framework Ember Data Support
+
+Frontend Framework Adapters & Models Setup
 
 - Adapter use for XHR (REST API Requests) 
 - We can configure backend host, URL format and headers used to talk to a REST API in an adapter
 - If we use EmberData then, we need to configure adapters.
 
-Frontend Engine Support two types of model creations
+Frontend Framework Support two types of model creations
 
 - Static model and
 - Dynamic model
 
-## Static Model Creation
+#### Static Model Creation
 
 To create static models config adapters and models manually
 
@@ -236,8 +269,7 @@ Define adapter `adapters/nges-engines/person.js`
   });
 ```
 
-
-##### Dynamic Model Creation
+#### Dynamic Model Creation
 
 ```js
 
@@ -279,11 +311,10 @@ export default Component.extend({
   }
 })
 
-```
+```  
 
 
-
-## NGES-Engines Resource Meta Configurations
+#### NGES-Engines Resource Meta Configurations
 
 open `app/nges-engines/nges-engines-configuration.js`
 
@@ -323,8 +354,9 @@ open `app/nges-engines/nges-engines-configuration.js`
 
  ```
  
-
-## NGES-Services Resource Meta Configurations
+ 
+ 
+#### NGES-Services Resource Meta Configurations
 
 open `app/nges-services/pom/nges-services-configuration.js`
  
@@ -359,58 +391,61 @@ open `app/nges-services/pom/nges-services-configuration.js`
 
  ```
  
- 
-## Notes:
-    
-Engine and Service related required files, adapters, helpers, models, components, mixins, models, styles, templates are need to be package into predefined `NGES Project layouts`.
+`Notes:` Engine and Service related required files, adapters, helpers, models, components, mixins, models, styles, templates are need to be package into predefined `NGES Project layouts`.
 
+#### Rest Http Client For Restful Request
 
+`Custom Rest Http Client For Restful Request [API Client Wrapper]`
 
-## Custom Rest Http Client For Restful Request
+create ember service then call, create function, like below
 
 ```js
-//just initiate this service like normal ember service then call
 
-let roles = JSON.stringify([1, 2, 3]);
+export default Service.extend({
 
-let beforeSend = function (xhr) {
-  xhr.setRequestHeader('content-type', 'application/json');
-  xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
-};
-
-let headers = {
-  'Authorization': 'Basic xxxxxxxxxxxxx',
-  'Accept': 'application/json',
-  'Content-Type': 'application/json'
-};
-
-let url = this.treeEngineHost + "/menuTrees/findMenuTreeByRoleList";
-return this.appRestTemplate.httpRestClient(url, "POST",
-  roles, headers, beforeSend
-); // it return promise
-
-// if any property not want to pass then simply keep it null
-
+  //...more
+  examplePersonRequest() {
+    let roles = JSON.stringify([1, 2, 3]);         // convert your object to string
+    
+    let beforeSend = function (xhr) {
+      xhr.setRequestHeader('content-type', 'application/json');
+      xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
+    };
+    
+    // if any property not want to pass then simply keep it null
+    let headers = {
+      'Authorization': 'Basic xxxxxxxxxxxxx',
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
+    
+    let url = this.treeEngineHost + "/menuTrees/findMenuTreeByRoleList";
+    return this.appRestTemplate.httpRestClient(url, "POST",
+      roles, headers, beforeSend
+    ); // it return promise
+  }
+  
+});
 ```
 
-## Configure Engine Environment Meta Information
 
-> To engine meta configuration,  `config/environment.js`
 
-```bash
+#### Framework Environment Meta Information
+
+> To Framework meta configuration,  `config/environment.js`
+
+```js
 
 APP: {
-  appName: 'Frontend Engine',           // change engine name
-  appTitle: 'Frontend as Service',      // change engine title 
-  appLogo: 'logo.png',                  // change logo with path
+  appName: 'Frontend Framework',        // change application name
+  appTitle: 'Frontend as Service',      // change application title 
+  appLogo: 'logo.png'                  // change application logo, [Put logo in public folder]
 }
-
 ```
 
 > NGES all UI HOST configuration
 
 ```js
-
 ENV.NGES_UI_HOSTS = {
   TREE_ENGINE_UI_HOST: 'http://localhost:4300',
   AUTH_ENGINE_UI_HOST: 'http://localhost:4400',
@@ -418,13 +453,11 @@ ENV.NGES_UI_HOSTS = {
   
   //... more ui hosts
 };
-
 ```
 
 > NGES all backend services host configuration
 
-```javascript
-
+```js
 ENV.FRONTEND_SERVICE_HOSTS = {
   OLM_SERVICE_HOST: 'http://www.example.com',
   TREE_SERVICE_HOST: 'http://www.example.com',
@@ -433,12 +466,11 @@ ENV.FRONTEND_SERVICE_HOSTS = {
   
   //.. more Backend Service hosts
 };
-
 ```
 
-> Optional: if want to configuration you engine in different environment then difine your enviromnet here..
+> `Optional:` if want to configuration you engine in different environment then define your environment here..
 
-```javascript
+```js
 if (environment === 'development') {
 
 ENV.FRONTEND_SERVICE_HOSTS['AUTH_SERVICE_HOST'] = 'http://www.example.com';
@@ -449,6 +481,3 @@ ENV.FRONTEND_SERVICE_HOSTS['OLM_SERVICE_HOST'] = 'http://www.example.com';
 ```
 
 `Notes`: Change or include host url or environment meta if needed.
-
-
-
