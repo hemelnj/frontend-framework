@@ -57,7 +57,7 @@ Frontend Framework manageability and versioning policy for multiple product team
 
 
 
-#### Framework Project Layout
+## Framework Project Layout
 
 Project layout is important to organize service and other resouces
 
@@ -193,7 +193,7 @@ Project layout is important to organize service and other resouces
   
   
 
-#### Framework Ember Data Support
+## Framework Ember Data Support
 
 Frontend Framework Adapters & Models Setup
 
@@ -393,7 +393,7 @@ open `app/nges-services/pom/nges-services-configuration.js`
  
 `Notes:` Engine and Service related required files, adapters, helpers, models, components, mixins, models, styles, templates are need to be package into predefined `NGES Project layouts`.
 
-#### Rest Http Client For Restful Request
+## Rest Http Client For Restful Request
 
 `Custom Rest Http Client For Restful Request [API Client Wrapper]`
 
@@ -430,16 +430,16 @@ export default Service.extend({
 
 
 
-#### Framework Environment Meta Information
+## Framework Environment Meta Information
 
 > To Framework meta configuration,  `config/environment.js`
 
-```js
+```handlebars
 
 APP: {
   appName: 'Frontend Framework',        // change application name
   appTitle: 'Frontend as Service',      // change application title 
-  appLogo: 'logo.png'                  // change application logo, [Put logo in public folder]
+  appLogo: 'logo.png'                   // change application logo, [Put logo in public folder]
 }
 ```
 
