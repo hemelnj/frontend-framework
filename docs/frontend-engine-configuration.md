@@ -8,6 +8,7 @@
       - [Framework Ember Data Support](#framework-ember-data-support)
       - [Rest Http Client For Restful Request](#rest-http-client-for-restful-request)
       - [Framework Environment Meta Information](#framework-environment-meta-information)
+3. [Frontend Framework Reusable Resources](#frontend-framework-reusable-resources)
 
 
 
@@ -54,7 +55,6 @@ Frontend Framework manageability and versioning policy for multiple product team
 - [ ] Development Team will `start` with `stable version`. 
 - [ ] NGES team will `continuously improve` the `stable` changing the `version` number in 2nd and 3rd digit. `v1.0.1, v1.0.2,...`
 - [ ] The `development team` will `pull this manually` but the `compatibility and TODO guideline` should always be provided by NGES team.
-
 
 
 ## Framework Project Layout
@@ -192,6 +192,7 @@ Frontend Framework manageability and versioning policy for multiple product team
   
   
   
+
 
 ## Framework Ember Data Support
 
@@ -393,6 +394,7 @@ open `app/nges-engines/nges-engines-configuration.js`
  
 > `Notes:` Engine and Service related required files, adapters, helpers, models, components, mixins, models, styles, templates are need to be package into predefined `NGES Project layouts`.
 
+
 ## Rest Http Client For Restful Request
 
 `Custom Rest Http Client For Restful Request [API Client Wrapper]`
@@ -427,7 +429,6 @@ export default Service.extend({
   
 });
 ```
-
 
 
 ## Framework Environment Meta Information
@@ -481,3 +482,39 @@ ENV.FRONTEND_SERVICE_HOSTS['OLM_SERVICE_HOST'] = 'http://www.example.com';
 ```
 
 > `Notes`: Change or include host url or environment meta if needed.
+
+
+## Frontend Framework Reusable Resources
+
+- nges-common-grid
+
+
+
+## How to use `nges-common-grid`
+
+Create `app/components/nges-services/rms-example/rms-example-file.js` and includes
+
+```js
+let  serviceActionableRoute = {
+      create: {
+        routePath: 'create-remitter',
+        label: 'New Remitter',
+      },
+      edit: {
+        routePath: 'edit-remitter',
+        label: 'View Remitter',
+      }
+    };
+
+this.set('serviceActionableRoute', serviceActionableRoute)
+```
+
+Create `app/templates/components/nges-services/rms-example/rms-example-file.hbs` and includes
+
+```handlebars
+
+{{nges-elements/nges-common-grid
+  serviceActionableRoute = serviceActionableRoute
+}}
+
+```

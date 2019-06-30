@@ -15,10 +15,7 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    //console.log('message', serviceInformation);
     this.createButtonAccess();
-
-    let serviceInformation = this.get('serviceInformation');
   },
 
   createButtonAccess() {
