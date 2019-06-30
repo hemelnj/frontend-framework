@@ -1,32 +1,11 @@
 import Service, {inject as service} from '@ember/service';
-import config from 'frontend-engine/config/environment';
 
 
 export default Service.extend({
   store: service(),
   appRestTemplate: service('app-rest-template'),
+  serviceInitializer: service('nges-services/service-initializer'),
 
-  // generate service Host Url base on params
-  getServiceHostUrl(serviceInformation) {
-    let hostUrl = 'http://' + serviceInformation.appCode + '.' + serviceInformation.appModuleCode + '-apps.115.127.24.184.nip.io';
-    return hostUrl;
-  },
-
-  getServiceBaseHostURL() {
-    let routeInfo = this.store.peekRecord('nges-core/engine-route-information', 1);
-
-    if(!routeInfo) routeInfo = this.store.peekRecord('nges-core/engine-route-information', 2);
-
-    let hostUrl = 'http://' + routeInfo.appCode + '.' + routeInfo.appModuleCode + '-apps.115.127.24.184.nip.io';
-    return hostUrl;
-  },
-  getServiceRouteInformation() {
-    let routeInfo = this.store.peekRecord('nges-core/engine-route-information', 1);
-
-    if(!routeInfo) routeInfo = this.store.peekRecord('nges-core/engine-route-information', 2);
-
-    return routeInfo;
-  },
 
 
 
@@ -38,7 +17,7 @@ export default Service.extend({
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
-    let baseUrl = this.getServiceBaseHostURL();
+    let baseUrl = this.serviceInitializer.getServiceBaseHostURL();
     let url = baseUrl + "/remitters";
     return this.appRestTemplate.httpRestClient(url, "POST",
       data, {}, beforeSend
@@ -53,7 +32,7 @@ export default Service.extend({
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
-    let baseUrl = this.getServiceBaseHostURL();
+    let baseUrl = this.serviceInitializer.getServiceBaseHostURL();
     let url = baseUrl + "/remitters/"+remId;
     return this.appRestTemplate.httpRestClient(url, "PUT",
       data, {}, beforeSend
@@ -66,7 +45,7 @@ export default Service.extend({
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
-    let baseUrl = this.getServiceBaseHostURL();
+    let baseUrl = this.serviceInitializer.getServiceBaseHostURL();
     let url = baseUrl + "/remitters/"+remitterId;
     return this.appRestTemplate.httpRestClient(url, "GET",
       null, {}, beforeSend
@@ -77,4 +56,4 @@ export default Service.extend({
 });
 
 
-// mukit working
+

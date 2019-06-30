@@ -50,17 +50,12 @@
 
 <div class="container">
 
-  <h1 style="text-align: center; margin-top: 200px">Welcome To {{appName}}</h1>
-  <h1 style="text-align: center;">{{t "grettings"}} </h1>
-
-  {{!--<h1>{{t "price_banner" product="Mobile" price="10" number="1" BDT="Tk" }}</h1> --}}
-
-
-  <center>
-    <button  {{action  'changeLocaleENG'}}> ENG</button>
-    <button  {{action  'changeLocaleBNG'}}> BNG</button>
-  </center>
-
+  {{
+    nges-base/app-greetings
+    appName=appName
+    changeLocaleENG=(action 'changeLocaleENG')
+    changeLocaleBNG=(action 'changeLocaleBNG')
+  }}
 
 </div>
 

@@ -8,8 +8,7 @@ export default Service.extend({
   appWelcome: service('nges-core/app-welcome'),
   store: service(),
   appConfiguration: service('app-configuration'),
-  rmsSetupService: service('nges-services/rms/rms-setup'),
-  rmsBaseService: service('nges-services/rms/rms-base-service'),
+  serviceInitializer: service('nges-services/service-initializer'),
   getProcessedTabMeta(defaultActiveTab, tabMetaInfo) {
 
     let tabsDataAfterProcess = [];
@@ -23,7 +22,7 @@ export default Service.extend({
 
       if (
         //defaultActiveTab.id === tabMetaInfo[i].id ||
-        //ignoreCaseAndRemoveSpace(defaultActiveTab.code) === ignoreCaseAndRemoveSpace(tabMetaInfo[i].code) ||
+      //ignoreCaseAndRemoveSpace(defaultActiveTab.code) === ignoreCaseAndRemoveSpace(tabMetaInfo[i].code) ||
         ignoreCaseAndRemoveSpace(defaultActiveTab.name) === ignoreCaseAndRemoveSpace(tabMetaInfo[i].name)
       ) {
 
@@ -50,12 +49,9 @@ export default Service.extend({
 
   loadTabTableData(defaultFunction, defaultLocation, roleList, stateList, accessToken) {
 
-
-
-
     let context = this;
     return new Promise(function (resolve, reject) {
-      context.rmsBaseService.getClassType(accessToken).then(function (result) {
+      context.serviceInitializer.getClassType(accessToken).then(function (result) {
         let classTypeId = result.data;
 
         let payload = {
@@ -66,7 +62,7 @@ export default Service.extend({
           stateList: stateList
         };
 
-        context.rmsBaseService.getFindAll(accessToken, payload).then(function (result) {
+        context.serviceInitializer.getFindAll(accessToken, payload).then(function (result) {
           if (result) {
             resolve(result);
           } else {

@@ -8,105 +8,12 @@ export default Service.extend({
   rmsServiceHost: config.NGES_SERVICE_HOSTS.RMS_OLM_SERVICE_HOST,
   treeEngineHost: config.NGES_SERVICE_HOSTS.TREE_SERVICE_HOST,
   rmsOLMServiceHost: config.NGES_SERVICE_HOSTS.RMS_OLM_SERVICE_HOST,
-  appWelcome: service('nges-core/app-welcome'),
 
   init() {
     this._super(...arguments);
 
   },
 
-  //  generate service Host Url base on params
-  getServiceHostUrl(serviceInformation) {
-    let hostUrl = 'http://' + serviceInformation.appCode + '.' + serviceInformation.appModuleCode + '-apps.115.127.24.184.nip.io';
-    return hostUrl;
-  },
-
-  getServiceBaseHostURL() {
-    let routeInfo = this.store.peekRecord('nges-core/engine-route-information', 1);
-
-    if(!routeInfo) routeInfo = this.store.peekRecord('nges-core/engine-route-information', 2);
-
-    let hostUrl = 'http://' + routeInfo.appCode + '.' + routeInfo.appModuleCode + '-apps.115.127.24.184.nip.io';
-    return hostUrl;
-  },
-
-  getClassType(accessToken) {
-
-    let serviceId = this.appWelcome.getServiceOrMenuInformation().serviceId;
-
-    let beforeSend = function (xhr) {
-      xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
-      xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
-    };
-
-    let url = this.treeEngineHost + "/menuTrees/" + serviceId + "/olmObject";
-    return this.appRestTemplate.httpRestClient(url, "GET",
-      null, {}, beforeSend
-    );
-  },
-
-  getFindAll(accessToken, data) {
-    let serviceCode = this.appWelcome.getServiceOrMenuInformation().serviceCode;
-    data = JSON.stringify(data);
-
-    let beforeSend = function (xhr) {
-      xhr.setRequestHeader('content-type', 'application/json');
-      xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
-    };
-
-    let baseUrl = this.getServiceBaseHostURL();
-
-    let url = baseUrl + "/" + serviceCode + "/findAll";
-    return this.appRestTemplate.httpRestClient(url, "POST",
-      data, {}, beforeSend
-    );
-  },
-
-  stateActionUpdate(accessToken, id, payload) {
-
-    let serviceCode = this.appWelcome.getServiceOrMenuInformation().serviceCode;
-    payload = JSON.stringify(payload);
-
-    let beforeSend = function (xhr) {
-      xhr.setRequestHeader('content-type', 'application/json');
-      xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
-    };
-
-    let url = this.rmsServiceHost + "/" + serviceCode + "/" + id;          // beneficiaries == microServiceFunctionId
-    return this.appRestTemplate.httpRestClient(url, "PATCH",
-      payload, {}, beforeSend
-    );
-  },
-
-  getNextAllowableState(accessToken, payload) {
-    payload = JSON.stringify(payload);
-
-    let beforeSend = function (xhr) {
-      xhr.setRequestHeader('content-type', 'application/json');
-      xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
-    };
-
-
-    let baseUrl = this.rmsOLMServiceHost + "/states/nextAllowableState";
-    return this.appRestTemplate.httpRestClient(baseUrl, "POST",
-      payload, {}, beforeSend
-    );
-
-  },
-
-  getStateActions(accessToken, data) {
-    data = JSON.stringify(data);
-
-    let beforeSend = function (xhr) {
-      xhr.setRequestHeader('content-type', 'application/json');
-      xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
-    };
-
-    let url = this.rmsOLMServiceHost + "/actionevents/allAllowableActions";
-    return this.appRestTemplate.httpRestClient(url, "POST",
-      data, {}, beforeSend
-    );
-  },
 
   getDefaultLocationId(accessToken, userId) {
     let beforeSend = function (xhr) {
@@ -119,7 +26,6 @@ export default Service.extend({
       null, {}, beforeSend
     );
   },
-
 
   getNextAllowableStateId(accessToken, data) {
     data = JSON.stringify(data);
@@ -159,21 +65,5 @@ export default Service.extend({
       null, {}, beforeSend
     );
   },
-
-  getAllAllowableCrudAction(accessToken, data) {
-
-    data = JSON.stringify(data);
-
-    let beforeSend = function (xhr) {
-      xhr.setRequestHeader('content-type', 'application/json');
-      xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
-    };
-
-    let url = this.rmsOLMServiceHost + "/crudevents/allAllowableCrudActions";
-    return this.appRestTemplate.httpRestClient(url, "POST",
-      data, {}, beforeSend
-    );
-  },
-
 
 })
