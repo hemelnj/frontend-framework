@@ -487,6 +487,10 @@ ENV.FRONTEND_SERVICE_HOSTS['OLM_SERVICE_HOST'] = 'http://www.example.com';
 ## Frontend Framework Reusable Resources
 
 - nges-common-grid
+- nges-autocomplete
+- nges-multi-select-box
+- nges-item-selector-box
+- nges-dual-list-box
 
 
 
@@ -516,5 +520,138 @@ Create `app/templates/components/nges-services/rms-example/rms-example-file.hbs`
 {{nges-elements/nges-common-grid
   serviceActionableRoute = serviceActionableRoute
 }}
+
+```
+
+
+## How to use `nges-autocomplete`
+
+Create `app/components/nges-services/rms-example/rms-example-file.js` and includes
+
+```js
+let sampleDataList = [
+      {"id": 1, "disabled": false, "selected": false, "displayName": "Dhaka", "value": "dhaka"},
+      {"id": 3, "disabled": false, "selected": false, "displayName": "Nazipur", "value": "nazipur"},
+      {"id": 4, "disabled": false, "selected": true, "displayName": "Naogaon", "value": "nogaon"}
+    ];
+this.set('sampleDataList', sampleDataList);
+
+//... callback method
+actions() {
+  autocompleteOnSelectAction(selectedValue){
+    console.log('message', selectedValue);
+  }
+}
+```
+
+Create `app/templates/components/nges-services/rms-example/rms-example-file.hbs` and includes
+
+```handlebars
+
+{{nges-core/nges-autocomplete
+  dataList=sampleDataList
+  displayName='Place Holder Name'
+  autocompleteOnSelect=(action 'autocompleteOnSelectAction')
+}}
+
+```
+
+
+## How to use `nges-multi-select-box`
+
+Create `app/components/nges-services/rms-example/rms-example-file.js` and includes
+
+```js
+ let componentData = {
+      itemId: 'itemIdWillBeUnique',   // it should be unique in same view page
+      initialData: [
+        {
+          "label": "Group A",
+          "data": [
+            {"id": 1, "disabled": false, "selected": false, "view": "Bangladesh", "value": "bangladesh"},
+            {"id": 2, "disabled": false, "selected": true, "view": "Japan", "value": "japan"},
+            {"id": 3, "disabled": true, "selected": false, "view": "USA", "value": "usa"}
+          ]
+        },
+        {
+          "label": "Group B",
+          "data": [
+            {"id": 1, "disabled": false, "selected": false, "view": "Dhaka", "value": "dhaka"},
+            {"id": 3, "disabled": false, "selected": false, "view": "Nazipur", "value": "nazipur"},
+            {"id": 2, "disabled": false, "selected": true, "view": "Naogaon", "value": "nogaon"}
+          ]
+        }
+      ]
+    };
+this.set('componentData', componentData);
+
+```
+
+Create `app/templates/components/nges-services/rms-example/rms-example-file.hbs` and includes
+
+```handlebars
+
+{{nges-core/nges-multi-select-box componentData=componentData}}
+
+
+```
+
+
+## How to use `nges-item-selector-box`
+
+Create `app/components/nges-services/rms-example/rms-example-file.js` and includes
+
+```js
+
+this.set('selectBoxDataLists', [
+    {'name': 'Bangladesh', 'selected': false,},
+    {'name': 'Dhaka', 'selected': true,},
+  ]);
+
+//... get selected value
+actions: {
+  getItemSelectorBoxData() {
+    console.log('message', JSON.stringify(this.get('selectBoxDataLists')));
+  }
+}
+```
+
+Create `app/templates/components/nges-services/rms-example/rms-example-file.hbs` and includes
+
+```handlebars
+
+{{nges-core/nges-item-selector-box groupLabel='nges-item-selector-box' selectBoxDataLists=selectBoxDataLists}}
+<button {{action 'getItemSelectorBoxData'}}>Get Data</button>
+
+```
+
+
+## How to use `nges-dual-list-box`
+
+Create `app/components/nges-services/rms-example/rms-example-file.js` and includes
+
+```js
+
+  let data_available = [
+    {attributes: {id: 1, name: "Dhaka"}},
+    {attributes: {id: 2, name: "Mirpur"}}
+  ];
+  let data_selected = [
+    {attributes: {id: 1, name: "Dhanmondi"}}
+  ];
+    
+  let data = {
+    available: data_available,
+    selected: data_selected
+  };
+
+  this.set('dualBoxData', data);  // selected values automatically updated
+```
+
+Create `app/templates/components/nges-services/rms-example/rms-example-file.hbs` and includes
+
+```handlebars
+
+{{nges-elements/sadhan-dual-list-box dualBoxData = dualBoxData}}
 
 ```
