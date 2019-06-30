@@ -1,5 +1,5 @@
 
-# NGES Frontend Framework Contents
+# NGES Frontend Framework
 1. [Architectural Specifications](#frontend-framework-architectural-specifications)
 2. [Frontend Framework Manageability](#frontend-framework-manageability)
     - [Frontend Framework manageability](#frontend-framework-manageability)
@@ -59,7 +59,7 @@ Frontend Framework manageability and versioning policy for multiple product team
 
 ## Framework Project Layout
 
-Project layout is important to organize service and other resouces
+> Project layout is important to organize service and other resources
 
 ```
  app
@@ -234,7 +234,7 @@ To create static models config adapters and models manually
 
 ##### Example implementation:- for static model creation:
 
-Define model in `models/nges-engines/person.js`
+> Define model in `models/nges-engines/person.js`
 
 ```js
   import config from 'frontend-engine/config/environment';
@@ -247,7 +247,7 @@ Define model in `models/nges-engines/person.js`
   });
 ```
 
-Define adapter `adapters/nges-engines/person.js`
+> Define adapter `adapters/nges-engines/person.js`
 
 ```js
  import config from 'frontend-engine/config/environment';
@@ -358,7 +358,7 @@ open `app/nges-engines/nges-engines-configuration.js`
  
 #### NGES-Services Resource Meta Configurations
 
-open `app/nges-services/pom/nges-services-configuration.js`
+> open `app/nges-services/pom/nges-services-configuration.js`
  
  ```js
  
@@ -391,7 +391,7 @@ open `app/nges-services/pom/nges-services-configuration.js`
 
  ```
  
-`Notes:` Engine and Service related required files, adapters, helpers, models, components, mixins, models, styles, templates are need to be package into predefined `NGES Project layouts`.
+> `Notes:` Engine and Service related required files, adapters, helpers, models, components, mixins, models, styles, templates are need to be package into predefined `NGES Project layouts`.
 
 ## Rest Http Client For Restful Request
 
@@ -480,4 +480,4 @@ ENV.FRONTEND_SERVICE_HOSTS['OLM_SERVICE_HOST'] = 'http://www.example.com';
 }
 ```
 
-`Notes`: Change or include host url or environment meta if needed.
+> `Notes`: Change or include host url or environment meta if needed.
