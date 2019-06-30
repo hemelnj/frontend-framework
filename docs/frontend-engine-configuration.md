@@ -30,7 +30,7 @@ Frontend Engine Two Types of Meta Configuration:
 
 
 
-## NGES FE Framework Project Layout.
+## NGES Frontend Framework Project Layout.
 
 
 ```
@@ -40,50 +40,49 @@ Frontend Engine Two Types of Meta Configuration:
   |   ├── nges-core
   |   ├── nges-elements
   |   ├── nges-engines
+  |   |   ├── auth-engine
   |   |   ├── olm
-  |   |   ├── ppe
-  |   |   ├── rue
-  |   |   ├── tee
+  |   |   ├── property-externder
+  |   |   ├── tree-engine
   |   |   └── more..
   ├── components
+  |   ├── nges-base
   |   ├── nges-core
   |   ├── nges-elements
   |   ├── nges-engines
+  |   |   ├── auth-engine
   |   |   ├── olm
-  |   |   ├── ppe
-  |   |   ├── rue
-  |   |   ├── tee
+  |   |   ├── property-externder
+  |   |   ├── tree-engine
   |   |   └── more..
-  |   ├── nges-services
+  |   └── nges-services
   |   |   ├── cbs
   |   |   ├── rms
   |   |   └── ...more
-  |   └── content-viewer.js
-  |   ├── app-left-sidebar.js
-  |   └── app-top-navbar.js
   |
   ├── helpers
   |   ├── nges-core
   |   ├── nges-elements
   |   ├── nges-engines
+  |   |   ├── auth-engine
   |   |   ├── olm
-  |   |   ├── ppe
-  |   |   ├── rue
-  |   |   ├── tee
+  |   |   ├── property-externder
+  |   |   ├── tree-engine
   |   |   └── more..
   |   ├── nges-services
-  |   |   ├──cbs
+  |   |   ├── cbs
   |   |   ├── rms
   |   |   └── ...more
+  |   └── more..
   |
   ├── services
   |   ├── nges-core
   |   ├── nges-elements
   |   ├── nges-engines
+  |   |   ├── auth-engine
   |   |   ├── olm
-  |   |   ├── ppe
-  |   |   ├── rue
-  |   |   ├── tee
+  |   |   ├── property-extender
+  |   |   ├── tree-engine
   |   |   └── more..
   |   ├── nges-services
   |   |   ├── cbs
@@ -94,69 +93,56 @@ Frontend Engine Two Types of Meta Configuration:
   |   ├── nges-core
   |   ├── nges-elements
   |   ├── nges-engines
+  |   |   ├── auth-engine
   |   |   ├── olm
-  |   |   ├── ppe
-  |   |   ├── rue
-  |   |   ├── tee
+  |   |   ├── property-extender
+  |   |   ├── tree-engine
   |   |   └── more..
   |   ├── nges-services
   |   |   ├── cbs
   |   |   ├── rms
   |   |   └── ...more
   |
-  ├── controllers
-  |   ├── welcome
-  |   |   ├── index.js
-  |   |   └── panel-loader.js
-  |   └── welcome.js
-  |
-  ├── models
-  |   ├── app-menu.js
-  |   ├── app-service.js
-  |   └── app-sub-menu.js
-  |
-  ├── routes
-  |   ├── welcome
-  |   |   ├── service-loader
-  |   |   ├── service-item-loader
-  |   |   |   ├── item-template-loader
-  |   |   |   |   └── submenu-detail-template-loader.js
-  |   |   └── service-item-loader.js
-  |   |
-  |   ├── index.js
-  |   ├── login.js
-  |   ├── not-found.js
-  |   ├── registration.js
-  |   └── welcome.js
+  ├── model
+  |   ├── nges-core
+  |   ├── nges-elements
+  |   ├── nges-engines
+  |   |   ├── auth-engine
+  |   |   ├── olm
+  |   |   ├── property-extender
+  |   |   ├── tree-engine
+  |   |   └── more..
+  |   ├── nges-services
+  |   |   ├── cbs
+  |   |   ├── rms
+  |   |   └── ...more
   |
   ├── templates
   |   ├──components
   |   ├── nges-core
   |   ├── nges-elements
   |   ├── nges-engines
+  |   |   ├── auth-engine
   |   |   ├── olm
-  |   |   ├── ppe
-  |   |   ├── rue
-  |   |   ├── tee
+  |   |   ├── property-extender
+  |   |   ├── tree-engine
   |   |   └── more..
   |   ├── nges-services
   |   |   ├── cbs
   |   |   ├── rms
   |   |   └── ...more
-  |   ├── content-viewer.hbs
-  |   ├── left-sidebar.hbs
-  |   └── top-navbar.hbs
 ```
 
 ##### Description:
 
 `components`,`templates`,`service`,`helpers`,`mixins` package contains `nges-core`, `nges-elements` and `nges-services`. 
+  - `nges-base` folder contains frame work resources.
   - `nges-core` folder contains atomic components so that those can be maximum reusable for future resource libraries.
-  - `nges-elements` folder contains complex ui, using groups of nges-core components as resource libraries.
-  - `nges-services` folder contains services, object layouts and logical implementations as resource libraries.
-  - `nges-engines` folder contains engines, object layouts and logical implementations as resource libraries.
+  - `nges-elements` folder contains complex ui, using groups of `nges-core` components as `resource libraries`.
+  - `nges-services` folder contains services, services layouts and it's logical implementations as resource.
+  - `nges-engines` folder contains engines, workflow implementations as resource libraries.
 
-  ```javascript
+  ```bash
   // sample structure
    app
     ├── components
@@ -189,7 +175,7 @@ Frontend Engine Support two types of model creations
 
 ## Static Model Creation
 
-To create static model, layouts
+To create static models config adapters and models manually
 
 ```
  app
@@ -206,18 +192,18 @@ To create static model, layouts
   |   ├── nges-core
   |   ├── nges-elements
   |   ├── nges-engines
+  |   |   ├── auth-engine
   |   |   ├── olm
-  |   |   ├── ppe
-  |   |   ├── rue
-  |   |   ├── tee
+  |   |   ├── property-extender
+  |   |   ├── tree-engine
   |   |   └── more..
 ```
 
-> Example how to create static model:
+##### Example implementation:- for static model creation:
 
-```javascript
+Define model in `models/nges-engines/person.js`
 
-  // define model `models/nges-engines/person.js`
+```js
   import config from 'frontend-engine/config/environment';
   import DS from 'ember-data';
 
@@ -226,11 +212,15 @@ To create static model, layouts
     name: DS.attr('string'),
     surname: DS.attr('string')
   });
-  
-  
-  // define adapter `adapters/nges-engines/person.js`
+```
+
+Define adapter `adapters/nges-engines/person.js`
+
+```js
+ import config from 'frontend-engine/config/environment';
+
   export default DS.JSONAPIAdapter.extend({
-    host: config.FRONTEND_SERVICE_HOSTS.MOCK_SERVICE_HOST,
+    host: config.NGES_SERVICE_HOSTS.MOCK_SERVICE_HOST,
   
     ajaxOptions() {
       let hash = this._super(...arguments);
@@ -244,55 +234,60 @@ To create static model, layouts
     },
   
   });
-
-
 ```
 
 
-## Dynamic Model Creation
+##### Dynamic Model Creation
 
-```javascript
+```js
 
-// import services on the top 
-appWelcome: service('nges-core/app-welcome'),
-store: service(),
+export default Component.extend({
 
-// .....
-let context = this;
-this.pomInitialization.getTableHeader().then(function (results) {
-
-  let modelName = 'nges-services/pom/nges-table';         // model name base on adapter configuration
-  let tableColumns = {};
-  let tableHeaders = results;        // this changes with endpoint
-
-
-// make ember model base on attributes
-  for (let i = 0; i < tableHeaders.length; i++) {
-
-    if (tableHeaders.type === 'String') {
-      tableColumns[tableHeaders.name] = DS.attr('string');
-    } else if (tableHeaders.type === 'double') {
-      tableColumns[tableHeaders.name] = DS.attr('number');
-    }
+  // import services on the top 
+  appWelcome: service('nges-core/app-welcome'),
+  store: service(),
+  
+  init() {
+    this._super(...arguments);
+    let context = this;
+  
+     let url = config.NGES_SERVICE_HOSTS.MOCK_SERVICE_HOST + "/getTableHeader";
+        return this.appRestTemplate.httpRestClient(url,  "GET", null, null).then(function (results) {
+      
+        let modelName = 'nges-services/pom/nges-table';         // model name base on adapter configuration
+        let tableColumns = {};
+        let tableHeaders = results;                             // this changes with endpoint
+     
+        // make ember model base on attributes
+        for (let i = 0; i < tableHeaders.length; i++) {
+      
+          if (tableHeaders.type === 'String') {
+            tableColumns[tableHeaders.name] = DS.attr('string');
+          } else if (tableHeaders.type === 'double') {
+            tableColumns[tableHeaders.name] = DS.attr('number');
+          }
+        }
+      
+        context.appWelcome.createDynamicModel(modelName, tableColumns);
+        context.store.findAll('nges-services/pom/nges-table').then(function (blogPosts) {
+          console.log('message-blogPosts', blogPosts);
+        });
+        
+        context.set('tableHeaders', tableHeaders);
+      });
+        
   }
-
-  context.appWelcome.createDynamicModel(modelName, tableColumns);
-  context.store.findAll('nges-services/pom/nges-table').then(function (blogPosts) {
-    console.log('message-blogPosts', blogPosts);
-  });
-
-  context.set('tableHeaders', tableHeaders);
-
-});
+})
 
 ```
 
 
 
-## NGES-Engines Configurations
+## NGES-Engines Resource Meta Configurations
 
- ```javascript
- //open `app/nges-engines/olm/nges-engines-configuration.js`
+open `app/nges-engines/nges-engines-configuration.js`
+
+ ```js
  
   let enginePath = 'nges-engines';
   export default [
@@ -303,78 +298,80 @@ this.pomInitialization.getTableHeader().then(function (results) {
       templatePath: enginePath + '/olm',    // define engine root directory
       templates: [
         {
-          code: 'object-state',             // template code which need to map future 
-          name: 'object-state',             // give a name of that template for identification 
-          detailPath: '/',                  // configure details page directory if you want
-          detailView: []                    // If you have detail view page then you can congifura those with code, name
+          code: 'object-state',             // Through code, resource will be identify. [route path map to code]
+          name: 'object-state',             // Through name, resource will be render. [it basically raw resource file name which will render] 
+          detailPath: '/',                  // Through detailPath,`details page` nested directory will be configurable  
+          detailView: []                    // detail view page then you can configure those with code, name. [**Optional]
         },
         {
           code: 'diagram-tool',
           name: 'diagram-tool',
           detailPath: '/',
-          detailView: []                    
+          detailView: [
+            {
+             code: 'detail-page-code',
+             name: 'detail-page-file-name'
+            }
+          ]                    
         },
         
-         // ... more templates page if needs
+         // ... config meta, for more pages template if needed
       ]
     }
-    //... more engines if needs
+    //... config meta, more engines if needs
   ]
 
  ```
  
 
-## NGES-Services Configurations
+## NGES-Services Resource Meta Configurations
 
- ```javascript
- // open `app/nges-services/pom/nges-services-configuration.js`
+open `app/nges-services/pom/nges-services-configuration.js`
  
-   let servicePath = 'nges-services';
-   export default [
-   
-     {
-       code: '1',                               // Must define service unique code
-       name: 'POM',                             // Service display name
-       templatePath: servicePath + '/pom',      // define service root directory
-       templates: [
-         {
-           code: 'pom',                         // template code which need to map future 
-           name: 'payorder-management',         // give a name of that template for identification 
-           detailPath: '/',                     // configure details page directory if you want
-           detailView: [                        // If you have detail view page then you can congifura those with code, name
-             {
-               code: 'pom-detail-view',
-               name: 'payorder-details'
-             },
-             
-             // ... more details pages if needs
-           ],
-         },
-         
-         // ... more templates page if needs
-       ]
-     },
-      // ... more services if needs
-   ]
+ ```js
+ 
+  let servicePath = 'nges-services';
+  export default [
+    {
+     code: '1',                               // Must define service unique code in this blog
+     name: 'POM',                             // Service display name
+     templatePath: servicePath + '/pom',      // define service root directory
+     templates: [
+       {
+         code: 'pom',                         // Through code, resource will be identify. [route path map to code]
+         name: 'payorder-management',         // Through name, resource will be render. [it basically raw resource file name which will render] 
+         detailPath: '/',                     // Through detailPath,`details page` nested directory will be configurable  
+         detailView: [                        // detail view page then you can configure those with code, name. [**Optional]
+           {
+             code: 'pom-detail-view',
+             name: 'payorder-details'
+           },
+           
+           // ... more details pages if needs
+         ],
+       },
+       
+       // ... config meta, for more pages template if needed
+     ]
+   },
+    // ... config meta, more services if needs
+  ]
 
  ```
  
  
 ## Notes:
     
-    Engine and Service related required files, adapters, helpers, models, components, mixins, models, styles, templates are need to be package into predefined layouts.
+Engine and Service related required files, adapters, helpers, models, components, mixins, models, styles, templates are need to be package into predefined `NGES Project layouts`.
 
 
 
 ## Custom Rest Http Client For Restful Request
 
-```javascript
-
-// app/services/app-rest-template.js
-
+```js
 //just initiate this service like normal ember service then call
 
-let roles = JSON.stringify([1, 2, 3]]);
+let roles = JSON.stringify([1, 2, 3]);
 
 let beforeSend = function (xhr) {
   xhr.setRequestHeader('content-type', 'application/json');
@@ -385,35 +382,34 @@ let headers = {
   'Authorization': 'Basic xxxxxxxxxxxxx',
   'Accept': 'application/json',
   'Content-Type': 'application/json'
-}
+};
 
 let url = this.treeEngineHost + "/menuTrees/findMenuTreeByRoleList";
 return this.appRestTemplate.httpRestClient(url, "POST",
   roles, headers, beforeSend
-);
+); // it return promise
 
-// if any property not want to pass then smiply keep it null
+// if any property not want to pass then simply keep it null
 
 ```
 
-## Configure Engine Meta Information
+## Configure Engine Environment Meta Information
 
 > To engine meta configuration,  `config/environment.js`
 
-```javascript
+```bash
 
 APP: {
   appName: 'Frontend Engine',           // change engine name
   appTitle: 'Frontend as Service',      // change engine title 
+  appLogo: 'logo.png',                  // change logo with path
 }
 
 ```
 
-
-
 > NGES all UI HOST configuration
 
-```javascript
+```js
 
 ENV.NGES_UI_HOSTS = {
   TREE_ENGINE_UI_HOST: 'http://localhost:4300',
@@ -430,29 +426,29 @@ ENV.NGES_UI_HOSTS = {
 ```javascript
 
 ENV.FRONTEND_SERVICE_HOSTS = {
-  OLM_SERVICE_HOST: 'http://olm-ngfs-core-framework.apps.115.127.24.184.nip.io',
-  TREE_SERVICE_HOST: 'http://treeengine-ngfs-core-framework.apps.115.127.24.184.nip.io',
+  OLM_SERVICE_HOST: 'http://www.example.com',
+  TREE_SERVICE_HOST: 'http://www.example.com',
   MOCK_SERVICE_HOST: 'http://192.168.20.2:8089',
-  AUTH_SERVICE_HOST: 'http://auth-ngfs-core-framework.apps.115.127.24.184.nip.io',
+  AUTH_SERVICE_HOST: 'http://www.example.com',
   
   //.. more Backend Service hosts
 };
 
 ```
 
-
-
 > Optional: if want to configuration you engine in different environment then difine your enviromnet here..
 
 ```javascript
 if (environment === 'development') {
 
-ENV.FRONTEND_SERVICE_HOSTS['AUTH_SERVICE_HOST'] = 'http://auth-ngfs-core-framework.apps.115.127.24.184.nip.io';
-ENV.FRONTEND_SERVICE_HOSTS['PO_SERVICE_HOST'] = 'http://payorder-ngfs-core-framework.apps.115.127.24.184.nip.io';
-
+ENV.FRONTEND_SERVICE_HOSTS['AUTH_SERVICE_HOST'] = 'http://www.example.com';
+ENV.FRONTEND_SERVICE_HOSTS['OLM_SERVICE_HOST'] = 'http://www.example.com';
 
 //.. more Backend and UI Hosts
 }
 ```
+
+`Notes`: Change or include host url or environment meta if needed.
+
 
 
