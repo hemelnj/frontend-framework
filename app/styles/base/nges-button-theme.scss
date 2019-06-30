@@ -1,0 +1,43 @@
+
+.nges-button {
+  position: relative;
+  display: inline-block;
+  padding: 0;
+  background: transparent;
+  background-clip: border-box;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  line-height: 1.275rem;
+  text-decoration: none;
+  //color: #0070d2;
+  -webkit-appearance: none;
+  white-space: normal;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size: .75rem;
+  white-space: nowrap;
+  position: relative;
+}
+
+
+.nges-button-save {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  font-weight: 200;
+  text-align: center;
+  vertical-align: middle;
+  background-color: $primary-color-main;
+  border-color: $primary-color-selected;
+  -webkit-transition: border 0.15s linear;
+  transition: border 0.15s linear;
+  color: #f4f6f9;
+}
+
+.nges-button-save:hover {
+  background-color: $primary-color-main;
+  border-color: $primary-color-selected;
+  color: $primary-color-selected;
+  cursor: pointer;
+}

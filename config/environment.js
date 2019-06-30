@@ -71,8 +71,6 @@ module.exports = function (environment) {
       MOCK_SERVICE_HOST: 'http://192.168.20.2:8089',
       AUTH_SERVICE_HOST: 'http://auth-ngfs-core-framework.apps.115.127.24.184.nip.io',
       PO_SERVICE_HOST: 'http://payorder-ngfs-core-framework.apps.115.127.24.184.nip.io',
-      // RMS_SERVICE_HOST:'http://stagingrms-ngfs-core-framework.apps.115.127.24.184.nip.io',
-      // RMS_OLM_SERVICE_HOST:'http://stagingrmsolm-ngfs-core-framework.apps.115.127.24.184.nip.io',
       RMS_OLM_SERVICE_HOST:'http://rms.olm-apps.115.127.24.184.nip.io',
       RMS_PE_SERVICE_HOST:'http://rms.pe-apps.115.127.24.184.nip.io',
     };

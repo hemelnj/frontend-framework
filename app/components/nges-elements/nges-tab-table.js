@@ -14,10 +14,11 @@ export default Component.extend({
   appWelcome: service('nges-core/app-welcome'),
   appConfiguration: service('app-configuration'),
   ngesTabTableService: service('nges-elements/nges-tab-table'),
-  rmsBaseService: service('nges-services/rms/rms-base-service'),
-  rmsSetup: service('nges-services/rms/rms-setup'),
+  serviceInitializer: service('nges-services/service-initializer'),
   init() {
     this._super(...arguments);
+
+
 
 
     this.set('tableShowEntries', [5, 10, 15, 20]);
@@ -119,12 +120,8 @@ export default Component.extend({
         let roleId = roleList[0];
 
         context.loadStateActions(accessToken, activeStateId, roleId);
-
-
       });
-
       this.set('tabInformation',tabInformation);
-
       this.onSelectedTabCallBack(tabInformation);  // call parent component method
     },
 
@@ -167,6 +164,14 @@ export default Component.extend({
       });
 
 
+      /*
+      let actionEventId = this.get('onSelectedMultipleStateActions');
+      let context = this;
+      let activeTabInfo = this.get('activeTabInfo');
+      let classTypeId = '';
+      let roleId = '';
+      let stateId = activeTabInfo.id;*/
+
       console.log('message', tableBackupDataList);
     },
 
@@ -180,7 +185,7 @@ export default Component.extend({
 
 
     let context = this;
-    context.rmsBaseService.getClassType(accessToken).then(function (result) {
+    context.serviceInitializer.getClassType(accessToken).then(function (result) {
       let classTypeId = result.data;
 
 
@@ -190,7 +195,7 @@ export default Component.extend({
         roleId: roleId
       };
 
-      context.rmsBaseService.getStateActions(accessToken, stateActionsPayload).then(function (result) {
+      context.serviceInitializer.getStateActions(accessToken, stateActionsPayload).then(function (result) {
 
         try {
           context.set('stateActions', result.data);
@@ -200,7 +205,6 @@ export default Component.extend({
       })
     });
   },
-
 
 
 
