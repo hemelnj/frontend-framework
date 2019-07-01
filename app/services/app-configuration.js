@@ -11,7 +11,6 @@ let appExpectedExpireTime = 'appExpectedExpireTime';
 
 export default Service.extend(Authorization, {
 
-  urlParams: alias('routing.router.currentState.routerJsState.fullQueryParams'),
   appName: config.APP.appName,
   authEngineHost: config.NGES_SERVICE_HOSTS.AUTH_SERVICE_HOST,
 

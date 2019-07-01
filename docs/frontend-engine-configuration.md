@@ -513,6 +513,7 @@ ENV.FRONTEND_SERVICE_HOSTS['OLM_SERVICE_HOST'] = 'http://www.example.com';
 - nges-multi-select-box
 - nges-item-selector-box
 - nges-dual-list-box
+- nges-link-to
 
 
 
@@ -683,4 +684,36 @@ Create `app/templates/components/nges-services/rms-example/rms-example-file.hbs`
 
 {{nges-elements/sadhan-dual-list-box dualBoxData = dualBoxData}}
 
+```
+
+
+## How to use `nges-link-to`
+
+
+step 1: create `example-remitter-registration.js` file and include
+
+```js
+this.set('params', {
+      page: 'page1',
+      age: '24',
+})
+```
+
+step 2: create `example-remitter-registration.hbs` file and include
+
+```handelbar
+{{nges-core/nges-link-to
+  routePath = 'create-remitter'
+  label =  'Create Remitter'
+  params = params
+}}
+```
+step3: to access params helper method
+
+```js
+//...
+appConfiguration: service('app-configuration');     // declare service 
+
+//.... call method to get params
+console.log('params', this.appConfiguration.getRouteURLParams());
 ```
