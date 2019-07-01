@@ -154,7 +154,7 @@
 
     {{nges-core/nges-searchable-dropdown
       dataList=classtypes
-        message="Select OLM Object"
+      message="Select OLM Object"
       autocompleteOnSelect=(action 'onChangeClassTypes')
     }}
 
@@ -198,29 +198,29 @@
       Hand
     </div>
     <div class="tools " id="start">
-      START
+      Start
     </div>
     <div class="tools" id="end">
-      END
+      End
     </div>
 
     <div class="tools" id="ellipse">
-      STATE
+      State
     </div>
 
     <div class="tools" id="connect">
-      EVENT
+      Event
     </div>
 
     <div class="tools" id="circle" style="display:none">
-      STATE
+      State
     </div>
     <div class="tools" id="circularedge" style="display:none">
-      CRUD
+      Crud
     </div>
 
     <div class="tools" id="remove">
-      REMOVE
+      Remove
     </div>
 
   </div>
@@ -299,7 +299,7 @@
         <div class="form-group">
           <label for="view">View</label>
 
-          <select class="form-control" id="view" name="view" multiple="multiple">
+          <select class="form-control" id="view" name="view" multiple="multiple" style="min-height: 100px;">
 
             {{#each roles as |role|}}
 
@@ -314,7 +314,7 @@
         </div>
         <div class="form-group">
           <label for="edit">Edit</label>
-          <select class="form-control" id="edit" name="edit" multiple="multiple">
+          <select class="form-control" id="edit" name="edit" multiple="multiple" style="min-height: 100px;">
 
             {{#each roles as |role|}}
 
