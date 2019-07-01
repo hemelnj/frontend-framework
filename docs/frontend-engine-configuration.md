@@ -33,14 +33,14 @@ Frontend Framework Two Types of Meta Configuration:
   > Query Notes: 
   
   - [X] Business meta processed by template through consuming service API endpoints then UI will be populated.
-  - [X] Needs templates and objects mapping configuration into service so that based on user selection that template can render.
+  - [X] Needs resources and objects mapping configuration into service configuration file, so that based on user selection that resources can be render or populated.
   
 
 
-| [Fronted Engine (Select template, base on client meta)]                     |
-| -------------                                                               |
-| - Template (Process Service Meta & logical implementation)                  |
-| - Components (Developed as resource library and isolated)                   |
+| [Fronted Framework (Select resources, base on client meta)]                                  |
+| -------------                                                                                |
+| - Resources (Process Service Meta & logical implementation which developed by developer)     |
+| - Reusable Resources (Developed as isolated resource library by nges frontend team)          |
 
 
 # Frontend Framework manageability
@@ -162,9 +162,9 @@ Frontend Framework manageability and versioning policy for multiple product team
 
 > Description: `components`,`templates`,`services`,`helpers`,`mixins`,`adapter`,`models`,`style` directory contains `nges-base`, `nges-core`, `nges-elements` and `nges-services`. 
   
-  - `nges-base` folder contains frame work resources.
-  - `nges-core` folder contains atomic components so that those can be maximum reusable for future resource libraries.
-  - `nges-elements` folder contains complex ui, using groups of `nges-core` components as `resource libraries`.
+  - `nges-base` folder contains framework resources.
+  - `nges-core` folder contains `atomic components` so that those can be maximum reusable for future resource libraries.
+  - `nges-elements` folder contains `complex ui`, using groups of `nges-core` components as `resource libraries`.
   - `nges-services` folder contains services, services layouts and it's logical implementations as resource.
   - `nges-engines` folder contains engines, workflow implementations as resource libraries.
 
@@ -328,22 +328,28 @@ open `app/nges-engines/nges-engines-configuration.js` file,
   export default [
   
     {
-      code: '1',                            // Must define engine unique code
-      name: 'OLM',                          // Engine display name
+      appCode: 'rms',                       // Must define same service name
+      appPanelCode: 'admin-panel',          // Must define access panel
+      appModuleCode: 'common',              // Must define module code, for type selection
+      appMenuTemplateCode: 'olm',           // Must define for menu type selection
+      label: 'OLM',                          // Engine display name
       templatePath: enginePath + '/olm',    // define engine root directory
       templates: [
         {
+          label: 'Object State',            // Define engine label for Display Name
           code: 'object-state',             // Through code, resource will be identify. [route path map to code]
           name: 'object-state',             // Through name, resource will be render. [it basically raw resource file name which will render] 
           detailPath: '/',                  // Through detailPath,`details page` nested directory will be configurable  
           detailView: []                    // detail view page then you can configure those with code, name. [**Optional]
         },
         {
+          label: 'Object State',
           code: 'diagram-tool',
           name: 'diagram-tool',
           detailPath: '/',
           detailView: [
             {
+             label: 'Object State',
              code: 'detail-page-code',
              name: 'detail-page-file-name'
             }
@@ -357,7 +363,7 @@ open `app/nges-engines/nges-engines-configuration.js` file,
   ]
 
  ```
- 
+ Here, appCode, appPanelCode, appModuleCode, appMenuTemplateCode information will get from service
  
  
 #### NGES-Services Resource Meta Configurations
@@ -369,9 +375,12 @@ open `app/nges-engines/nges-engines-configuration.js` file,
   let servicePath = 'nges-services';
   export default [
     {
-     code: '1',                               // Must define service unique code in this blog
-     name: 'POM',                             // Service display name
-     templatePath: servicePath + '/pom',      // define service root directory
+     appCode: 'rms',                          // Must define same service name    
+     appPanelCode: 'operation',               // Must define access panel      
+     appModuleCode: 'collection',             // Must define module code, for type selection                
+     appMenuTemplateCode: 'remitters',        // Must define for menu type selection                      
+     label: 'Remitters',                      // Engine display name        
+     templatePath: servicePath + '/rms',      // define engine root directory                        
      templates: [
        {
          code: 'pom',                         // Through code, resource will be identify. [route path map to code]
@@ -379,8 +388,9 @@ open `app/nges-engines/nges-engines-configuration.js` file,
          detailPath: '/',                     // Through detailPath,`details page` nested directory will be configurable  
          detailView: [                        // detail view page then you can configure those with code, name. [**Optional]
            {
+             label: 'payorder-details',
              code: 'pom-detail-view',
-             name: 'payorder-details'
+             name: 'payorder-details',
            },
            
            // ... more details pages if needs
@@ -394,6 +404,8 @@ open `app/nges-engines/nges-engines-configuration.js` file,
   ]
 
  ```
+ 
+Here, appCode, appPanelCode, appModuleCode, appMenuTemplateCode information will get from service.
  
 > `Notes:` Engine and Service related required files, adapters, helpers, models, components, mixins, models, styles, templates are need to be package into predefined `NGES Project layouts`.
 
