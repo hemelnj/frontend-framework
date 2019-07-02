@@ -1,13 +1,11 @@
 
 # NGES Frontend Framework
 1. [Architectural Specifications](#frontend-framework-architectural-specifications)
-2. [Frontend Framework Manageability](#frontend-framework-manageability)
-    - [Frontend Framework manageability](#frontend-framework-manageability)
-      - [Versioning policy for multiple product team](#versioning-policy-for-multiple-product-team)
-      - [Framework Project Layout](#framework-project-layout)
-      - [Framework Ember Data Support](#framework-ember-data-support)
-      - [Rest Http Client For Restful Request](#rest-http-client-for-restful-request)
-      - [Framework Environment Meta Information](#framework-environment-meta-information)
+1. [Frontend Framework Manageability & Versioning](#frontend-framework-manageability-and-versioning)
+1. [Framework Project Layout](#framework-project-layout)
+1. [Framework Ember Data Support](#framework-ember-data-support)
+1. [Rest Http Client For Restful Request](#rest-http-client-for-restful-request)
+1. [Framework Environment Meta Information](#framework-environment-meta-information)
 3. [Frontend Framework Reusable Resources](#frontend-framework-reusable-resources)
 
 
@@ -43,9 +41,21 @@ Frontend Framework Two Types of Meta Configuration:
 | - Reusable Resources (Developed as isolated resource library by nges frontend team)          |
 
 
-# Frontend Framework manageability
+## Frontend Framework Manageability and Versioning
 
-Frontend Framework manageability and versioning policy for multiple product team.
+Frontend Framework manageability & Versioning policy for multiple product team.
+
+- [ ] `Process: 1` - Initial work start from `develop branch` then multiple feature developed in `feature branches` features will be merge into `develop branch` for current or future release.
+- [ ] `Process: 2` - if requirement and functionality implemented then ready for release, now `develop branch` merged into `release branch` 
+- [ ] `Process: 3` - if everything going well, then merge into `master branch` and ready to release version tag like (v1.0.1 to v1.1.0. ...more [Check Versionign Policy]).
+ Otherwise create `hotfixes branch` and update major production issues and release version tag like (v1.0.1 to v1.0.2 ...more).
+- [ ] `Process: 4` - multiple team start with `latest` or `stable` version. (eg. Here, `last release will be latest` and `v1.1.0 is stable`)
+
+
+Development, versioning and management flow for `NGES Team`
+
+
+![slide1](.github/nges-git--release-and-maintenance.png)
 
 
 ## Versioning policy for multiple product team.
@@ -55,6 +65,7 @@ Frontend Framework manageability and versioning policy for multiple product team
 - [ ] Development Team will `start` with `stable version`. 
 - [ ] NGES team will `continuously improve` the `stable` changing the `version` number in 2nd and 3rd digit. `v1.0.1, v1.0.2,...`
 - [ ] The `development team` will `pull this manually` but the `compatibility and TODO guideline` should always be provided by NGES team.
+
 
 
 ## Framework Project Layout
