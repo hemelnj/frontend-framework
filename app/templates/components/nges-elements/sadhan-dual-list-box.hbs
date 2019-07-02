@@ -72,14 +72,14 @@
 </style>
 
 
-{{!nges-engines/tree-engine/object-to-string  dualBoxData.available}}
+{{!nges-core/object-to-string  dualBoxData.available}}
 
 
 <div class="row">
   <div class="col-md-5 available">
     <select class="form-control" multiple style="min-height: 200px;" onchange={{action 'availableOnChange' value="target.value" }}>
       {{#each (mut dualBoxData.available) as | item |}}
-        <option value={{nges-engines/tree-engine/object-to-string  item}}>{{item.attributes.name}}</option>
+        <option value={{nges-core/object-to-string  item}}>{{item.attributes.name}}</option>
       {{/each}}
     </select>
   </div>
@@ -93,7 +93,7 @@
     <select id="" class="form-control" multiple style="min-height: 200px;" onchange={{action 'removeOnChange' value="target.value" }}>
       {{#each (mut dualBoxData.selected) as | item|}}
 
-        <option value={{nges-engines/tree-engine/object-to-string  item}}>{{item.attributes.name}}
+        <option value={{nges-core/object-to-string  item}}>{{item.attributes.name}}
         </option>
       {{/each}}
     </select>
