@@ -51,7 +51,20 @@ export default Service.extend({
     );
   },
 
-  addNewProperty(stateData, accessToken) {
+  getAllAttributesByClassTypeId(classTypeId, accessToken) {
+    let beforeSend = function (xhr) {
+      xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+      xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
+    };
+
+    //let url = this.olmEngineHost + "/classtypes/" + classTypeId;
+    let url = this.rmsPEEngineHost + "/classes/"+classTypeId+"/attributes";
+    return this.appRestTemplate.httpRestClient(url, "GET",
+      null, {}, beforeSend
+    );
+  },
+
+  addNewProperty(accessToken, stateData) {
     let data = JSON.stringify(stateData);
 
     let beforeSend = function (xhr) {
@@ -59,8 +72,13 @@ export default Service.extend({
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
+   /*let headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };*/
+
     //let url = this.olmEngineHost + "/states";
-    let url = this.rmsOLMEngineHost + "/states";
+    let url = this.rmsPEEngineHost + "/attributes";
     return this.appRestTemplate.httpRestClient(url, "POST",
       data, {}, beforeSend
     );

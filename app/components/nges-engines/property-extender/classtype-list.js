@@ -210,21 +210,28 @@ export default Component.extend({
               }
             };*/
 
+            if(model.refObject === '' || model.refObject === undefined || model.refObject === null){
+              this.set('model.refObject',"n/a");
+            }
+
+            let classTypeId = this.get('selectedClasstypeId');
             let payload = {
-              "id": this.get('selectedClasstypeId'),
+
+
+              "id": classTypeId,
               "code": model.classTypeCode,
               "name": model.classTypeName,
               "displayName": model.displayName,
-              "describtion": 'n/a',
-              "createdBy": 'n/a',
-              "createdAt": 'n/a',
-              "lastUpdatedAt": 'n/a',
-              "lastUpdatedBy": 'n/a',
-              "comments": 'n/a',
-              "extra": 'n/a',
+              "describtion": "n/a",
+              "createdBy": "n/a",
+              "createdAt": 1,
+              "lastUpdatedAt": 1,
+              "lastUpdatedBy": "n/a",
+              "comments": "n/a",
+              "extra": "n/a",
               "type": model.type,
-              "length": model.displayName,
-              "constraint": model.constraint,
+              "length": model.typeLength,
+              "constraint": "n/a",
               "optional": optional,
               "referenceObject": model.refObject,
             };
@@ -240,16 +247,15 @@ export default Component.extend({
 
     saveAction() {
       let attributeList = this.get('attributeList');
-      console.log('message--sending payload', attributeList);
-      /*let accessToken = this.appConfiguration.getAccessToken();
-      let afterCurrencyRegistration = this.peSetupService.addNewProperty(accessToken, currencyData);
+      console.log('message--sending payload', JSON.stringify(attributeList));
+      let accessToken = this.appConfiguration.getAccessToken();
+      let afterCurrencyRegistration = this.peSetupService.addNewProperty(accessToken, attributeList);
       let context = this;
       afterCurrencyRegistration.then(function (msg) {
         context.get('notifier').success('Currency Registration Successful');
       }).catch(function (msg) {
         context.get('notifier').danger('Failed to Save');
-        context.loadAllCurrency();
-      });*/
+      });
     },
   }
 
