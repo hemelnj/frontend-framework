@@ -2,6 +2,7 @@ import Service from '@ember/service';
 import config from 'frontend-engine/config/environment';
 import Authorization from "../mixins/authorization";
 
+const {computed: {alias}, observer} = Ember;
 
 let appUserToken = 'appUserToken';
 let appRouteKey = 'appRoute';
@@ -30,6 +31,17 @@ export default Service.extend(Authorization, {
     }
     return appRoute;
   },
+  getRouteURLParams() {
+    let url = new URL(window.location.href);
+    let entries = new URLSearchParams(url.search);
+
+    let result = {};
+    for (let entry of entries) { // each 'entry' is a [key, value] tupple
+      const [key, value] = entry;
+      result[key] = value;
+    }
+    return result;
+  },
 
   getAuthorizedUserToken() {
     let userTokenInfo = localStorage.getItem(appUserToken);   // get by key
@@ -42,7 +54,6 @@ export default Service.extend(Authorization, {
     }
     return userTokenInfo;
   },
-
 
 
   getAccessExpireIn() {
@@ -69,7 +80,6 @@ export default Service.extend(Authorization, {
   },
 
 
-
   setExpectedTokenExpireTime(tokenExpireIn) {
     let expectedExpireTime = this.getCurrentTime() + (tokenExpireIn * 1000);
     localStorage.setItem(appExpectedExpireTime, expectedExpireTime);
@@ -81,7 +91,7 @@ export default Service.extend(Authorization, {
       if (dif < 100) {
         context.generateTokenUsingRefreshToken().then(function (msg) {
           localStorage.setItem(appUserToken, JSON.stringify(msg));
-          let newExpireTime = context.getCurrentTime() + context.getAccessExpireIn()*1000;
+          let newExpireTime = context.getCurrentTime() + context.getAccessExpireIn() * 1000;
           localStorage.setItem(appExpectedExpireTime, newExpireTime);
         }).catch(function (res) {
           context.logoutUser();
@@ -154,12 +164,12 @@ export default Service.extend(Authorization, {
     let context = this;
     let refreshToken = context.getRefreshToken();
 
-    let beforeSend  = function (xhr) {
+    let beforeSend = function (xhr) {
       xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
       xhr.setRequestHeader('authorization', 'Basic ' + btoa('USER_CLIENT_APP' + ':' + 'password'));
     };
 
-    let url = this.authEngineHost + '/oauth/token?grant_type=refresh_token&refresh_token='+refreshToken;
+    let url = this.authEngineHost + '/oauth/token?grant_type=refresh_token&refresh_token=' + refreshToken;
 
     return this.appRestTemplate.httpRestClient(url, "POST",
       null, {}, beforeSend
@@ -182,7 +192,7 @@ export default Service.extend(Authorization, {
     let userRoles = this.getAuthorizedUserToken().roles;
 
     for (let i = 0; i < userRoles.length; i++) {
-      if(userRoles[i].name !== 'role_user'){
+      if (userRoles[i].name !== 'role_user') {
         return userRoles[i].id;
       }
     }

@@ -6,8 +6,8 @@ export default Service.extend({
   store: service(),
   appRestTemplate: service('app-rest-template'),
   olmEngineHost: config.NGES_SERVICE_HOSTS.OLM_SERVICE_HOST,
-  rmsOLMEngineHost: config.NGES_SERVICE_HOSTS.RMS_OLM_SERVICE_HOST,
-  rmsPEEngineHost: config.NGES_SERVICE_HOSTS.RMS_PE_SERVICE_HOST,
+  rmsOLMEngineHost: config.NGES_SERVICE_HOSTS.APP_OLM_SERVICE_HOST,
+  rmsPEEngineHost: config.NGES_SERVICE_HOSTS.APP_PE_SERVICE_HOST,
 
 
   getAllClassType(accessToken) {

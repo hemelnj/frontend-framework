@@ -1,13 +1,11 @@
 
 # NGES Frontend Framework
 1. [Architectural Specifications](#frontend-framework-architectural-specifications)
-2. [Frontend Framework Manageability](#frontend-framework-manageability)
-    - [Frontend Framework manageability](#frontend-framework-manageability)
-      - [Versioning policy for multiple product team](#versioning-policy-for-multiple-product-team)
-      - [Framework Project Layout](#framework-project-layout)
-      - [Framework Ember Data Support](#framework-ember-data-support)
-      - [Rest Http Client For Restful Request](#rest-http-client-for-restful-request)
-      - [Framework Environment Meta Information](#framework-environment-meta-information)
+1. [Frontend Framework Manageability & Versioning](#frontend-framework-manageability-and-versioning)
+1. [Framework Project Layout](#framework-project-layout)
+1. [Framework Ember Data Support](#framework-ember-data-support)
+1. [Rest Http Client For Restful Request](#rest-http-client-for-restful-request)
+1. [Framework Environment Meta Information](#framework-environment-meta-information)
 3. [Frontend Framework Reusable Resources](#frontend-framework-reusable-resources)
 
 
@@ -33,19 +31,31 @@ Frontend Framework Two Types of Meta Configuration:
   > Query Notes: 
   
   - [X] Business meta processed by template through consuming service API endpoints then UI will be populated.
-  - [X] Needs templates and objects mapping configuration into service so that based on user selection that template can render.
+  - [X] Needs resources and objects mapping configuration into service configuration file, so that based on user selection that resources can be render or populated.
   
 
 
-| [Fronted Engine (Select template, base on client meta)]                     |
-| -------------                                                               |
-| - Template (Process Service Meta & logical implementation)                  |
-| - Components (Developed as resource library and isolated)                   |
+| [Fronted Framework (Select resources, base on client meta)]                                  |
+| -------------                                                                                |
+| - Resources (Process Service Meta & logical implementation which developed by developer)     |
+| - Reusable Resources (Developed as isolated resource library by nges frontend team)          |
 
 
-# Frontend Framework manageability
+## Frontend Framework Manageability and Versioning
 
-Frontend Framework manageability and versioning policy for multiple product team.
+Frontend Framework manageability & Versioning policy for multiple product team.
+
+- [ ] `Process: 1` - Initial work start from `develop branch` then multiple feature developed in `feature branches` features will be merge into `develop branch` for current or future release.
+- [ ] `Process: 2` - if requirement and functionality implemented then ready for release, now `develop branch` merged into `release branch` 
+- [ ] `Process: 3` - if everything going well, then merge into `master branch` and ready to release version tag like (v1.0.1 to v1.1.0. ...more [Check Versionign Policy]).
+ Otherwise create `hotfixes branch` and update major production issues and release version tag like (v1.0.1 to v1.0.2 ...more).
+- [ ] `Process: 4` - multiple team start with `latest` or `stable` version. (eg. Here, `last release will be latest` and `v1.1.0 is stable`)
+
+
+Development, versioning and management flow for `NGES Team`
+
+
+![slide1](.github/nges-git--release-and-maintenance.png)
 
 
 ## Versioning policy for multiple product team.
@@ -55,6 +65,7 @@ Frontend Framework manageability and versioning policy for multiple product team
 - [ ] Development Team will `start` with `stable version`. 
 - [ ] NGES team will `continuously improve` the `stable` changing the `version` number in 2nd and 3rd digit. `v1.0.1, v1.0.2,...`
 - [ ] The `development team` will `pull this manually` but the `compatibility and TODO guideline` should always be provided by NGES team.
+
 
 
 ## Framework Project Layout
@@ -162,13 +173,13 @@ Frontend Framework manageability and versioning policy for multiple product team
 
 > Description: `components`,`templates`,`services`,`helpers`,`mixins`,`adapter`,`models`,`style` directory contains `nges-base`, `nges-core`, `nges-elements` and `nges-services`. 
   
-  - `nges-base` folder contains frame work resources.
-  - `nges-core` folder contains atomic components so that those can be maximum reusable for future resource libraries.
-  - `nges-elements` folder contains complex ui, using groups of `nges-core` components as `resource libraries`.
+  - `nges-base` folder contains framework resources.
+  - `nges-core` folder contains `atomic components` so that those can be maximum reusable for future resource libraries.
+  - `nges-elements` folder contains `complex ui`, using groups of `nges-core` components as `resource libraries`.
   - `nges-services` folder contains services, services layouts and it's logical implementations as resource.
   - `nges-engines` folder contains engines, workflow implementations as resource libraries.
 
-```handlebars
+```
 // sample structure
  app
   ├── components
@@ -237,7 +248,8 @@ To create static models config adapters and models manually
 
 > Define model in `models/nges-engines/person.js`
 
-```js
+```javascript
+
   import config from 'frontend-engine/config/environment';
   import DS from 'ember-data';
 
@@ -246,11 +258,13 @@ To create static models config adapters and models manually
     name: DS.attr('string'),
     surname: DS.attr('string')
   });
+  
 ```
 
 > Define adapter `adapters/nges-engines/person.js`
 
-```js
+```javascript
+
  import config from 'frontend-engine/config/environment';
 
   export default DS.JSONAPIAdapter.extend({
@@ -272,7 +286,7 @@ To create static models config adapters and models manually
 
 #### Dynamic Model Creation
 
-```js
+```javascript
 
 export default Component.extend({
 
@@ -317,30 +331,36 @@ export default Component.extend({
 
 #### NGES-Engines Resource Meta Configurations
 
-open `app/nges-engines/nges-engines-configuration.js`
+open `app/nges-engines/nges-engines-configuration.js` file,
 
- ```js
+ ```javascript
  
   let enginePath = 'nges-engines';
   export default [
   
     {
-      code: '1',                            // Must define engine unique code
-      name: 'OLM',                          // Engine display name
+      appCode: 'rms',                       // Must define same service name
+      appPanelCode: 'admin-panel',          // Must define access panel
+      appModuleCode: 'common',              // Must define module code, for type selection
+      appMenuTemplateCode: 'olm',           // Must define for menu type selection
+      label: 'OLM',                          // Engine display name
       templatePath: enginePath + '/olm',    // define engine root directory
       templates: [
         {
+          label: 'Object State',            // Define engine label for Display Name
           code: 'object-state',             // Through code, resource will be identify. [route path map to code]
           name: 'object-state',             // Through name, resource will be render. [it basically raw resource file name which will render] 
           detailPath: '/',                  // Through detailPath,`details page` nested directory will be configurable  
           detailView: []                    // detail view page then you can configure those with code, name. [**Optional]
         },
         {
+          label: 'Object State',
           code: 'diagram-tool',
           name: 'diagram-tool',
           detailPath: '/',
           detailView: [
             {
+             label: 'Object State',
              code: 'detail-page-code',
              name: 'detail-page-file-name'
             }
@@ -354,21 +374,24 @@ open `app/nges-engines/nges-engines-configuration.js`
   ]
 
  ```
- 
+ Here, appCode, appPanelCode, appModuleCode, appMenuTemplateCode information will get from service
  
  
 #### NGES-Services Resource Meta Configurations
 
 > open `app/nges-services/pom/nges-services-configuration.js`
  
- ```js
+ ```javascript
  
   let servicePath = 'nges-services';
   export default [
     {
-     code: '1',                               // Must define service unique code in this blog
-     name: 'POM',                             // Service display name
-     templatePath: servicePath + '/pom',      // define service root directory
+     appCode: 'rms',                          // Must define same service name    
+     appPanelCode: 'operation',               // Must define access panel      
+     appModuleCode: 'collection',             // Must define module code, for type selection                
+     appMenuTemplateCode: 'remitters',        // Must define for menu type selection                      
+     label: 'Remitters',                      // Engine display name        
+     templatePath: servicePath + '/rms',      // define engine root directory                        
      templates: [
        {
          code: 'pom',                         // Through code, resource will be identify. [route path map to code]
@@ -376,8 +399,9 @@ open `app/nges-engines/nges-engines-configuration.js`
          detailPath: '/',                     // Through detailPath,`details page` nested directory will be configurable  
          detailView: [                        // detail view page then you can configure those with code, name. [**Optional]
            {
+             label: 'payorder-details',
              code: 'pom-detail-view',
-             name: 'payorder-details'
+             name: 'payorder-details',
            },
            
            // ... more details pages if needs
@@ -392,6 +416,8 @@ open `app/nges-engines/nges-engines-configuration.js`
 
  ```
  
+Here, appCode, appPanelCode, appModuleCode, appMenuTemplateCode information will get from service.
+ 
 > `Notes:` Engine and Service related required files, adapters, helpers, models, components, mixins, models, styles, templates are need to be package into predefined `NGES Project layouts`.
 
 
@@ -401,7 +427,7 @@ open `app/nges-engines/nges-engines-configuration.js`
 
 create ember service then call, create function, like below
 
-```js
+```javascript
 
 export default Service.extend({
 
@@ -435,18 +461,20 @@ export default Service.extend({
 
 > To Framework meta configuration,  `config/environment.js`
 
-```handlebars
+```
 
 APP: {
   appName: 'Frontend Framework',        // change application name
   appTitle: 'Frontend as Service',      // change application title 
   appLogo: 'logo.png'                   // change application logo, [Put logo in public folder]
 }
+
 ```
 
 > NGES all UI HOST configuration
 
-```js
+```javascript
+
 ENV.NGES_UI_HOSTS = {
   TREE_ENGINE_UI_HOST: 'http://localhost:4300',
   AUTH_ENGINE_UI_HOST: 'http://localhost:4400',
@@ -454,11 +482,13 @@ ENV.NGES_UI_HOSTS = {
   
   //... more ui hosts
 };
+
 ```
 
 > NGES all backend services host configuration
 
-```js
+```javascript
+
 ENV.FRONTEND_SERVICE_HOSTS = {
   OLM_SERVICE_HOST: 'http://www.example.com',
   TREE_SERVICE_HOST: 'http://www.example.com',
@@ -467,11 +497,13 @@ ENV.FRONTEND_SERVICE_HOSTS = {
   
   //.. more Backend Service hosts
 };
+
 ```
 
 > `Optional:` if want to configuration you engine in different environment then define your environment here..
 
-```js
+```javascript
+
 if (environment === 'development') {
 
 ENV.FRONTEND_SERVICE_HOSTS['AUTH_SERVICE_HOST'] = 'http://www.example.com';
@@ -479,6 +511,7 @@ ENV.FRONTEND_SERVICE_HOSTS['OLM_SERVICE_HOST'] = 'http://www.example.com';
 
 //.. more Backend and UI Hosts
 }
+
 ```
 
 > `Notes`: Change or include host url or environment meta if needed.
@@ -491,6 +524,7 @@ ENV.FRONTEND_SERVICE_HOSTS['OLM_SERVICE_HOST'] = 'http://www.example.com';
 - nges-multi-select-box
 - nges-item-selector-box
 - nges-dual-list-box
+- nges-link-to
 
 
 
@@ -498,7 +532,8 @@ ENV.FRONTEND_SERVICE_HOSTS['OLM_SERVICE_HOST'] = 'http://www.example.com';
 
 Create `app/components/nges-services/rms-example/rms-example-file.js` and includes
 
-```js
+```javascript
+
 let  serviceActionableRoute = {
       create: {
         routePath: 'create-remitter',
@@ -511,6 +546,7 @@ let  serviceActionableRoute = {
     };
 
 this.set('serviceActionableRoute', serviceActionableRoute)
+
 ```
 
 Create `app/templates/components/nges-services/rms-example/rms-example-file.hbs` and includes
@@ -528,7 +564,8 @@ Create `app/templates/components/nges-services/rms-example/rms-example-file.hbs`
 
 Create `app/components/nges-services/rms-example/rms-example-file.js` and includes
 
-```js
+```javascript
+
 let sampleDataList = [
       {"id": 1, "disabled": false, "selected": false, "displayName": "Dhaka", "value": "dhaka"},
       {"id": 3, "disabled": false, "selected": false, "displayName": "Nazipur", "value": "nazipur"},
@@ -542,6 +579,7 @@ actions() {
     console.log('message', selectedValue);
   }
 }
+
 ```
 
 Create `app/templates/components/nges-services/rms-example/rms-example-file.hbs` and includes
@@ -561,7 +599,8 @@ Create `app/templates/components/nges-services/rms-example/rms-example-file.hbs`
 
 Create `app/components/nges-services/rms-example/rms-example-file.js` and includes
 
-```js
+```javascript
+
  let componentData = {
       itemId: 'itemIdWillBeUnique',   // it should be unique in same view page
       initialData: [
@@ -601,7 +640,7 @@ Create `app/templates/components/nges-services/rms-example/rms-example-file.hbs`
 
 Create `app/components/nges-services/rms-example/rms-example-file.js` and includes
 
-```js
+```javascript
 
 this.set('selectBoxDataLists', [
     {'name': 'Bangladesh', 'selected': false,},
@@ -614,6 +653,7 @@ actions: {
     console.log('message', JSON.stringify(this.get('selectBoxDataLists')));
   }
 }
+
 ```
 
 Create `app/templates/components/nges-services/rms-example/rms-example-file.hbs` and includes
@@ -630,7 +670,7 @@ Create `app/templates/components/nges-services/rms-example/rms-example-file.hbs`
 
 Create `app/components/nges-services/rms-example/rms-example-file.js` and includes
 
-```js
+```javascript
 
   let data_available = [
     {attributes: {id: 1, name: "Dhaka"}},
@@ -646,6 +686,7 @@ Create `app/components/nges-services/rms-example/rms-example-file.js` and includ
   };
 
   this.set('dualBoxData', data);  // selected values automatically updated
+  
 ```
 
 Create `app/templates/components/nges-services/rms-example/rms-example-file.hbs` and includes
@@ -654,4 +695,36 @@ Create `app/templates/components/nges-services/rms-example/rms-example-file.hbs`
 
 {{nges-elements/sadhan-dual-list-box dualBoxData = dualBoxData}}
 
+```
+
+
+## How to use `nges-link-to`
+
+
+step 1: create `example-remitter-registration.js` file and include
+
+```js
+this.set('params', {
+      page: 'page1',
+      age: '24',
+})
+```
+
+step 2: create `example-remitter-registration.hbs` file and include
+
+```handelbar
+{{nges-core/nges-link-to
+  routePath = 'create-remitter'
+  label =  'Create Remitter'
+  params = params
+}}
+```
+step3: to access params helper method
+
+```js
+//...
+appConfiguration: service('app-configuration');     // declare service 
+
+//.... call method to get params
+console.log('params', this.appConfiguration.getRouteURLParams());
 ```
