@@ -1,0 +1,329 @@
+<style>
+  .rms-top-hr-line {
+    margin-top: -3px;
+    border: 1.5px solid #123F62;
+  }
+
+  .rms-bottom-hr-line {
+    border: 0;
+    max-width: 70%;
+    margin-left: 0;
+    margin-top: -8px;
+    border-top: 2px solid;
+    border-color: #666666;
+  }
+
+  .rms-button-all {
+    position: relative;
+    display: inline-block;
+    padding: 0;
+    background: transparent;
+    background-clip: border-box;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    line-height: 1.275rem;
+    text-decoration: none;
+  / / color: #0070d2;
+    -webkit-appearance: none;
+    white-space: normal;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-size: .75rem;
+    white-space: nowrap;
+    position: relative;
+  }
+
+  .rms-button-save {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    font-weight: 200;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #123F62;
+    border-color: #123F62;
+    -webkit-transition: border 0.15s linear;
+    transition: border 0.15s linear;
+    color: #E8F0FE;
+  }
+
+  .rms-button-save:hover {
+    background-color: #12466b;
+    border-color: #12466b;
+    color: #fff;
+    cursor: pointer;
+  }
+</style>
+<div class="">
+
+  <h1 class="layout-title">Beneficiary Registration</h1>
+  <hr class="header-label-line">
+
+  <form class="form-horizontal">
+
+    {{nges-core/nges-input-component
+      type='text'
+      input-field-name="Id"
+      model=model
+      valuePath='beneficiaryId'
+      placeholder='Id [Auto]'
+      readonly = "true"
+      sectionFirst = 'col-sm-2'
+      sectionLast = 'col-sm-4'
+      didValidate=didValidate}}
+
+
+    {{nges-core/nges-input-component
+      type='text'
+      input-field-name="Name"
+      model=model
+      valuePath='beneficiaryName'
+      placeholder='Beneficiary Name'
+      sectionFirst = 'col-sm-2'
+      sectionLast = 'col-sm-4'
+      didValidate=didValidate}}
+
+    {{nges-core/nges-input-component
+      type='text'
+      input-field-name="Address 1"
+      model=model
+      valuePath='address1'
+      placeholder='Address 1'
+      sectionFirst = 'col-sm-2'
+      sectionLast = 'col-sm-6'
+      didValidate=didValidate}}
+
+
+    {{nges-core/nges-input-component
+      type='text'
+      input-field-name="Address 2"
+      model=model
+      valuePath='address2'
+      placeholder='Address 2'
+      sectionFirst = 'col-sm-2'
+      sectionLast = 'col-sm-6'
+      didValidate=didValidate}}
+
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-sm-2">
+          <label class="input-field-label" style="margin-top: 15px;">Country:</label>
+        </div>
+
+        <div class="col-sm-6">
+          <label style="float: right">{{selectedCountry.label}}</label>
+          {{nges-core/nges-searchable-dropdown
+            dataList=countryList
+            message = "Select Country"
+            autocompleteOnSelect=(action 'onChangeCountry')
+          }}
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-sm-2">
+          <label class="input-field-label" style="margin-top: 15px;">State/District:</label>
+        </div>
+
+        <div class="col-sm-6">
+          <label style="float: right">{{selectedState.label}}</label>
+          {{nges-core/nges-searchable-dropdown
+            dataList=stateList
+            message = "Select State/District"
+            autocompleteOnSelect=(action 'onChangeStateOrDistrict')
+          }}
+        </div>
+      </div>
+    </div>
+
+
+    {{nges-core/nges-input-component
+      type='text'
+      input-field-name="City/Town"
+      model=model
+      valuePath='cityOrTown'
+      placeholder='Enter City/Town Name'
+      sectionFirst = 'col-sm-2'
+      sectionLast = 'col-sm-4'
+      didValidate=didValidate}}
+
+
+    {{nges-core/nges-input-component
+      type='text'
+      input-field-name="Zip Code"
+      model=model
+      valuePath='zipCode'
+      placeholder='Zip Code'
+      sectionFirst = 'col-sm-2'
+      sectionLast = 'col-sm-4'
+      didValidate=didValidate}}
+
+
+    {{nges-core/nges-input-component
+      type='text'
+      input-field-name="Mobile Number"
+      model=model
+      valuePath='mNumber'
+      placeholder='Mobile Number'
+      sectionFirst = 'col-sm-2'
+      sectionLast = 'col-sm-4'
+      didValidate=didValidate}}
+
+    {{nges-core/nges-input-component
+      type='text'
+      input-field-name="Email"
+      model=model
+      valuePath='email'
+      placeholder='Email Address'
+      sectionFirst = 'col-sm-2'
+      sectionLast = 'col-sm-6'
+      didValidate=didValidate}}
+
+
+    <div class="row">
+
+      <div class="col-sm-2">
+        <label class="input-field-label" style="margin-top: 15px;">Choose Nationality:</label>
+      </div>
+
+      <div class="col-sm-6">
+        <label style="float: right">{{selectedNationality.label}}</label>
+        {{nges-core/nges-searchable-dropdown
+          dataList=countryList
+          message = "Select Nationality"
+          autocompleteOnSelect=(action 'onChangeNationality')
+        }}
+      </div>
+
+    </div>
+
+
+    {{nges-core/nges-input-component
+      type='text'
+      input-field-name="Relationship with Remitter"
+      model=model
+      valuePath='relationWithRemitter'
+      placeholder='Relationship with Remitter'
+      sectionFirst = 'col-sm-2'
+      sectionLast = 'col-sm-6'
+      didValidate=didValidate}}
+
+    <fieldset>
+      <legend class="input-field-label">Risk Status</legend>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <div class="col-sm-6">
+                <label class="input-field-label" style="margin-top: 15px">Risk</label>
+              </div>
+              <div class="col-sm-6">
+                <label style="float: right">{{selectedRisk.label}}</label>
+                {{nges-core/nges-searchable-dropdown
+                  dataList=riskType
+                  message = "Select Risk"
+                  autocompleteOnSelect=(action 'onChangeRisk')
+                }}
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-2">
+            <label class="input-field-label">Sanction Screening</label>
+          </div>
+          <div class="col-sm-9">
+            <table class="table-all">
+              <thead>
+              <th>Source</th>
+              <th>Name</th>
+              <th>Country</th>
+              <th>Date of Birth</th>
+              <th>Father Name</th>
+              <th>Score</th>
+              </thead>
+              <tbody>
+              <td>{{source}}</td>
+              <td>{{name}}</td>
+              <td>{{country}}</td>
+              <td>{{dob}}</td>
+              <td>{{fname}}</td>
+              <td>{{score}}</td>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+    </fieldset>
+
+
+    <br>
+    <!--only MLRO will see this fieldset-->
+    {{#if showMLROReview}}
+      <fieldset>
+        <legend class="input-field-label">MLRO Review</legend>
+        <div class="row">
+          <div class="col-sm-2">
+            <label class="form-check-label input-field-label" style="margin-left: 15px;">
+              <input type="checkbox" class="form-check-input" onclick="myFunction()" style="margin-top: 14px;">
+              <label class="input-field-title" style="margin-top: 12px;">False Positive</label>
+            </label>
+          </div>
+          <div class="col-sm-6">
+            <div>
+              {{nges-core/nges-input-component
+                type='text'
+                input-field-name="MLRO Comment"
+                model=model
+                valuePath='mlroComment'
+                placeholder='MLRO Comment'
+                sectionFirst = 'col-sm-4'
+                sectionLast = 'col-sm-8'
+                didValidate=didValidate}}
+            </div>
+          </div>
+
+        </div>
+
+      </fieldset>
+    {{/if}}
+
+
+    {{#if showAlert}}
+      <div class='alert'>
+        <div class='fa fa-times icon-remove' {{action 'toggleProperty' 'showAlert'}}></div>
+        <h1 style="color: red; font-size: 12px">Please fix all the errors above before continuing.</h1>
+      </div>
+    {{/if}}
+
+    {{#if isValid}}
+      <span class='valid-input fa fa-check'><h1 style="color: red;font-size: 12px">Error Message</h1></span>
+    {{/if}}
+
+    <br>
+    <hr class="rms-bottom-hr-line">
+    {{#if actionAccess.edit}}
+          <button id='status_check' class="rms-button-all rms-button-save" {{action 'updateAction'}}>Submit</button>
+    {{else}}
+           <button id='save' class="rms-button-all rms-button-save" {{action 'validate'}}>Save</button>
+    {{/if}}
+    <button id='status_check' class="rms-button-all rms-button-save " {{action 'checkRiskStatus'}}>Risk Status Check
+    </button>
+
+    {{#each stateActions as |state|}}
+      <button id='save' class="nges-button nges-button-save" {{action 'getNextAllowableStateIdForCurrentState' state.attributes.id}}>{{state.attributes.name}}</button>
+    {{/each}}
+    <!--<button id='duplicate_check' class="rms-button-all rms-button-save" {{action 'checkDuplicate'}}>Duplicate Check</button>
+    <button id='clear' class="rms-button-all rms-button-save" {{action 'reset'}}>Clear</button>-->
+
+  </form>
+
+</div>
