@@ -1,16 +1,26 @@
 <style>
 
-  .app-base-logo {
-    background-image: url({{appLogo}});
+  /* .app-base-logo {
+     background-image: url({{appLogo}});
     background-size: 75% 90%;
     background-repeat: no-repeat;
     margin: 5px;
-    width: 300px;
+    width: 150px;
     height: 39px;
-    /*background-position: center;*/ /* Center the image */
-    /*background-size: cover;*/ /* Resize the background image to cover the entire container */
+    !*background-position: center;*! !* Center the image *!
+    !*background-size: cover;*! !* Resize the background image to cover the entire container *!
+  }*/
+
+  .app-base-logo {
+    height: 100%;
+    width: 150px;
+    padding: 3px 3px 3px 10px;
+    background-position: center;
   }
 
 </style>
 
-<div class="app-base-logo"></div>
+<!--<div class="app-base-logo"></div>-->
+
+
+<img src="{{appLogo}}" class="app-base-logo">
