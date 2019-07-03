@@ -2,8 +2,8 @@
 $ui-content-header-font-size: 11px;
 $sidebar-size: 300px;
 
-:root {
-  --default: #3D3F46;
+/*:root {
+  --default: #3F4148;
   --foreground: #2f3239;
   --selected: #7db5f5;
   --text: #fff;
@@ -17,7 +17,26 @@ $primary-color-foreground: var(--foreground); // foreground
 $primary-color-selected: var(--selected); // active
 $primary-color-text: var(--text); // font
 $primary-color-hover: var(--hover); // hover
+$primary-color-border: var(--border); // border*/
+
+
+:root {
+  --default: #F3F2F1;
+  --foreground: #FFFFFF;
+  --selected: #116DB5;
+  --text: #323130;
+  --hover: #373b42;
+  --border: #7db5f5;
+}
+
+// theme 1 - Light Mode
+$primary-color-main: var(--default); // background
+$primary-color-foreground: var(--foreground); // foreground
+$primary-color-selected: var(--selected); // active
+$primary-color-text: var(--text); // font
+$primary-color-hover: var(--hover); // hover
 $primary-color-border: var(--border); // border
+
 
 /*
 
@@ -43,4 +62,5 @@ $primary-color-border: #7db5f5;         // border
 
 
 */
+
 

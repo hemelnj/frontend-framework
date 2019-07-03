@@ -3,7 +3,7 @@ let enginePath = 'nges-engines';
 export default [
 
   {
-    appCode: 'rms',
+    appCode: 'nges-engine',
     appPanelCode: 'admin-panel',
     appModuleCode: 'common',
     appMenuTemplateCode: 'olm',
@@ -41,7 +41,7 @@ export default [
     ]
   },
   {
-    appCode: 'rms',
+    appCode: 'nges-engine',
     appPanelCode: 'admin-panel',
     appModuleCode: 'common',
     appMenuTemplateCode: 'auth-engine',
@@ -65,7 +65,7 @@ export default [
     ]
   },
   {
-    appCode: 'rms',
+    appCode: 'nges-engine',
     appPanelCode: 'admin-panel',
     appModuleCode: 'common',
     appMenuTemplateCode: 'tree-engine',
@@ -90,7 +90,7 @@ export default [
   },
 
   {
-    appCode: 'rms',
+    appCode: 'nges-engine',
     appPanelCode: 'admin-panel',
     appModuleCode: 'common',
     appMenuTemplateCode: 'pe',
@@ -108,6 +108,3 @@ export default [
   }
 
 ]
-
-
-// working with development mod
