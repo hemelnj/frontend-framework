@@ -41,8 +41,8 @@ module.exports = function (environment) {
     },
 
     APP: {
-      appName: 'Remittance Management System',
-      appTitle: 'Remittance Management System',
+      appName: 'Frontend Framework',
+      appTitle: 'Frontend Framework',
       appLogo: '/app-logo.png',
     }
   };
@@ -51,7 +51,7 @@ module.exports = function (environment) {
 
   //let HOST_BASE_URL = 'http://localhost';
   //let HOST_BASE_URL = 'http://192.168.20.2';
-  let HOST_BASE_URL = 'http://192.168.20.147';
+  let HOST_BASE_URL = 'http://192.168.20.2';
 
   //-:#############################################: development environment block
   if (environment === 'development') {
@@ -59,20 +59,19 @@ module.exports = function (environment) {
     //-------------------- NGES UI HOST
     ENV.NGES_UI_HOSTS = {
       FRONTEND_ENGINE_UI_HOST: HOST_BASE_URL + ':4200',
-      TREE_ENGINE_UI_HOST: HOST_BASE_URL + ':4200',
-      AUTH_ENGINE_UI_HOST: HOST_BASE_URL + ':4200',
-      PROPERTY_EXTENDER_ENGINE_UI_HOST: HOST_BASE_URL + ':4200',
     };
 
     //-------------------- NGES BACKEND  HOST
     ENV.NGES_SERVICE_HOSTS = {
+
       OLM_SERVICE_HOST: 'http://olm-ngfs-core-framework.apps.115.127.24.184.nip.io',
       TREE_SERVICE_HOST: 'http://treeengine-ngfs-core-framework.apps.115.127.24.184.nip.io',
-      MOCK_SERVICE_HOST: 'http://192.168.20.2:8089',
       AUTH_SERVICE_HOST: 'http://auth-ngfs-core-framework.apps.115.127.24.184.nip.io',
-      PO_SERVICE_HOST: 'http://payorder-ngfs-core-framework.apps.115.127.24.184.nip.io',
-      APP_OLM_SERVICE_HOST: 'http://rms.olm-apps.115.127.24.184.nip.io',
+      MOCK_SERVICE_HOST: 'http://192.168.20.2:8089',
+
+
       APP_PE_SERVICE_HOST: 'http://rms.pe-apps.115.127.24.184.nip.io',
+      APP_OLM_SERVICE_HOST: 'http://rms.olm-apps.115.127.24.184.nip.io',
       APP_SERVICE_POST_HOST: '-apps.115.127.24.184.nip.io',
     };
   }
