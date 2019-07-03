@@ -5,9 +5,9 @@ export default Service.extend({
   store: service(),
   appRestTemplate: service('app-rest-template'),
   appConfiguration: service('app-configuration'),
-  rmsServiceHost: config.NGES_SERVICE_HOSTS.RMS_OLM_SERVICE_HOST,
+  rmsServiceHost: config.NGES_SERVICE_HOSTS.APP_OLM_SERVICE_HOST,
   treeEngineHost: config.NGES_SERVICE_HOSTS.TREE_SERVICE_HOST,
-  rmsOLMServiceHost: config.NGES_SERVICE_HOSTS.RMS_OLM_SERVICE_HOST,
+  rmsOLMServiceHost: config.NGES_SERVICE_HOSTS.APP_OLM_SERVICE_HOST,
   appWelcome: service('nges-core/app-welcome'),
 
   init() {
@@ -21,7 +21,7 @@ export default Service.extend({
 
     if(!routeInfo) routeInfo = this.store.peekRecord('nges-core/engine-route-information', 2);
 
-    let hostUrl = 'http://' + routeInfo.appCode + '.' + routeInfo.appModuleCode + '-apps.115.127.24.184.nip.io';
+    let hostUrl = 'http://' + routeInfo.appCode + '.' + routeInfo.appModuleCode + config.NGES_SERVICE_HOSTS.APP_SERVICE_POST_HOST;
     return hostUrl;
   },
   getServiceRouteInformation() {

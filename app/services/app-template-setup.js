@@ -104,13 +104,13 @@ let filterSelectedTemplates = function (appCode, appPanelCode, appModuleCode, ap
   let appSelectedTemplates = [];
   for (let i = 0; i < appRawTemplate.length; i++) {
 
-    let appRawCode = appRawTemplate[i]['appCode'];
+    //let appRawCode = appRawTemplate[i]['appCode'];
     let appRawPanelCode = appRawTemplate[i]['appPanelCode'];
     let appRawModuleCode = appRawTemplate[i]['appModuleCode'];
     let appRawmicroServiceFunctionCode = appRawTemplate[i]['appMenuTemplateCode'];
 
     if (
-      appRawCode === appCode &&
+      //appRawCode === appCode &&
       appRawPanelCode === appPanelCode &&
       appRawModuleCode === appModuleCode &&
       appRawmicroServiceFunctionCode === appMenuTemplateCode

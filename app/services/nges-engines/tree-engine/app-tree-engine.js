@@ -10,7 +10,7 @@ export default Service.extend({
   treeEngineHost: config.NGES_SERVICE_HOSTS.TREE_SERVICE_HOST,
   authEngineHost: config.NGES_SERVICE_HOSTS.AUTH_SERVICE_HOST,
   olcmHost: config.NGES_SERVICE_HOSTS.OLM_SERVICE_HOST,
-  rmsOLMHost: config.NGES_SERVICE_HOSTS.RMS_OLM_SERVICE_HOST,
+  rmsOLMHost: config.NGES_SERVICE_HOSTS.APP_OLM_SERVICE_HOST,
 
   getAllClassTypes(accessToken) {
     let beforeSend = function (xhr) {

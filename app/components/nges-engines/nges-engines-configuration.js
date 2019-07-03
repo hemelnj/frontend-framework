@@ -3,7 +3,7 @@ let enginePath = 'nges-engines';
 export default [
 
   {
-    appCode: 'rms',
+    appCode: 'nges-engine',
     appPanelCode: 'admin-panel',
     appModuleCode: 'common',
     appMenuTemplateCode: 'olm',
@@ -13,35 +13,35 @@ export default [
       {
         code: 'object-state',
         name: 'object-state',
-        viewName: 'Object State',
+        label: 'Object State',
         detailPath: '/',
         detailView: []
       },
       {
         code: 'action-event',
         name: 'action-event',
-        viewName: 'Action Event',
+        label: 'Action Event',
         detailPath: '/',
         detailView: []
       },
       {
         code: 'diagram-tool',
         name: 'diagram-tool',
-        viewName: 'Diagram Tool',
+        label: 'Diagram Tool',
         detailPath: '/',
         detailView: []
       },
       {
         code: 'menu-item-to-olm-object-assignment',
         name: 'menu-item-to-olm-object-assignment',
-        viewName: 'Menu Mapping',
+        label: 'Menu Mapping',
         detailPath: '/',
         detailView: []
       },
     ]
   },
   {
-    appCode: 'rms',
+    appCode: 'nges-engine',
     appPanelCode: 'admin-panel',
     appModuleCode: 'common',
     appMenuTemplateCode: 'auth-engine',
@@ -51,21 +51,21 @@ export default [
       {
         code: 'role-creation',
         name: 'component-role',
-        viewName: 'User Roles',
+        label: 'User Roles',
         detailPath: '/',
         detailView: []
       },
       {
         code: 'user-creation',
         name: 'component-user',
-        viewName: 'User Profiles',
+        label: 'User Profiles',
         detailPath: '/',
         detailView: []
       },
     ]
   },
   {
-    appCode: 'rms',
+    appCode: 'nges-engine',
     appPanelCode: 'admin-panel',
     appModuleCode: 'common',
     appMenuTemplateCode: 'tree-engine',
@@ -75,14 +75,14 @@ export default [
       {
         code: 'data-context-to-olm-object-assignment',
         name: 'data-context-to-olm-object-assignment',
-        viewName: 'User Functions-Locations',
+        label: 'User Functions-Locations',
         detailPath: '/',
         detailView: []
       },
       {
         code: 'tree-engine-registration',
         name: 'registration',
-        viewName: 'User Registration',
+        label: 'User Registration',
         detailPath: '/',
         detailView: []
       },
@@ -90,7 +90,7 @@ export default [
   },
 
   {
-    appCode: 'rms',
+    appCode: 'nges-engine',
     appPanelCode: 'admin-panel',
     appModuleCode: 'common',
     appMenuTemplateCode: 'pe',
@@ -100,7 +100,7 @@ export default [
       {
         code: 'property-extender',
         name: 'classtype-list',
-        viewName: 'Property Extender',
+        label: 'Property Extender',
         detailPath: '/',
         detailView: []
       }
@@ -108,6 +108,3 @@ export default [
   }
 
 ]
-
-
-// working with development mod
