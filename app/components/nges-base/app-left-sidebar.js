@@ -9,7 +9,9 @@ export default Component.extend({
   appConfiguration: service('app-configuration'),
   init() {
     this._super(...arguments);
+    this.set('appLogo', this.appLogo);
   },
+
 
   didReceiveAttrs() {
     this._super(...arguments);
