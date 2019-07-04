@@ -29,9 +29,10 @@ export default Route.extend({
     // console.log('appSubmenuTemplateCode', appSubmenuTemplateCode);      // submenu(function)->remitter-reg
 
 
-    this.store.unloadAll();
 
-   this.store.createRecord('nges-core/engine-route-information', {
+    // 1 fix cause it always insert one record
+    this.store.unloadAll('nges-core/engine-route-information');
+    this.store.createRecord('nges-core/engine-route-information', {
       id: 1,
       appCode: appCode,
       appPanelCode: appPanelCode,
