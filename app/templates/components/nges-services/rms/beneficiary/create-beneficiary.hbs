@@ -327,8 +327,12 @@
     <!--<button id='duplicate_check' class="rms-button-all rms-button-save" {{action 'checkDuplicate'}}>Duplicate Check</button>
     <button id='clear' class="rms-button-all rms-button-save" {{action 'reset'}}>Clear</button>-->
 
-    {{#if showPropertyExtend}}
-      <h3>Property Extend</h3>
+    {{log beneficiaryData.propertyData.visible}}
+    {{#if beneficiaryData.propertyData.visible}}
+      {{log attributeList.result}}
+      {{#each attributeList.result as |attribute|}}
+        {{attribute.name}}{{attribute.type}}<br>
+      {{/each}}
     {{/if}}
 
   </form>

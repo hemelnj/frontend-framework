@@ -53,7 +53,7 @@ export default Component.extend({
   },
 
   setModel(beneficiaryData) {
-    console.log(beneficiaryData)
+    console.log(beneficiaryData);
     this.set('model.beneficiaryId', beneficiaryData.id);
     this.set('model.beneficiaryName', beneficiaryData.name);
     this.set('model.address1', beneficiaryData.addressOne);
@@ -560,19 +560,22 @@ export default Component.extend({
 
     propertyExtend() {
       console.log('message--propertyExtend');
-      this.set('showPropertyExtend',true);
+      let propertyData = this.get('beneficiaryData.propertyData');
+      //propertyData['visible'] = true;
+      console.log('message--beneficiaryData.visible', propertyData);
       let context = this;
 
       let accessToken = this.appConfiguration.getAccessToken();
 
       this.serviceInitializer.getClassType(accessToken).then(function (result) {
-        let classTypeId = result.data;//remitter classtype id
+        let classTypeId = result.data;//classtype id
 
 
         let allCreatedAttribute = context.peSetupService.getAllAttributesByClassTypeId(classTypeId,accessToken);
 
         allCreatedAttribute.then(function (attribute) {
           console.log('message--allCreatedAttribute', attribute);
+          context.get('attributeList',attribute);
         }).catch(function (errorMsg) {
           context.get('notifier').danger('Failed To Load Attributes');
         });

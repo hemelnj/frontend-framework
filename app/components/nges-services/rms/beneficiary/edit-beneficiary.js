@@ -30,6 +30,10 @@ export default Component.extend({
       context.set('beneficiaryData',{
         type:'edit',
         data:msg.data.attributes,
+        propertyData:{
+          visible:false,
+          data:"data"
+        },
       });
     });
   },

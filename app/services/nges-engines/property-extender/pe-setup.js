@@ -41,7 +41,7 @@ export default Service.extend({
   getAttributesByClassTypeId(classTypeId, accessToken) {
     let beforeSend = function (xhr) {
       xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
-      xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
+      //xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
     //let url = this.olmEngineHost + "/classtypes/" + classTypeId;

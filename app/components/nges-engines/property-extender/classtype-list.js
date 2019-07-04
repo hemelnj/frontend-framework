@@ -168,7 +168,7 @@ export default Component.extend({
 
       let accessToken = this.appConfiguration.getAccessToken();
 
-      let allCreatedAttributes = this.peSetupService.getAttributesByClassTypeId(selectedItemId, accessToken);
+      let allCreatedAttributes = this.peSetupService.getAllAttributesByClassTypeId(selectedItemId, accessToken);
 
       allCreatedAttributes.then(function (classType) {
         context.set('attributeList', classType.data);
@@ -214,11 +214,16 @@ export default Component.extend({
               this.set('model.refObject',"n/a");
             }
 
+            if(model.typeLength === '' || model.typeLength === undefined || model.typeLength === null){
+              this.set('model.typeLength',"n/a");
+            }
+
             let classTypeId = this.get('selectedClasstypeId');
             let payload = {
 
 
               "id": classTypeId,
+              "classTypeId": classTypeId,
               "code": model.classTypeCode,
               "name": model.classTypeName,
               "displayName": model.displayName,
@@ -249,10 +254,10 @@ export default Component.extend({
       let attributeList = this.get('attributeList');
       console.log('message--sending payload', JSON.stringify(attributeList));
       let accessToken = this.appConfiguration.getAccessToken();
-      let afterCurrencyRegistration = this.peSetupService.addNewProperty(accessToken, attributeList);
+      let afterPropertyRegistration = this.peSetupService.addNewProperty(accessToken, attributeList);
       let context = this;
-      afterCurrencyRegistration.then(function (msg) {
-        context.get('notifier').success('Currency Registration Successful');
+      afterPropertyRegistration.then(function (msg) {
+        context.get('notifier').success('Property Add Successful');
       }).catch(function (msg) {
         context.get('notifier').danger('Failed to Save');
       });
