@@ -1,6 +1,6 @@
 <style>
   .width-400 {
-    width: 400px;
+    width: 296px;
   }
 
   .width-400 input {
@@ -14,21 +14,42 @@
   / / padding: 50 px;
   }
 
+
+  .show-password-label {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+    display: inline-block;
+    color: #666666;
+    font-size: 0.75rem;
+  }
+
 </style>
 
 
 <div class="container width-400 login-box" style="padding-left: 0; padding-right: 0;">
   <div class="login-logo-bg">
 
-    <img src="{{model.appLogo}}" style="max-height: 35%;max-width: 70%; padding: 15px">
+    <img src="{{model.appLogo}}" style="max-height: 35%;max-width: 100%; padding: 15px">
   </div>
 
   <form class="form-signin">
     <br>
-    <h2 class="form-signin-heading layout-title" style="font-size: x-large; margin-left: 6%; color: #373B42;">Login</h2>
-
 
     <div style="padding: 25px;margin-top: -8%">
+      <div class="row">
+        <div class="col-md-6">
+          <h2 class="form-signin-heading layout-title" style="font-size: x-large; color: #373B42;">Login</h2>
+        </div>
+        <div class="col-md-6">
+          {{#if isLoadingIconVisible}}
+            <img src="/loading-icon.gif" style="height: 35px;width: 35px;">
+          {{/if}}
+        </div>
+      </div>
+
       <label for="inputName" class="sr-only">User name</label>
       <input id="inputName" placeholder="Name" class="form-control" value={{userInformation.name}}
              oninput={{action (mut userInformation.name) value="target.value"}}>
@@ -42,14 +63,14 @@
 
       <div class="row">
         <div class="col-md-6">
-          <div class="form-check">
-            <label class="form-check-label input-field-label" style="margin-left: -7%">
+          <div class="form-check" style="margin-top: 2px">
+            <label class="form-check-label show-password-label">
               <input type="checkbox" class="form-check-input" onclick="myFunction()" style="margin-top: 2px;">Show Password
             </label>
           </div>
         </div>
         <div class="col-md-6">
-          <h2  class="float-right" style="font-size:13px; color: blue; margin-top: 2px;">{{#link-to "forget-password"}}
+          <h2  class="float-right" style="font-size:13px; color: #3C85BF; margin-top: 4px;">{{#link-to "forget-password"}}
             Forgot Password?{{/link-to}}</h2>
         </div>
       </div>
@@ -70,11 +91,8 @@
         }
       </script>
 
-      {{#if isLoadingIconVisible}}
-        <img src="/loading-icon.gif" style="margin-top: 10px; height: 40px;width: 40px;">
-      {{/if}}
 
-      <button class="nges-button nges-button-success float-right" style="margin-top: 10px; width: 40%;" {{action "signin"
+      <button class="nges-button nges-button-success float-right" style="margin-top: 10px; width: 100%;" {{action "signin"
                                                                                               userInformation}}>Sign In
       </button>
       <br>
