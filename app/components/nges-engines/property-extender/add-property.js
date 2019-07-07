@@ -9,8 +9,8 @@ export default Component.extend({
   appConfiguration: service('app-configuration'),
   peSetupService: service('nges-engines/property-extender/pe-setup'),
 
-  formData: {
-    olmObject: null,
+  peFormData: {
+    string: '',
   },
 
   notifier: service(),
@@ -24,71 +24,31 @@ export default Component.extend({
 
     addAction() {
 
-      let optional = document.getElementById("optional").checked;
-      this.get('model').validate()
-        .then(({validations}) => {
+      let string = this.get('peFormData.name');
 
-          this.set('didValidate', true);
-
-          let model = this.get('model');
-
-          if (validations.get('isValid')) {
-            this.setProperties({
-              showAlert: false,
-              isRegistered: true,
-            });
-
-            if(model.refObject === '' || model.refObject === undefined || model.refObject === null){
-              this.set('model.refObject',"n/a");
-            }
-
-            if(model.typeLength === '' || model.typeLength === undefined || model.typeLength === null){
-              this.set('model.typeLength',"n/a");
-            }
-
-            let classTypeId = this.get('selectedClasstypeId');
-            let payload = {
+      console.log('message-peFormData-name', string);
 
 
-              "id": classTypeId,
-              "classTypeId": classTypeId,
-              "code": model.classTypeCode,
-              "name": model.classTypeName,
-              "displayName": model.displayName,
-              "describtion": "n/a",
-              "createdBy": "n/a",
-              "createdAt": 1,
-              "lastUpdatedAt": 1,
-              "lastUpdatedBy": "n/a",
-              "comments": "n/a",
-              "extra": "n/a",
-              "type": model.type,
-              "length": model.typeLength,
-              "constraint": "n/a",
-              "optional": optional,
-              "referenceObject": model.refObject,
-            };
+      let payload = [{
 
-            let context = this;
-            context.get('attributeList').pushObject(payload);
+      }];
 
-          } else {
-            this.set('showAlert', true);
-          }
-        });
-    },
-    saveAction() {
-      let attributeList = this.get('attributeList');
-      console.log('message--sending payload', JSON.stringify(attributeList));
-      let accessToken = this.appConfiguration.getAccessToken();
-      let afterPropertyRegistration = this.peSetupService.addNewProperty(accessToken, attributeList);
+      console.log('message', payload);
+
+      /*let accessToken = this.appConfiguration.getAccessToken();
+      let responseAfterAddingState = this.olmSetupService.addNewState(stateData, accessToken);
       let context = this;
-      afterPropertyRegistration.then(function (msg) {
-        context.get('notifier').success('Property Add Successful');
-      }).catch(function (msg) {
-        context.get('notifier').danger('Failed to Save');
-      });
-    },
+      responseAfterAddingState.then(function (msg) {
+        if (msg) {
+          console.log('responseAfterAddingState', msg);
+          context.get('notifier').success('New State Added');
+          context.dataInit(classType.id);
+        } else {
+          context.get('notifier').danger('Failed To Add');
+        }
+      });*/
+
+    }
   }
 
 })
