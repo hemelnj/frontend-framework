@@ -312,7 +312,8 @@
     <hr class="rms-bottom-hr-line">
     {{#if actionAccess.edit}}
       <button id='status_check' class="nges-button nges-button-success" {{action 'updateAction'}}>Submit</button>
-      <button id='status_check' class="nges-button nges-button-success" {{action 'propertyExtend'}}>Add Property</button>
+      <button id='status_check' class="nges-button nges-button-success" {{action 'propertyExtend'}}>Add Property
+      </button>
     {{else}}
       <button id='save' class="nges-button nges-button-success" {{action 'validate'}}>Save</button>
     {{/if}}
@@ -329,10 +330,11 @@
 
     {{#if showPropertyExtender}}
       <h1>PE</h1>
-      {{log attributeList}}
-      {{#each attributeList.result as |attribute|}}
-        {{attribute.name}}<br>{{attribute.type}}<br>
-      {{/each}}
+
+      {{nges-engines/property-extender/add-property
+        attributeList=attributeList
+      }}
+
     {{/if}}
 
   </form>
