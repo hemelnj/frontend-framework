@@ -225,8 +225,19 @@
       <label class="layout-title" style="font-size: 20px">Property Extender</label>
       <hr class="header-label-line">
       {{#each attributeList.result as |attribute|}}
-        {{attribute.name}}<br>
-        {{attribute.type}}<br>
+        {{#if (eq attribute.type "String")}}
+
+          <div class="row">
+            <div class="col-md-4">
+              <label for="string">{{attribute.name}}</label>
+            </div>
+            <div class="col-md-8">
+              {{input type="text" class="input-field" id="string"  name="string"
+                      placeholder="Enter String" value=string}}
+            </div>
+          </div>
+
+        {{/if}}
       {{/each}}
     </div>
   </div>
