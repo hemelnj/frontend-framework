@@ -224,7 +224,7 @@
     <div class="col-md-12">
       <label class="layout-title" style="font-size: 20px">Property Extender</label>
       <hr class="header-label-line">
-      {{log attributeList}}
+
       {{#each attributeList.result as |attribute|}}
         {{#if (eq attribute.type "String")}}
 
@@ -234,8 +234,7 @@
             </div>
             <div class="col-md-8">
               <input type="text" class="input-field" placeholder={{attribute.type}}
-                     oninput={{action (mut peFormData.string.name) value="target.value"}}
-                     oninput={{action (mut peFormData.string.id) value=attribute.id}}>
+                     value={{attribute.name}} >
             </div>
           </div>
 
