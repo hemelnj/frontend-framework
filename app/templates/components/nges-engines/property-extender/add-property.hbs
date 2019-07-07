@@ -234,7 +234,8 @@
             </div>
             <div class="col-md-8">
               <input type="text" class="input-field" placeholder={{attribute.type}}
-                     oninput={{action (mut peFormData.string) value="target.value"}}>
+                     oninput={{action (mut peFormData.string.name) value="target.value"}}
+                     oninput={{action (mut peFormData.string.id) value=attribute.id}}>
             </div>
           </div>
 
