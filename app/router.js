@@ -11,6 +11,7 @@ Router.map(function () {
 
 
   this.route('login');
+  this.route('lab');
   this.route('security-login');
   this.route('registration');
 
