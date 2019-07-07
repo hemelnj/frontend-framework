@@ -75,6 +75,7 @@ a[aria-expanded="true"] {
 #sidebar .sidebar-header {
     padding: 5px;
     background: $primary-color-main;
+    background: #f4f6f9;
 }
 
 #sidebar ul.components {
@@ -91,6 +92,8 @@ a[aria-expanded="true"] {
     //font-size: 1.1em;
     display: block;
 }
+
+
 
 
 
@@ -173,9 +176,14 @@ ul.CTAs a {
   cursor: pointer;
 }
 
+
+
 .nav-link.active{
-  color: #43adff;
+  color: $primary-color-selected;
   font-weight: bold;
+}
+.nav-link:hover, .nav-link:focus {
+  background-color: #bebec5!important;
 }
 
 
@@ -189,10 +197,12 @@ ul.CTAs a {
   color: $primary-color-text!important;
 }
 
+
 // top-navbar - active or selected
 .navbar-nav .nav-link.active {
-  color: #43adff!important;
-  /*background: #3c6382!important;*/
+  color: $primary-color-selected!important;
+  font-weight: bold;
 }
+
 
 

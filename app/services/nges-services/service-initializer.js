@@ -19,16 +19,13 @@ export default Service.extend({
   getServiceBaseHostURL() {
     let routeInfo = this.store.peekRecord('nges-core/engine-route-information', 1);
 
-    if(!routeInfo) routeInfo = this.store.peekRecord('nges-core/engine-route-information', 2);
-
+    //if(!routeInfo) routeInfo = this.store.peekRecord('nges-core/engine-route-information', 2);
     let hostUrl = 'http://' + routeInfo.appCode + '.' + routeInfo.appModuleCode + config.NGES_SERVICE_HOSTS.APP_SERVICE_POST_HOST;
     return hostUrl;
   },
   getServiceRouteInformation() {
-    let routeInfo = this.store.peekRecord('nges-core/engine-route-information', 1);
-
-    if(!routeInfo) routeInfo = this.store.peekRecord('nges-core/engine-route-information', 2);
-
+    let routeInfo = this.store.peekRecord('nges-core/engine-route-information', 1);     // 1 fix cause it run
+    //if(!routeInfo) routeInfo = this.store.peekRecord('nges-core/engine-route-information', 2);
     return routeInfo;
   },
   //------------------------
