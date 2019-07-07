@@ -94,10 +94,15 @@ a[aria-expanded="true"] {
 
 
 
+
 a[data-toggle="collapse"] {
     position: relative;
 }
 
+.dropdown-toggle-header{
+  color:#5B5A58;
+  font-weight: bold;
+}
 .dropdown-toggle::after {
     display: block;
     position: absolute;

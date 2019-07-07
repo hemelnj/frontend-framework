@@ -9,9 +9,7 @@
 
 
       {{#link-to 'welcome.index' class="" }}
-        {{nges-base/app-logo-viewer
-          appLogo = appLogo
-        }}
+        {{nges-base/app-logo-viewer}}
       {{/link-to}}
 
 
@@ -49,7 +47,7 @@
         {{#unless (eq module.code "user-management")}}
           <li>
             <a href="#pageSubmenu{{moduleIndex}}" data-toggle="collapse" aria-expanded="true"
-               class="dropdown-toggle">{{nges-core/capitalize-first-letter module.name}}</a>
+               class="dropdown-toggle dropdown-toggle-header">{{nges-core/capitalize-first-letter module.name}}</a>
             <ul class="list-unstyled collapse show" id="pageSubmenu{{moduleIndex}}">
 
               {{#each module.serviceHolders as |serviceHolder serviceHolderIndex|}}
@@ -59,7 +57,7 @@
                 {{#if (eq serviceHolder.menuTreeTemplate.code "MICROSERVICE") }}
                   <li style="padding-left: 5px; padding-top: 5px">
                     <a href="#pageSubMenuList{{serviceHolderIndex}}" data-toggle="collapse" aria-expanded="true"
-                       class="dropdown-toggle">{{nges-core/capitalize-first-letter serviceHolder.name}}</a>
+                       class="dropdown-toggle dropdown-toggle-header">{{nges-core/capitalize-first-letter serviceHolder.name}}</a>
                     <ul class="list-unstyled collapse show" id="pageSubMenuList{{serviceHolderIndex}}">
 
                       {{#each serviceHolder.children as |menu menuIndex|}}
@@ -122,7 +120,7 @@
           {{#if accessRole}}
             <li>
               <a href="#pageSubmenu_{{menu.code}}" data-toggle="collapse" aria-expanded="true"
-                 class="dropdown-toggle">{{nges-core/capitalize-first-letter menu.label}}</a>
+                 class="dropdown-toggle dropdown-toggle-header">{{nges-core/capitalize-first-letter menu.label}}</a>
               <ul class="list-unstyled collapse show" id="pageSubmenu_{{menu.code}}">
 
                 {{!log menu}}

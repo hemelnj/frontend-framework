@@ -22,7 +22,7 @@
 }
 
 
-.nges-button-save {
+.nges-button-success {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
   font-weight: 200;
@@ -32,10 +32,10 @@
   border-color: $primary-color-selected;
   -webkit-transition: border 0.15s linear;
   transition: border 0.15s linear;
-  color: #f4f6f9;
+  color: $primary-color-text;
 }
 
-.nges-button-save:hover {
+.nges-button-success:hover {
   background-color: $primary-color-main;
   border-color: $primary-color-selected;
   color: $primary-color-selected;
