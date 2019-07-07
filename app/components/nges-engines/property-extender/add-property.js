@@ -10,7 +10,10 @@ export default Component.extend({
   peSetupService: service('nges-engines/property-extender/pe-setup'),
 
   peFormData: {
-    string: '',
+    string:{
+      name:'',
+      id:''
+    },
   },
 
   notifier: service(),
@@ -24,9 +27,10 @@ export default Component.extend({
 
     addAction() {
 
-      let string = this.get('peFormData.name');
+      let string = this.get('peFormData.string.name');
+      let stringId = this.get('peFormData.string.id');
 
-      console.log('message-peFormData-name', string);
+      console.log('message-peFormData-name', string,stringId);
 
 
       let payload = [{
