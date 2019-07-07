@@ -17,7 +17,6 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    this.set('attributeList', this.get('attributeList'));
   },
 
 
