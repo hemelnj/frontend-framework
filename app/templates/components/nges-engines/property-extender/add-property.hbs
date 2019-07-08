@@ -29,87 +29,6 @@
     border-color: #666666;
   }
 
-  .auth-button-all {
-    position: relative;
-    display: inline-block;
-    padding: 0;
-    background: transparent;
-    background-clip: border-box;
-    border: 1px solid transparent;
-    border-radius: .25rem;
-    line-height: 1.275rem;
-    text-decoration: none;
-    color: #0070d2;
-    -webkit-appearance: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    font-size: .75rem;
-    white-space: nowrap;
-    position: relative;
-  }
-
-  .auth-button-save {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    text-align: center;
-    vertical-align: middle;
-    border: 1px solid #dddbda;
-    -webkit-transition: border 0.15s linear;
-    transition: border 0.15s linear;
-    color: #fff;
-    border-color: #dddbda;
-    background-color: #123F62;
-    border-color: #123F62;
-  }
-
-  .auth-button-save:hover {
-    background-color: #12466b;
-    border-color: #12466b;
-    color: #fff;
-    cursor: pointer;
-  }
-
-  .button-danger {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    text-align: center;
-    vertical-align: middle;
-    border: 1px solid #dddbda;
-    -webkit-transition: border 0.15s linear;
-    transition: border 0.15s linear;
-    background-color: #c23934;
-    border-color: #c23934;
-    color: #fff;
-  }
-
-  .button-danger:hover {
-    background-color: #a61a14;
-    border-color: #a61a14;
-    color: #fff;
-    cursor: pointer;
-  }
-
-  .auth-button-edit {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    text-align: center;
-    vertical-align: middle;
-    border: 1px solid #dddbda;
-    -webkit-transition: border 0.15s linear;
-    transition: border 0.15s linear;
-    border-color: #dddbda;
-    background-color: #fff;
-    border-color: #0070d2;
-  }
-
-  .auth-button-edit:hover {
-    background-color: #f4f6f9;
-    border-color: #0070d2;
-    color: #000;
-    cursor: pointer;
-  }
 
   .form-group {
     position: relative;
@@ -227,7 +146,6 @@
 
       {{#each attributeList.result as |attribute|}}
         {{#if (eq attribute.type "String")}}
-
           <div class="row">
             <div class="col-md-4">
               <label for="string">{{attribute.name}}</label>
@@ -237,11 +155,35 @@
                      value={{attribute.name}} >
             </div>
           </div>
-
         {{/if}}
+
+        {{#if (eq attribute.type "Integer")}}
+          <div class="row">
+            <div class="col-md-4">
+              <label for="integer">{{attribute.name}}</label>
+            </div>
+            <div class="col-md-8">
+              <input type="number" class="input-field" placeholder={{attribute.type}}
+                     value={{attribute.name}} >
+            </div>
+          </div>
+        {{/if}}
+
+        {{#if (eq attribute.type "Varchar")}}
+          <div class="row">
+            <div class="col-md-4">
+              <label for="varchar">{{attribute.name}}</label>
+            </div>
+            <div class="col-md-8">
+              <input type="text" class="input-field" placeholder={{attribute.type}}
+                     value={{attribute.name}}>
+            </div>
+          </div>
+        {{/if}}
+
       {{/each}}
 
-      <button class="olm-button-all olm-button-save"
+      <button class="nges-button nges-button-success"
               {{action "addAction"}}style="width: 100px; margin-top: 15px">
         Save
       </button>
