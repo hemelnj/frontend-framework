@@ -9,7 +9,6 @@
   border-radius: .25rem;
   line-height: 1.275rem;
   text-decoration: none;
-  //color: #0070d2;
   -webkit-appearance: none;
   white-space: normal;
   -webkit-user-select: none;
@@ -28,7 +27,7 @@
   font-weight: 200;
   text-align: center;
   vertical-align: middle;
-  background-color: $primary-color-main;
+  background-color: $primary-color-btn-default;
   border-color: $primary-color-selected;
   -webkit-transition: border 0.15s linear;
   transition: border 0.15s linear;
@@ -36,7 +35,7 @@
 }
 
 .nges-button-success:hover {
-  background-color: $primary-color-main;
+  background-color: $primary-color-btn-default;
   border-color: $primary-color-selected;
   color: $primary-color-selected;
   cursor: pointer;

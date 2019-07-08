@@ -31,12 +31,13 @@ $primary-color-border: var(--border); // border
 
 :root {
   --default: #ebeae9;
-  --foreground: #FAF9F8;
-  --selected: #1B73B7;
+  --foreground: #f5f4f3;
+  --selected: #1a639e;
   --text: #323130;
   --hover: #373b42;
   --border: #7db5f5;
   --title-text:#353433;
+  --btn-default: #d2d1d0
 }
 
 // theme 1 - Light Mode
@@ -47,6 +48,7 @@ $primary-color-text: var(--text); // font
 $primary-color-hover: var(--hover); // hover
 $primary-color-border: var(--border); // border
 $primary-color-title-text: var(--title-text); // border
+$primary-color-btn-default: var(--btn-default); // btn body
 
 
 
