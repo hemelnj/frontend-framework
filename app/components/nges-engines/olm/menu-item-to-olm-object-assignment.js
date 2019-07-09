@@ -111,11 +111,11 @@ export default Component.extend({
 
     console.log('message', data);
 
-    /*let postMenuItem = context.appTreeEngine.postMenuItemToObjectAssignment(accessToken,data,url).then(function (result) {
+    let postMenuItem = context.appTreeEngine.postMenuItemToObjectAssignment(accessToken,data,url).then(function (result) {
 
     }).catch(function (msg) {
       context.get('notifier').success('Saved Successfully');
-    });*/
+    });
 
 
   },
