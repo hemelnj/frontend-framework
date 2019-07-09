@@ -529,14 +529,14 @@
 
         <br>
         {{#if actionAccess.edit}}
-          <button id='status_check' class="nges-button nges-button-save" {{action 'updateAction'}}>Submit</button>
+          <button id='status_check' class="nges-button nges-button-success" {{action 'updateAction'}}>Submit</button>
         {{else}}
-           <button id='save' class="nges-button nges-button-save" {{action 'validate'}}>Save</button>
+           <button id='save' class="nges-button nges-button-success" {{action 'validate'}}>Save</button>
         {{/if}}
-        <button id='status_check' class="nges-button nges-button-save" {{action 'checkRiskStatus'}}>Risk Status Check</button>
+        <button id='status_check' class="nges-button nges-button-success" {{action 'checkRiskStatus'}}>Risk Status Check</button>
 
         {{#each stateActions as |state|}}
-          <button id='save' class="nges-button nges-button-save" {{action 'getNextAllowableStateIdForCurrentState' state.attributes.id}}>{{state.attributes.name}}</button>
+          <button id='save' class="nges-button nges-button-success" {{action 'getNextAllowableStateIdForCurrentState' state.attributes.id}}>{{state.attributes.name}}</button>
         {{/each}}
         <!--<button id='duplicate_check' class="rms-button-all rms-button-save" {{action 'checkDuplicate'}}>Duplicate Check</button>
     <button id='clear' class="rms-button-all rms-button-save" {{action 'reset'}}>Clear</button>-->
