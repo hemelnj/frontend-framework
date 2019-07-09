@@ -66,6 +66,14 @@
             </thead>
             <tbody>
 
+            {{#if (not tableData.data)}}
+              <td style="text-align: center;">-</td>
+              {{#each tableData.tableHeaderPropertyList as |key|}}
+                <td style="text-align: center;">-</td>
+              {{/each}}
+              <td style="text-align: center;">-</td>
+            {{/if}}
+
 
             {{#each tableData.data as |item|}}
 
@@ -79,9 +87,9 @@
                 </td>
 
                 {{#each tableData.tableHeaderPropertyList as |tableHeader|}}
-                  {{!--#if (not-eq (nges-core/make-lowercase tableHeader.name) 'id') }}
-                    <td>{{nges-elements/table-data-populator item.attributes tableHeader}}</td>
-                  {{/if--}}
+                {{!--#if (not-eq (nges-core/make-lowercase tableHeader.name) 'id') }}
+                  <td>{{nges-elements/table-data-populator item.attributes tableHeader}}</td>
+                {{/if--}}
                   <td>{{nges-elements/table-data-populator item.attributes tableHeader}}</td>
                 {{/each}}
 
