@@ -117,8 +117,9 @@ export default Component.extend({
         console.log('message', 'load States');
 
         let activeStateId = tabInformation.id;
-        let roleId = roleList[0];
+        //let roleId = roleList[0];
 
+        let roleId = context.appConfiguration.getUserRoleId();
         context.loadStateActions(accessToken, activeStateId, roleId);
       });
       this.set('tabInformation',tabInformation);
