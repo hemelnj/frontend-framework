@@ -1,7 +1,18 @@
 // size
 $ui-content-header-font-size: 11px;
-$sidebar-size: 300px;
 
+
+$sidebar-size: 300px;
+$headline-font-size: 11px;
+$content-font-size: 11px;
+
+$link-font-size: 12px;
+
+// submenu
+$sidebar-submenu-hover-color: #e1e0df;
+$sidebar-menu-title-color: #5B5A58;
+$sidebar-submenu-title-color: #5B5A58;
+$sidebar-submenu-start-space: 20px;
 
 /*
 
@@ -32,10 +43,10 @@ $primary-color-border: var(--border); // border
 :root {
   --default: #ebeae9;
   --foreground: #f5f4f3;
-  --selected: #1a639e;
+  --selected: #2c9bf1;
   --text: #323130;
   --hover: #373b42;
-  --border: #7db5f5;
+  --border: #2c9bf1;
   --title-text:#353433;
   --btn-text:#000000;
 
