@@ -9,6 +9,7 @@
   }
   .dropdown-item{
     color: black;
+    background: #FFFFFF;
   }
 
 </style>
@@ -16,9 +17,9 @@
 
 
 <div class="dropdown">
-  <div class="nav-item" style="cursor: pointer;" data-toggle="dropdown">System Setting</div>
+  <div class="nav-item nav-link" style="cursor: pointer;" data-toggle="dropdown">System Setting</div>
 
-  <div class="dropdown-menu">
+  <div class="dropdown-menu" >
 
 
     <!--<div class="row">
@@ -31,7 +32,7 @@
     </div>-->
 
 
-    <div class="dropdown-item"><div style="cursor: pointer;" onclick={{action signOut}} class="nav-link">Sign out</div></div>
+    <div class="dropdown-item" ><div style="cursor: pointer;" onclick={{action signOut}} class="nav-link">Sign out</div></div>
     <!-- <div class="dropdown-item"><div style="cursor: pointer;" onclick={{action logoutAll}} class="nav-link">Single Logout</div></div>-->
     <div class="dropdown-item"><div style="cursor: pointer;" onclick={{action navigateToUpdatePassword}} class="nav-link">Change Password</div></div>
   </div>

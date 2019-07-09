@@ -76,7 +76,6 @@ a[aria-expanded="true"] {
 #sidebar .sidebar-header {
     padding: 5px;
     background: $primary-color-main;
-    background: #F5F4F3;
 }
 
 #sidebar ul.components {
@@ -89,9 +88,11 @@ a[aria-expanded="true"] {
 }
 
 #sidebar ul li a {
-    padding: 8px;
-    //font-size: 1.1em;
-    display: block;
+  padding-left: 9px;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  /* padding: 6px; */
+  display: block;
 }
 
 
@@ -104,8 +105,9 @@ a[data-toggle="collapse"] {
 }
 
 .dropdown-toggle-header{
-  color:#5B5A58;
+  color: $sidebar-menu-title-color;
   font-weight: bold;
+  font-size: $link-font-size;
 }
 .dropdown-toggle::after {
     display: block;
@@ -117,7 +119,7 @@ a[data-toggle="collapse"] {
 
 ul ul a {
     font-size: 0.9em !important;
-    padding-left: 30px !important;
+    padding-left: $sidebar-submenu-start-space !important;
     background: $primary-color-foreground;
 }
 
@@ -175,6 +177,7 @@ ul.CTAs a {
 
 .nav-link{
   cursor: pointer;
+  font-size: $link-font-size!important;
 }
 
 
@@ -182,9 +185,11 @@ ul.CTAs a {
 .nav-link.active{
   color: $primary-color-selected;
   font-weight: bold;
+  font-size: $link-font-size!important;
 }
 .nav-link:hover, .nav-link:focus {
   background-color: #bebec5!important;
+  font-size: $link-font-size!important;
 }
 
 
@@ -196,6 +201,7 @@ ul.CTAs a {
 // top-navbar
 .navbar-dark .navbar-nav .nav-link {
   color: $primary-color-text!important;
+  font-size: $link-font-size!important;
 }
 
 
@@ -203,6 +209,7 @@ ul.CTAs a {
 .navbar-nav .nav-link.active {
   color: $primary-color-selected!important;
   font-weight: bold;
+  font-size: $link-font-size!important;
 }
 
 
