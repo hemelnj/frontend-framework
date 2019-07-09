@@ -5,6 +5,88 @@
     <h4 class="layout-header-title" style="font-size: 20px">Action Events</h4>
     <hr class="olm-hr-line">
     <div class="row">
+
+
+      <div class="col-md-5">
+        {{#if showTable}}
+          <div style="margin-left: 0px;">
+            <div class="form-group has-search" style="margin-top:10px;">
+              <span class="fa fa-search form-control-feedback"></span>
+              <input type="text" class="input-field" onkeyup={{action 'getFilterKey' value='target.value'}}
+                     placeholder=" Type to Search">
+            </div>
+            <div class="table-container"
+                 style="overflow-y: auto; max-height: 350px; overflow-x: auto; margin-top:10px;">
+              <table class="table-all">
+                <thead>
+                <tr>
+                  <!--<th class="table-data table-bordered">
+                    <div>
+                      S/N
+                    </div>
+                  </th>-->
+                  <th class="table-data table-bordered">
+                    <div>
+                      Name
+                    </div>
+                  </th>
+
+                  <th class="table-data table-bordered">
+                    <div>
+                      Code
+                    </div>
+                  </th>
+
+                  <th class="table-data table-bordered">
+                    <div>
+                      Action
+                    </div>
+                  </th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {{#each actionEventList as |item index|}}
+                  <tr>
+                    <!--<td class="table-data table-bordered">
+                    <div>
+                      {{nges-engines/olm/value-check index 1}}
+                    </div>
+                  </td>-->
+
+                    <td class="table-data table-bordered">
+                      <div>
+                        {{item.attributes.name}}
+                      </div>
+                    </td>
+
+                    <td class="table-data table-bordered">
+                      <div>
+                        {{item.attributes.code}}
+                      </div>
+                    </td>
+
+                    <td class="table-data table-bordered">
+                      <button {{action 'editActionEvent' item }}
+                        style="width: 100px; margin-bottom: 5px" class="olm-button-all olm-button-edit">Edit
+                      </button>
+                      <!--<button {{action 'deleteActionEvent'
+                                           item }} style="width: 100px; margin-bottom: 5px" class="button-all button-danger">Delete</button>-->
+                    </td>
+                  </tr>
+                {{/each}}
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        {{/if}}
+      </div>
+
+      <div class="col-md-1">
+        <div class="vertical-line"></div>
+      </div>
+
       <div class="col-md-5">
         <form id="actionEventInfo" class="adjust-card-style field-form max-width" method="post">
           <div class="row" style="margin-top:10px;">
@@ -113,85 +195,7 @@
         </form>
         <br>
       </div>
-      {{#if showTable}}
-        <div class="col-md-1">
-          <div class="vertical-line"></div>
-        </div>
-        <div class="col-md-6" style="margin-left: 0px;">
 
-          <div class="form-group has-search" style="margin-top:10px;">
-            <span class="fa fa-search form-control-feedback"></span>
-            <input type="text" class="input-field" onkeyup={{action 'getFilterKey' value='target.value'}}
-                   placeholder=" Type to Search">
-          </div>
-
-          <div class="table-container" style="overflow-y: auto; max-height: 350px; overflow-x: auto; margin-top:10px;">
-            <table class="table-all">
-              <thead>
-              <tr>
-                <!--<th class="table-data table-bordered">
-                  <div>
-                    S/N
-                  </div>
-                </th>-->
-                <th class="table-data table-bordered">
-                  <div>
-                    Name
-                  </div>
-                </th>
-
-                <th class="table-data table-bordered">
-                  <div>
-                    Code
-                  </div>
-                </th>
-
-                <th class="table-data table-bordered">
-                  <div>
-                    Action
-                  </div>
-                </th>
-              </tr>
-              </thead>
-              <tbody>
-
-              {{#each actionEventList as |item index|}}
-                <tr>
-                  <!--<td class="table-data table-bordered">
-                    <div>
-                      {{nges-engines/olm/value-check index 1}}
-                    </div>
-                  </td>-->
-
-                  <td class="table-data table-bordered">
-                    <div>
-                      {{item.attributes.name}}
-                    </div>
-                  </td>
-
-                  <td class="table-data table-bordered">
-                    <div>
-                      {{item.attributes.code}}
-                    </div>
-                  </td>
-
-                  <td class="table-data table-bordered">
-                    <button {{action 'editActionEvent' item }}
-                      style="width: 100px; margin-bottom: 5px" class="olm-button-all olm-button-edit">Edit
-                    </button>
-                    <!--<button {{action 'deleteActionEvent'
-                                         item }} style="width: 100px; margin-bottom: 5px" class="button-all button-danger">Delete</button>-->
-                  </td>
-                </tr>
-              {{/each}}
-
-              </tbody>
-            </table>
-          </div>
-
-
-        </div>
-      {{/if}}
 
     </div>
 
