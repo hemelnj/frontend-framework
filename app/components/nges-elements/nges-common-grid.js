@@ -146,14 +146,16 @@ export default Component.extend({
         'name': 'All',
         'code': DEFAULT_SELECTED_TAB_CODE,
       };*/
+
+
+      this.set('stateActions', []);     // default stateActions
+
+      this.set('stateList', stateList);
+      this.set('activeTabInfo', activeTabInfo);
     }
 
 
 
-    this.set('stateActions', []);     // default stateActions
-
-    this.set('stateList', stateList);
-    this.set('activeTabInfo', activeTabInfo);
   },
 
   performActionEvent(item, actionEventId, stateId) {
