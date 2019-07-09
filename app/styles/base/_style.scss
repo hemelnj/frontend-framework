@@ -125,11 +125,10 @@ legend {
 .card {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  background: #FAF9F8;
-  //width: 40%;
   display: block !important;
-  /*border:1px solid rgba(0,0,0,.125);
-  border-radius:.25rem*/
+  background: #ffffff61;
+  border: none;
+  border-radius: unset;
 }
 
 .card:hover {
