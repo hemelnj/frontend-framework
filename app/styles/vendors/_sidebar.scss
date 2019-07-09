@@ -175,12 +175,20 @@ ul.CTAs a {
 }
 
 
-.nav-link{
-  cursor: pointer;
-  font-size: $link-font-size!important;
+#sidebar .nav-link{
+  color: $sidebar-submenu-title-color!important;
+}
+#sidebar .nav-link.active{
+  color: $primary-color-selected!important;
 }
 
 
+// link property
+
+.nav-link {
+  cursor: pointer;
+  font-size: $link-font-size!important;
+}
 
 .nav-link.active{
   color: $primary-color-selected;
@@ -188,7 +196,7 @@ ul.CTAs a {
   font-size: $link-font-size!important;
 }
 .nav-link:hover, .nav-link:focus {
-  background-color: #bebec5!important;
+  background-color: $sidebar-submenu-hover-color !important;
   font-size: $link-font-size!important;
 }
 
