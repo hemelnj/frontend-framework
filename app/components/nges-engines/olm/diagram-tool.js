@@ -122,14 +122,14 @@ export default Component.extend({
 
       this.olmSetupService.saveDiagram(diagramData)
         .then(function (msg) {
-          context.get('notifier').success('Successfully Save Workflow Diagram');
+          context.get('notifier').danger('Failed To Save Workflow Diagram');
         })
         .catch(function (msg) {
 
         if(msg.status === 201){
           context.get('notifier').success('Successfully Save Workflow Diagram');
         }else{
-          context.get('notifier').success('Successfully Save Workflow Diagram');
+          context.get('notifier').danger('Failed To Save Workflow Diagram');
         }
       })
 
