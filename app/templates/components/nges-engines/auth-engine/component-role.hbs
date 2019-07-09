@@ -1,24 +1,4 @@
 <style>
-  .layout-title {
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-size: 2.125rem;
-    font-weight: 400;
-    color: #123F62;
-    display: block;
-  }
-
-  .auth-var-line {
-    border-left: 1px solid #E5E5E5;
-    height: 500px;
-  }
-
-  .auth-hr-line {
-    margin-top: -3px;
-    border: 1.5px solid #123F62;
-  }
 
   .auth-button-all {
     position: relative;
@@ -136,7 +116,7 @@
     line-height: 1.875rem;
     min-height: calc(1.875rem + (1px * 2));
     margin-bottom: .125rem;
-    background: #FAFAFA;
+    background: #FFFFFF;
   }
 
   .input-field:focus {
@@ -215,7 +195,7 @@
   <div class="card-body">
     <div class="col-md-11">
       <!--<label class="layout-title" style="font-size: 20px">Role Creation</label>-->
-      <label class="layout-title" style="font-size: 20px">User Roles</label>
+      <label class="layout-header-title">User Roles</label>
       <hr class="header-label-line">
       <div class="row">
         <div class="col-md-6">
@@ -232,7 +212,7 @@
               <tr class="line-height-reset">
                 <th class="table-data table-bordered">
                   <div>
-                    Role Id
+                    Id
                   </div>
                 </th>
                 <th class="table-data table-bordered">
@@ -266,7 +246,7 @@
                   <td class="table-data table-bordered">
                     <div>
                       <button data-toggle="modal" data-target="#actionEventModal" {{action 'editActionEvent' item }}
-                              style="width: 100px;" class="auth-button-all auth-button-edit">Edit
+                              style="width: 100px;" class="nges-button nges-button-success">Edit
                       </button>
                       <!--<button {{action 'deleteActionEvent'
                                            item }} style="width: 100px; margin-bottom: 5px" class="button-all button-danger">Delete</button>-->
