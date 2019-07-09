@@ -115,13 +115,7 @@ export default Component.extend({
     let stateList = this.appWelcome.getSateList();
 
     if(stateList.length > 2){
-      stateList.unshift({
-        'id': stateList[1].id,
-        'name':  stateList[1].name,
-        'code': stateList[1].code,
-        'tabContentClass': 'active',
-        'tabTitleClass': 'active'
-      });
+
 
       // selected default active tab
       let activeTabInfo = {
@@ -129,6 +123,7 @@ export default Component.extend({
         'name': stateList[1].name,
         'code': stateList[1].code,
       };
+
 
 
       /*
@@ -147,9 +142,7 @@ export default Component.extend({
         'code': DEFAULT_SELECTED_TAB_CODE,
       };*/
 
-
       this.set('stateActions', []);     // default stateActions
-
       this.set('stateList', stateList);
       this.set('activeTabInfo', activeTabInfo);
     }
