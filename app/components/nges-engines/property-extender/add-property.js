@@ -10,34 +10,60 @@ export default Component.extend({
   peSetupService: service('nges-engines/property-extender/pe-setup'),
 
   peFormData: {
-    string:{
-      name:'',
-      id:''
-    },
+    stringName: '',
+    stringId: '',
   },
 
   notifier: service(),
 
   init() {
     this._super(...arguments);
+    this.set('attributePayload', []);
   },
 
+  didReceiveAttrs() {
+    this._super(...arguments);
+    this.set('attributes', this.get('attributeList'));
+  },
 
   actions: {
 
+
     addAction() {
 
-      let string = this.get('peFormData.string.name');
-      let stringId = this.get('peFormData.string.id');
 
-      console.log('message-peFormData-name', string,stringId);
+      let attributes = this.get('attributes');
+      console.log('message--attributes', attributes.result);
 
 
-      let payload = [{
+      let context = this;
 
-      }];
+      for (let i = 0; i < attributes.result.length; i++) {
+        let record = {
+          id: attributes.result[i].id,
+          type: attributes.result[i].type,
+          instanceId: attributes.result[i].classTypeId,
+          value: attributes.result[i].name,
+          code: 'n/a',
+          describtion: 'n/a',
+          createdBy: 'msi',
+          createdAt: 1,
+          lastUpdatedAt: 1,
+          lastUpdatedBy: 'msi',
+          comments: 'n/a',
+          extra: 'n/a',
+          name: "n/a",
+          attribute: {
+            id: attributes.result[i].id,
+          }
+        };
 
+        context.get('attributePayload').pushObject(record);
+      }
+
+      let payload = this.get('attributePayload');
       console.log('message', payload);
+      this.set('attributePayload', []);
 
       /*let accessToken = this.appConfiguration.getAccessToken();
       let responseAfterAddingState = this.olmSetupService.addNewState(stateData, accessToken);
