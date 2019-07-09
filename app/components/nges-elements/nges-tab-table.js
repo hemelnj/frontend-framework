@@ -118,8 +118,7 @@ export default Component.extend({
 
         let activeStateId = tabInformation.id;
         //let roleId = roleList[0];
-        let roleId = roleList[1];
-
+        let roleId = this.appConfiguration.getUserRoleId();
         context.loadStateActions(accessToken, activeStateId, roleId);
       });
       this.set('tabInformation',tabInformation);
