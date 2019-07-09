@@ -6,6 +6,89 @@
     <hr class="olm-hr-line">
     <div class="row">
 
+
+      <div class="col-md-5">
+        <div>
+          {{#if showTable}}
+            <div class="table-container" style="overflow-y: auto; max-height: 400px; overflow-x: auto; padding:1rem;">
+              <table class="table-all">
+                <thead>
+                <tr>
+                  <!--<th>
+                    <div class="table-data">
+                      S/N
+                    </div>
+                  </th>-->
+                  <th class="table-data table-bordered">
+                    <div>
+                      Name
+                    </div>
+                  </th>
+                  <th class="table-data table-bordered">
+                    <div>
+                      Code
+                    </div>
+                  </th>
+                  <th class="table-data table-bordered">
+                    <div>
+                      Action
+                    </div>
+                  </th>
+
+                </tr>
+                </thead>
+                <tbody>
+                {{#each stateList  as |state index|}}
+                  {{#if (nges-engines/olm/filterStartEndState state.code)}}
+                    <tr>
+                      <!--<td>
+                      <div class="table-data">
+                        {{nges-engines/olm/index-helper index}}
+                      </div>
+                    </td>-->
+                      <td class="table-data table-bordered">
+                        <div>
+                          {{state.name}}
+                        </div>
+                      </td>
+
+                      <td class="table-data table-bordered">
+                        <div>
+                          {{state.code}}
+                        </div>
+                      </td>
+
+                      <td class="table-data table-bordered">
+                        <div>
+                          <button {{action 'editState' state }}
+                            style="width: 100px; margin-bottom: 5px" class="olm-button-all olm-button-edit">Edit
+                          </button>
+                        </div>
+                      </td>
+                      <!--<td>
+                    <div class="action-drop-down-container">
+                      {{!json state}}
+
+                      <div class="action-drop-down" style="display:none;">
+                        <div class="action-btn">Edit</div>
+                      </div>
+
+                    </div>
+                  </td>-->
+                    </tr>
+                  {{/if}}
+                {{/each}}
+                </tbody>
+              </table>
+            </div>
+          {{/if}}
+        </div>
+      </div>
+
+      <div class="col-md-1">
+        <div class="vertical-line"></div>
+      </div>
+
       <div class="col-md-5">
         <form id="classTypeStateInfo" class="" method="post">
 
@@ -73,8 +156,6 @@
                     objectStateFormData.name}} >
                 </div>
               {{/if}}
-
-
             </div>
 
             <div class="row" style="margin-top:15px;">
@@ -94,7 +175,6 @@
                          value={{objectStateFormData.description}}>
                 </div>
               {{/if}}
-
             </div>
 
 
@@ -116,7 +196,6 @@
                 {{/if}}
               </div>
 
-
               <div class="col-md-4">
                 {{#if editClick}}
                   <button class="olm-button-all olm-button-save" {{action "updateState" state}}
@@ -137,85 +216,6 @@
           </div>
         </form>
       </div>
-
-      {{#if showTable}}
-        <div class="col-md-1">
-          <div class="vertical-line"></div>
-        </div>
-        <div class="col-md-6">
-          <div class="table-container" style="overflow-y: auto; max-height: 400px; overflow-x: auto; padding:1rem;">
-            <table class="table-all">
-              <thead>
-              <tr>
-                <!--<th>
-                  <div class="table-data">
-                    S/N
-                  </div>
-                </th>-->
-                <th class="table-data table-bordered">
-                  <div>
-                    Name
-                  </div>
-                </th>
-                <th class="table-data table-bordered">
-                  <div>
-                    Code
-                  </div>
-                </th>
-                <th class="table-data table-bordered">
-                  <div>
-                    Action
-                  </div>
-                </th>
-
-              </tr>
-              </thead>
-              <tbody>
-              {{#each stateList  as |state index|}}
-                {{#if (nges-engines/olm/filterStartEndState state.code)}}
-                  <tr>
-                    <!--<td>
-                      <div class="table-data">
-                        {{nges-engines/olm/index-helper index}}
-                      </div>
-                    </td>-->
-                    <td class="table-data table-bordered">
-                      <div>
-                        {{state.name}}
-                      </div>
-                    </td>
-
-                    <td class="table-data table-bordered">
-                      <div>
-                        {{state.code}}
-                      </div>
-                    </td>
-
-                    <td class="table-data table-bordered">
-                      <div>
-                        <button {{action 'editState' state }}
-                          style="width: 100px; margin-bottom: 5px" class="olm-button-all olm-button-edit">Edit
-                        </button>
-                      </div>
-                    </td>
-                    <!--<td>
-                    <div class="action-drop-down-container">
-                      {{!json state}}
-
-                      <div class="action-drop-down" style="display:none;">
-                        <div class="action-btn">Edit</div>
-                      </div>
-
-                    </div>
-                  </td>-->
-                  </tr>
-                {{/if}}
-              {{/each}}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      {{/if}}
 
     </div>
   </div>

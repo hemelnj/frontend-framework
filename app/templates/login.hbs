@@ -44,9 +44,9 @@
         <div class="col-md-6">
           <h4 style="color: #adaaa7" class="" >Login</h4>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6" style="float: right;">
           {{#if isLoadingIconVisible}}
-            <img src="/loading-icon.gif" style="height: 35px;width: 35px;">
+            <img src="/loading-icon.gif" style="height: 35px;width: 35px;float: right;margin-top: -10px;">
           {{/if}}
         </div>
       </div>
@@ -94,7 +94,7 @@
 
 
       <button class="nges-button nges-button-default float-right" style="margin-top: 10px; width: 100%;" {{action "signin" userInformation}}>
-      Sign In
+        Sign In
       </button>
       <br>
       <br>
