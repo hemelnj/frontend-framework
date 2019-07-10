@@ -183,7 +183,7 @@ export default Component.extend({
             }
           };
           context.serviceInitializer.stateActionUpdate(accessToken, itemId, payload).then(function (result) {
-            context.get('notifier').success('Secondary notification');
+            context.get('notifier').success('Successfully Send to Next State');
           })
         } catch (e) {
           console.error('message', 'GetNextAllowableState Not Found');
