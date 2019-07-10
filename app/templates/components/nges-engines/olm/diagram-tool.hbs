@@ -246,7 +246,8 @@
         <div class="form-group">
           <label for="event">Event</label>
 
-          <select class="form-control" id="event" onchange={{action "selectEvent" value="target.value"}}>
+          <select class="form-control" id="event" onchange={{action "selectEvent" value="target.value"}}
+                  style="min-height: 100px;">
 
             {{#each actionevents as |actionevent|}}
               {{#if (nges-engines/olm/removenoidelement actionevent.id)}}
@@ -261,7 +262,7 @@
 
         <div class="form-group">
           <label for="role">Role</label>
-          <select class="form-control" id="role" name="role" multiple="multiple">
+          <select class="form-control" id="role" name="role" multiple="multiple" style="min-height: 100px;">
 
 
             {{#each roles as |role|}}

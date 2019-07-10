@@ -114,26 +114,41 @@ export default Component.extend({
     // initialize stateList
     let stateList = this.appWelcome.getSateList();
 
+    if(stateList.length > 2){
 
-    stateList.unshift({
-      'id': 11,
-      'name': 'All',
-      'code': DEFAULT_SELECTED_TAB_CODE,            //
-      'tabContentClass': 'active',   // fade
-      'tabTitleClass': 'active'       //
-    });
 
-    // selected default active tab
-    let activeTabInfo = {
-      'id': '00',
-      'name': 'All',
-      'code': DEFAULT_SELECTED_TAB_CODE,
-    };
+      // selected default active tab
+      let activeTabInfo = {
+        'id': stateList[1].id,
+        'name': stateList[1].name,
+        'code': stateList[1].code,
+      };
 
-    this.set('stateActions', []);     // default stateActions
 
-    this.set('stateList', stateList);
-    this.set('activeTabInfo', activeTabInfo);
+
+      /*
+      stateList.unshift({
+        'id': 11,
+        'name': 'All',
+        'code': DEFAULT_SELECTED_TAB_CODE,            //
+        'tabContentClass': 'active',   // fade
+        'tabTitleClass': 'active'       //
+      });
+
+      // selected default active tab
+      let activeTabInfo = {
+        'id': '00',
+        'name': 'All',
+        'code': DEFAULT_SELECTED_TAB_CODE,
+      };*/
+
+      this.set('stateActions', []);     // default stateActions
+      this.set('stateList', stateList);
+      this.set('activeTabInfo', activeTabInfo);
+    }
+
+
+
   },
 
   performActionEvent(item, actionEventId, stateId) {
