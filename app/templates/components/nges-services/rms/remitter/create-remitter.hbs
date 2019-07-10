@@ -506,6 +506,13 @@
           </fieldset>
         {{/if}}
 
+        {{#if showPropertyExtender}}
+
+          {{nges-engines/property-extender/add-property
+            attributeList=attributeList
+          }}
+
+        {{/if}}
 
         {{#if showAlert}}
           <div class='alert'>

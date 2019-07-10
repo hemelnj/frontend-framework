@@ -297,6 +297,14 @@
     {{/if}}
 
 
+    {{#if showPropertyExtender}}
+
+      {{nges-engines/property-extender/add-property
+        attributeList=attributeList
+      }}
+
+    {{/if}}
+
     {{#if showAlert}}
       <div class='alert'>
         <div class='fa fa-times icon-remove' {{action 'toggleProperty' 'showAlert'}}></div>
@@ -329,7 +337,6 @@
     <button id='clear' class="rms-button-all rms-button-save" {{action 'reset'}}>Clear</button>-->
 
     {{#if showPropertyExtender}}
-      <h1>PE</h1>
 
       {{nges-engines/property-extender/add-property
         attributeList=attributeList
