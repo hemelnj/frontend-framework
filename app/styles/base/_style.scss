@@ -218,3 +218,10 @@ legend {
   height: 30px!important;
   font-size: 12px!important;
 }
+
+.dropdown{
+  color: $primary-color-text!important;
+}
+.dropdown-item:active{
+  background: $primary-color-selected!important;
+}
