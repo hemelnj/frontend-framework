@@ -1,12 +1,73 @@
-// size
+// common size
 $ui-content-header-font-size: 11px;
-
 
 $sidebar-size: 300px;
 $headline-font-size: 11px;
 $content-font-size: 11px;
-
 $link-font-size: 12px;
+
+
+
+
+
+
+
+//------------ theme 1 - Dark Mode -----------------
+
+// submenu
+$sidebar-submenu-hover-color: #e1e0df;
+$sidebar-menu-title-color: #fff;
+$sidebar-submenu-title-color: #ffff;
+$sidebar-submenu-start-space: 20px;
+
+
+// main component
+$primary-color-main: #3F4148;         // background
+$primary-color-foreground: #2f3239;   // foreground
+$primary-color-selected: #7db5f5;     // active
+$primary-color-text: #fff;            // font
+$primary-color-hover: #373b42;        // hover
+$primary-color-border: #7db5f5;       // border
+$primary-color-title-text: #353433;   // title
+
+//-------------------------------------------
+
+
+
+
+
+
+
+
+
+/*
+//------------ theme 1 - blue Mode -----------------
+
+// submenu
+$sidebar-submenu-hover-color: #e1e0df;
+$sidebar-menu-title-color: #fff;
+$sidebar-submenu-title-color: #ffff;
+$sidebar-submenu-start-space: 20px;
+
+
+// main component
+$primary-color-main: #2065a1;           // background
+$primary-color-foreground: #20538c;     // foreground
+$primary-color-selected: #7db5f5;       // active
+$primary-color-text: #fff;              // font
+$primary-color-hover: #373b42;          // hover
+$primary-color-border: #7db5f5;         // border
+$primary-color-title-text: #353433;     // title
+
+//-------------------------------------------
+*/
+
+
+
+
+
+/*
+//------------ theme 2 - light Mode -----------------
 
 // submenu
 $sidebar-submenu-hover-color: #e1e0df;
@@ -14,55 +75,27 @@ $sidebar-menu-title-color: #5B5A58;
 $sidebar-submenu-title-color: #5B5A58;
 $sidebar-submenu-start-space: 20px;
 
-/*
 
-:root {
-  --default: #3F4148;
-  --foreground: #2f3239;
-  --selected: #7db5f5;
-  --text: #fff;
-  --hover: #373b42;
-  --border: #7db5f5;
-}
+// theme 1 - Light Mode
+$primary-color-main: #ebeae9; // background
+$primary-color-foreground: #f5f4f3; // foreground
+$primary-color-selected: #2c9bf1; // active
+$primary-color-text: #323130; // font
+$primary-color-hover: #373b42; // hover
+$primary-color-border: #2c9bf1; // border
+$primary-color-title-text: #353433; // title
 
-// theme 1 - Dark Mode
-$primary-color-main: var(--default); // background
-$primary-color-foreground: var(--foreground); // foreground
-$primary-color-selected: var(--selected); // active
-$primary-color-text: var(--text); // font
-$primary-color-hover: var(--hover); // hover
-$primary-color-border: var(--border); // border
-
- 
+//-------------------------------------------
 */
 
 
 
 
 
-:root {
-  --default: #ebeae9;
-  --foreground: #f5f4f3;
-  --selected: #2c9bf1;
-  --text: #323130;
-  --hover: #373b42;
-  --border: #2c9bf1;
-  --title-text:#353433;
-  --btn-text:#000000;
-}
-
-// theme 1 - Light Mode
-$primary-color-main: var(--default); // background
-$primary-color-foreground: var(--foreground); // foreground
-$primary-color-selected: var(--selected); // active
-$primary-color-text: var(--text); // font
-$primary-color-hover: var(--hover); // hover
-$primary-color-border: var(--border); // border
-$primary-color-title-text: var(--title-text); // title
-
-$primary-color-btn-text: var(--btn-text); // btn text
 
 
+// Button Pack
+$primary-color-btn-text: #000000; // btn text
 $primary-color-btn-default: #d2d1d0;
 $primary-color-btn-default-hover: #c6c5c4;
 $primary-color-btn-default-border: #1a639e;
