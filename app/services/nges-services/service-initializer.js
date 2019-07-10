@@ -102,7 +102,8 @@ export default Service.extend({
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
-    let url = this.rmsServiceHost + "/" + serviceCode + "/" + id;          // beneficiaries == microServiceFunctionId
+    let baseUrl = this.getServiceBaseHostURL();
+    let url = baseUrl + "/" + serviceCode + "/" + id;          // beneficiaries == microServiceFunctionId
     return this.appRestTemplate.httpRestClient(url, "PATCH",
       payload, {}, beforeSend
     );

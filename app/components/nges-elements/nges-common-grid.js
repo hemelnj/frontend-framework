@@ -175,12 +175,15 @@ export default Component.extend({
             data: {
               type: item.type,
               attributes: {
-                status: status
+                //status: status
+                olcmState: {
+                  id: status,
+                },
               }
             }
           };
           context.serviceInitializer.stateActionUpdate(accessToken, itemId, payload).then(function (result) {
-            context.get('notifier').success('Secondary notification');
+            context.get('notifier').success('Successfully Send to Next State');
           })
         } catch (e) {
           console.error('message', 'GetNextAllowableState Not Found');
