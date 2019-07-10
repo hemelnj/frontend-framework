@@ -175,7 +175,10 @@ export default Component.extend({
             data: {
               type: item.type,
               attributes: {
-                status: status
+                //status: status
+                olcmState: {
+                  id: status,
+                },
               }
             }
           };
