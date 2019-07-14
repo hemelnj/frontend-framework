@@ -10,8 +10,9 @@ export default Component.extend({
   peSetupService: service('nges-engines/property-extender/pe-setup'),
 
   peFormData: {
-    stringName: '',
-    stringId: '',
+    string: '',
+    integer: '',
+    varchar: '',
   },
 
   notifier: service(),
@@ -39,11 +40,24 @@ export default Component.extend({
       let context = this;
 
       for (let i = 0; i < attributes.result.length; i++) {
+
+        if(attributes.result[i].type === "String"){
+          let value = context.peFormData.string;
+          context.set('value',value);
+        }
+        if(attributes.result[i].type === "Integer"){
+          let value = context.peFormData.integer;
+          context.set('value',value);
+        }
+        if(attributes.result[i].type === "Varchar"){
+          let value = context.peFormData.varchar;
+          context.set('value',value);
+        }
         let record = {
           id: attributes.result[i].id,
           type: attributes.result[i].type,
           instanceId: attributes.result[i].classTypeId,
-          value: attributes.result[i].name,
+          value: context.get('value'),
           code: 'n/a',
           describtion: 'n/a',
           createdBy: 'msi',
