@@ -185,15 +185,18 @@ export default Component.extend({
       let actionEventName = "create";
       context.serviceInitializer.getUserAbilityToCreate(accessToken, actionEventName, classTypeId, roleId).then(function (result) {
 
-        let status = {
-          classTypeId: classTypeId,
-          stateId: startStateId,
-          roleId: roleId,
-          actionEventId: result.data.id
-        };
-        context.rmsBaseService.getNextAllowableStateId(accessToken, status).then(function (result) {
-          context.set('statusId', result.data.id);
-        });
+        if (result){
+          let status = {
+            classTypeId: classTypeId,
+            stateId: startStateId,
+            roleId: roleId,
+            actionEventId: result.data.id
+          };
+          context.rmsBaseService.getNextAllowableStateId(accessToken, status).then(function (result) {
+            context.set('statusId', result.data.id);
+          });
+        }
+
       });
     });
   },

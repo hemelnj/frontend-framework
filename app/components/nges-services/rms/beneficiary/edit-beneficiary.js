@@ -10,11 +10,12 @@ export default Component.extend({
   init() {
     this._super(...arguments);
 
-    let routeParams = this.appConfiguration.getRouteParams();
 
-    this.set('actionAccess',routeParams.actionAccess);
+    let routeParams = this.appConfiguration.getRouteURLParams();
 
-    let beneficiaryId = this.appConfiguration.getRouteParams().stateRecord.id;
+    this.set('actionAccess',routeParams.editAccess);
+
+    let beneficiaryId = routeParams.stateRecordId;
 
     console.log('message--beneficiaryId', beneficiaryId);
     this.loadBeneficiaryDataById(beneficiaryId);
