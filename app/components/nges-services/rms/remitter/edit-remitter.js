@@ -11,11 +11,11 @@ export default Component.extend({
   init() {
     this._super(...arguments);
 
-    let routeParams = this.appConfiguration.getRouteParams();
+    let routeParams = this.appConfiguration.getRouteURLParams();
 
-    this.set('actionAccess',routeParams.actionAccess);
+    this.set('actionAccess',routeParams.editAccess);
 
-    let remitterId = this.appConfiguration.getRouteParams().stateRecord.id;
+    let remitterId = routeParams.stateRecordId;
 
 
     console.log('message--remitterId', remitterId);

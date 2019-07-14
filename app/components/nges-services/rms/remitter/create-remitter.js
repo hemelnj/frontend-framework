@@ -53,13 +53,13 @@ export default Component.extend({
     let remitterData = this.get('remitterData');
     let type = remitterData.type;
     if (type === "edit") {
-      let tabInformation = this.appConfiguration.getRouteParams().tabInformation;
+      let tabInformation = this.appConfiguration.getRouteURLParams();
 
-      let activeStateId = tabInformation.id;
+
+      let activeStateId = tabInformation.stateId;
 
       this.loadStateActions(activeStateId);
-      let stateId = tabInformation.id;
-      this.set('currentStateId', stateId);
+      this.set('currentStateId', activeStateId);
 
       this.setModel(remitterData.data);
     }
@@ -266,18 +266,19 @@ export default Component.extend({
       let actionEventName = "create";
 
       context.serviceInitializer.getUserAbilityToCreate(accessToken, actionEventName, classTypeId, roleId).then(function (result) {
-        console.log('actionEventId', result.data.id);
-        let status = {
-          classTypeId: classTypeId,
-          stateId: startStateId,
-          roleId: roleId,
-          actionEventId: result.data.id
-        };
-        console.log('message-----', status);
-        context.rmsBaseService.getNextAllowableStateId(accessToken, status).then(function (result) {
-          console.log('statusId', result.data.id);
-          context.set('statusId', result.data.id);
-        });
+        if (result) {
+          let status = {
+            classTypeId: classTypeId,
+            stateId: startStateId,
+            roleId: roleId,
+            actionEventId: result.data.id
+          };
+          context.rmsBaseService.getNextAllowableStateId(accessToken, status).then(function (result) {
+            console.log('statusId', result.data.id);
+            context.set('statusId', result.data.id);
+          });
+        }
+
       });
     });
   },
