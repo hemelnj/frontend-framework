@@ -260,7 +260,7 @@ export default [
     appPanelCode: 'admin-panel',
     appModuleCode: 'collection',
     appMenuTemplateCode: 'remittancePurposes',
-    name: 'admin',
+    name: 'remittancePurposes',
     templatePath: servicePath + '/rms/admin',
     templates: [
       {
@@ -306,7 +306,7 @@ export default [
     appPanelCode: 'admin-panel',
     appModuleCode: 'collection',
     appMenuTemplateCode: 'remitterTypes',
-    name: 'remitter-type',
+    name: 'remitterTypes',
     templatePath: servicePath + '/rms/admin',
     templates: [
       {
@@ -330,7 +330,7 @@ export default [
     appPanelCode: 'admin-panel',
     appModuleCode: 'common',
     appMenuTemplateCode: 'states',
-    name: 'admin',
+    name: 'states',
     templatePath: servicePath + '/rms/admin',
     templates: [
       {
@@ -354,7 +354,7 @@ export default [
     appPanelCode: 'admin-panel',
     appModuleCode: 'common',
     appMenuTemplateCode: 'exchangeRates',
-    name: 'admin',
+    name: 'exchangeRates',
     templatePath: servicePath + '/rms/admin',
     templates: [
       {
@@ -377,7 +377,7 @@ export default [
     appPanelCode: 'admin-panel',
     appModuleCode: 'common',
     appMenuTemplateCode: 'branches',
-    name: 'admin',
+    name: 'branches',
     templatePath: servicePath + '/rms/admin',
     templates: [
       {
@@ -400,7 +400,7 @@ export default [
     appPanelCode: 'admin-panel',
     appModuleCode: 'collection',
     appMenuTemplateCode: 'exchangeCompanies',
-    name: 'admin',
+    name: 'exchangeCompanies',
     templatePath: servicePath + '/rms/admin',
     templates: [
       {
@@ -423,7 +423,7 @@ export default [
     appPanelCode: 'admin-panel',
     appModuleCode: 'collection',
     appMenuTemplateCode: 'deliveryAgents',
-    name: 'admin',
+    name: 'deliveryAgents',
     templatePath: servicePath + '/rms/admin',
     templates: [
       {
@@ -446,7 +446,7 @@ export default [
     appPanelCode: 'admin-panel',
     appModuleCode: 'collection',
     appMenuTemplateCode: 'deliverySubAgents',
-    name: 'admin',
+    name: 'deliverySubAgents',
     templatePath: servicePath + '/rms/admin',
     templates: [
       {
@@ -469,7 +469,7 @@ export default [
     appPanelCode: 'admin-panel',
     appModuleCode: 'collection',
     appMenuTemplateCode: 'riskRatings',
-    name: 'admin',
+    name: 'riskRatings',
     templatePath: servicePath + '/rms/admin',
     templates: [
       {
@@ -492,7 +492,7 @@ export default [
     appPanelCode: 'admin-panel',
     appModuleCode: 'collection',
     appMenuTemplateCode: 'natureOfJobs',
-    name: 'admin',
+    name: 'natureOfJobs',
     templatePath: servicePath + '/rms/admin',
     templates: [
       {
@@ -515,7 +515,7 @@ export default [
     appPanelCode: 'admin-panel',
     appModuleCode: 'collection',
     appMenuTemplateCode: 'yearlyTransactionLimits',
-    name: 'admin',
+    name: 'yearlyTransactionLimits',
     templatePath: servicePath + '/rms/admin',
     templates: [
       {
@@ -538,7 +538,7 @@ export default [
     appPanelCode: 'admin-panel',
     appModuleCode: 'collection',
     appMenuTemplateCode: 'singleTransactionLimits',
-    name: 'admin',
+    name: 'singleTransactionLimits',
     templatePath: servicePath + '/rms/admin',
     templates: [
       {
@@ -561,7 +561,7 @@ export default [
     appPanelCode: 'admin-panel',
     appModuleCode: 'calenders',
     appMenuTemplateCode: 'timeZones',
-    name: 'admin',
+    name: 'timeZones',
     templatePath: servicePath + '/rms/admin',
     templates: [
       {
@@ -578,7 +578,7 @@ export default [
     appPanelCode: 'admin-panel',
     appModuleCode: 'calenders',
     appMenuTemplateCode: 'calendarSetup',
-    name: 'admin',
+    name: 'calendarSetup',
     templatePath: servicePath + '/rms/admin',
     templates: [
       {
@@ -595,7 +595,7 @@ export default [
     appPanelCode: 'admin-panel',
     appModuleCode: 'calenders',
     appMenuTemplateCode: 'calendarAssign',
-    name: 'admin',
+    name: 'calendarAssign',
     templatePath: servicePath + '/rms/admin',
     templates: [
       {
@@ -604,6 +604,31 @@ export default [
         label: 'Calendar Assign',
         detailPath: '/',
         detailView: []
+      }
+    ]
+  },
+
+
+  {
+    appCode: 'rms',
+    appPanelCode: 'admin-panel',
+    appModuleCode: 'batchengine',
+    appMenuTemplateCode: 'batchProcesses',
+    name: 'batchProcess',
+    templatePath: servicePath + '/rms/admin',
+    templates: [
+      {
+        code: 'batch-process',
+        name: 'batch-process',
+        label: 'Batch Process',
+        detailPath: '/batch',
+        detailView: [
+          {
+            code: 'create-batch',
+            name: 'create-batch',
+            label: 'Batch',
+          }
+        ]
       }
     ]
   },
