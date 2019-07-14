@@ -110,12 +110,18 @@
 
 
                       {{#if actionAccess.view }}
-                        {{nges-core/nges-link
+                        {{!nges-core/nges-link
                           route = 'welcome.application-loader.panel-loader.module-loader.service-holder-loader.menu-template-loader.submenu-template-loader.submenu-detail-template-loader'
                           routePath = serviceActionableRoute.edit.routePath
                           label =  serviceActionableRoute.edit.label
                           params = (nges-elements/action-access-permission actionAccess item tabInformation)
 
+                        }}
+
+                        {{nges-core/nges-link-to
+                          routePath = serviceActionableRoute.edit.routePath
+                          label =  serviceActionableRoute.edit.label
+                          params = (nges-elements/action-access-permission actionAccess item tabInformation)
                         }}
                       {{/if}}
 
