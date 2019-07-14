@@ -29,7 +29,6 @@
     border-color: #666666;
   }
 
-
   .form-group {
     position: relative;
     min-width: 0;
@@ -144,9 +143,22 @@
       <label class="layout-title" style="font-size: 20px">Property Extender</label>
       <hr class="header-label-line">
 
+
+
       {{#each attributeList.result as |attribute|}}
         {{#if (eq attribute.type "String")}}
-          <div class="row">
+
+          {{nges-core/nges-input-component
+            type='text'
+            input-field-name=attribute.name
+            model=model
+            valuePath=attribute.code
+            placeholder=attribute.name
+            sectionFirst = 'col-sm-4'
+            sectionLast = 'col-sm-8'
+            didValidate=didValidate}}
+
+          <!--<div class="row">
             <div class="col-md-4">
               <label for="string">{{attribute.name}}</label>
             </div>
@@ -154,11 +166,11 @@
               <input type="text" class="input-field" placeholder={{'Enter (String)'attribute.name}}
                      oninput={{action (mut peFormData.string) value="target.value"}} >
             </div>
-          </div>
+          </div>-->
         {{/if}}
 
         {{#if (eq attribute.type "Integer")}}
-          <div class="row">
+          <!--<div class="row">
             <div class="col-md-4">
               <label for="integer">{{attribute.name}}</label>
             </div>
@@ -166,11 +178,21 @@
               <input type="number" class="input-field" placeholder={{'Enter (Integer)'attribute.name}}
                      oninput={{action (mut peFormData.integer) value="target.value"}}>
             </div>
-          </div>
+          </div>-->
+
+          {{nges-core/nges-input-component
+            type='Number'
+            input-field-name=attribute.name
+            model=model
+            valuePath=attribute.code
+            placeholder=attribute.name
+            sectionFirst = 'col-sm-4'
+            sectionLast = 'col-sm-8'
+            didValidate=didValidate}}
         {{/if}}
 
         {{#if (eq attribute.type "Varchar")}}
-          <div class="row">
+          <!--<div class="row">
             <div class="col-md-4">
               <label for="varchar">{{attribute.name}}</label>
             </div>
@@ -178,7 +200,17 @@
               <input type="text" class="input-field" placeholder={{'Enter (Varchar)'attribute.name}}
                      oninput={{action (mut peFormData.varchar) value="target.value"}}>
             </div>
-          </div>
+          </div>-->
+
+          {{nges-core/nges-input-component
+            type='text'
+            input-field-name=attribute.name
+            model=model
+            valuePath=attribute.code
+            placeholder=attribute.name
+            sectionFirst = 'col-sm-4'
+            sectionLast = 'col-sm-8'
+            didValidate=didValidate}}
         {{/if}}
 
       {{/each}}

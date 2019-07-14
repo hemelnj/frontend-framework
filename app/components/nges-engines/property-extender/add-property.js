@@ -1,4 +1,5 @@
 import Component from '@ember/component';
+import DS from 'ember-data';
 import config from 'frontend-engine/config/environment';
 import {inject as service} from '@ember/service';
 import $ from "jquery";
@@ -29,23 +30,41 @@ export default Component.extend({
     let additionalProperty = this.get('attributeList');
     this.set('attributes', additionalProperty);
 
+    //console.log('message--additionalProperty', additionalProperty);
+
+
+  },
+  didRender() {
+    this._super(...arguments);
+    this.createModel();
+  },
+
+  createModel() {
+    let context = this;
     let modelName = 'nges-engines/property-extender/additional-property';         // model name base on adapter configuration
     let tableColumns = {};
-    let tableHeaders = additionalProperty;                             // this changes with endpoint
+    let tableHeaders = this.get('attributes');                          // this changes with endpoint
+    tableHeaders = tableHeaders.result;                          // this changes with endpoint
 
-    console.log('message--tableHeaders', tableHeaders);
+
 
     // make ember model base on attributes
     for (let i = 0; i < tableHeaders.length; i++) {
 
-      if (tableHeaders.type === 'String' || tableHeaders.type === 'Varchar') {
-        tableColumns[tableHeaders.name] = DS.attr('string');
-      } else if (tableHeaders.type === 'Number' || tableHeaders.type === 'Integer') {
-        tableColumns[tableHeaders.name] = DS.attr('number');
+      if (tableHeaders[i].type === 'String' || tableHeaders[i].type === 'Varchar') {
+        tableColumns[tableHeaders[i].code] = DS.attr('string');
+      } else if (tableHeaders[i].type === 'Number' || tableHeaders[i].type === 'Integer') {
+        tableColumns[tableHeaders[i].code] = DS.attr('number');
       }
     }
 
+    console.log('message--tableColumns', tableColumns);
+
     context.appWelcome.createDynamicModel(modelName, tableColumns);
+    context.set('model', modelName);
+
+    //context.insertRecordIntoModel(tableHeaders);
+
   },
 
   actions: {
@@ -53,9 +72,12 @@ export default Component.extend({
 
     addAction() {
 
-
       let attributes = this.get('attributes');
       console.log('message--attributes', attributes.result);
+
+
+      let res = this.store.peekAll('nges-engines/property-extender/additional-property');
+      console.log('message--res', res);
 
 
       let context = this;
@@ -99,7 +121,7 @@ export default Component.extend({
       let payload = this.get('attributePayload');
       console.log('message', payload);
 
-      let accessToken = this.appConfiguration.getAccessToken();
+      /*let accessToken = this.appConfiguration.getAccessToken();
       let responseAfterAddingState = this.peSetupService.addNewPropertyData(accessToken,payload);
 
       responseAfterAddingState.then(function (msg) {
@@ -111,7 +133,7 @@ export default Component.extend({
           context.get('notifier').danger('Failed To Add');
           context.set('attributePayload', []);
         }
-      });
+      });*/
 
     }
   }
