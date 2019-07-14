@@ -145,54 +145,13 @@ legend {
 }
 
 
-/* customize tab table */
 
-.tabTableHeader .nav-tabs {
-  overflow-x: auto;
-  flex-wrap: nowrap;
-}
-
-.tabTableHeader .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-  color: $primary-color-selected !important;
-  //background-color: $tab-title-bg;
-  background: none !important;
-  font-weight: bold;
-  border: none !important;
-  cursor: pointer;
-}
-
-.tabTableHeader .nav-tabs {
-  background: $primary-color-main;
-  color: $primary-color-text;
-}
-
-.tabTableHeader .nav-tabs .nav-link {
-  border: none !important;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.tabTableHeader .table th, .table td {
-  font-size: 12px;
-}
 
 
 .pagination-active {
   background: $primary-color-main;
   color: white
 }
-
-.table-header-select-box {
-  background: $primary-color-main;
-}
-
-.table-header-title {
-  color: $primary-color-text;
-  font-size: $ui-content-header-font-size;
-}
-
-
-
 
 .vertical-line {
   border-left: 1px solid #B2B2B2;
