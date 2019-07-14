@@ -18,7 +18,7 @@ export default Service.extend({
     };
 
     let baseUrl = this.serviceInitializer.getServiceBaseHostURL();
-    let url = baseUrl + "/save";
+    let url = baseUrl + "/batchProcesses";
     return this.appRestTemplate.httpRestClient(url, "POST",
       data, {}, beforeSend
     );
