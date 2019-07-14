@@ -82,6 +82,26 @@ export default Service.extend({
     return this.appRestTemplate.httpRestClient(url, "POST",
       data, {}, beforeSend
     );
+  },
+
+  addNewPropertyData(accessToken, stateData) {
+    let data = JSON.stringify(stateData);
+
+    let beforeSend = function (xhr) {
+      xhr.setRequestHeader('content-type', 'application/json');
+      xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
+    };
+
+   /*let headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };*/
+
+    //let url = this.olmEngineHost + "/states";
+    let url = this.rmsPEEngineHost + "/records/add";
+    return this.appRestTemplate.httpRestClient(url, "POST",
+      data, {}, beforeSend
+    );
   }
 
 });

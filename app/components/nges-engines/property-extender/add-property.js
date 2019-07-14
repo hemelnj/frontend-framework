@@ -56,7 +56,7 @@ export default Component.extend({
         let record = {
           id: attributes.result[i].id,
           type: attributes.result[i].type,
-          instanceId: attributes.result[i].classTypeId,
+          instanceId: attributes.result[i].id,
           value: context.get('value'),
           code: 'n/a',
           describtion: 'n/a',
@@ -77,20 +77,20 @@ export default Component.extend({
 
       let payload = this.get('attributePayload');
       console.log('message', payload);
-      this.set('attributePayload', []);
 
-      /*let accessToken = this.appConfiguration.getAccessToken();
-      let responseAfterAddingState = this.olmSetupService.addNewState(stateData, accessToken);
-      let context = this;
+      let accessToken = this.appConfiguration.getAccessToken();
+      let responseAfterAddingState = this.peSetupService.addNewPropertyData(accessToken,payload);
+
       responseAfterAddingState.then(function (msg) {
         if (msg) {
           console.log('responseAfterAddingState', msg);
           context.get('notifier').success('New State Added');
-          context.dataInit(classType.id);
+          context.set('attributePayload', []);
         } else {
           context.get('notifier').danger('Failed To Add');
+          context.set('attributePayload', []);
         }
-      });*/
+      });
 
     }
   }
