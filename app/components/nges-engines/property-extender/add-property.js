@@ -8,6 +8,7 @@ export default Component.extend({
   store: service(),
   appConfiguration: service('app-configuration'),
   peSetupService: service('nges-engines/property-extender/pe-setup'),
+  appWelcome: service('nges-core/app-welcome'),
 
   peFormData: {
     string: '',
@@ -24,7 +25,27 @@ export default Component.extend({
 
   didReceiveAttrs() {
     this._super(...arguments);
-    this.set('attributes', this.get('attributeList'));
+
+    let additionalProperty = this.get('attributeList');
+    this.set('attributes', additionalProperty);
+
+    let modelName = 'nges-engines/property-extender/additional-property';         // model name base on adapter configuration
+    let tableColumns = {};
+    let tableHeaders = additionalProperty;                             // this changes with endpoint
+
+    console.log('message--tableHeaders', tableHeaders);
+
+    // make ember model base on attributes
+    for (let i = 0; i < tableHeaders.length; i++) {
+
+      if (tableHeaders.type === 'String' || tableHeaders.type === 'Varchar') {
+        tableColumns[tableHeaders.name] = DS.attr('string');
+      } else if (tableHeaders.type === 'Number' || tableHeaders.type === 'Integer') {
+        tableColumns[tableHeaders.name] = DS.attr('number');
+      }
+    }
+
+    context.appWelcome.createDynamicModel(modelName, tableColumns);
   },
 
   actions: {
