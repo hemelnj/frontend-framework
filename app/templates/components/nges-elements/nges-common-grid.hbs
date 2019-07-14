@@ -1,4 +1,3 @@
-
 {{!nges-core/json tableData}}
 
 <div class="card">
@@ -7,9 +6,14 @@
 
     {{#if viewCreateButton}}
 
-      {{!log serviceActionableRoute.create.routePath}}
-      {{nges-core/nges-link
-        route = 'welcome.application-loader.panel-loader.module-loader.service-holder-loader.menu-template-loader.submenu-template-loader.submenu-detail-template-loader'
+    {{!log serviceActionableRoute.create.routePath}}
+    {{!nges-core/nges-link
+      route = 'welcome.application-loader.panel-loader.module-loader.service-holder-loader.menu-template-loader.submenu-template-loader.submenu-detail-template-loader'
+      routePath = serviceActionableRoute.create.routePath
+      label =  serviceActionableRoute.create.label
+    }}
+
+      {{nges-core/nges-link-to
         routePath = serviceActionableRoute.create.routePath
         label =  serviceActionableRoute.create.label
       }}
