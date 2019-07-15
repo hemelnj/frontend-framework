@@ -306,12 +306,12 @@ export default Component.extend({
         let tableHeaders = results;                             // this changes with endpoint
      
         // make ember model base on attributes
-        for (let i = 0; i < tableHeaders.length; i++) {
+        for (let tableHeader of tableHeaders) {
       
-          if (tableHeaders.type === 'String') {
-            tableColumns[tableHeaders.name] = DS.attr('string');
-          } else if (tableHeaders.type === 'double') {
-            tableColumns[tableHeaders.name] = DS.attr('number');
+          if (tableHeader.type === 'String') {
+            tableColumns[tableHeader.name] = DS.attr('string');
+          } else if (tableHeader.type === 'double') {
+            tableColumns[tableHeader.name] = DS.attr('number');
           }
         }
       
