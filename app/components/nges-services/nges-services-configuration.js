@@ -636,14 +636,14 @@ export default [
     appCode: 'rms',
     appPanelCode: 'admin-panel',
     appModuleCode: 'batchengine',
-    appMenuTemplateCode: 'job',
+    appMenuTemplateCode: 'jobs',
     name: 'jobProcess',
     templatePath: servicePath + '/rms/admin',
     templates: [
       {
         code: 'batch-job',
         name: 'batch-job',
-        label: 'Batch Job',
+        label: 'Job',
         detailPath: '/batch-job',
         detailView: [
           {
