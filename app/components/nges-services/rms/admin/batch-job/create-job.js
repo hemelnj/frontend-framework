@@ -160,7 +160,12 @@ export default Component.extend({
 
       let selectedBatch = $('#batch option:selected').toArray().map(item => item.value);
 
-      selectedBatch = JSON.parse(selectedBatch);
+      let selected=[];
+      for (let i = 0; i < selectedBatch.length; i++) {
+
+        selected.push(JSON.parse(selectedBatch[i]));
+      }
+
       /*let text = $('#batch option:selected').toArray().map(item => item.value + ':' + item.text).join();
       let selectedBatch = [];
 
@@ -196,7 +201,7 @@ export default Component.extend({
                 "attributes": {
                   "id": model.jobId,
                   "name": model.jobName,
-                  "processes": selectedBatch,
+                  "processes": selected,
                   "schedulerType": 'n/a',
                   "scheduledTime": 1,
                   "scheduledDate": 1,
@@ -213,7 +218,6 @@ export default Component.extend({
                 }
               }
             };
-            console.log('message--batch', JSON.stringify(payload));
             let accessToken = this.appConfiguration.getAccessToken();
             let afterBatchRegistration = this.jobActionService.addNewJob(accessToken, payload);
             let context = this;

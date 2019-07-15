@@ -218,7 +218,7 @@
             <label for="name" class="input-field-label" style="margin-left:-12px;">Select Roles</label>
             <select class="custom-select" id="batch" style="margin-left:-5px;" multiple>
               {{#each batchList as |item index|}}
-                <option class="muliti-select-item" value={{nges-core/json item}}
+                <option class="muliti-select-item" value={{nges-core/json item.attributes}}
                         name={{item}}>{{item.attributes.name}}</option>
               {{/each}}
             </select>
