@@ -23,8 +23,45 @@ export default Component.extend({
 
     let startStateId = this.appWelcome.getStartStateId();
     this.getNextAllowableStateForCreate(startStateId);
+    this.getDefaultUserFunctionId();
+    this.getDefaultUserLocationId();
+    this.setRequestType();
   },
 
+  setRequestType() {
+    let data = [
+      {
+        id: 1,
+        type: "request",
+        attributes: {
+          name: "GET"
+        }
+      },
+      {
+        id: 2,
+        type: "request",
+        attributes: {
+          name: "POST"
+        }
+      },
+      {
+        id: 3,
+        type: "request",
+        attributes: {
+          name: "PUT"
+        }
+      },
+      {
+        id: 4,
+        type: "request",
+        attributes: {
+          name: "PATCH"
+        }
+      },
+    ];
+
+    this.set("requestTypeList", data);
+  },
 
   getNextAllowableStateForCreate(startStateId) {
     let context = this;
@@ -59,7 +96,51 @@ export default Component.extend({
     });
   },
 
+  getDefaultUserFunctionId() {
+    let context = this;
+    let accessToken = this.appConfiguration.getAccessToken();
+    let userId = this.appConfiguration.getUserId();
+    let functionId = this.rmsBaseService.getDefaultFunctionId(accessToken, userId);
+
+    functionId.then(function (msg) {
+      context.set('functionId', msg.data.attributes.id);
+    }).catch(function (errorMsg) {
+      context.get('notifier').danger('Failed to Load User Default Function Id');
+    });
+  },
+
+  getDefaultUserLocationId() {
+    let context = this;
+    let accessToken = this.appConfiguration.getAccessToken();
+    let userId = this.appConfiguration.getUserId();
+    let locationId = this.rmsBaseService.getDefaultLocationId(accessToken, userId);
+
+    locationId.then(function (msg) {
+      context.set('locationId', msg.data.attributes.id);
+    }).catch(function (errorMsg) {
+      context.get('notifier').danger('Failed to Load Default Location Id');
+    });
+  },
+
+
+  defaultInitializer(propertyName, value) {
+    this.set('model.' + propertyName, value);
+  },
+
+
   actions:{
+
+
+    onChangeRequestType(value) {
+      let context = this;
+      context.defaultInitializer('batchReqType', value.attributes.name);
+      console.log('onChangeRequestType', value);
+      context.set('selectedRequestType', {
+        label: (value === '') ? '' : value.attributes.name,
+        value: value,
+      });
+    },
+
     saveAction() {
 
       this.get('model')
@@ -86,12 +167,12 @@ export default Component.extend({
                   "name": model.batchName,
                   "api": model.batchApi,
                   "requestType": model.batchReqType,
-                  "function": model.batchReqType,
-                  "location": model.batchReqType,
-                  "createdAt": model.batchReqType,
-                  "createdBy": model.batchReqType,
-                  "updatedAt": model.batchReqType,
-                  "updatedBy": model.batchReqType,
+                  "function": this.get('functionId'),
+                  "location": this.get('locationId'),
+                  "createdAt": 1,
+                  "createdBy": 'n/a',
+                  "updatedAt": 1,
+                  "updatedBy": 'n/a',
                   "olcmState": {
                     "id": this.get('statusId'),
                   },

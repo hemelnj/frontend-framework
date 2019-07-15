@@ -223,15 +223,22 @@
             sectionLast = 'col-sm-8'
             didValidate=didValidate}}
 
-          {{nges-core/nges-input-component
-            type='text'
-            input-field-name="Request Type"
-            model=model
-            valuePath='batchReqType'
-            placeholder='Request Type'
-            sectionFirst = 'col-sm-4'
-            sectionLast = 'col-sm-8'
-            didValidate=didValidate}}
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="input-field-label">Request Type</label>
+              </div>
+
+              <div class="col-sm-8">
+                <!--<label style="float: right">{{selectedRequestType.label}}</label>-->
+                {{nges-core/nges-searchable-dropdown
+                  dataList=requestTypeList
+                  message = "Select Request Type"
+                  autocompleteOnSelect=(action 'onChangeRequestType')
+                }}
+              </div>
+            </div>
+          </div>
 
           <button id='save' class="nges-button nges-button-success float-right" {{action 'saveAction'}}>Save</button>
 
