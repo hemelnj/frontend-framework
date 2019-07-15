@@ -182,7 +182,7 @@
 
 <div class="card">
   <div class="card-body">
-    <h1 class="layout-title" style="font-size: 20px;">Job</h1>
+    <h1 class="layout-title" style="font-size: 20px;">JOB (Need to Work)</h1>
     <hr class="header-label-line">
 
     <form class="form-horizontal">
@@ -193,8 +193,47 @@
 
         <div class="col-md-6">
 
+          {{nges-core/nges-input-component
+            type='text'
+            input-field-name="Id"
+            model=model
+            valuePath='batchId'
+            placeholder='Batch Id'
+            sectionFirst = 'col-sm-4'
+            sectionLast = 'col-sm-8'
+            didValidate=didValidate}}
 
-          <h1>Need to work</h1>
+          {{nges-core/nges-input-component
+            type='text'
+            input-field-name="Name"
+            model=model
+            valuePath='batchName'
+            placeholder='Batch Name'
+            sectionFirst = 'col-sm-4'
+            sectionLast = 'col-sm-8'
+            didValidate=didValidate}}
+
+          {{nges-core/nges-input-component
+            type='text'
+            input-field-name="API"
+            model=model
+            valuePath='batchApi'
+            placeholder='API'
+            sectionFirst = 'col-sm-4'
+            sectionLast = 'col-sm-8'
+            didValidate=didValidate}}
+
+          {{nges-core/nges-input-component
+            type='text'
+            input-field-name="Request Type"
+            model=model
+            valuePath='batchReqType'
+            placeholder='Request Type'
+            sectionFirst = 'col-sm-4'
+            sectionLast = 'col-sm-8'
+            didValidate=didValidate}}
+
+          <button id='save' class="nges-button nges-button-success float-right" {{action 'saveAction'}}>Save</button>
 
         </div>
       </div>

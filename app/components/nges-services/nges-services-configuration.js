@@ -632,6 +632,29 @@ export default [
       }
     ]
   },
+  {
+    appCode: 'rms',
+    appPanelCode: 'admin-panel',
+    appModuleCode: 'batchengine',
+    appMenuTemplateCode: 'job',
+    name: 'jobProcess',
+    templatePath: servicePath + '/rms/admin',
+    templates: [
+      {
+        code: 'batch-job',
+        name: 'batch-job',
+        label: 'Batch Job',
+        detailPath: '/batch-job',
+        detailView: [
+          {
+            code: 'create-job',
+            name: 'create-job',
+            label: 'Job',
+          }
+        ]
+      }
+    ]
+  },
 
 
 ]
