@@ -197,8 +197,8 @@
             type='text'
             input-field-name="Id"
             model=model
-            valuePath='batchId'
-            placeholder='Batch Id'
+            valuePath='jobId'
+            placeholder='Job Id'
             sectionFirst = 'col-sm-4'
             sectionLast = 'col-sm-8'
             didValidate=didValidate}}
@@ -207,31 +207,23 @@
             type='text'
             input-field-name="Name"
             model=model
-            valuePath='batchName'
-            placeholder='Batch Name'
+            valuePath='jobName'
+            placeholder='Job Name'
             sectionFirst = 'col-sm-4'
             sectionLast = 'col-sm-8'
             didValidate=didValidate}}
 
-          {{nges-core/nges-input-component
-            type='text'
-            input-field-name="API"
-            model=model
-            valuePath='batchApi'
-            placeholder='API'
-            sectionFirst = 'col-sm-4'
-            sectionLast = 'col-sm-8'
-            didValidate=didValidate}}
 
-          {{nges-core/nges-input-component
-            type='text'
-            input-field-name="Request Type"
-            model=model
-            valuePath='batchReqType'
-            placeholder='Request Type'
-            sectionFirst = 'col-sm-4'
-            sectionLast = 'col-sm-8'
-            didValidate=didValidate}}
+          <div class="col" style="margin-top:15px; margin-left:0;">
+            <label for="name" class="input-field-label" style="margin-left:-12px;">Select Roles</label>
+            <select class="custom-select" id="batch" style="margin-left:-5px;" multiple>
+              {{#each batchList as |item index|}}
+                <option class="muliti-select-item" value={{nges-core/json item}}
+                        name={{item}}>{{item.attributes.name}}</option>
+              {{/each}}
+            </select>
+          </div>
+
 
           <button id='save' class="nges-button nges-button-success float-right" {{action 'saveAction'}}>Save</button>
 

@@ -9,7 +9,7 @@ export default Service.extend({
 
 
 
-  addNewBatch(accessToken, payload) {
+  addNewJob(accessToken, payload) {
     let data = JSON.stringify(payload);
 
     let beforeSend = function (xhr) {
@@ -18,23 +18,9 @@ export default Service.extend({
     };
 
     let baseUrl = this.serviceInitializer.getServiceBaseHostURL();
-    let url = baseUrl + "/batchProcesses";
+    let url = baseUrl + "/jobs";
     return this.appRestTemplate.httpRestClient(url, "POST",
       data, {}, beforeSend
-    );
-  },
-
-  getAllBatch(accessToken) {
-
-    let beforeSend = function (xhr) {
-      xhr.setRequestHeader('content-type', 'application/json');
-      xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
-    };
-
-    let baseUrl = this.serviceInitializer.getServiceBaseHostURL();
-    let url = baseUrl + "/batchProcesses";
-    return this.appRestTemplate.httpRestClient(url, "GET",
-      null, {}, beforeSend
     );
   },
 

@@ -1,5 +1,6 @@
 import Component from '@ember/component';
 import Service, {inject as service} from '@ember/service';
+import $ from "jquery";
 
 
 export default Component.extend({
@@ -12,6 +13,7 @@ export default Component.extend({
 
   appConfiguration: service('app-configuration'),
   batchActionService: service('nges-services/rms/batch-action'),
+  jobActionService: service('nges-services/rms/job-action'),
   rmsBaseService: service('nges-services/rms/rms-base-service'),
   serviceInitializer: service('nges-services/service-initializer'),
   notifier: service(),
@@ -19,12 +21,50 @@ export default Component.extend({
   init() {
     this._super(...arguments);
 
-    this.set('model', this.store.createRecord('nges-services/rms/job-process'));
+    this.set('model', this.store.createRecord('nges-services/rms/batch-job'));
 
     let startStateId = this.appWelcome.getStartStateId();
     this.getNextAllowableStateForCreate(startStateId);
+    this.getDefaultUserFunctionId();
+    this.getDefaultUserLocationId();
+    this.setRequestType();
+    this.loadBatch();
   },
 
+  setRequestType() {
+    let data = [
+      {
+        id: 1,
+        type: "request",
+        attributes: {
+          name: "GET"
+        }
+      },
+      {
+        id: 2,
+        type: "request",
+        attributes: {
+          name: "POST"
+        }
+      },
+      {
+        id: 3,
+        type: "request",
+        attributes: {
+          name: "PUT"
+        }
+      },
+      {
+        id: 4,
+        type: "request",
+        attributes: {
+          name: "PATCH"
+        }
+      },
+    ];
+
+    this.set("requestTypeList", data);
+  },
 
   getNextAllowableStateForCreate(startStateId) {
     let context = this;
@@ -59,8 +99,80 @@ export default Component.extend({
     });
   },
 
+  getDefaultUserFunctionId() {
+    let context = this;
+    let accessToken = this.appConfiguration.getAccessToken();
+    let userId = this.appConfiguration.getUserId();
+    let functionId = this.rmsBaseService.getDefaultFunctionId(accessToken, userId);
+
+    functionId.then(function (msg) {
+      context.set('functionId', msg.data.attributes.id);
+    }).catch(function (errorMsg) {
+      context.get('notifier').danger('Failed to Load User Default Function Id');
+    });
+  },
+
+  getDefaultUserLocationId() {
+    let context = this;
+    let accessToken = this.appConfiguration.getAccessToken();
+    let userId = this.appConfiguration.getUserId();
+    let locationId = this.rmsBaseService.getDefaultLocationId(accessToken, userId);
+
+    locationId.then(function (msg) {
+      context.set('locationId', msg.data.attributes.id);
+    }).catch(function (errorMsg) {
+      context.get('notifier').danger('Failed to Load Default Location Id');
+    });
+  },
+
+
+  defaultInitializer(propertyName, value) {
+    this.set('model.' + propertyName, value);
+  },
+
+  loadBatch() {
+    let context = this;
+    let accessToken = this.appConfiguration.getAccessToken();
+    let allBatch = this.batchActionService.getAllBatch(accessToken);
+
+    allBatch.then(function (msg) {
+      console.log('message---batchList', msg);
+      context.set('batchList', msg.data);
+    }).catch(function (errorMsg) {
+      context.get('notifier').danger('Failed to Load Country List');
+    });
+  },
+
   actions:{
+
+
+    onChangeRequestType(value) {
+      let context = this;
+      context.defaultInitializer('batchReqType', value.attributes.name);
+      console.log('onChangeRequestType', value);
+      context.set('selectedRequestType', {
+        label: (value === '') ? '' : value.attributes.name,
+        value: value,
+      });
+    },
+
     saveAction() {
+
+      let selectedBatch = $('#batch option:selected').toArray().map(item => item.value);
+
+      selectedBatch = JSON.parse(selectedBatch);
+      /*let text = $('#batch option:selected').toArray().map(item => item.value + ':' + item.text).join();
+      let selectedBatch = [];
+
+      let tmp = text.split(',');
+
+      for (let i = 0; i < tmp.length; i++) {
+        let batch_data = tmp[i].split(':');
+        let p = {
+          id: batch_data[0],
+        };
+        selectedBatch.push(p);
+      }*/
 
       this.get('model')
         .validate()
@@ -79,19 +191,21 @@ export default Component.extend({
 
             let payload = {
               data: {
-                "id": model.batchId,
-                "type": "batchProcess",
+                "id": model.jobId,
+                "type": "job",
                 "attributes": {
-                  "id": model.batchId,
-                  "name": model.batchName,
-                  "api": model.batchApi,
-                  "requestType": model.batchReqType,
-                  "function": model.batchReqType,
-                  "location": model.batchReqType,
-                  "createdAt": model.batchReqType,
-                  "createdBy": model.batchReqType,
-                  "updatedAt": model.batchReqType,
-                  "updatedBy": model.batchReqType,
+                  "id": model.jobId,
+                  "name": model.jobName,
+                  "processes": selectedBatch,
+                  "schedulerType": 'n/a',
+                  "scheduledTime": 1,
+                  "scheduledDate": 1,
+                  "function": this.get('functionId'),
+                  "location": this.get('locationId'),
+                  "createdAt": 1,
+                  "createdBy": 'n/a',
+                  "updatedAt": 1,
+                  "updatedBy": 'n/a',
                   "olcmState": {
                     "id": this.get('statusId'),
                   },
@@ -101,14 +215,14 @@ export default Component.extend({
             };
             console.log('message--batch', JSON.stringify(payload));
             let accessToken = this.appConfiguration.getAccessToken();
-            let afterBatchRegistration = this.batchActionService.addNewBatch(accessToken, payload);
+            let afterBatchRegistration = this.jobActionService.addNewJob(accessToken, payload);
             let context = this;
             afterBatchRegistration.then(function (msg) {
             }).catch(function (msg) {
               if (msg.status === 201) {
-                context.get('notifier').success('Batch Added Successful');
+                context.get('notifier').success('Job Added Successful');
               } else {
-                context.get('notifier').danger('Batch Added Failed!');
+                context.get('notifier').danger('Job Added Failed!');
               }
             });
 
