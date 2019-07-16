@@ -72,10 +72,10 @@ export default Service.extend({
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
-   /*let headers = {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    };*/
+    /*let headers = {
+       'Accept': 'application/json',
+       'Content-Type': 'application/json'
+     };*/
 
     //let url = this.olmEngineHost + "/states";
     let url = this.rmsPEEngineHost + "/attributes";
@@ -92,16 +92,30 @@ export default Service.extend({
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
-   /*let headers = {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    };*/
+    /*let headers = {
+       'Accept': 'application/json',
+       'Content-Type': 'application/json'
+     };*/
 
     //let url = this.olmEngineHost + "/states";
-    let url = this.rmsPEEngineHost + "/records/add";
+    let url = this.rmsPEEngineHost + "/records";
     return this.appRestTemplate.httpRestClient(url, "POST",
       data, {}, beforeSend
     );
-  }
+  },
+
+
+  getAllAttributesDataByClassTypeId(classTypeId, accessToken) {
+    let beforeSend = function (xhr) {
+      xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+      xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
+    };
+
+    //let url = this.olmEngineHost + "/classtypes/" + classTypeId;
+    let url = this.rmsPEEngineHost + "/records/"+classTypeId+"/records";
+    return this.appRestTemplate.httpRestClient(url, "GET",
+      null, {}, beforeSend
+    );
+  },
 
 });
