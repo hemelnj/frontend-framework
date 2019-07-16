@@ -1,8 +1,6 @@
 import Component from '@ember/component';
 import DS from 'ember-data';
-import config from 'frontend-engine/config/environment';
 import {inject as service} from '@ember/service';
-import $ from "jquery";
 
 export default Component.extend({
 
@@ -10,40 +8,27 @@ export default Component.extend({
   appConfiguration: service('app-configuration'),
   peSetupService: service('nges-engines/property-extender/pe-setup'),
   appWelcome: service('nges-core/app-welcome'),
-
-  peFormData: {
-    string: '',
-    integer: '',
-    varchar: '',
-  },
-
   notifier: service(),
 
   init() {
     this._super(...arguments);
-    this.set('attributePayload', []);
   },
 
   didReceiveAttrs() {
     this._super(...arguments);
 
     let additionalProperty = this.get('attributeList');
-    this.set('attributes', additionalProperty);
+    //this.set('attributes', additionalProperty);
 
+    this.createModel(additionalProperty);
     //console.log('message--additionalProperty', additionalProperty);
-
-
-  },
-  didRender() {
-    this._super(...arguments);
-    this.createModel();
   },
 
-  createModel() {
+  createModel(additionalProperty) {
     let context = this;
     let modelName = 'nges-engines/property-extender/additional-property';         // model name base on adapter configuration
     let tableColumns = {};
-    let tableHeaders = this.get('attributes');                          // this changes with endpoint
+    let tableHeaders = additionalProperty;                          // this changes with endpoint
     tableHeaders = tableHeaders.result;                          // this changes with endpoint
 
 
@@ -62,13 +47,9 @@ export default Component.extend({
 
     context.appWelcome.createDynamicModel(modelName, tableColumns);
     context.set('model', modelName);
-
-    //context.insertRecordIntoModel(tableHeaders);
-
   },
 
   actions: {
-
 
     addAction() {
 
