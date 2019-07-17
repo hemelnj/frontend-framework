@@ -1,19 +1,4 @@
 <style>
-  .layout-title {
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-size: 1.825rem;
-    font-weight: 400;
-    color: #123F62;
-    display: block;
-  }
-
-  .te-top-hr-line {
-    margin-top: -3px;
-    border: 1.5px solid #123F62;
-  }
 
   .te-bottom-hr-line {
     border: 0;
@@ -37,28 +22,6 @@
     font-weight: bold;
     padding: 0 1rem 0 .75rem;
     margin-bottom: .125rem;
-  }
-
-  .input-field {
-    border-left: 0;
-    border-right: 0;
-    border-top: 0;
-    border-bottom: 1.1px solid #747474;
-    width: 100%;
-    -webkit-transition: border .1s linear, background-color .1s linear;
-    transition: border .1s linear, background-color .1s linear;
-    display: inline-block;
-    padding: 0 1rem 0 .75rem;
-    font-size: .75rem;
-    line-height: 1.875rem;
-    min-height: calc(1.875rem + (1px * 2));
-    margin-bottom: .125rem;
-    background: #FAFAFA;
-  }
-
-  .input-field:focus {
-    outline: none;
-    border-bottom: 1.5px solid rgba(81, 203, 238, 1);
   }
 
   .te-button-all {
@@ -103,44 +66,6 @@
     cursor: pointer;
   }
 
-  .te-button-danger {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    text-align: center;
-    vertical-align: middle;
-    border: 1px solid #c23934;
-    -webkit-transition: border 0.15s linear;
-    transition: border 0.15s linear;
-    background-color: #c23934;
-    color: #fff;
-  }
-
-  .te-button-danger:hover {
-    background-color: #a61a14;
-    border-color: #a61a14;
-    color: #fff;
-    cursor: pointer;
-  }
-
-  .te-button-edit {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    text-align: center;
-    vertical-align: middle;
-    border: 1px solid #dddbda;
-    -webkit-transition: border 0.15s linear;
-    transition: border 0.15s linear;
-    border-color: #dddbda;
-    background-color: #fff;
-    border-color: #0070d2;
-  }
-
-  .te-button-edit:hover {
-    background-color: #f4f6f9;
-    border-color: #0070d2;
-    color: #000;
-    cursor: pointer;
-  }
 
 </style>
 
@@ -151,7 +76,6 @@
 
       <div class="col-sm-12">
         <div>
-          <!--<h1 style="font-size: 20px" class="layout-title">Default Location & Function Assignment</h1>-->
           <h1 style="font-size: 20px" class="layout-header-title">User Functions & Location</h1>
           <hr class="header-label-line">
 
@@ -160,7 +84,7 @@
             <div class="col-sm-2">
               <label style="font-size: 13px" class="input-field-label">Select  User</label>
             </div>
-            <div class="col-md-6" style="margin-top: -3px; margin-left: -50px;" >
+            <div class="col-md-6">
               {{nges-core/nges-searchable-dropdown
                 dataList=userList
                   message = "Select a User"
