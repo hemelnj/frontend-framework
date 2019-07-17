@@ -69,7 +69,6 @@
 
 <div class="col-md-12">
   <label class="layout-header-title" style="font-size: 20px">Extended Property</label>
-  <hr class="header-label-line">
 
   {{#each attributeList.result as |attribute|}}
     {{#if (eq attribute.type "String")}}
@@ -81,7 +80,7 @@
         valuePath=attribute.code
         placeholder=attribute.name
         sectionFirst = 'col-sm-4'
-        sectionLast = 'col-sm-8'
+        sectionLast = 'col-sm-6'
         didValidate=didValidate}}
     {{/if}}
 
@@ -94,7 +93,7 @@
         valuePath=attribute.code
         placeholder=attribute.name
         sectionFirst = 'col-sm-4'
-        sectionLast = 'col-sm-8'
+        sectionLast = 'col-sm-6'
         didValidate=didValidate}}
     {{/if}}
 
@@ -107,7 +106,7 @@
         valuePath=attribute.code
         placeholder=attribute.name
         sectionFirst = 'col-sm-4'
-        sectionLast = 'col-sm-8'
+        sectionLast = 'col-sm-6'
         didValidate=didValidate}}
     {{/if}}
 
