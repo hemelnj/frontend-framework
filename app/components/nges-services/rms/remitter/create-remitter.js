@@ -15,6 +15,7 @@ export default Component.extend({
   rmsBaseService: service('nges-services/rms/rms-base-service'),
   notifier: service(),
   serviceInitializer: service('nges-services/service-initializer'),
+  peSetupService: service('nges-engines/property-extender/pe-setup'),
   init() {
     this._super(...arguments);
     let serviceInformation = this.get('serviceInformation');
@@ -619,10 +620,96 @@ export default Component.extend({
       });
     },
 
+
+    propertyExtend() {
+      let context = this;
+      this.set('attributePayload',[]);
+      this.set('showPropertyExtender',true);
+      let accessToken = this.appConfiguration.getAccessToken();
+
+      let model = this.get('model');
+      let attributeData = context.peSetupService.getAllAttributesDataByClassTypeId(model.remId,accessToken);
+
+      attributeData.then(function (attribute) {
+        console.log('message--allCreatedAttributeData', attribute);
+        context.set('attributeData',attribute);
+      }).catch(function (errorMsg) {
+        context.get('notifier').danger('Failed To Load Attributes Data');
+      });
+
+
+      this.serviceInitializer.getClassType(accessToken).then(function (result) {
+        let classTypeId = result.data;//classtype id
+
+        let allCreatedAttribute = context.peSetupService.getAllAttributesByClassTypeId(classTypeId,accessToken);
+
+        console.log('message--allCreatedAttribute', allCreatedAttribute);
+        allCreatedAttribute.then(function (attribute) {
+          console.log('message---attributeList--attributeList', attribute);
+          context.set('attributeList',attribute);
+        }).catch(function (errorMsg) {
+          context.get('notifier').danger('Failed To Load Attributes');
+        });
+
+      });
+
+
+
+    },
+
     updateAction() {
 
-      this.get('model')
-        .validate()
+      let model = this.get('model');
+      let recordArray = this.store.getReference('nges-engines/property-extender/additional-property',1);
+      let context = this;
+      let attributeList = this.get('attributeList');
+      console.log('message--attributeList', attributeList);
+      attributeList =  attributeList.result;
+      for (let i = 0; i < attributeList.length; i++) {
+
+        let record = {
+          id: attributeList[i].id,
+          type: attributeList[i].type,
+          instanceId: model.remId,
+          value: recordArray[attributeList[i].code],
+          code: attributeList[i].code,
+          describtion: 'n/a',
+          createdBy: 'msi',
+          createdAt: 1,
+          lastUpdatedAt: 1,
+          lastUpdatedBy: 'msi',
+          comments: 'n/a',
+          extra: 'n/a',
+          name: "n/a",
+          attribute: {
+            id: attributeList[i].id,
+          }
+        };
+
+        context.get('attributePayload').pushObject(record);
+      }
+
+      let recordPayload = this.get('attributePayload');
+      console.log('message--record', JSON.stringify(recordPayload));
+      //context.set('attributePayload',[]);
+
+      let accessToken = this.appConfiguration.getAccessToken();
+      let afterAddition = this.peSetupService.addNewPropertyData(accessToken, recordPayload);
+
+      afterAddition.then(function (msg) {
+        context.set('attributePayload',[]);
+      }).catch(function (msg) {
+        if (msg.status === 200) {
+          context.get('notifier').success('Property Data Update Successful');
+          context.set('attributePayload',[]);
+        } else {
+          context.get('notifier').danger('Property Data Update Failed!');
+          context.set('attributePayload',[]);
+        }
+      });
+
+
+      this.get('model').validate()
         .then(({validations}) => {
 
           this.set('didValidate', true);

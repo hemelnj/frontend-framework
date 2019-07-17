@@ -452,6 +452,7 @@ export default Component.extend({
       let afterAddition = this.peSetupService.addNewPropertyData(accessToken, recordPayload);
 
       afterAddition.then(function (msg) {
+        context.set('attributePayload',[]);
       }).catch(function (msg) {
         if (msg.status === 200) {
           context.get('notifier').success('Property Data Update Successful');
@@ -462,7 +463,7 @@ export default Component.extend({
         }
       });
 
-      /*model.validate()
+      this.get('model').validate()
         .then(({validations}) => {
 
           this.set('didValidate', true);
@@ -516,7 +517,7 @@ export default Component.extend({
             console.log('message--beneficiaryData', JSON.stringify(beneficiaryData));
 
             let accessToken = this.appConfiguration.getAccessToken();
-            let afterBeneficiaryUpdate = this.beneficiaryActionService.updateBeneficiaryData(accessToken, beneficiaryData);
+            let afterBeneficiaryUpdate = this.beneficiaryActionService.updateBeneficiaryData(accessToken, beneficiaryData, model.beneficiaryId);
             let context = this;
             afterBeneficiaryUpdate.then(function (msg) {
             }).catch(function (msg) {
@@ -531,7 +532,7 @@ export default Component.extend({
             let context = this;
             context.get('notifier').danger('Fill up all the fields properly');
           }
-        });*/
+        });
     },
 
     validate() {

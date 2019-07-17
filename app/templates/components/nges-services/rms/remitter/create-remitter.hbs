@@ -535,8 +535,10 @@
         </select>-->
 
         <br>
-        {{#if actionAccess.edit}}
+        {{#if actionAccess}}
           <button id='status_check' class="nges-button nges-button-success" {{action 'updateAction'}}>Submit</button>
+          <button id='status_check' class="nges-button nges-button-success" {{action 'propertyExtend'}}>Add Property
+          </button>
         {{else}}
            <button id='save' class="nges-button nges-button-success" {{action 'validate'}}>Save</button>
         {{/if}}
