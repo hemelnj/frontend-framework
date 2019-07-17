@@ -185,7 +185,7 @@ export default Component.extend({
       let actionEventName = "create";
       context.serviceInitializer.getUserAbilityToCreate(accessToken, actionEventName, classTypeId, roleId).then(function (result) {
 
-        if (result){
+        if (result) {
           let status = {
             classTypeId: classTypeId,
             stateId: startStateId,
@@ -209,8 +209,14 @@ export default Component.extend({
     this.set('fname', '-');
     this.set('score', '-');
     this.set('risk', '');
+  },
 
-    console.log('message-checkRiskStatus', 'checkRiskStatus');
+  setAdditionalPropertyToModel(attributeData) {
+    let recordArray = this.store.getReference('nges-engines/property-extender/additional-property', 1);
+    let propertyData = attributeData.result;
+    for (let i = 0; i < propertyData.length; i++) {
+      recordArray[propertyData[i].code] = propertyData[i].value;
+    }
   },
   actions: {
     reset() {
@@ -415,11 +421,11 @@ export default Component.extend({
 
     updateAction() {
       let model = this.get('model');
-      let recordArray = this.store.getReference('nges-engines/property-extender/additional-property',1);
+      let recordArray = this.store.getReference('nges-engines/property-extender/additional-property', 1);
       let context = this;
       let attributeList = this.get('attributeList');
       console.log('message--attributeList', attributeList);
-      attributeList =  attributeList.result;
+      attributeList = attributeList.result;
       for (let i = 0; i < attributeList.length; i++) {
 
         let record = {
@@ -452,14 +458,14 @@ export default Component.extend({
       let afterAddition = this.peSetupService.addNewPropertyData(accessToken, recordPayload);
 
       afterAddition.then(function (msg) {
-        context.set('attributePayload',[]);
+        context.set('attributePayload', []);
       }).catch(function (msg) {
         if (msg.status === 200) {
           context.get('notifier').success('Property Data Update Successful');
-          context.set('attributePayload',[]);
+          context.set('attributePayload', []);
         } else {
           context.get('notifier').danger('Property Data Update Failed!');
-          context.set('attributePayload',[]);
+          context.set('attributePayload', []);
         }
       });
 
@@ -611,37 +617,34 @@ export default Component.extend({
 
     propertyExtend() {
       let context = this;
-      this.set('attributePayload',[]);
-      this.set('showPropertyExtender',true);
+      this.set('attributePayload', []);
+      this.set('showPropertyExtender', true);
       let accessToken = this.appConfiguration.getAccessToken();
 
       let model = this.get('model');
-      let attributeData = context.peSetupService.getAllAttributesDataByClassTypeId(model.beneficiaryId,accessToken);
+      let attributeData = context.peSetupService.getAllAttributesDataByClassTypeId(model.beneficiaryId, accessToken);
 
       attributeData.then(function (attribute) {
         console.log('message--allCreatedAttributeData', attribute);
-        context.set('attributeData',attribute);
+        context.set('attributeData', attribute);
+        context.setAdditionalPropertyToModel(attribute);
       }).catch(function (errorMsg) {
         context.get('notifier').danger('Failed To Load Attributes Data');
       });
-
 
       this.serviceInitializer.getClassType(accessToken).then(function (result) {
         let classTypeId = result.data;//classtype id
 
 
-
-
-        let allCreatedAttribute = context.peSetupService.getAllAttributesByClassTypeId(classTypeId,accessToken);
+        let allCreatedAttribute = context.peSetupService.getAllAttributesByClassTypeId(classTypeId, accessToken);
 
         allCreatedAttribute.then(function (attribute) {
-          context.set('attributeList',attribute);
+          context.set('attributeList', attribute);
         }).catch(function (errorMsg) {
           context.get('notifier').danger('Failed To Load Attributes');
         });
 
       });
-
 
 
     },

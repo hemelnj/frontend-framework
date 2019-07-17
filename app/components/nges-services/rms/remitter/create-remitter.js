@@ -357,6 +357,14 @@ export default Component.extend({
     });
   },
 
+  setAdditionalPropertyToModel(attributeData) {
+    let recordArray = this.store.getReference('nges-engines/property-extender/additional-property', 1);
+    let propertyData = attributeData.result;
+    for (let i = 0; i < propertyData.length; i++) {
+      recordArray[propertyData[i].code] = propertyData[i].value;
+    }
+  },
+
   actions: {
     reset() {
       this.set('model', {});
@@ -633,6 +641,7 @@ export default Component.extend({
       attributeData.then(function (attribute) {
         console.log('message--allCreatedAttributeData', attribute);
         context.set('attributeData',attribute);
+        context.setAdditionalPropertyToModel(attribute);
       }).catch(function (errorMsg) {
         context.get('notifier').danger('Failed To Load Attributes Data');
       });
