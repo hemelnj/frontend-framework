@@ -1,22 +1,6 @@
 {{yield}}
 
 <style>
-  .layout-title {
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-size: 1.825rem;
-    font-weight: 400;
-    color: #123F62;
-    display: block;
-  }
-
-  .te-top-hr-line {
-    margin-top: -3px;
-    border: 1.5px solid #123F62;
-  }
-
   .te-bottom-hr-line {
     border: 0;
     max-width: 70%;
@@ -64,25 +48,6 @@
   .te-button-save:hover {
     background-color: #12466b;
     border-color: #12466b;
-    color: #fff;
-    cursor: pointer;
-  }
-
-  .te-button-danger {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    text-align: center;
-    vertical-align: middle;
-    border: 1px solid #c23934;
-    -webkit-transition: border 0.15s linear;
-    transition: border 0.15s linear;
-    background-color: #c23934;
-    color: #fff;
-  }
-
-  .te-button-danger:hover {
-    background-color: #a61a14;
-    border-color: #a61a14;
     color: #fff;
     cursor: pointer;
   }
@@ -181,7 +146,7 @@
 <div class="card">
   <div class="card-body">
     <div>
-      <h1 style="font-size: 20px" class="layout-header-title">Menu Mapping and Resource Configuration </h1>
+      <h1 class="layout-header-title">Menu Mapping and Resource Configuration </h1>
       <hr class="header-label-line">
     </div>
 
@@ -250,7 +215,7 @@
 
         <div class="form-group">
           <div class="row">
-            <div class="col-md-3" style="margin-top: 10px">
+            <div class="col-md-3">
               <label for="menuItems" class="input-field-label">Menu Item</label>
             </div>
 
@@ -279,7 +244,7 @@
 
         <div class="form-group">
           <div class="row">
-            <div class="col-md-3" style="margin-top: 10px">
+            <div class="col-md-3">
               <label for="olmObject" class="input-field-label">OLM Object</label>
             </div>
 
@@ -301,12 +266,12 @@
         }}
         {{!nges-engines/tree-engine/object-to-string dualBoxData}}
 
-        <div class="form-group" style="margin-top: 10px">
+        <div class="form-group">
           <div class="row">
-            <div class="col-md-3" style="margin-top: 10px">
+            <div class="col-md-4">
               <label for="stateName" class="input-field-label">Menu Display Name</label>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-8">
               <input type="text" placeholder="Enter Label Name" class="input-field" id="stateName"
                      value={{formData.stateName}}
                      oninput={{action (mut formData.stateName) value="target.value"}}>
@@ -316,11 +281,11 @@
 
         <div class="form-group">
           <div class="row">
-            <div class="col-md-3" style="margin-top: 10px">
+            <div class="col-md-4">
               <label for="stateName" class="input-field-label">Choose Resource</label>
             </div>
 
-            <div class="col-md-9" style="margin-top: 11px">
+            <div class="col-md-8">
               {{nges-core/nges-searchable-dropdown
                 dataList=templateList
                 autocompleteOnSelect=(action 'selectTemplateList')
