@@ -414,6 +414,7 @@ export default Component.extend({
     },
 
     updateAction() {
+      let model = this.get('model');
       let recordArray = this.store.getReference('nges-engines/property-extender/additional-property',1);
       let context = this;
       let attributeList = this.get('attributeList');
@@ -424,9 +425,9 @@ export default Component.extend({
         let record = {
           id: attributeList[i].id,
           type: attributeList[i].type,
-          instanceId: attributeList[i].classTypeId,
+          instanceId: model.beneficiaryId,
           value: recordArray[attributeList[i].code],
-          code: 'n/a',
+          code: attributeList[i].code,
           describtion: 'n/a',
           createdBy: 'msi',
           createdAt: 1,
@@ -445,6 +446,7 @@ export default Component.extend({
 
       let recordPayload = this.get('attributePayload');
       console.log('message--record', JSON.stringify(recordPayload));
+      //context.set('attributePayload',[]);
 
       let accessToken = this.appConfiguration.getAccessToken();
       let afterAddition = this.peSetupService.addNewPropertyData(accessToken, recordPayload);
@@ -453,13 +455,14 @@ export default Component.extend({
       }).catch(function (msg) {
         if (msg.status === 200) {
           context.get('notifier').success('Property Data Update Successful');
+          context.set('attributePayload',[]);
         } else {
           context.get('notifier').danger('Property Data Update Failed!');
+          context.set('attributePayload',[]);
         }
       });
 
-      /*this.get('model')
-        .validate()
+      /*model.validate()
         .then(({validations}) => {
 
           this.set('didValidate', true);
@@ -611,23 +614,26 @@ export default Component.extend({
       this.set('showPropertyExtender',true);
       let accessToken = this.appConfiguration.getAccessToken();
 
+      let model = this.get('model');
+      let attributeData = context.peSetupService.getAllAttributesDataByClassTypeId(model.beneficiaryId,accessToken);
+
+      attributeData.then(function (attribute) {
+        console.log('message--allCreatedAttributeData', attribute);
+        context.set('attributeData',attribute);
+      }).catch(function (errorMsg) {
+        context.get('notifier').danger('Failed To Load Attributes Data');
+      });
+
+
       this.serviceInitializer.getClassType(accessToken).then(function (result) {
         let classTypeId = result.data;//classtype id
 
 
-        let attributeData = context.peSetupService.getAllAttributesDataByClassTypeId(classTypeId,accessToken);
 
-        attributeData.then(function (attribute) {
-          console.log('message--allCreatedAttributeData', attribute);
-          context.set('attributeData',attribute);
-        }).catch(function (errorMsg) {
-          context.get('notifier').danger('Failed To Load Attributes Data');
-        });
 
         let allCreatedAttribute = context.peSetupService.getAllAttributesByClassTypeId(classTypeId,accessToken);
 
         allCreatedAttribute.then(function (attribute) {
-          console.log('message--allCreatedAttribute', attribute);
           context.set('attributeList',attribute);
         }).catch(function (errorMsg) {
           context.get('notifier').danger('Failed To Load Attributes');
