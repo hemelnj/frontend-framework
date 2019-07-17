@@ -1,75 +1,4 @@
 <style>
-  .layout-title {
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-size: 2.125rem;
-    font-weight: 400;
-    color: #123F62;
-    display: block;
-  }
-
-  .auth-var-line {
-    border-left: 1px solid #E5E5E5;
-    height: 500px;
-  }
-
-  .auth-hr-line {
-    margin-top: -3px;
-    border: 1.5px solid #123F62;
-  }
-
-  .te-bottom-hr-line {
-    border: 0;
-    max-width: 70%;
-    margin-left: 0;
-    margin-top: -8px;
-    border-top: 2px solid;
-    border-color: #666666;
-  }
-
-  .form-group {
-    position: relative;
-    min-width: 0;
-  }
-
-  .input-field-label {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    -webkit-hyphens: auto;
-    -ms-hyphens: auto;
-    hyphens: auto;
-    display: inline-block;
-    color: #707275;
-    font-size: .75rem;
-    font-weight: bolder;
-    padding: 0 1rem 0 .75rem;
-    margin-bottom: .125rem;
-  }
-
-  .input-field {
-    border-left: 0;
-    border-right: 0;
-    border-top: 0;
-    border-bottom: 1.1px solid #747474;
-    width: 100%;
-    -webkit-transition: border .1s linear, background-color .1s linear;
-    transition: border .1s linear, background-color .1s linear;
-    display: inline-block;
-    padding: 0 1rem 0 .75rem;
-    font-size: .75rem;
-    line-height: 1.875rem;
-    min-height: calc(1.875rem + (1px * 2));
-    margin-bottom: .125rem;
-    background: #FAFAFA;
-  }
-
-  .input-field:focus {
-    outline: none;
-    border-bottom: 1.5px solid rgba(81, 203, 238, 1);
-  }
-
   .form-control {
     clear: left;
     position: relative;
@@ -137,58 +66,50 @@
 
 <br>
 
-<div class="card">
-  <div class="card-body">
-    <div class="col-md-12">
-      <label class="layout-title" style="font-size: 20px">Extended Property</label>
-      <hr class="header-label-line">
 
-      {{#each attributeList.result as |attribute|}}
-        {{#if (eq attribute.type "String")}}
+<div class="col-md-12">
+  <label class="layout-header-title" style="font-size: 20px">Extended Property</label>
+  <hr class="header-label-line">
 
-          {{nges-core/nges-input-component
-            type='text'
-            input-field-name=attribute.name
-            model=model
-            valuePath=attribute.code
-            placeholder=attribute.name
-            sectionFirst = 'col-sm-4'
-            sectionLast = 'col-sm-8'
-            didValidate=didValidate}}
-        {{/if}}
+  {{#each attributeList.result as |attribute|}}
+    {{#if (eq attribute.type "String")}}
 
-        {{#if (eq attribute.type "Integer")}}
+      {{nges-core/nges-input-component
+        type='text'
+        input-field-name=attribute.name
+        model=model
+        valuePath=attribute.code
+        placeholder=attribute.name
+        sectionFirst = 'col-sm-4'
+        sectionLast = 'col-sm-8'
+        didValidate=didValidate}}
+    {{/if}}
 
-          {{nges-core/nges-input-component
-            type='Number'
-            input-field-name=attribute.name
-            model=model
-            valuePath=attribute.code
-            placeholder=attribute.name
-            sectionFirst = 'col-sm-4'
-            sectionLast = 'col-sm-8'
-            didValidate=didValidate}}
-        {{/if}}
+    {{#if (eq attribute.type "Integer")}}
 
-        {{#if (eq attribute.type "Varchar")}}
+      {{nges-core/nges-input-component
+        type='Number'
+        input-field-name=attribute.name
+        model=model
+        valuePath=attribute.code
+        placeholder=attribute.name
+        sectionFirst = 'col-sm-4'
+        sectionLast = 'col-sm-8'
+        didValidate=didValidate}}
+    {{/if}}
 
-          {{nges-core/nges-input-component
-            type='text'
-            input-field-name=attribute.name
-            model=model
-            valuePath=attribute.code
-            placeholder=attribute.name
-            sectionFirst = 'col-sm-4'
-            sectionLast = 'col-sm-8'
-            didValidate=didValidate}}
-        {{/if}}
+    {{#if (eq attribute.type "Varchar")}}
 
-      {{/each}}
+      {{nges-core/nges-input-component
+        type='text'
+        input-field-name=attribute.name
+        model=model
+        valuePath=attribute.code
+        placeholder=attribute.name
+        sectionFirst = 'col-sm-4'
+        sectionLast = 'col-sm-8'
+        didValidate=didValidate}}
+    {{/if}}
 
-      <!--<button class="nges-button nges-button-success"
-              {{action "addAction"}}style="width: 100px; margin-top: 15px">
-        Save
-      </button>-->
-    </div>
-  </div>
+  {{/each}}
 </div>
