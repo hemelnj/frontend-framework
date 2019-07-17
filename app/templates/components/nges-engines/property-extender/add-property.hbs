@@ -67,9 +67,9 @@
 <br>
 
 
-<div class="col-md-12">
-  <label class="layout-header-title" style="font-size: 20px">Extended Property</label>
-
+<fieldset>
+  <legend class="field-set-label">Extended Property</legend>
+  <br>
   {{#each attributeList.result as |attribute|}}
     {{#if (eq attribute.type "String")}}
 
@@ -79,7 +79,7 @@
         model=model
         valuePath=attribute.code
         placeholder=attribute.name
-        sectionFirst = 'col-sm-4'
+        sectionFirst = 'col-sm-2'
         sectionLast = 'col-sm-6'
         didValidate=didValidate}}
     {{/if}}
@@ -92,7 +92,7 @@
         model=model
         valuePath=attribute.code
         placeholder=attribute.name
-        sectionFirst = 'col-sm-4'
+        sectionFirst = 'col-sm-2'
         sectionLast = 'col-sm-6'
         didValidate=didValidate}}
     {{/if}}
@@ -105,10 +105,10 @@
         model=model
         valuePath=attribute.code
         placeholder=attribute.name
-        sectionFirst = 'col-sm-4'
+        sectionFirst = 'col-sm-2'
         sectionLast = 'col-sm-6'
         didValidate=didValidate}}
     {{/if}}
 
   {{/each}}
-</div>
+</fieldset>
