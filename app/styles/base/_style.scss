@@ -82,7 +82,7 @@ body {
 
 .header-label-line {
   margin-top: -3px;
-  border: 1.2px solid #123F62;
+  border: 1.2px solid $primary-color-title-line;
   opacity: 0.5;
 }
 //////////////////////
@@ -95,7 +95,7 @@ body {
   -ms-hyphens: auto;
   hyphens: auto;
   display: inline-block;
-  color: #666666;
+  color: $primary-color-field-label;
   font-size: 0.75rem;
   font-weight: bold;
   padding: 0 1rem 0 .75rem;
@@ -109,7 +109,7 @@ body {
   -ms-hyphens: auto;
   hyphens: auto;
   display: inline-block;
-  color: #343434;
+  color: $primary-color-field-set-label;
   font-size: 0.75rem;
   font-weight: bold;
   padding: 0 1rem 0 .75rem;
@@ -130,7 +130,7 @@ body {
   line-height: 1.875rem;
   min-height: calc(1.875rem + (1px * 2));
   margin-bottom: .125rem;
-  background: #FAFAFA;
+  background: $primary-color-field-background;
 }
 
 .input-field:focus {
