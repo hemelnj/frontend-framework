@@ -1,14 +1,13 @@
-
 @import "ember-cli-bootstrap-4/bootstrap";
-
-
-@import 'base/color';
-@import 'base/style';
-@import 'base/loading';
-@import 'vendors/sidebar';
 @import "ember-notifier";
 
-@import 'base/nges-button-theme';
+
+@import 'themes/odoo/app-odoo';
+
+
+
+
+//-------------------- engines and other components
 
 /* nges-engines styles */
 @import 'nges-engines/olm/olm-base.scss';

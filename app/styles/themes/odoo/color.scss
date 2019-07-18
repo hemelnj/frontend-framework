@@ -10,9 +10,9 @@ $link-font-size: 12px;
 
 
 
+/*
 
-
-//------------ theme 1 - Dark Mode -----------------
+//------------ theme 1 - Mid Night Dark Theme -----------------
 
 // submenu
 $sidebar-submenu-hover-color: rgba(126, 129, 138, 0.65);
@@ -36,18 +36,24 @@ $primary-color-field-label: #666666;
 $primary-color-field-background: #FAFAFA;
 $primary-color-field-set-label: #343434;
 $primary-color-title-line: #123F62;   // header label line
+
+
+$primary-color-btn-text: #FFFFFF; // btn text
+$primary-color-btn-success: #123F62;
+$primary-color-btn-success-hover: #12466b;
+$primary-color-btn-success-border: #123F62;
 //-------------------------------------------
 
 
 
 
-
+*/
 
 
 
 
 /*
-//------------ theme 1 - blue Mode -----------------
+//------------ theme 2 - Leads Theme (Blue) -----------------
 
 // submenu
 $sidebar-submenu-hover-color: #e1e0df;
@@ -73,7 +79,7 @@ $primary-color-title-text: #353433;     // title
 
 
 /*
-//------------ theme 2 - light Mode -----------------
+//------------ theme 3 - Clouds Theme (White/Outlook) -----------------
 
 // submenu
 $sidebar-submenu-hover-color: #e1e0df;
@@ -98,13 +104,57 @@ $primary-color-title-text: #353433; // title
 
 
 
+//------------ theme 4 - Odoo Theme -----------------
+
+// submenu
+$sidebar-submenu-hover-color: #9d6991;
+$sidebar-menu-title-color: #FFFFFF;
+$sidebar-submenu-title-color: #FFFFFF;
+$sidebar-submenu-start-space: 20px;
+
+
+// main component
+$primary-color-main: #74516a;         // background
+$primary-color-foreground: #845978;   // foreground
+$primary-color-selected: rgba(12, 222, 216, 0.92);     // active
+$primary-color-text: #FFFFFF;            // font
+$primary-color-hover: #373b42;        // hover
+$primary-color-border: #7db5f5;       // border
+$primary-color-title-text: #353433;   // title
+
+
+
+$primary-color-field-label: #666666;
+$primary-color-field-background: #FAFAFA;
+$primary-color-field-set-label: #343434;
+$primary-color-title-line: #123F62;   // header label line
+
+
+$primary-color-btn-text: #FFFFFF; // btn text
+$primary-color-btn-success: #0C9F9C;
+$primary-color-btn-success-hover: #0c827f;
+$primary-color-btn-success-border: #0c827f;
+//-------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
 
 
 // Button Pack
-$primary-color-btn-text: #000000; // btn text
+//$primary-color-btn-text: #000000; // btn text
 $primary-color-btn-default: #d2d1d0;
 $primary-color-btn-default-hover: #c6c5c4;
 $primary-color-btn-default-border: #1a639e;
+
+
 
 
 
