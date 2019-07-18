@@ -101,7 +101,9 @@ export default Component.extend({
 
   getStateListIds() {
     let stateList = [];
-    let states = this.get('stateList');
+    //let states = this.get('stateList');
+    let states = this.appWelcome.getSateList();
+
     for (let i = 0; i < states.length; i++) {
       stateList.push(states[i].id)
     }
@@ -113,8 +115,9 @@ export default Component.extend({
 
     // initialize stateList
     let stateList = this.appWelcome.getSateList();
+    console.log('message--states', stateList);
 
-    if(stateList.length > 2){
+    if(stateList.length >= 2){
 
 
       // selected default active tab
