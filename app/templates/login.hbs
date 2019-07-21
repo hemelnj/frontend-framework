@@ -7,23 +7,10 @@
     margin-top: 10px;
   }
 
-
   .login-box {
     box-shadow: 0 0 10px -1px gray;
     margin-top: 100px;
     /* padding: 50 px;*/
-  }
-
-
-  .show-password-label {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    -webkit-hyphens: auto;
-    -ms-hyphens: auto;
-    hyphens: auto;
-    display: inline-block;
-    color: #666666;
-    font-size: 0.75rem;
   }
 
 </style>
@@ -39,10 +26,10 @@
   <form class="form-signin">
     <br>
 
-    <div style="padding: 25px;margin-top: -8%">
+    <div style="padding: 20px;margin-top: -8%">
       <div class="row">
         <div class="col-md-6">
-          <h4 style="color: #adaaa7" class="" >Login</h4>
+          <h4 style="font-size: 1.35rem" class="instruction-label">Login</h4>
         </div>
         <div class="col-md-6" style="float: right;">
           {{#if isLoadingIconVisible}}
@@ -65,20 +52,19 @@
       <div class="row">
         <div class="col-md-6">
           <div class="form-check" style="margin-top: 2px">
-            <label class="form-check-label show-password-label">
-              <input type="checkbox" class="form-check-input" onclick="myFunction()" style="margin-top: 2px;">Show Password
+            <label class="form-check-label instruction-label">
+              <input type="checkbox" class="form-check-input" onclick="myFunction()" style="margin-top: 2%;">Show
+              Password
             </label>
           </div>
         </div>
         <div class="col-md-6">
-          <h2  class="float-right" style="font-size:13px; color: #3C85BF; margin-top: 4px;">{{#link-to "forget-password"}}
+          <h2 class="instruction-label float-right"
+              style="margin-top: 7%;">{{#link-to
+            "forget-password"}}
             Forgot Password?{{/link-to}}</h2>
         </div>
       </div>
-
-
-
-
 
 
       <script>
@@ -93,7 +79,8 @@
       </script>
 
 
-      <button class="nges-button nges-button-success float-right" style="margin-top: 10px; width: 100%;" {{action "signin" userInformation}}>
+      <button class="nges-button nges-button-success float-right" style="margin-top: 10px; width: 100%;" {{action
+        "signin" userInformation}}>
         Sign In
       </button>
       <br>
