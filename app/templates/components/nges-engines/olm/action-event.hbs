@@ -68,7 +68,7 @@
 
                     <td class="table-data table-bordered">
                       <button {{action 'editActionEvent' item }}
-                        style="width: 100px; margin-bottom: 5px" class="olm-button-all olm-button-edit">Edit
+                        style="width: 100px; margin-bottom: 5px" class="nges-button nges-button-success">Edit
                       </button>
                       <!--<button {{action 'deleteActionEvent'
                                            item }} style="width: 100px; margin-bottom: 5px" class="button-all button-danger">Delete</button>-->
@@ -156,7 +156,7 @@
 
             <div class="col-md-4">
               <div class="form-btn-container">
-                <div class="olm-button-all olm-button-save"
+                <div class="nges-button nges-button-success"
                      style="width: 100px;margin-bottom: 5px;margin-top: 10px;" {{action "viewTableData"}}>
                   View
                 </div>
@@ -164,7 +164,7 @@
             </div>
             <div class="col-md-4">
               <div class="form-btn-container">
-                <div class="olm-button-all olm-button-save"
+                <div class="nges-button nges-button-success"
                      style="width: 100px; margin-bottom: 5px;margin-top: 10px;" {{action "refreshPage"}}>
                   Clear
                 </div>
@@ -173,7 +173,7 @@
             <div class="col-md-4">
               <div class="form-btn-container">
                 {{#if editClick}}
-                  <div class="olm-button-all olm-button-save"
+                  <div class="nges-button nges-button-success"
                        style="width: 100px; margin-bottom: 5px;margin-top: 10px;" {{action "updateActionEvent"
                                                                                            actionEvent}}>
                     Update
@@ -181,7 +181,7 @@
                 {{/if}}
 
                 {{#if resetClick}}
-                  <div class="olm-button-all olm-button-save"
+                  <div class="nges-button nges-button-success"
                        style="width: 100px; margin-bottom: 5px; margin-top: 10px;" {{action "save"}}>
                     Save
                   </div>
@@ -222,7 +222,7 @@
             <label for="name" class="input-field-label">Name:</label>
             <input class="input-field" name="name" value={{actionEvent.name}}>
 
-            <button class="button-all button-save" data-dismiss="modal" {{action "updateActionEvent" actionEvent}}
+            <button class="nges-button nges-button-success" data-dismiss="modal" {{action "updateActionEvent" actionEvent}}
                     style="width: 100px;margin-top: 15px">Update
             </button>
           {{/if}}
@@ -234,7 +234,7 @@
       <!-- Modal footer -->
       <div class="modal-footer">
         <div class="form-btn-container btn-right">
-          <button type="button" class="button-all button-danger" data-dismiss="modal"
+          <button type="button" class="nges-button nges-button-success" data-dismiss="modal"
                   style="width: 100px; margin-bottom: 5px">Close
           </button>
         </div>

@@ -10,68 +10,6 @@
     border-color: #666666;
   }
 
-  .te-button-all {
-    position: relative;
-    display: inline-block;
-    padding: 0;
-    background: transparent;
-    background-clip: border-box;
-    border: 1px solid transparent;
-    border-radius: .25rem;
-    line-height: 1.275rem;
-    text-decoration: none;
-  / / color: #0070d2;
-    -webkit-appearance: none;
-    white-space: normal;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    font-size: .75rem;
-    white-space: nowrap;
-    position: relative;
-  }
-
-  .te-button-save {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-    font-weight: 200;
-    text-align: center;
-    vertical-align: middle;
-    background-color: #123F62;
-    border-color: #123F62;
-    -webkit-transition: border 0.15s linear;
-    transition: border 0.15s linear;
-    color: #E8F0FE;
-  }
-
-  .te-button-save:hover {
-    background-color: #12466b;
-    border-color: #12466b;
-    color: #fff;
-    cursor: pointer;
-  }
-
-  .te-button-edit {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    text-align: center;
-    vertical-align: middle;
-    border: 1px solid #dddbda;
-    -webkit-transition: border 0.15s linear;
-    transition: border 0.15s linear;
-    border-color: #dddbda;
-    background-color: #fff;
-    border-color: #0070d2;
-  }
-
-  .te-button-edit:hover {
-    background-color: #f4f6f9;
-    border-color: #0070d2;
-    color: #000;
-    cursor: pointer;
-  }
-
   .input-field-label {
     overflow-wrap: break-word;
     word-wrap: break-word;
@@ -187,7 +125,7 @@
                     {{/each}}
                   </td>
                   <td class="table-data table-bordered">
-                    <button {{action 'editItemAction' item }} class="te-button-all te-button-edit">Edit</button>
+                    <button {{action 'editItemAction' item }} class="nges-button nges-button-success">Edit</button>
                     <!--<button {{action 'removeItemAction'
                                          item }} class="te-button-all te-button-danger">Delete</button>-->
                   </td>
@@ -307,7 +245,7 @@
         </div>
 
         <div>
-          <button {{action 'addSubMenu'}} class="olm-button-all olm-button-edit float-right">Select SubMenu</button>
+          <button {{action 'addSubMenu'}} class="nges-button nges-button-success float-right">Select SubMenu</button>
           <br>
         </div>
 
@@ -315,7 +253,7 @@
         <div>
           <br>
           <hr class="te-bottom-hr-line" style="margin-left: 30%">
-          <button class="te-button-all te-button-save float-right" {{action 'saveData' }} >Save Information</button>
+          <button class="nges-button nges-button-success float-right" {{action 'saveData' }} >Save Information</button>
 
           <!--<button style="margin-right: 30px;" class="button-save float-right" {{action 'updateData' }} >Update
             Information

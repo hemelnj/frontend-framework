@@ -61,7 +61,7 @@
                       <td class="table-data table-bordered">
                         <div>
                           <button {{action 'editState' state }}
-                            style="width: 100px; margin-bottom: 5px" class="olm-button-all olm-button-edit">Edit
+                            style="width: 100px; margin-bottom: 5px" class="nges-button nges-button-success">Edit
                           </button>
                         </div>
                       </td>
@@ -181,7 +181,7 @@
             <div class="row float-right">
 
               <div class="col-md-4">
-                <button class="olm-button-all olm-button-save"
+                <button class="nges-button nges-button-success"
                   {{action "refreshPage"}} style="width: 100px; margin-top: 15px">
                   Clear
                 </button>
@@ -189,7 +189,7 @@
 
               <div class="col-md-4">
                 {{#if visibleViewButton}}
-                  <button class="olm-button-all olm-button-save"
+                  <button class="nges-button nges-button-success"
                           {{action "viewTableData"}}style="width: 100px; margin-top: 15px">
                     View
                   </button>
@@ -198,14 +198,14 @@
 
               <div class="col-md-4">
                 {{#if editClick}}
-                  <button class="olm-button-all olm-button-save" {{action "updateState" state}}
+                  <button class="nges-button nges-button-success" {{action "updateState" state}}
                           style="width: 100px; margin-top: 15px">Update
                   </button>
 
                 {{/if}}
 
                 {{#if resetClick}}
-                  <button class="olm-button-all olm-button-save"
+                  <button class="nges-button nges-button-success"
                           {{action "getNewClassType" state}}style="width: 100px; margin-top: 15px">
                     Save
                   </button>
