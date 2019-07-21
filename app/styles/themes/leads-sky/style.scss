@@ -5,7 +5,6 @@ body {
   //font-size: 80%;
 }
 
-
 .hide {
   display: none;
 }
@@ -85,6 +84,7 @@ body {
   border: 1.2px solid $primary-color-title-line;
   opacity: 0.5;
 }
+
 //////////////////////
 
 //input field and fieldset style
@@ -137,8 +137,21 @@ body {
   outline: none;
   border-bottom: 1.5px solid rgba(81, 203, 238, 1);
 }
+
 ///////////////////////
 
+// login ui
+.instruction-label {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  display: inline-block;
+  color: $primary-color-instruction-text;
+  font-size: 0.73rem;
+  font-weight: bold;
+}
 
 // Navbar button on hover no shadow
 .navbar {
@@ -154,7 +167,6 @@ body {
   background-color: $primary-color-main !important;
 }
 
-
 .sidebar-toggler:not(:disabled):not(.disabled) {
   cursor: pointer;
 }
@@ -164,7 +176,6 @@ body {
   border-color: $primary-color-border !important;
   background-color: $primary-color-main !important;
 }
-
 
 fieldset {
   padding: 0 10px 10px 10px;
@@ -181,7 +192,6 @@ legend {
   color: $primary-color-main;
   padding: 2px;
 }
-
 
 .card {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
@@ -205,10 +215,6 @@ legend {
   margin-right: 20px;
 }
 
-
-
-
-
 .pagination-active {
   background: $primary-color-main;
   color: white
@@ -223,24 +229,22 @@ legend {
   top: 0;
 }
 
-
-
 .login-logo-bg {
   background: $primary-color-main;
 }
 
-
 .form-control {
-  height: 24px!important;
-  font-size: 12px!important;
+  height: 24px !important;
+  font-size: 12px !important;
   color: #333;
   padding: 0px;
   padding-left: 2%;
 }
 
-.dropdown{
-  color: $primary-color-text!important;
+.dropdown {
+  color: $primary-color-text !important;
 }
-.dropdown-item:active{
-  background: $primary-color-selected!important;
+
+.dropdown-item:active {
+  background: $primary-color-selected !important;
 }
