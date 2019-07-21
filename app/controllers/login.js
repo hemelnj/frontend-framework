@@ -46,7 +46,7 @@ export default Controller.extend(Authorization, {
             if (result.data === undefined) {
               context.get('warning').success('Menu Tree Should not be empty!');
             }
-            context.get('notifier').success('Login Successful!');
+            //context.get('notifier').success('Login Successful!');
             context.transitionToRoute("welcome");
           }).catch(function (msg) {
             context.get('notifier').danger('Failed! Fetch Menus Information');
