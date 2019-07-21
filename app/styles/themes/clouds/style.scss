@@ -166,6 +166,19 @@ body {
 }
 
 
+// login ui
+.instruction-label {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  display: inline-block;
+  color: $primary-color-instruction-text;
+  font-size: 0.73rem;
+  font-weight: bold;
+}
+
 fieldset {
   padding: 0 10px 10px 10px;
   border: 1px groove rgba(0, 0, 0, 0.2) !important;
