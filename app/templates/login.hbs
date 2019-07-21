@@ -1,6 +1,6 @@
 <style>
   .width-400 {
-    width: 296px;
+    width: 350px;
   }
 
   .width-400 input {
@@ -26,7 +26,7 @@
   <form class="form-signin">
     <br>
 
-    <div style="padding: 20px;margin-top: -8%">
+    <div style="padding: 20px;margin-top: -4%">
       <div class="row">
         <div class="col-md-6">
           <h4 style="font-size: 1.35rem" class="instruction-label">Login</h4>
@@ -38,31 +38,33 @@
         </div>
       </div>
 
-      <label for="inputName" class="sr-only">User name</label>
-      <input id="inputName" placeholder="Name" class="form-control" value={{userInformation.name}}
+      <hr style="margin-top: -4%;">
+
+      <label style="font-weight: bold; color: #373D42;font-size: 1.05rem">User</label>
+      <input id="inputName" placeholder="Name" class="form-control" value={{userInformation.name}} style="margin-top: -2%;"
              oninput={{action (mut userInformation.name) value="target.value"}}>
 
+      <br>
 
-      <label for="inputPassword" class="sr-only">Password</label>
-      <input id="inputPassword" type="password" placeholder="Password" class="form-control"
+      <label style="font-weight: bold; color: #373D42;font-size: 1.05rem">Password</label>
+      <input id="inputPassword" type="password" placeholder="Password" class="form-control" style="margin-top: -2%;"
              value={{userInformation.password}}
              oninput={{action (mut userInformation.password) value="target.value"}}>
 
 
       <div class="row">
         <div class="col-md-6">
-          <div class="form-check" style="margin-top: 2px">
-            <label class="form-check-label instruction-label">
-              <input type="checkbox" class="form-check-input" onclick="myFunction()" style="margin-top: 2%;">Show
+          <div class="form-check" >
+            <label class="form-check-label instruction-label" >
+              <input type="checkbox" class="form-check-input" onclick="myFunction()" style="margin-top: 2px">Show
               Password
             </label>
           </div>
         </div>
         <div class="col-md-6">
-          <h2 class="instruction-label float-right"
-              style="margin-top: 7%;">{{#link-to
+          <label class="instruction-label float-right" style="margin-top: 2px">{{#link-to
             "forget-password"}}
-            Forgot Password?{{/link-to}}</h2>
+            Forgot Password?{{/link-to}}</label>
         </div>
       </div>
 
@@ -78,7 +80,7 @@
         }
       </script>
 
-
+      <br>
       <button class="nges-button nges-button-success float-right" style="margin-top: 10px; width: 100%;" {{action
         "signin" userInformation}}>
         Sign In
