@@ -13,6 +13,7 @@ export default Component.extend({
   appConfiguration: service('app-configuration'),
   rmsSetupService: service('nges-services/rms/rms-setup'),
   rmsBaseService: service('nges-services/rms/rms-base-service'),
+  serviceInitializer: service('nges-services/service-initializer'),
   notifier: service(),
 
   init() {
@@ -63,7 +64,7 @@ export default Component.extend({
     let classTypeId = 6;//currency classtype id
 
     let actionEventName = "create";
-    this.rmsBaseService.getUserAbilityToCreate(accessToken, actionEventName, classTypeId, roleId).then(function (result) {
+    this.serviceInitializer.getUserAbilityToCreate(accessToken, actionEventName, classTypeId, roleId).then(function (result) {
       console.log('message-result', result);
       let status = {
         classTypeId: classTypeId,
@@ -71,8 +72,8 @@ export default Component.extend({
         roleId: roleId,
         actionEventId: result.data.id
       };
-      context.rmsBaseService.getStatusId(accessToken,status).then(function (result) {
-        console.log('message--result', result);
+      context.rmsBaseService.getNextAllowableStateId(accessToken,status).then(function (result) {
+        console.log('message--statusId', result.data.id);
         context.set('statusId',result.data.id);
       });
     });
