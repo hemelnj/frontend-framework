@@ -77,7 +77,7 @@ export default Component.extend({
     this.set('model.zipCode', beneficiaryData.zipCode);
 
     this.set('model.relationWithRemitter', beneficiaryData.relationshipWithRemitter);
-    this.set('statusId', beneficiaryData.status);
+    this.set('statusId', beneficiaryData.olcmState.id);
   },
   setRisk() {
     let data = [
@@ -216,6 +216,10 @@ export default Component.extend({
     let propertyData = attributeData.result;
     for (let i = 0; i < propertyData.length; i++) {
       recordArray[propertyData[i].code] = propertyData[i].value;
+    }
+
+    for (let i = 0; i < propertyData.length; i++) {
+      console.log('message--recordArray[propertyData[i].code]', recordArray[propertyData[i].code]);
     }
   },
   actions: {
@@ -425,49 +429,53 @@ export default Component.extend({
       let context = this;
       let attributeList = this.get('attributeList');
       console.log('message--attributeList', attributeList);
-      attributeList = attributeList.result;
-      for (let i = 0; i < attributeList.length; i++) {
+      if (attributeList) {
+        attributeList = attributeList.result;
+        for (let i = 0; i < attributeList.length; i++) {
 
-        let record = {
-          id: attributeList[i].id,
-          type: attributeList[i].type,
-          instanceId: model.beneficiaryId,
-          value: recordArray[attributeList[i].code],
-          code: attributeList[i].code,
-          describtion: 'n/a',
-          createdBy: 'msi',
-          createdAt: 1,
-          lastUpdatedAt: 1,
-          lastUpdatedBy: 'msi',
-          comments: 'n/a',
-          extra: 'n/a',
-          name: "n/a",
-          attribute: {
+          let record = {
             id: attributeList[i].id,
-          }
-        };
+            type: attributeList[i].type,
+            instanceId: model.beneficiaryId,
+            value: recordArray[attributeList[i].code],
+            code: attributeList[i].code,
+            describtion: 'n/a',
+            createdBy: 'msi',
+            createdAt: 1,
+            lastUpdatedAt: 1,
+            lastUpdatedBy: 'msi',
+            comments: 'n/a',
+            extra: 'n/a',
+            name: "n/a",
+            attribute: {
+              id: attributeList[i].id,
+            }
+          };
 
-        context.get('attributePayload').pushObject(record);
+          context.get('attributePayload').pushObject(record);
+        }
+
+        let recordPayload = this.get('attributePayload');
+        console.log('message--record', JSON.stringify(recordPayload));
+        //context.set('attributePayload',[]);
+
+        let accessToken = this.appConfiguration.getAccessToken();
+        let afterAddition = this.peSetupService.addNewPropertyData(accessToken, recordPayload);
+
+        afterAddition.then(function (msg) {
+          console.log('message---attributePayload', msg);
+          context.set('attributePayload', []);
+        }).catch(function (msg) {
+          if (msg.status === 200) {
+            context.get('notifier').success('Property Data Update Successful');
+            context.set('attributePayload', []);
+          } else {
+            context.get('notifier').danger('Property Data Update Failed!');
+            context.set('attributePayload', []);
+          }
+        });
       }
 
-      let recordPayload = this.get('attributePayload');
-      console.log('message--record', JSON.stringify(recordPayload));
-      //context.set('attributePayload',[]);
-
-      let accessToken = this.appConfiguration.getAccessToken();
-      let afterAddition = this.peSetupService.addNewPropertyData(accessToken, recordPayload);
-
-      afterAddition.then(function (msg) {
-        context.set('attributePayload', []);
-      }).catch(function (msg) {
-        if (msg.status === 200) {
-          context.get('notifier').success('Property Data Update Successful');
-          context.set('attributePayload', []);
-        } else {
-          context.get('notifier').danger('Property Data Update Failed!');
-          context.set('attributePayload', []);
-        }
-      });
 
       this.get('model').validate()
         .then(({validations}) => {
@@ -520,7 +528,7 @@ export default Component.extend({
               }
             };
 
-            console.log('message--beneficiaryData', JSON.stringify(beneficiaryData));
+            console.log('message--beneficiaryData--updateAction', JSON.stringify(beneficiaryData));
 
             let accessToken = this.appConfiguration.getAccessToken();
             let afterBeneficiaryUpdate = this.beneficiaryActionService.updateBeneficiaryData(accessToken, beneficiaryData, model.beneficiaryId);
