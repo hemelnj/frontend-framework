@@ -463,7 +463,7 @@ export default Component.extend({
         let afterAddition = this.peSetupService.addNewPropertyData(accessToken, recordPayload);
 
         afterAddition.then(function (msg) {
-          console.log('message---attributePayload', msg);
+          console.log('message---attributePayload', msg.result);
           context.set('attributePayload', []);
         }).catch(function (msg) {
           if (msg.status === 200) {
@@ -530,7 +530,7 @@ export default Component.extend({
 
             console.log('message--beneficiaryData--updateAction', JSON.stringify(beneficiaryData));
 
-            /*let accessToken = this.appConfiguration.getAccessToken();
+            let accessToken = this.appConfiguration.getAccessToken();
             let afterBeneficiaryUpdate = this.beneficiaryActionService.updateBeneficiaryData(accessToken, beneficiaryData, model.beneficiaryId);
             let context = this;
             afterBeneficiaryUpdate.then(function (msg) {
@@ -540,7 +540,7 @@ export default Component.extend({
               } else {
                 context.get('notifier').danger('Beneficiary Data Update Failed!');
               }
-            });*/
+            });
 
           } else {
             let context = this;
