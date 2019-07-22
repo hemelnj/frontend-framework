@@ -23,7 +23,7 @@
 
   .parent-container {
 
-    box-shadow: 0 0 10px 1px #80808066;
+    /*box-shadow: 0 0 10px 1px #80808066;*/
     /*background-image: url("./bgimage.jpg");*/
   }
 
@@ -152,50 +152,52 @@
     </div>
   </div>
 
-  <div class="tools-container">
-    <div class="tools active-tool" id="hand">
-      Hand
-    </div>
-    <div class="tools " id="start">
-      Start
-    </div>
-    <div class="tools" id="end">
-      End
-    </div>
+  <div class="card">
+    <div class="card-body">
+      <div class="tools-container">
+        <div class="tools active-tool" id="hand">
+          Hand
+        </div>
+        <div class="tools " id="start">
+          Start
+        </div>
+        <div class="tools" id="end">
+          End
+        </div>
 
-    <div class="tools" id="ellipse">
-      State
-    </div>
+        <div class="tools" id="ellipse">
+          State
+        </div>
 
-    <div class="tools" id="connect">
-      Event
-    </div>
+        <div class="tools" id="connect">
+          Event
+        </div>
 
-    <div class="tools" id="circle" style="display:none">
-      State
-    </div>
-    <div class="tools" id="circularedge" style="display:none">
-      Crud
-    </div>
+        <div class="tools" id="circle" style="display:none">
+          State
+        </div>
+        <div class="tools" id="circularedge" style="display:none">
+          Crud
+        </div>
 
-    <div class="tools" id="remove">
-      Remove
-    </div>
+        <div class="tools" id="remove">
+          Remove
+        </div>
 
-  </div>
-  <div style="text-align:center" class="parent-container">
+      </div>
+      <div style="text-align:center" class="parent-container">
 
-    <div id="container">
-
-
-    </div>
-
-    <!-- zoom range input  -->
-    <!--<div style="padding: 5px;">
+        <div id="container">
+          <!--diagram tool-->
+        </div>
+        <!-- zoom range input  -->
+        <!--<div style="padding: 5px;">
       <input onchange={{action 'zoomSliderChange' value='target.value' }} style="margin-top: 50px;" type="range" min="1"
              max="200" value="100" class="zoomRange" id="zoomRange">
       <span style="padding: 2px;" class="rangeValue">{{zoomRangeValue}}</span>
     </div>-->
+      </div>
+    </div>
   </div>
 
   <div class="property-form-container">
@@ -243,7 +245,7 @@
 
           <select class="js-select2" style="z-index: +999999; position: absolute" id="stateOption">
 
-            <option class="state-opt" value="" selected="selected"> ----Select State---- </option>
+            <option class="state-opt" value="" selected="selected"> ----Select State----</option>
 
             {{#each states as |state index|}}
 

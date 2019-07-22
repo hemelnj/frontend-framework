@@ -5,47 +5,6 @@
     min-width: 0;
   }
 
-  .input-field-label {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    -webkit-hyphens: auto;
-    -ms-hyphens: auto;
-    hyphens: auto;
-    display: inline-block;
-    color: #707275;
-    font-size: .75rem;
-    font-weight: bolder;
-    padding: 0 1rem 0 .75rem;
-    margin-bottom: .125rem;
-  }
-
-  .input-field {
-    border-left: 0;
-    border-right: 0;
-    border-top: 0;
-    border-bottom: 1.1px solid #747474;
-    width: 100%;
-    -webkit-transition: border .1s linear, background-color .1s linear;
-    transition: border .1s linear, background-color .1s linear;
-    display: inline-block;
-    padding: 0 1rem 0 .75rem;
-    font-size: .75rem;
-    line-height: 1.875rem;
-    min-height: calc(1.875rem + (1px * 2));
-    margin-bottom: .125rem;
-    background: #FFFFFF;
-  }
-
-  .input-field:focus {
-    outline: none;
-    border-bottom: 1.5px solid rgba(81, 203, 238, 1);
-  }
-
-  .form-control {
-    clear: left;
-    position: relative;
-  }
-
   .has-search .input-field {
     padding-left: 4.275rem;
   }
@@ -57,24 +16,16 @@
     width: 4.375rem;
     height: 4.375rem;
     line-height: 1.875rem;
-    min-height: calc(1.875rem + (1px * 2));
     text-align: center;
     pointer-events: none;
     color: #aaa;
   }
 
-  .muliti-select-item {
-    padding: 0.25rem 0.25rem;
-    color: #3e3e3c;
-    font-size: .75rem;
-    white-space: nowrap;
-  }
-
   .table-all thead th {
-    padding-left:0.85rem;
+    padding: 7px;
     background-color: #FEFEFE;
     color: #313131;
-    font-size: .75rem;
+    font-size: 12px;
     font-weight: bold;
     line-height: normal;
     font-weight: bolder;
@@ -84,9 +35,9 @@
   }
 
   .table-all td {
-    padding-left:0.85rem;
+    padding: 7px;
     color: #3e3e3c;
-    font-size: .75rem;
+    font-size: 12px;
     white-space: nowrap;
     position: relative;
     line-height: normal;
@@ -123,7 +74,7 @@
           </div>
 
           <div class="table-container"
-               style="overflow-y: auto; max-height: 250px; overflow-x: auto; margin-top:10px;">
+               style="overflow-y: auto; max-height: 250px; overflow-x: auto;">
             <table class="table-all">
               <thead>
               <tr class="line-height-reset">
@@ -181,7 +132,7 @@
           <div id="actionEventInfo" class="adjust-card-style field-form max-width" method="post">
             <div class="row" style="margin-top:10px;">
               <div class="col-md-3">
-                <label for="name" class="input-field-label" style="margin-top:10px;">Name</label>
+                <label for="name" class="input-field-label">Name</label>
               </div>
               <div class="col-md-9">
                 {{input type="text" class="input-field" id="role"  name="role"
@@ -189,9 +140,9 @@
                         value=name}}
               </div>
             </div>
-            <div class="row" style="margin-top:15px;">
+            <div class="row">
               <div class="col-md-3">
-                <label for="code" class="input-field-label" style="margin-top:10px;">Code</label>
+                <label for="code" class="input-field-label">Code</label>
               </div>
               <div class="col-md-9">
                 {{input type="text" class="input-field" id="roleCode" name="roleCode"
@@ -201,9 +152,9 @@
 
             </div>
 
-            <div class="row" style="margin-top:15px;">
+            <div class="row">
               <div class="col-md-3">
-                <label for="description" class="input-field-label" style="margin-top:10px;">Description</label>
+                <label for="description" class="input-field-label">Description</label>
               </div>
               <div class="col-md-9">
                 {{input type="text" class="input-field" id="roleDescription" name="roleDescription"
@@ -213,7 +164,7 @@
 
             </div>
 
-            <div class="form-btn-container float-right" style="margin-top:25px">
+            <div class="form-btn-container float-right">
               <div class="nges-button nges-button-success" style="width: 100px; margin-bottom: 5px" {{action "save"}}>
                 Save
               </div>

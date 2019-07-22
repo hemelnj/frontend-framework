@@ -96,10 +96,9 @@ body {
   hyphens: auto;
   display: inline-block;
   color: $primary-color-field-label;
-  font-size: 0.75rem;
+  font-size: $link-font-size;
   font-weight: bold;
   padding: 0 1rem 0 .75rem;
-  margin-bottom: .125rem;
 }
 
 .field-set-label {
@@ -126,10 +125,8 @@ body {
   transition: border .1s linear, background-color .1s linear;
   display: inline-block;
   padding: 0 1rem 0 .75rem;
-  font-size: .75rem;
-  line-height: 1.875rem;
-  min-height: calc(1.875rem + (1px * 2));
-  margin-bottom: .125rem;
+  font-size: $link-font-size;
+  line-height: 1.475rem;
   background: $primary-color-field-background;
 }
 
