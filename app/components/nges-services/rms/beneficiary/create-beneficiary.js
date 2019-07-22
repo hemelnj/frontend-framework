@@ -530,7 +530,7 @@ export default Component.extend({
 
             console.log('message--beneficiaryData--updateAction', JSON.stringify(beneficiaryData));
 
-            let accessToken = this.appConfiguration.getAccessToken();
+            /*let accessToken = this.appConfiguration.getAccessToken();
             let afterBeneficiaryUpdate = this.beneficiaryActionService.updateBeneficiaryData(accessToken, beneficiaryData, model.beneficiaryId);
             let context = this;
             afterBeneficiaryUpdate.then(function (msg) {
@@ -540,7 +540,7 @@ export default Component.extend({
               } else {
                 context.get('notifier').danger('Beneficiary Data Update Failed!');
               }
-            });
+            });*/
 
           } else {
             let context = this;
