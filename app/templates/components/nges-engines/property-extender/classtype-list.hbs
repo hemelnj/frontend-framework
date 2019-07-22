@@ -1,19 +1,5 @@
 <style>
-  .layout-title {
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-size: 2.125rem;
-    font-weight: 400;
-    color: #123F62;
-    display: block;
-  }
 
-  .auth-var-line {
-    border-left: 1px solid #E5E5E5;
-    height: 500px;
-  }
 
   .auth-hr-line {
     margin-top: -3px;
@@ -50,66 +36,6 @@
     position: relative;
   }
 
-  .auth-button-save {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    text-align: center;
-    vertical-align: middle;
-    border: 1px solid #dddbda;
-    -webkit-transition: border 0.15s linear;
-    transition: border 0.15s linear;
-    color: #fff;
-    border-color: #dddbda;
-    background-color: #123F62;
-    border-color: #123F62;
-  }
-
-  .auth-button-save:hover {
-    background-color: #12466b;
-    border-color: #12466b;
-    color: #fff;
-    cursor: pointer;
-  }
-
-  .button-danger {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    text-align: center;
-    vertical-align: middle;
-    border: 1px solid #dddbda;
-    -webkit-transition: border 0.15s linear;
-    transition: border 0.15s linear;
-    background-color: #c23934;
-    border-color: #c23934;
-    color: #fff;
-  }
-
-  .button-danger:hover {
-    background-color: #a61a14;
-    border-color: #a61a14;
-    color: #fff;
-    cursor: pointer;
-  }
-
-  .auth-button-edit {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    text-align: center;
-    vertical-align: middle;
-    border: 1px solid #dddbda;
-    -webkit-transition: border 0.15s linear;
-    transition: border 0.15s linear;
-    border-color: #dddbda;
-    background-color: #fff;
-    border-color: #0070d2;
-  }
-
-  .auth-button-edit:hover {
-    background-color: #f4f6f9;
-    border-color: #0070d2;
-    color: #000;
-    cursor: pointer;
-  }
 
   .form-group {
     position: relative;
@@ -259,7 +185,7 @@
                     <div>
                       <button data-toggle="modal" data-target="#actionEventModal" onClick={{action
                           (action 'editAction' classType.id) value="target.value"}} style="width: 100px;"
-                        class="auth-button-all auth-button-edit">Edit
+                        class="nges-button nges-button-success">Edit
                       </button>
                     </div>
                   </td>
@@ -327,7 +253,7 @@
                     <div>
                       <button data-toggle="modal" data-target="#actionEventModal" onClick={{action
                           (action 'editAction' classType.id) value="target.value"}} style="width: 100px;"
-                        class="auth-button-all auth-button-edit">Edit
+                              class="nges-button nges-button-success">Edit
                       </button>
                     </div>
                   </td>
@@ -431,13 +357,13 @@
           </div>
 
           <div>
-            <button id='add' class="olm-button-all olm-button-edit float-right" {{action 'addAction'}}>Add</button>
+            <button id='add' class="nges-button nges-button-success float-right" {{action 'addAction'}}>Add</button>
             <br>
           </div>
           <div>
             <br>
             <hr class="te-bottom-hr-line" style="margin-left: 30%">
-            <button id='save' class="olm-button-all olm-button-save float-right" {{action 'saveAction'}}>Save</button>
+            <button id='save' class="nges-button nges-button-success float-right" {{action 'saveAction'}}>Save</button>
           </div>
 
         </div>
