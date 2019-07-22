@@ -6,7 +6,7 @@ import config from '../../../config/environment';
 export default Controller.extend(Authorization, {
 
   appName: config.APP.appName,
-  isSidebarHidden: false,
+  isSidebarHidden: true,
   appAuth: service('app-configuration'),
   appRestTemplate: service('app-rest-template'),
   appWelcome: service('nges-core/app-welcome'),

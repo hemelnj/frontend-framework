@@ -180,6 +180,7 @@ ul.CTAs a {
 }
 #sidebar .nav-link.active{
   color: $primary-color-selected!important;
+  background-color: $sidebar-submenu-hover-color!important;
 }
 
 
@@ -221,6 +222,3 @@ ul.CTAs a {
   font-weight: bold;
   font-size: $link-font-size!important;
 }
-
-
-
