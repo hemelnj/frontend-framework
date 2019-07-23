@@ -45,7 +45,7 @@ a:focus {
 #sidebar ul li.active>a,
 a[aria-expanded="true"] {
   color: $primary-color-text;
-  background: $primary-color-sidebar;
+  background: $sidebar-menu-title-background;
 }
 
 
