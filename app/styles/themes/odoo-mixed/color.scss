@@ -7,15 +7,15 @@ $content-font-size: 11px;
 $link-font-size: 12px;
 
 
-//------------ theme 4 - Odoo Theme -----------------
+//------------ theme 4 - Odoo-Mixed Theme -----------------
 
 // submenu
-$sidebar-submenu-hover-color: #9d6991;
+$sidebar-submenu-hover-color: #222529;
 $sidebar-menu-title-color: #FFFFFF;
+$sidebar-menu-title-background: #212121;
 $sidebar-submenu-title-color: #FFFFFF;
 $sidebar-submenu-start-space: 20px;
-$sidebar-menu-title-background: #74516a;
-$primary-color-sidebar: #845978;
+$primary-color-sidebar: #333439;
 
 // main component
 $primary-color-workspace: #F3F2F1;    // workspace panel
@@ -25,7 +25,7 @@ $primary-color-selected: rgba(12, 222, 216, 0.92);     // active
 $primary-color-text: #FFFFFF;            // font
 $primary-color-hover: #373b42;        // hover
 $primary-color-border: #7db5f5;       // border
-$primary-color-title-text: #239996;   // layout header title
+$primary-color-title-text: #262A2D;   // layout header title
 
 
 

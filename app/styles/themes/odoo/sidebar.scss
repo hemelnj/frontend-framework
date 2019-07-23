@@ -45,7 +45,7 @@ a:focus {
 #sidebar ul li.active>a,
 a[aria-expanded="true"] {
   color: $primary-color-text;
-  background: $primary-color-main;
+  background: $sidebar-menu-title-background;
 }
 
 
@@ -56,7 +56,7 @@ a[aria-expanded="true"] {
   left: 0;
   height: 100vh;
   z-index: 999;
-  background: $primary-color-main;
+  background: $primary-color-sidebar;
   color: $primary-color-text;
   transition: all 0.3s;
   overflow-y: auto;
@@ -120,7 +120,7 @@ a[data-toggle="collapse"] {
 ul ul a {
   font-size: 0.9em !important;
   padding-left: $sidebar-submenu-start-space !important;
-  background: $primary-color-foreground;
+  background: $primary-color-sidebar;
 }
 
 ul.CTAs {
