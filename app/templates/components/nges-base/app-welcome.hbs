@@ -1,8 +1,4 @@
-
-
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-
-
 
 
   <div class="">
@@ -32,11 +28,9 @@
     </ul>
 
 
-
-
-
     <div class="menu-right">
       {{nges-base/app-application-popup
+        userName = userEmail
         signOut = (action 'signOut')
         navigateToUpdatePassword = (action 'navigateToUpdatePassword')
 
@@ -51,7 +45,7 @@
 <div class="container">
 
   {{
-    nges-base/app-greetings
+  nges-base/app-greetings
     appName=appName
     changeLocaleENG=(action 'changeLocaleENG')
     changeLocaleBNG=(action 'changeLocaleBNG')

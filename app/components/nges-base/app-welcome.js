@@ -48,10 +48,10 @@ export default Component.extend(Authorization, {
     let context = this;
     let authorizationStatus = false;
     let roles = this.appConfiguration.getUserRoleIdList();
-
+    let userEmail = this.appConfiguration.getAuthorizedUserInformation().email;
     let accessToken = this.appConfiguration.getAccessToken();
 
-
+    context.set('userEmail',userEmail);
     context.appWelcome.getInitialMenuTreeInformation(roles, accessToken).then(function (results) {
       let menuTreeData = results.data.children;
 
