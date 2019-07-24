@@ -9,7 +9,6 @@ export default Component.extend(Authorization, {
   appName: config.APP.appName,
   appLogo: config.APP.appLogo,
   intl: service(),
-  authEngineUIHost: config.NGES_UI_HOSTS.AUTH_ENGINE_UI_HOST,
   appConfiguration: service('app-configuration'),
   appRestTemplate: service('app-rest-template'),
   appWelcome: service('nges-core/app-welcome'),

@@ -26,7 +26,6 @@ export default Controller.extend(Authorization, {
 
     navigateToUpdatePassword(){
       this.get('router').transitionTo('update-password');
-      console.log('message-panel loader', 'navigateToUpdatePassword');
       //this.clearAuthorization();
       //window.location.replace(this.authEngineUIHost + "/update-user-credential");
     }
