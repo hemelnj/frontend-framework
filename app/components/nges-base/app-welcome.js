@@ -27,6 +27,7 @@ export default Component.extend(Authorization, {
       this.get('intl').setLocale(['bn-ln']);
     },
     navigateToUpdatePassword(){
+      console.log('message-app welcome', 'navigateToUpdatePassword');
       this.get('router').transitionTo('update-password');
     }
   },

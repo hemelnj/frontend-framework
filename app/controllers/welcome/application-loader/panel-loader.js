@@ -11,7 +11,6 @@ export default Controller.extend(Authorization, {
   appRestTemplate: service('app-rest-template'),
   appWelcome: service('nges-core/app-welcome'),
   appLogin: service('nges-core/app-login'),
-  authEngineUIHost: config.NGES_UI_HOSTS.AUTH_ENGINE_UI_HOST,
   actions: {
     toggleNavSidebarAction() {
       this.toggleProperty('isSidebarHidden');
@@ -26,8 +25,10 @@ export default Controller.extend(Authorization, {
     },
 
     navigateToUpdatePassword(){
-      this.clearAuthorization();
-      window.location.replace(this.authEngineUIHost + "/update-user-credential");
+      this.get('router').transitionTo('update-password');
+      console.log('message-panel loader', 'navigateToUpdatePassword');
+      //this.clearAuthorization();
+      //window.location.replace(this.authEngineUIHost + "/update-user-credential");
     }
   },
 

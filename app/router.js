@@ -19,7 +19,7 @@ Router.map(function () {
 
     this.route('application-loader', {path: ':application_code'}, function () {
       this.route('panel-loader', {path: ':panel_code'}, function () {
-      this.route('module-loader', {path: ':module_code'}, function () {
+        this.route('module-loader', {path: ':module_code'}, function () {
 
           this.route('service-holder-loader', {path: ':service_holder_code'}, function () {
             this.route('menu-template-loader', {path: ':menu_template_code'}, function () {
