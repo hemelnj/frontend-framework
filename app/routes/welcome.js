@@ -10,7 +10,7 @@ export default Route.extend(Authorization, {
   beforeModel() {
 
 
-    if( !this.isAuthorization() ){
+    if (!this.isAuthorization()) {
       this.transitionTo("login");
     }
 

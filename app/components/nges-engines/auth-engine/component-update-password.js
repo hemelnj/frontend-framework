@@ -12,16 +12,14 @@ export default Component.extend({
   appConfiguration: service('app-configuration'),
   appAuthEngineCredential: service('nges-engines/auth-engine/app-auth-engine-credential'),
 
-  authEngineHost: config.NGES_SERVICE_HOSTS.AUTH_SERVICE_HOST,
-  frontendEngineUIHost: config.NGES_UI_HOSTS.FRONTEND_ENGINE_UI_HOST,
-  authEngineUIHost: config.NGES_UI_HOSTS.AUTH_ENGINE_UI_HOST,
+  notifier: service(),
 
   init() {
     this._super(...arguments);
   },
 
   actions: {
-    update(oldPass, newPass) {
+    updateAction(oldPass, newPass) {
 
       let accessToken = this.appConfiguration.getAccessToken();
 
@@ -44,15 +42,25 @@ export default Component.extend({
         }
       };
 
-      let responseAfterUpdatePassword = this.appAuthEngineCredential.updatePassword(userData,accessToken);
+      let responseAfterUpdatePassword = this.appAuthEngineCredential.updatePassword(userData, accessToken);
       responseAfterUpdatePassword.then(function (result) {
 
       }).catch(function (msg) {
-
-        if(msg.status===200){
-          window.location.replace(context.frontendEngineUIHost + "/login");
+        console.log('message--msg', msg);
+        if (msg.status === 200) {
+          context.appConfiguration.clearAppInformation();
+          context.get('notifier').success("Update Successful! Login with new Password");
+          context.get('router').transitionTo('login');
         }
-        context.set('errorMsg',msg.responseJSON.message);
+
+        if (msg.status === 400) {
+          context.set('errorMsg', 'Invalid Old Password');
+          context.get('notifier').danger('Invalid Old Password');
+        }
+        if(msg.responseJSON.message) {
+          context.get('notifier').danger(msg.responseJSON.message);
+          context.set('errorMsg', msg.responseJSON.message);
+        }
       });
     }
   },
