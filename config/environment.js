@@ -41,8 +41,8 @@ module.exports = function (environment) {
     },
 
     APP: {
-      appName: 'Remittance Management System',
-      appTitle: 'Remittance Management System',
+      appName: 'Frontend Framework',
+      appTitle: 'Frontend Framework',
       appLogo: '/app-logo.png',
     }
   };
