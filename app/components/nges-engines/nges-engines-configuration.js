@@ -105,6 +105,38 @@ export default [
         detailView: []
       }
     ]
-  }
+  },
+
+  {
+    appCode: 'nges-engine',
+    appPanelCode: 'admin-panel',
+    appModuleCode: 'common',
+    appMenuTemplateCode: 'rule-engine',
+    name: 'RuleEngine',
+    templatePath: enginePath + '/rule-engine',
+    templates: [
+      {
+        code: 'atomic-rule',
+        name: 'atomic-rule-component',
+        label: 'Atomic Rule',
+        detailPath: '/',
+        detailView: []
+      },
+      {
+        code: 'unit-rule',
+        name: 'unit-rule-component',
+        label: 'Unit/Regular Rule',
+        detailPath: '/',
+        detailView: []
+      },
+      {
+        code: 'step-rule',
+        name: 'step-rule-component',
+        label: 'Step/Slap Rule',
+        detailPath: '/',
+        detailView: []
+      },
+    ]
+  },
 
 ]

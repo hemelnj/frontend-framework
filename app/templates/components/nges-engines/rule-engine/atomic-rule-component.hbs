@@ -1,0 +1,182 @@
+<div class="card">
+  <div class="card-body">
+    <div class="mar-bottom-100">
+      <h1 class="layout-header-title">Atomic Rule</h1>
+      <div class="inputPanel" style="border: 1px solid #bebebe; padding: 5px;">
+
+        <div class="row">
+
+          <div class="col-md-6">
+            <div class="col-md-12" style="margin-top: 10px;">
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-4">
+                    <label for="email">Name</label>
+                  </div>
+                  <div class="col-md-8">
+                    {{input type="text" class="form-control" id="name" name="name" placeholder="name" value=name}}
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-4">
+                    <label for="exampleFormControlSelect1">Class</label>
+                  </div>
+                  <div class="col-md-8">
+                    <select class="form-control" id="firstClassName">
+                      <option></option>
+                      {{#each classes as |class|}}
+                        <option value={{class.name}} class="className">{{class.name}}</option>
+                      {{/each}}
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-4">
+                    <label for="labeForAttriburtesOfFirstPartOfCondition">Attribute</label>
+                  </div>
+                  <div class="col-md-8">
+                    <select class="form-control" id="attributeName">
+                      {{#each attributes as |attr|}}
+                        <option value={{attr}} class="attributeName">{{attr}}</option>
+                      {{/each}}
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="col-md-12" style="margin-top: 10px;">
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-4">
+                    <label for="exampleFormControlSelect1">Operation</label>
+                  </div>
+                  <div class="col-md-8">
+                    <select class="form-control" id="operationName">
+
+                      {{#each operations as |operation|}}
+                        <option value={{operation}} class="operationName">{{operation}}</option>
+                      {{/each}}
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-4">
+                    <label for="exampleFormControlSelect1">Class</label>
+                  </div>
+                  <div class="col-md-8">
+                    <select class="form-control" id="comparedClassName">
+                      <option value="noObject" class="comparedClassName">No object</option>
+                      {{#each classes as |class|}}
+                        <option value={{class.name}} class="comparedClassName">{{class.name}}</option>
+                      {{/each}}
+
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{#if showValueInput}}
+              <div class="col-md-12">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <label for="exampleFormControlSelect1">Attribute</label>
+                    </div>
+                    <div class="col-md-8">
+                      <select class="form-control" id="comparedAttributeName">
+                        {{#each comparedAttributes as |attr|}}
+                          <option value={{attr}} class="comparedAttributeName">{{attr}}</option>
+                        {{/each}}
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {{/if}}
+            {{#if dontShowValueInput}}
+              <div class="col-md-12">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <label for="email">Value</label>
+                    </div>
+                    <div class="col-md-8">
+                      {{input type="text" class="form-control" id="customComparedValue" class="customComparedValue"
+                              value=selectedValue}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {{/if}}
+
+              <button class="nges-button nges-button-success float-right" {{ action  "save" }} >
+                Save Rule
+              </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <br>
+
+      <div>
+
+        <h1 class="layout-header-title">Atomic Rule List</h1>
+        <div class="table" style="border: 1px solid #b4b4b4; background: #dfdfdf">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>Name</th>
+              <th>Class</th>
+              <th>Attribute</th>
+              <th>Operation</th>
+              <th>Class</th>
+              <th>Attribute</th>
+              <th>Action</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {{#each atomicRules as |rule i|}}
+              <tr>
+                <td>{{rule.ruleName}}</td>
+                <td>{{rule.objectType}}</td>
+                <td>{{rule.property}}</td>
+                <td>{{rule.operator}}</td>
+                <td>{{rule.compObjectType}}</td>
+                <td>{{rule.compProperty}}</td>
+                <td>
+
+                  <button class="nges-button nges-button-success" {{ action  "update" rule}}> Update</button> &nbsp;
+                  <button class="nges-button nges-button-success" {{ action  "delete" rule}}> Delete</button>
+
+                </td>
+              </tr>
+            {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

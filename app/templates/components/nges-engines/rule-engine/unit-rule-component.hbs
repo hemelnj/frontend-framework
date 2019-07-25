@@ -1,0 +1,318 @@
+<div class="card">
+  <div class="card-body">
+    <h1 class="layout-header-title">Regular/Unit rule</h1>
+
+    <div class="" style="border: 1px solid #bebebe; padding: 5px">
+      <br>
+
+
+      <div>
+        {{#if finalRuleString}}
+          <div class="unit-rule-container" style="background: #2065a1">
+            {{finalRuleString}}
+          </div>
+        {{/if}}
+        <br>
+      </div>
+
+
+      <div class=" {{if diagramView "show" "hide"}} ">
+        <h5 class="layout-header-title">Regular/Unit Rule Mapping Panel</h5>
+        <div class="diagram-container" style="background: white;">
+          <div>
+            <div class="tools-container">
+              <div class="tools active-tool" id="opt">
+                <span>Operator</span>
+              </div>
+              <div class="tools" id="ar">
+                <span>Atomic rule</span>
+              </div>
+              <div class="tools" id="connect">
+                <span>Connect</span>
+              </div>
+              <div class="tools" id="move">
+                <span>Hand</span>
+              </div>
+              <div class="tools" id="modify">
+                <span>Modify</span>
+              </div>
+              <div class="tools" id="delete">
+                <span>Remove</span>
+              </div>
+              <div class="tools" id="clear">
+                Clear
+              </div>
+            </div>
+          </div>
+          {{#if showPopUp}}
+            <div class="diagram-form-modal">
+              <div class="modal-form-container">
+                {{#if showOptFormOnModal}}
+                  <div class="box">
+                    <div class="form-group">
+                      <label for="sel1">Select operator:</label>
+
+                      <select class="form-control" id="#operators">
+                        {{#each operators as |opt|}}
+                          <option class="operators" value="{{opt}}">{{opt}}</option>
+                        {{/each}}
+                      </select>
+
+                    </div>
+                    <div class="btn btn-info operatorSubmitBtn">Okay</div>
+                    <div class="btn btn-info" style="margin-left: 5px;" {{action 'cancel'}}>Cancel</div>
+                  </div>
+                {{/if}}
+                {{#unless showOptFormOnModal}}
+                  <div class="box">
+                    <div class="form-group">
+                      <label for="sel1">Select atomic rule:</label>
+                      <select class="form-control" id="atomicrules">
+                        {{#each atomicrules as |rule|}}
+                          <option value="{{rule.ruleName}}" class="atomicrules">
+                            {{rule.objectType}} {{rule.property}} {{rule.operator}}
+                            {{#if (nges-engines/rule-engine/check-object-type rule.compObjectType)}}
+                              <span>
+                                {{rule.compObjectType}}
+                              </span>
+                            {{/if}}
+                            {{rule.compProperty}}
+                          </option>
+                        {{/each}}
+                      </select>
+                    </div>
+                    <div class="btn btn-info atomicRuleSubmitBtn"> Okay</div>
+                    <div class="btn btn-info" style="margin-left: 5px;" {{action 'cancel'}}>Cancel</div>
+                  </div>
+                {{/unless}}
+              </div>
+            </div>
+          {{/if}}
+          <div id="container"></div>
+        </div>
+      </div>
+
+
+      <br>
+      <div class="">
+        <div class="row">
+          <div class="col-md-4">
+
+            <div class="{{if diagramView "hide" "show"}}">
+
+              <div>
+                <div class="inline">
+                  <label for="exampleFormControlSelect1">Atomic rule</label>
+
+                  <select class="form-control inline-mini" id="atomicrulesFormView">
+                    {{#each atomicrules as |rule|}}
+                      <option value="{{rule.ruleName}}" class="atomicrulesFormView">
+                        {{rule.objectType}} {{rule.property}} {{rule.operator}}
+                        {{#if (nges-engines/rule-engine/check-object-type rule.compObjectType)}}
+                          <span>
+                            {{rule.compObjectType}}
+                          </span>
+                        {{/if}}
+                        {{rule.compProperty}}
+                      </option>
+                    {{/each}}
+                  </select>
+
+                  <div class="btn btn-info mar-5" id="addAtomicRuleTOList">
+                    Add
+                  </div>
+                </div>
+                <div class="inline">
+                  <label for="exampleFormControlSelect1">Operator</label>
+                  <br/>
+                  <select class="form-control inline-mini" id="#operatorsFormView">
+                    {{#each manualOperators as |opt|}}
+                      <option class="operators operatorsFormView" value="{{opt}}">{{opt}}</option>
+                    {{/each}}
+                  </select>
+                  <div class="btn btn-info mar-5" id="addOptToList">
+                    Add
+                  </div>
+                </div>
+              </div>
+              <div class="btn btn-info mar-5" id="remove">
+                Remove
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <div class="then-container">
+              </div>
+              <div class="action-list-container">
+
+
+              </div>
+              <button id="add_new_action" {{action "addnewaction"}} class="btn btn-danger">
+                Add new action
+              </button>
+
+            </div>
+
+
+            <div class="form-group">
+              <label class="input-field-label">Regular/Unit Rule Name</label>
+              <input type="text" class="input-field" placeholder="Enter Regular/Unit Rule Name" id="nameofrule">
+            </div>
+
+
+            <div class="row">
+
+            </div>
+
+            <div class="mar-5" id="save">
+              {{#if isEditView}}
+                <button {{action "update"}} class="nges-button nges-button-success">
+                  Update
+                </button>
+              {{/if}}
+              {{#unless isEditView}}
+                <button {{action "save"}} class="nges-button nges-button-success">
+                  Save Unit/Regular Rule
+                </button>
+              {{/unless}}
+            </div>
+
+            <div class="mar-5" id="showDiagram">
+              {{#unless diagramView}}
+                <button class="nges-button nges-button-success">
+                  Use diagram view
+                </button>
+              {{/unless}}
+              {{#if diagramView}}
+                <button class="nges-button nges-button-success">
+                  Use form view
+                </button>
+              {{/if}}
+            </div>
+          </div>
+
+          <div class="col-md-8">
+            <h5 class="layout-header-title">Atomic Rules List</h5>
+            <div class="" style="border: 1px solid #bebebe; background: #dfdfdf;">
+              <table class="table table-striped">
+                <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Class</th>
+                  <th>Attribute</th>
+                  <th>Operation</th>
+                  <th>Class</th>
+                  <th>Attribute</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#each atomicrules as |rule|}}
+                  <tr>
+                    <td>{{rule.ruleName}}</td>
+                    <td>{{rule.objectType}}</td>
+                    <td>{{rule.property}}</td>
+                    <td>{{rule.operator}}</td>
+                    <td>{{rule.compObjectType}}</td>
+                    <td>{{rule.compProperty}}</td>
+                  </tr>
+                {{/each}}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br>
+    </div>
+
+
+    <br>
+    <h2 class="layout-header-title">All Regular Rules</h2>
+    <div class="" style="border: 1px solid #bebebe; background: #dfdfdf;">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Then</th>
+          <th>Rule</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each data_unit_rules as |unit_rule|}}
+          <tr>
+            <td>{{unit_rule.name}}</td>
+            <td>{{unit_rule.extra}}</td>
+            <td>
+              {{ unit_rule.rule}}
+            </td>
+            <td>
+              <div class="nges-button nges-button-success mar-5" {{ action "edit" unit_rule}} id="edit">
+                Edit
+              </div>
+              <div class="nges-button nges-button-success mar-5" {{ action "delete" unit_rule}} id="delete">
+                Delete
+              </div>
+            </td>
+          </tr>
+        {{/each}}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="modal-wrapper">
+      <div class="container add-action-modal">
+        <div class="form-group">
+          <label for="sel1">Select class:</label>
+          <select class="form-control" id="action-class-name">
+            <option></option>
+            <option class="action-class-name">State</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="sel1">Select propery:</label>
+          <select class="form-control" id="action-property-name">
+            <option></option>
+            <option class="action-property-name">id</option>
+            <!-- <option class="action-property-name">percentage</option>
+             <option class="action-property-name">amountOfCharge</option>
+             <option class="action-property-name">min</option>
+             <option class="action-property-name">max</option>
+             <option class="action-property-name">baseMoney</option>-->
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="usr">Value:</label>
+          <input type="text" class="form-control" id="action-property-value">
+          <div class="btn btn-info mar-top-30" id="submit-new-action">
+            Submit
+          </div>
+          <div {{action "closenewaction"}} class="btn btn-danger mar-top-30" id="submit-new-action">
+            Close
+          </div>
+        </div>
+      </div>
+      <!-- Modal footer -->
+
+    </div>
+
+    <div class="container mar-top-100 popup-for-delete-wrapper" style="text-align:center">
+      <div class="pop-up-for-delete">
+        <div>
+          Do you want to delete?
+        </div>
+        <div>
+          <div class="btn btn-danger all-mar" id="delete-yes">
+            Yes
+          </div>
+          <div class="btn btn-danger all-mar" id="delete-no">
+            No
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

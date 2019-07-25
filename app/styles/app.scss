@@ -2,8 +2,8 @@
 @import "ember-notifier";
 
 
-@import 'themes/dark/app-dark';
-//@import 'themes/leads-sky/app-leads-sky';
+//@import 'themes/dark/app-dark';
+@import 'themes/leads-sky/app-leads-sky';
 //@import 'themes/odoo/app-odoo';
 //@import 'themes/odoo-mixed/app-odoo-mixed';
 //@import 'themes/clouds/app-clouds';
@@ -16,6 +16,7 @@
 
 /* nges-engines styles */
 @import 'nges-engines/olm/olm-base.scss';
+@import 'nges-engines/rule-engine/rule-engine-base.scss';
 
 /* nges-element styles */
 @import 'nges-elements/nges-tab-table.scss';
