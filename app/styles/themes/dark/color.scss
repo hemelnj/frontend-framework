@@ -7,7 +7,7 @@ $content-font-size: 11px;
 $link-font-size: 12px;
 
 
-//------------ theme 1 - Mid Night Dark Theme -----------------
+//------------ theme 1 - Dark Theme -----------------
 
 // submenu
 $sidebar-submenu-hover-color: rgba(126, 129, 138, 0.65);
@@ -15,24 +15,24 @@ $sidebar-menu-title-color: #fff;
 $sidebar-submenu-title-color: #ffff;
 $sidebar-submenu-start-space: 20px;
 $sidebar-menu-title-background: #3F4148;
-$primary-color-sidebar: #2f3239;
+$primary-color-sidebar: #262626;
 
 // main component
-$primary-color-workspace: #878685;    // workspace panel
+$primary-color-workspace: #363636;    // workspace panel
 $primary-color-main: #3F4148;         // background
 $primary-color-foreground: #2f3239;   // foreground
-$primary-color-selected: #15dc80;     // active
+$primary-color-selected: #92C0EF;     // active
 $primary-color-text: #fff;            // font
 $primary-color-hover: #373b42;        // hover
 $primary-color-border: #7db5f5;       // border
-$primary-color-title-text: #302f2e;   // title
+$primary-color-title-text: #262626;   // title
 
 
 
-$primary-color-field-label: #383736; // input field/dropdown field label
+$primary-color-field-label: #2A2A2A; // input field/dropdown field label
 $primary-color-field-background: #FAFAFA;
 $primary-color-field-set-label: #343434;
-$primary-color-title-line: #123F62;   // header label line
+$primary-color-title-line: #41434A;   // header label line
 
 
 $primary-color-btn-text: #FFFFFF; // btn text
@@ -48,6 +48,10 @@ $primary-color-instruction-text: #666666;
 // tab-table
 $primary-color-tab-table-title-background: #f0f1ef;
 $primary-color-tab-table-title-color:#000000;
+
+
+// input-field
+$primary-color-input-field: #2A2A2A;
 //-------------------------------------------
 
 
