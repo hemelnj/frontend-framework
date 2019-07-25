@@ -2,8 +2,10 @@
 body {
   font-family: 'Poppins', sans-serif;
   background: $primary-color-workspace;
+  //color: $primary-color-text;
   //font-size: 80%;
 }
+
 
 .hide {
   display: none;
@@ -84,7 +86,6 @@ body {
   border: 1.2px solid $primary-color-title-line;
   opacity: 0.5;
 }
-
 //////////////////////
 
 //input field and fieldset style
@@ -96,10 +97,9 @@ body {
   hyphens: auto;
   display: inline-block;
   color: $primary-color-field-label;
-  font-size: 0.75rem;
+  font-size: $link-font-size;
   font-weight: bold;
-  padding: 0 1rem 0 .75rem;
-  margin-bottom: .125rem;
+  padding: -1rem 1rem 0 .75rem;
 }
 
 .field-set-label {
@@ -120,16 +120,14 @@ body {
   border-left: 0;
   border-right: 0;
   border-top: 0;
-  border-bottom: 1.1px solid #747474;
+  border-bottom: 1.1px solid $primary-color-input-field;
   width: 100%;
   -webkit-transition: border .1s linear, background-color .1s linear;
   transition: border .1s linear, background-color .1s linear;
   display: inline-block;
   padding: 0 1rem 0 .75rem;
-  font-size: .75rem;
-  line-height: 1.875rem;
-  min-height: calc(1.875rem + (1px * 2));
-  margin-bottom: .125rem;
+  font-size: $link-font-size;
+  line-height: 1.475rem;
   background: $primary-color-field-background;
 }
 
@@ -137,7 +135,6 @@ body {
   outline: none;
   border-bottom: 1.5px solid rgba(81, 203, 238, 1);
 }
-
 ///////////////////////
 
 // login ui
@@ -167,6 +164,7 @@ body {
   background-color: $primary-color-main !important;
 }
 
+
 .sidebar-toggler:not(:disabled):not(.disabled) {
   cursor: pointer;
 }
@@ -176,6 +174,7 @@ body {
   border-color: $primary-color-border !important;
   background-color: $primary-color-main !important;
 }
+
 
 fieldset {
   padding: 0 10px 10px 10px;
@@ -192,6 +191,7 @@ legend {
   color: $primary-color-main;
   padding: 2px;
 }
+
 
 .card {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
@@ -215,6 +215,10 @@ legend {
   margin-right: 20px;
 }
 
+
+
+
+
 .pagination-active {
   background: $primary-color-main;
   color: white
@@ -229,22 +233,25 @@ legend {
   top: 0;
 }
 
+
+
 .login-logo-bg {
   background: $primary-color-main;
 }
 
+
 .form-control {
-  height: 24px !important;
-  font-size: 12px !important;
+  height: 30px!important;
+  font-size: 12px!important;
   color: #333;
+  border-radius: 1px;
   padding: 0px;
   padding-left: 2%;
 }
 
-.dropdown {
-  color: $primary-color-text !important;
+.dropdown{
+  color: $primary-color-text!important;
 }
-
-.dropdown-item:active {
-  background: $primary-color-selected !important;
+.dropdown-item:active{
+  background: $primary-color-selected!important;
 }
