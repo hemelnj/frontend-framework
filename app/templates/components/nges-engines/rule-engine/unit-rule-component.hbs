@@ -2,15 +2,30 @@
   <div class="card-body">
     <h1 class="layout-header-title">Regular/Unit rule</h1>
 
+<<<<<<< HEAD
     <div class="container" style="border: 1px solid #bebebe;">
 
       <br>
 
       <div class="unit-rule-container" style="background: #dfdfdf">
         {{finalRuleString}}
+=======
+    <div class="" style="border: 1px solid #bebebe; padding: 5px">
+      <br>
+
+
+      <div>
+        {{#if finalRuleString}}
+          <div class="unit-rule-container" style="background: #2065a1">
+            {{finalRuleString}}
+          </div>
+        {{/if}}
+        <br>
+>>>>>>> 9b6782536c8cf48665c3b6beaf79975664b1ec88
       </div>
 
-      <div class="container {{if diagramView "show" "hide"}} ">
+
+      <div class=" {{if diagramView "show" "hide"}} ">
         <h5 class="layout-header-title">Regular/Unit Rule Mapping Panel</h5>
         <div class="diagram-container" style="background: #dfdfdf;">
           <div>
@@ -88,7 +103,7 @@
 
 
       <br>
-      <div class="container">
+      <div class="">
         <div class="row">
           <div class="col-md-4">
 
@@ -222,7 +237,7 @@
     </div>
     <br>
     <h2 class="layout-header-title">All Regular Rules</h2>
-    <div class="container" style="border: 1px solid #bebebe; background: #dfdfdf;">
+    <div class="" style="border: 1px solid #bebebe; background: #dfdfdf;">
       <table class="table table-striped">
         <thead>
         <tr>
