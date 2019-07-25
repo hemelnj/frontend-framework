@@ -2,13 +2,19 @@
   <div class="card-body">
     <h1 class="layout-header-title">Regular/Unit rule</h1>
 
-    <div class="" style="border: 1px solid #bebebe; padding: 5px" >
+    <div class="" style="border: 1px solid #bebebe; padding: 5px">
       <br>
+
+
       <div>
-        <div class="unit-rule-container" style="background: #dfdfdf">
-          {{finalRuleString}}
-        </div>
+        {{#if finalRuleString}}
+          <div class="unit-rule-container" style="background: #2065a1">
+            {{finalRuleString}}
+          </div>
+        {{/if}}
+        <br>
       </div>
+
 
       <div class=" {{if diagramView "show" "hide"}} ">
         <h5 class="layout-header-title">Regular/Unit Rule Mapping Panel</h5>
