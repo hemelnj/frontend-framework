@@ -1,0 +1,218 @@
+.mar-top-100 {
+  margin-top: 100px;
+}
+
+.mar-top-50 {
+  margin-top: 50x;
+}
+
+.mar-bottom-100 {
+  margin-bottom: 100px;
+}
+
+.float-left {
+  float: right;
+}
+
+.mar-5 {
+  margin: 5px;
+}
+
+.unit-rule-container {
+  padding: 15px;
+  color: $primary-color-text;
+  background-color: #62688e;
+  display: inline-block;
+  font-size: 15px;
+  margin-left: 5px;
+}
+
+.inline {
+  display: inline-block;
+  width: 300px;
+  margin: 5px;
+}
+
+.inline-mini {
+  width: 230px;
+  display: inline-block;
+}
+
+.max-width-800 {
+  max-width: 800px;
+}
+
+.max-width-600 {
+  max-width: 600px;
+}
+
+.atomic-rule-show-sm-table {
+  height: 440px;
+  background: $primary-color-main;
+  overflow-y: auto;
+  padding-bottom: 10px;
+}
+
+#container {
+  box-shadow: 0 0 10px -2px gray;
+  margin-top: 15px;
+}
+
+.diagram-form-modal {
+  position: absolute;
+  z-index: +999999;
+  width: 100%;
+  padding: 100px;
+  text-align: center;
+  background: $primary-color-main;
+  height: 100%;
+}
+
+.diagram-container {
+  position: relative;
+}
+
+.modal-form-container {
+  width: 400px;
+  margin: auto;
+}
+
+.box {
+  background-color: white;
+  padding: 50px;
+}
+
+table .btn {
+  font-size: 10px;
+}
+
+table {
+  font-size: 12px;
+}
+
+.btn {
+  font-size: 14px;
+}
+
+.tools-container {
+  position: absolute;
+
+  float: left;
+  z-index: +999999;
+  display: inline-block;
+  margin: 20px;
+}
+
+.tools-container div {
+  padding: 5px;
+  border: 1px solid gray;
+  text-align: center;
+  color: #000;
+}
+
+.diagram-tool {
+  position: relative;
+}
+
+.tools {
+  cursor: pointer;
+  background-color: white;
+  font-size: 12px;
+}
+
+.tools:hover {
+  color: red;
+}
+
+.active-tool {
+  color: red;
+}
+
+.hide {
+  display: none;
+}
+
+.add-action-modal {
+  max-width: 600px;
+  border: 7px #c2c2c2 double;
+  padding: 10px 20px;
+  background: $primary-color-main;
+  margin-top: 100px;
+}
+
+
+.mar-top-30 {
+  margin-top: 30px;
+}
+
+.modal-wrapper {
+  display: none;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+}
+
+.action-context {
+  display: inline-block;
+  background: $primary-color-main;
+  padding: 5px 10px;
+  color: $primary-color-text;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.all-mar {
+  margin: 20px;
+}
+
+.pop-up-for-delete {
+  background-color: white;
+  max-width: 300px;
+  margin: auto;
+}
+
+.popup-for-delete-wrapper {
+  display: none;
+  position: fixed;
+  top: 0px;
+}
+
+/*ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #556af6;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: $primary-color-text;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #1b73b7;
+  color: $primary-color-text;
+  text-decoration: none;
+}*/
+
+label {
+  display: inline-block;
+  width: 200px;
+  margin-left: 1px;
+  text-align: left;
+}
+
+
+.table thead td, th, tr, td {
+  color: $primary-color-text;
+}
