@@ -1,38 +1,55 @@
-
 <div class="card">
   <div class="card-body">
     <div class="container ">
       <h1 class="layout-header-title">Step rule</h1>
-      <p style="color: red;">Before Adding Step Rule, Add all the Unit Rules first (Base on Slab). Then finally Save Step
+      <p class="input-field-label">Before Adding Step Rule, Add all the Unit Rules first (Base on Slab). Then finally
+        Save
+        Step
         Rule.</p>
       <br>
 
       <!--  unit/regular rule setup panel-->
       <div class="unit-rule-setup-panel" style="border: 1px solid #bebebe;">
 
-        <div class="container mar-top-50 ">
+        <div class="container">
           <br>
-          <div class="form-group">
-            <label style="color: red; font-weight: bold">Regular/Unit Rule Name</label>
-            <input type="text" placeholder="name" id="nameofrule">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-4">
+                    <label class="input-field-label">Regular/Unit Rule Name</label>
+                  </div>
+                  <div class="col-md-8">
+                    <input type="text" placeholder="Enter Regular/Unit Rule Name" id="nameofrule" class="input-field">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-4">
+                    <label class="input-field-label">Priority</label>
+                  </div>
+                  <div class="col-md-8">
+                    <input type="text" placeholder="0" id="priority" class="input-field">
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-
-          <div class="form-group">
-            <label style="color: red;font-weight: bold">Priority</label>
-            <input type="text" placeholder="0" id="priority">
-          </div>
-
 
           <div>
-            <div class="unit-rule-container">
+            <div class="unit-rule-container" style="background: #dfdfdf">
               {{finalRuleString}}
             </div>
           </div>
+
         </div>
 
-        <div class="container  mar-bottom-100 {{if diagramView "show" "hide"}} " style="margin-top: 20px; background: white;">
-          <h5>Regular/Unit Rule Mapping Panel</h5>
-          <div class="diagram-container">
+        <div class="container  {{if diagramView "show" "hide"}} "
+             style="margin-top: 20px;">
+          <h5 class="layout-header-title">Regular/Unit Rule Mapping Panel</h5>
+          <div class="diagram-container" style="background: #dfdfdf;">
             <div>
               <div class="tools-container">
                 <div class="tools active-tool" id="opt">
@@ -107,8 +124,10 @@
         </div>
 
         <div class="container">
+
+          <br>
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
 
               <div class="{{if diagramView "hide" "show"}}">
 
@@ -154,17 +173,15 @@
 
               <div class="max-width-600">
 
-
                 <div class="form-group">
                   <div class="then-container">
                   </div>
                   <div class="action-list-container">
                   </div>
-                  <div class="" style="margin-top:40px">
-                    <div id="add_new_action" {{action "addnewaction"}} class="btn btn-danger">
-                      Add new action
-                    </div>
-                  </div>
+
+                  <button id="add_new_action" {{action "addnewaction"}} class="btn btn-danger">
+                    Add new action
+                  </button>
                 </div>
 
                 <div class="btn btn-info mar-5" id="save">
@@ -185,9 +202,9 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="" style="padding: 5px; border: 1px solid #bebebe;">
-                <h5>Atomic Rules List</h5>
+            <div class="col-md-8">
+              <h5 class="layout-header-title">Atomic Rules List</h5>
+              <div class="" style="padding: 5px; border: 1px solid #bebebe; background: #dfdfdf">
                 <table class="table table-striped">
                   <thead>
                   <tr style="color: #0D3349; font-weight: bold;">
@@ -214,16 +231,14 @@
                 </table>
               </div>
             </div>
+
           </div>
         </div>
 
 
-
-
-
-        <div class="container mar-top-30" style="border: 1px solid #bebebe; padding: 5px;">
-          <h5> Temporary Rule List</h5>
-          <table class="table table-striped">
+        <div class="container" style="border: 1px solid #bebebe; padding: 15px;">
+          <h5 class="layout-header-title"> Temporary Rule List</h5>
+          <table class="table table-striped" style="background: #dfdfdf">
             <thead>
             <tr>
               <th>Priority</th>
@@ -270,21 +285,27 @@
         <div class="multiple-unit-rule-make-into-step-rule container">
 
           <div class="row">
+
             <div class="col-sm-6">
               <div class="form-group">
-                <label style="color: red; font-weight: bold">Step Rule Name</label>
-                <input class="form-control" type="text" placeholder="step rule name" id="nameOfStepRule">
+                <div class="row">
+                  <div class="col-md-3">
+                    <label class="input-field-label">Step Rule Name</label>
+                  </div>
+                  <div class="col-md-9">
+                    <input class="input-field" type="text" placeholder="step rule name" id="nameOfStepRule">
+                  </div>
+                </div>
               </div>
             </div>
 
             <div class="col-sm-6">
-              <div id="saveStepRule" class="btn btn-info mar-top-30 " style="float:right;">
+              <div id="saveStepRule" class="nges-button nges-button-success">
                 {{#if isStepRuleEditView}}
                   <span {{action "updateStepRule"}}>Update Step Rule</span>
                 {{/if}}
                 {{#unless isStepRuleEditView}}
                   <span {{action "saveStepRule"}} class="">Save Step Rule</span>
-
                 {{/unless}}
               </div>
             </div>
@@ -294,16 +315,17 @@
 
       </div>
 
-      <div class="container" style="border: 1px solid #bebebe;padding: 5px; margin-top:  20px">
+      <div class="container" style="border: 1px solid #bebebe;padding: 15px;">
 
-        <h5 align="">All Step Rules</h5>
+        <h5 class="layout-header-title">All Step Rules</h5>
         <br>
 
-        <table class="table table-striped">
+        <table class="table table-striped" style="background: #dfdfdf">
           <thead>
           <tr>
             <th>Step Rule Name</th>
             <th>Description</th>
+            <th>Action</th>
           </tr>
           </thead>
           <tbody>
@@ -323,10 +345,14 @@
               </tr>
             {{/each}}
             <td>
-              <div class="btn btn-info mar-5" {{ action "editStepRule" stepRule}} id="editStepRule">Edit</div>
+              <div class="nges-button nges-button-success mar-5" {{ action "editStepRule" stepRule}} id="editStepRule">
+                Edit
+              </div>
             </td>
             <td>
-              <div class="btn btn-info mar-5" {{ action "deleteStepRule" stepRule}} id="deleteStepRule">Delete</div>
+              <div class="nges-button nges-button-success mar-5" {{ action "deleteStepRule" stepRule}}
+                   id="deleteStepRule">Delete
+              </div>
             </td>
 
             </tr>

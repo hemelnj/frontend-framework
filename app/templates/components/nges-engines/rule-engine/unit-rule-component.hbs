@@ -1,20 +1,18 @@
-
 <div class="card">
   <div class="card-body">
     <h1 class="layout-header-title">Regular/Unit rule</h1>
 
     <div class="container" style="border: 1px solid #bebebe;">
       <br>
-      <br>
       <div>
-        <div class="unit-rule-container">
+        <div class="unit-rule-container" style="background: #dfdfdf">
           {{finalRuleString}}
         </div>
       </div>
 
-      <div class="container  mar-bottom-100 {{if diagramView "show" "hide"}} " style="margin-top: 30px; background: white;">
+      <div class="container {{if diagramView "show" "hide"}} ">
         <h5 class="layout-header-title">Regular/Unit Rule Mapping Panel</h5>
-        <div class="diagram-container">
+        <div class="diagram-container" style="background: white;">
           <div>
             <div class="tools-container">
               <div class="tools active-tool" id="opt">
@@ -88,9 +86,11 @@
         </div>
       </div>
 
+
+      <br>
       <div class="container">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-4">
 
             <div class="{{if diagramView "hide" "show"}}">
 
@@ -134,51 +134,61 @@
               </div>
             </div>
 
-            <div class="max-width-600">
 
-
-              <div class="form-group">
-                <div class="then-container">
-                </div>
-                <div class="action-list-container">
-
-
-                </div>
-                <div class="" style="margin-top:40px">
-                  <div id="add_new_action" {{action "addnewaction"}} class="btn btn-danger">
-                    Add new action
-                  </div>
-                </div>
+            <div class="form-group">
+              <div class="then-container">
               </div>
+              <div class="action-list-container">
 
 
-              <div class="form-group">
-                <label style="color: red; font-weight: bold;">Regular/Unit Rule Name</label>
-                <input type="text" placeholder="name" id="nameofrule">
               </div>
+              <button id="add_new_action" {{action "addnewaction"}} class="btn btn-danger">
+                Add new action
+              </button>
 
-              <div class="btn btn-info mar-5" id="save">
-                {{#if isEditView}}
-                  <span {{action "update"}}>Update</span>
-                {{/if}}
-                {{#unless isEditView}}
-                  <span {{action "save"}}>Save Unit/Regular Rule</span>
-                {{/unless}}
-              </div>
+            </div>
 
-              <div class="btn btn-info mar-5" id="showDiagram">
-                {{#unless diagramView}}
-                  <span>Use diagram view</span>
-                {{/unless}}
-                {{#if diagramView}}
-                  <span>Use form view</span>
-                {{/if}}
-              </div>
+
+            <div class="form-group">
+              <label class="input-field-label">Regular/Unit Rule Name</label>
+              <input type="text" class="input-field" placeholder="Enter Regular/Unit Rule Name" id="nameofrule">
+            </div>
+
+
+            <div class="row">
+
+            </div>
+
+            <div class="mar-5" id="save">
+              {{#if isEditView}}
+                <button {{action "update"}} class="nges-button nges-button-success">
+                  Update
+                </button>
+              {{/if}}
+              {{#unless isEditView}}
+                <button {{action "save"}} class="nges-button nges-button-success">
+                  Save Unit/Regular Rule
+                </button>
+              {{/unless}}
+            </div>
+
+            <div class="mar-5" id="showDiagram">
+              {{#unless diagramView}}
+                <button class="nges-button nges-button-success">
+                  Use diagram view
+                </button>
+              {{/unless}}
+              {{#if diagramView}}
+                <button class="nges-button nges-button-success">
+                  Use form view
+                </button>
+              {{/if}}
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="" style="padding: 5px; border: 1px solid #bebebe;">
-              <h5>Atomic Rules List</h5>
+
+          <div class="col-md-8">
+            <h5 class="layout-header-title">Atomic Rules List</h5>
+            <div class="" style="border: 1px solid #bebebe; background: #dfdfdf;">
               <table class="table table-striped">
                 <thead>
                 <tr>
@@ -211,10 +221,10 @@
       <br>
     </div>
 
-    <div class="container mar-top-30" style="border: 1px solid #bebebe">
-      <br>
-      <h2 align="">All Regular Rules</h2>
-      <br>
+
+    <br>
+    <h2 class="layout-header-title">All Regular Rules</h2>
+    <div class="container" style="border: 1px solid #bebebe; background: #dfdfdf;">
       <table class="table table-striped">
         <thead>
         <tr>
@@ -222,7 +232,6 @@
           <th>Then</th>
           <th>Rule</th>
           <th>Action</th>
-
         </tr>
         </thead>
         <tbody>
@@ -234,10 +243,10 @@
               {{ unit_rule.rule}}
             </td>
             <td>
-              <div class="btn btn-info mar-5" {{ action "edit" unit_rule}} id="edit">
+              <div class="nges-button nges-button-success mar-5" {{ action "edit" unit_rule}} id="edit">
                 Edit
               </div>
-              <div class="btn btn-info mar-5" {{ action "delete" unit_rule}} id="delete">
+              <div class="nges-button nges-button-success mar-5" {{ action "delete" unit_rule}} id="delete">
                 Delete
               </div>
             </td>
