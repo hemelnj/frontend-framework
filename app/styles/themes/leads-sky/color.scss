@@ -6,50 +6,73 @@ $headline-font-size: 11px;
 $content-font-size: 11px;
 $link-font-size: 12px;
 
+
+//----------color pack-----------//
+$background: #1684cb;
+$foreground: #1c71ac;
+$workspace: #F3F2F1;
+
+$default-text: #ffffff;
+$selected-text: #000000;
+$headline-color:#353433;
+
+$default-hover: #e1e0df; // hover shade on link
+$default-border:#7db5f5;
+$default-label: $headline-color;
+$default-line: #123F62;
+//-----------------------------//
+
+
 //------------ theme 2 - Leads Theme (Blue) -----------------
 
 // submenu
-$sidebar-submenu-hover-color: #e1e0df;
-$sidebar-menu-title-color: #fff;
-$sidebar-submenu-title-color: #ffff;
-$sidebar-submenu-title-hover-color: #2565A0;
+$sidebar-menu-title-color: $default-text;
+$sidebar-menu-title-background: $background;
+
 $sidebar-submenu-start-space: 20px;
-$sidebar-menu-title-background: #2065a1;
-$primary-color-sidebar: #20538c;
+$sidebar-submenu-hover-color: $default-hover;
+$sidebar-submenu-title-color: $default-text;
+$primary-color-sidebar: $foreground;
 
 // main component
-$primary-color-workspace: #F3F2F1; // workspace panel
-$primary-color-main: #45a5e4; // background
-$primary-color-foreground: #20538c; // foreground
-$primary-color-selected: #000000; // active
-$primary-color-text: #fff; // font
-$primary-color-hover: #373b42; // hover
-$primary-color-border: #7db5f5; // border
-$primary-color-title-text: #353433; // title
+$primary-color-workspace: $workspace;
+$primary-color-main: $background;
+$primary-color-foreground: $foreground;
+$primary-color-selected: $selected-text;
+$primary-color-text: $default-text;
+$primary-color-border: $default-border;
+$primary-color-title-text: $headline-color;
 
-$primary-color-field-label: #666666;
-$primary-color-field-background: #FAFAFA;
-$primary-color-field-set-label: #343434;
-$primary-color-title-line: #123F62; // header label line
+$primary-color-field-label: $default-label;
+$primary-color-field-background: $default-text;
+$primary-color-field-set-label: $default-label;
+$primary-color-title-line: $default-line; // header label line
 
-$primary-color-btn-text: #FFFFFF; // btn text
-$primary-color-btn-success: #123F62;
-$primary-color-btn-success-hover: #12466b;
-$primary-color-btn-success-border: #123F62;
 
 // instruction text
-$primary-color-instruction-text: #3A3F44;
+$primary-color-instruction-text: $headline-color;
 
 // tab-table
-$primary-color-tab-table-title-background: #f0f1ef;
-$primary-color-tab-table-title-color: #000000;
+$primary-color-tab-table-title-background: $default-hover;
+$primary-color-tab-table-title-color: $headline-color;
 
 //logo background
-$primary-color-app-logo-background: #45a5e4;
+$primary-color-app-logo-background: $background;
 
 // input-field
-$primary-color-input-field: #2A2A2A;
+$primary-color-input-field: $selected-text;
 //-------------------------------------------
+
+
+
+
+
+//button
+$success-hover: #1c497c; // success button hover
+$primary-color-btn-text: $default-text; // btn text
+$primary-color-btn-success: $foreground;
+$primary-color-btn-success-hover: $success-hover;
+$primary-color-btn-success-border: $default-border;
 
 // Button Pack
 //$primary-color-btn-text: #000000; // btn text
