@@ -200,15 +200,15 @@ ul.CTAs a {
 }
 
 .nav-link.active{
-  color: $primary-color-selected!important;
-  // background-color: $primary-color-border !important;
+  color: $primary-color-selected;
   font-weight: bolder;
   font-size: $link-font-size!important;
 }
 .nav-link:hover, .nav-link:focus {
-  background-color: $sidebar-submenu-hover-color !important;
+  color: $primary-color-main!important;
+  background-color: $sidebar-submenu-hover-color!important;
   font-size: $link-font-size!important;
-  font-weight: bold;
+  font-weight: bold!important;
 }
 
 
