@@ -208,7 +208,7 @@ ul.CTAs a {
   font-size: $link-font-size!important;
 }
 .nav-link:hover, .nav-link:focus {
-  background-color: $sidebar-submenu-hover-color !important;
+  color: $sidebar-submenu-hover-color !important;
   font-size: $link-font-size!important;
   font-weight: bold;
 }
@@ -229,6 +229,7 @@ ul.CTAs a {
 // top-navbar - active or selected
 .navbar-nav .nav-link.active {
   color: $primary-color-selected!important;
+  background-color: $sidebar-submenu-hover-color!important;
   font-weight: bold;
   font-size: $link-font-size!important;
 }
