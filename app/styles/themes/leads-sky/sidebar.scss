@@ -1,3 +1,13 @@
+// logo style in nav-bar and side bar
+.app-base-logo {
+  height: 100%;
+  width: 150px;
+  padding: 3px 0px 0px 3px;
+  background: $primary-color-workspace!important;
+  min-height: 60px;
+  max-height: 60px;
+}
+
 
 a,
 a:hover,
@@ -75,7 +85,7 @@ a[aria-expanded="true"] {
 
 #sidebar .sidebar-header {
   padding: 5px;
-  background: $primary-color-main;
+  background: $primary-color-workspace;
 }
 
 #sidebar ul.components {
