@@ -45,6 +45,11 @@ module.exports = function (environment) {
       appTitle: 'Frontend Framework',
       appLogo: '/app-logo.png',
     },
+
+
+    'ember-d3': {
+      bundle: true
+    }
   };
 
 
