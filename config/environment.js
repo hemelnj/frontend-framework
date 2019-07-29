@@ -44,9 +44,12 @@ module.exports = function (environment) {
       appName: 'Frontend Framework',
       appTitle: 'Frontend Framework',
       appLogo: '/app-logo.png',
+    },
+
+    'ember-d3': {
+      bundle: false
     }
   };
-
 
 
   //let HOST_BASE_URL = 'http://localhost';
