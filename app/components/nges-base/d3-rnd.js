@@ -1,24 +1,26 @@
 import Component from '@ember/component';
-import {inject as service} from '@ember/service';
 
-
-let PAGINATE_LIMIT = 5;
+import { select } from 'd3-selection';
 
 export default Component.extend({
 
-  store: service(),
-  notifier: service(),
-  appWelcome: service('nges-core/app-welcome'),
-  appConfiguration: service('app-configuration'),
-  serviceInitializer: service('nges-services/service-initializer'),
-  init() {
-    this._super(...arguments);
+  authors: [
+    { name: 'Mark Twain', count: 15 },
+    { name: 'Virginia Woolf', count: 42 },
+    { name: 'John Steinbeck', count: 23 },
+    { name: 'Ralph Ellison', count: 27 }
+  ],
 
-    let context = this;
-  },
+  didInsertElement() {
+    let svg = select(this.$('svg')[0]);
 
-  actions: {
+    svg.append('rect')
+      .attr('width', 20)
+      .attr('height', 100);
 
+    svg.append('rect')
+      .attr('width', 200)
+      .attr('height', 50)
+      .attr('x', 30);
   }
-
 });

@@ -24,6 +24,5 @@ module.exports = function(defaults) {
   // along with the exports of each module as its value.
 
   app.import('node_modules/konva/konva.js');
-  app.import('node_modules/d3/dist/d3.js');
   return app.toTree();
 };
