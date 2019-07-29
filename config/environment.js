@@ -41,20 +41,14 @@ module.exports = function (environment) {
     },
 
     APP: {
-<<<<<<< HEAD
       appName: 'Remittance Management System',
       appTitle: 'Remittance Management System',
       appLogo: '/app-logo-rms.png',
-=======
-      appName: 'Frontend Framework',
-      appTitle: 'Frontend Framework',
-      appLogo: '/app-logo.png',
     },
 
 
     'ember-d3': {
       bundle: true
->>>>>>> 385dfec0cb52282fa49ae607eb550bb103cfc6ad
     }
   };
 
