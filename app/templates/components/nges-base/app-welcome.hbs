@@ -17,7 +17,7 @@
 
     <ul class="navbar-nav  mr-auto">
       {{#each serviceList as |service|}}
-        <li class="nav-item ">
+        <li class="nav-item nav-link">
           {{#link-to 'welcome.application-loader.panel-loader'
                      service.applicationRouteName
                      service.routeName
