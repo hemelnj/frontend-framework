@@ -56,6 +56,11 @@ a[aria-expanded="true"] {
   background: $sidebar-menu-title-background;
 }
 
+a[aria-expanded="false"] {
+  color: $primary-color-text;
+  background: $sidebar-menu-title-background;
+}
+
 #sidebar {
   width: $sidebar-size;
   position: fixed;
@@ -125,6 +130,7 @@ a[data-toggle="collapse"] {
   right: 20px;
   transform: translateY(-50%);
 }
+
 
 ul ul a {
   font-size: 0.9em !important;
