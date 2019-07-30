@@ -51,6 +51,7 @@ export default Component.extend({
     addnewaction() {
       $(".modal-wrapper").fadeIn();
     },
+
     closenewaction() {
       $(".modal-wrapper").fadeOut();
     },
@@ -62,11 +63,17 @@ export default Component.extend({
       this.set('isEditView', true);
 
       if (i.extra != "") {
-        let action = i.extra.split("##@@");
-        for (let j = 0; j < action.length; j++) {
-          $(".action-list-container").append("<div><div class='then-action action-context'>" + action[j] + "</div><div>");
 
+        let action = i.extra.split("##@@");
+
+        let actionList = [];
+        for (let j = 0; j < action.length; j++) {
+          actionList.push(action[j]);
+          //$(".action-list-container").append("<div><div class='then-action action-context'>" + action[j] + "</div><div>");
         }
+
+        this.set('actionList',actionList);
+        console.log('message---heyyyyy', actionList);
       }
 
 
@@ -286,6 +293,8 @@ export default Component.extend({
         context.currentRuleAction = $(this);
       });
     })
+
+
     $("#delete-yes").click(function () {
       context.currentRuleAction.remove();
       $(".popup-for-delete-wrapper").fadeOut();
