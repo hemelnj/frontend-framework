@@ -16,12 +16,18 @@
       <h2 class="layout-header-title">Dashboard</h2>
       <hr class="header-label-line">
 
-      <div class="row">
-        <div class="col-md-7">
-          {{nges-base/d3-bar-rnd}}
-        </div>
-        <div class="col-md-5">
-          {{nges-base/d3-pi-chart-rnd}}
+      <button class="nges-button nges-button-success float-right" {{action  'changeLocaleENG'}}> ENG</button>
+      <button class="nges-button nges-button-success float-right" {{action  'changeLocaleBNG'}}> BNG</button>
+
+      <br>
+      <div class="">
+        <div class="row">
+          <div class="col-md-7">
+            {{nges-base/d3-bar-rnd}}
+          </div>
+          <div class="col-md-5">
+            {{nges-base/d3-pi-chart-rnd}}
+          </div>
         </div>
       </div>
 
@@ -38,8 +44,8 @@
       <h2 class="layout-header-title">Dashboard</h2>
       <hr class="header-label-line">
 
-      <button  class="nges-button nges-button-success" {{action  'changeLocaleENG'}}> ENG</button>
-      <button  class="nges-button nges-button-success" {{action  'changeLocaleBNG'}}> BNG</button>
+      <button class="nges-button nges-button-success" {{action  'changeLocaleENG'}}> ENG</button>
+      <button class="nges-button nges-button-success" {{action  'changeLocaleBNG'}}> BNG</button>
 
       <br>
 
