@@ -8,6 +8,10 @@ let ATOMIC_RULE_MODEL_NAME = 'nges-engines/rule-engine/atomicrule';
 
 export default Component.extend({
 
+
+  appConfiguration: service('app-configuration'),
+  olmSetupService: service('nges-engines/olm/olm-setup'),
+
   store: service(),
   name: '',
   id: -1,
@@ -29,7 +33,7 @@ export default Component.extend({
     save() {
       let context = this;
       let compareClassName = $(".comparedClassName:selected").val();
-      let val = ""
+      let val = "";
       if (compareClassName == 'noObject') {
         val = $("#customComparedValue").val();
       } else {
@@ -123,17 +127,28 @@ export default Component.extend({
   },
   init() {
     this._super(...arguments);
-    this.initAlldata();
+    let context = this;
 
+    this.initAlldata();
 
     /* todo: here parameter need to updated base on requirement */
 
-    let cl = [
-      {name: "Remitter", properties: ['id', 'incomeRange', 'risk', 'status']},
-      {name: "Beneficiary", properties: ['id', 'incomeRange', 'risk', 'status']},
+    let cl =[];
+    let accessToken = this.appConfiguration.getAccessToken();
+    let allCreatedClassTypes = this.olmSetupService.getAllClassType(accessToken);
+    allCreatedClassTypes.then(function (msg) {
 
-    ];
+      for(let i=0;i<msg.data.length;i++) {
+        let p = {name:msg.data[i].attributes.displayName, properties: ['id', 'incomeRange', 'risk', 'status']};
+        cl.pushObject(p);
+      }
+
+    }).catch(function (errorMsg) {
+      context.get('notifier').danger('Failed to Load OLM Objects');
+    });
+
     this.set('classes', cl);
+
     //setting operators value
     let opts = ["==", ">=", "<=", ">", "<"];
     this.set('operations', opts);
@@ -159,7 +174,6 @@ export default Component.extend({
         context.set('comparedAttributes', mclass != null ? mclass.properties : null);
       }
     });
-
 
   },
   findItemFromArray(array, itemName) {

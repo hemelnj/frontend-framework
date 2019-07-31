@@ -180,7 +180,15 @@
                   <div class="then-container">
                   </div>
                   <div class="action-list-container">
+                    {{#each actionList as |actionValue|}}
+
+
+                      <div {{action "addnewaction" actionValue}} class="then-action action-context" >{{actionValue}}</div>
+
+                    {{/each}}
                   </div>
+
+
 
                   <button id="add_new_action" {{action "addnewaction"}} class="btn btn-danger">
                     Add new action

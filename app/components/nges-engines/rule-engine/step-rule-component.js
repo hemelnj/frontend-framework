@@ -69,10 +69,13 @@ export default Component.extend({
 
       if(i.extra!="") {
         let action = i.extra.split("##@@");
+        let actionList = [];
         for (let j = 0; j < action.length; j++) {
-          $(".action-list-container").append("<div><div class='then-action action-context'>" + action[j] + "</div><div>");
-
+          actionList.push(action[j]);
         }
+
+        this.set('actionList',actionList);
+        console.log('message---heyyyyy', actionList);
       }
 
 

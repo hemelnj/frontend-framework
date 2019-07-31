@@ -1,9 +1,26 @@
 {{yield}}
 
-<div id="chart-area">
-  <form>
-    <label><input type="radio" name="dataset" value="apples" checked> Service A</label>
-    <label><input type="radio" name="dataset" value="oranges"> Service B</label>
-  </form>
+<style>
+  #legend {
+    width: 300px;
+    height: 100px;
+  }
+</style>
+<div id="pi-area">
+  <div class="row">
+    <div class="col-md-6">
+      <label class="input-field-label"><input type="radio" name="dataset" value="apples" checked> Service 1</label>
+    </div>
+    <div class="col-md-6">
+      <label class="input-field-label"><input type="radio" name="dataset" value="oranges"> Service 2</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-7">
+      <div id="pi-chart"></div>
+    </div>
+    <div class="col-md-3">
+      <svg id="legend"></svg>
+    </div>
+  </div>
 </div>
-<svg id="legend"></svg>
