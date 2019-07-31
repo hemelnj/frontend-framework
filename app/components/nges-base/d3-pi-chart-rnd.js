@@ -5,11 +5,11 @@ export default Component.extend({
 
   didInsertElement() {
 
-    const width = 270;
-    const height = 270;
+    const width = 250;
+    const height = 200;
     const radius = Math.min(width, height) / 2;
 
-    const svg = d3.select("#chart-area")
+    const svg = d3.select("#pi-chart")
       .append("svg")
       .attr("width", width)
       .attr("height", height)
@@ -66,7 +66,7 @@ export default Component.extend({
         .data(pie(data[val]));
 
       // Update existing arcs
-      path.transition().duration(200).attrTween("d", arcTween);
+      path.transition().duration(250).attrTween("d", arcTween);
 
       // Enter new arcs
       path.enter().append("path")
@@ -84,13 +84,13 @@ export default Component.extend({
     test.append("circle").attr("cx",10).attr("cy",10).attr("r", 6).style("fill", "#FBCC4C");
     test.append("circle").attr("cx",10).attr("cy",30).attr("r", 6).style("fill", "#42AB83");
     test.append("circle").attr("cx",10).attr("cy",50).attr("r", 6).style("fill", "#349EDA");
-    test.append("circle").attr("cx",200).attr("cy",10).attr("r", 6).style("fill", "#835099");
-    test.append("circle").attr("cx",200).attr("cy",30).attr("r", 6).style("fill", "#E75B56");
-    test.append("text").attr("x", 30).attr("y", 10).text("variable A").style("font-size", "15px").attr("alignment-baseline","middle");
-    test.append("text").attr("x", 30).attr("y", 30).text("variable B").style("font-size", "15px").attr("alignment-baseline","middle");
-    test.append("text").attr("x", 30).attr("y", 50).text("variable C").style("font-size", "15px").attr("alignment-baseline","middle");
-    test.append("text").attr("x", 220).attr("y", 10).text("variable D").style("font-size", "15px").attr("alignment-baseline","middle");
-    test.append("text").attr("x", 220).attr("y", 30).text("variable E").style("font-size", "15px").attr("alignment-baseline","middle");
+    test.append("circle").attr("cx",10).attr("cy",70).attr("r", 6).style("fill", "#835099");
+    test.append("circle").attr("cx",10).attr("cy",90).attr("r", 6).style("fill", "#E75B56");
+    test.append("text").attr("x", 30).attr("y", 10).text("Resource A").style("font-size", "15px").attr("alignment-baseline","middle");
+    test.append("text").attr("x", 30).attr("y", 30).text("Resource B").style("font-size", "15px").attr("alignment-baseline","middle");
+    test.append("text").attr("x", 30).attr("y", 50).text("Resource C").style("font-size", "15px").attr("alignment-baseline","middle");
+    test.append("text").attr("x", 30).attr("y", 70).text("Resource D").style("font-size", "15px").attr("alignment-baseline","middle");
+    test.append("text").attr("x", 30).attr("y", 90).text("Resource E").style("font-size", "15px").attr("alignment-baseline","middle");
 
     update("apples");
 

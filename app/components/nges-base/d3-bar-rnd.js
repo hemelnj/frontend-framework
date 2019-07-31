@@ -19,7 +19,7 @@ export default Component.extend({
 
 
 // add the SVG element
-    var svg = d3.select("body").append("svg")
+    var svg = d3.select("#chart-area").append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
       .append("g")
