@@ -50,7 +50,7 @@ export default Component.extend({
       "oranges": [
         {"region": "North", "count": "400"},
         {"region": "South", "count": "300"},
-        {"region": "East", "count": "400"},
+        {"region": "East", "count": "345"},
         {"region": "West", "count": "200"},
         {"region": "Central", "count": "100"}
       ]
