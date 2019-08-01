@@ -16,14 +16,29 @@
       <h2 class="layout-header-title">Dashboard</h2>
       <hr class="header-label-line">
       <div class="">
+
         <div class="row">
-          <div class="col-md-7">
+          <div class="col-md-6">
             {{nges-base/d3-bar-rnd}}
           </div>
-          <div class="col-md-5">
-            {{nges-base/d3-pi-chart-rnd}}
+          <div class="col-md-6">
+            {{nges-base/d3-animated-pi-chart-rnd}}
           </div>
         </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            {{nges-base/d3-pi-chart-rnd}}
+          </div>
+          <div class="col-md-6">
+            <fieldset>
+              <h1>Diagram</h1>
+            </fieldset>
+          </div>
+
+
+        </div>
+
       </div>
 
     </div>
@@ -39,19 +54,26 @@
       <h2 class="layout-header-title">Dashboard</h2>
       <hr class="header-label-line">
 
-      <button class="nges-button nges-button-success" {{action  'changeLocaleENG'}}> ENG</button>
-      <button class="nges-button nges-button-success" {{action  'changeLocaleBNG'}}> BNG</button>
-
-      <br>
-
       <div class="">
         <div class="row">
-          <div class="col-md-5">
-            {{nges-base/d3-pi-chart-rnd}}
-          </div>
-          <div class="col-md-7">
+          <div class="col-md-6">
             {{nges-base/d3-bar-rnd}}
           </div>
+          <div class="col-md-6">
+            {{nges-base/d3-animated-pi-chart-rnd}}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            {{nges-base/d3-pi-chart-rnd}}
+          </div>
+          <div class="col-md-6">
+            <fieldset>
+              <h1>Diagram</h1>
+            </fieldset>
+          </div>
+
 
         </div>
       </div>
