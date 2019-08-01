@@ -49,7 +49,19 @@ export default Component.extend({
       this.fieldId = this.fieldId - 1;
     },
     addnewaction() {
+
       $(".modal-wrapper").fadeIn();
+
+      $("#action-property-name").change(function () {
+        let changedField = $(".action-property-name:selected").val();
+        $("#selected-property-name").text(changedField);
+      });
+
+      $("#action-class-name").change(function () {
+        let changedClass = $(".action-class-name:selected").val();
+        $("#selected-class-name").text(changedClass);
+      });
+
     },
 
     updateAction(actionValue) {
@@ -62,13 +74,13 @@ export default Component.extend({
       $("#selected-property-name").text(field);
       $("#action-property-value").val(value);
 
-      $("#action-property-name").change(function(){
-        let changedField =  document.getElementById("action-property-name").value;
+      $("#action-property-name").change(function () {
+        let changedField = document.getElementById("action-property-name").value;
         $("#selected-property-name").text(changedField);
       });
 
-      $("#selected-class-name").change(function(){
-        let changedClass =  document.getElementById("selected-class-name").value;
+      $("#selected-class-name").change(function () {
+        let changedClass = document.getElementById("selected-class-name").value;
         $("#selected-class-name").text(changedClass);
       });
 
@@ -78,7 +90,6 @@ export default Component.extend({
       $(".modal-wrapper").fadeOut();
     },
     edit(i) {
-      console.log('message----------edit', i);
       this.set('id', i.id);
       console.log("Hey the id is " + i.id);
       $("#nameofrule").val(i.name);
@@ -102,7 +113,7 @@ export default Component.extend({
           //$(".action-list-container").append("<div><div class='then-action action-context'>" + action[j] + "</div><div>");
         }
 
-        this.set('actionList',actionList);
+        this.set('actionList', actionList);
         console.log('message---heyyyyy', actionList);
       }
 
@@ -326,8 +337,6 @@ export default Component.extend({
         context.currentRuleAction = $(this);
       });
     });
-
-
 
 
     $("#delete-yes").click(function () {

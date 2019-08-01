@@ -179,32 +179,36 @@
                 <div class="form-group">
                   <div class="then-container">
                   </div>
+
+                  <div class="btn btn-info" id="showDiagram">
+                    {{#unless diagramView}}
+                      <span>Use diagram view</span>
+                    {{/unless}}
+                    {{#if diagramView}}
+                      <span>Use form view</span>
+                    {{/if}}
+                  </div>
+
                   <div class="action-list-container">
                     {{#each actionList as |actionValue|}}
-                      <div {{action "updateAction" actionValue}} class="then-action action-context" >{{actionValue.rawValue}}</div>
+                      <div {{action "updateAction" actionValue}}
+                        class="then-action action-context">{{actionValue.rawValue}}</div>
                     {{/each}}
                   </div>
                   <br>
+
                   <button id="add_new_action" {{action "addnewaction"}} class="btn btn-danger">
                     Add new action
                   </button>
                 </div>
 
-                <div class="btn btn-info mar-5" id="save">
+                <div class="btn btn-info" id="save">
                   {{#if isEditView}}
                     <span {{action "update"}}>Update</span>
                   {{/if}}
                   {{#unless isEditView}}
                     <span {{action "save"}}>Save Unit/Regular Rule</span>
                   {{/unless}}
-                </div>
-                <div class="btn btn-info mar-5" id="showDiagram">
-                  {{#unless diagramView}}
-                    <span>Use diagram view</span>
-                  {{/unless}}
-                  {{#if diagramView}}
-                    <span>Use form view</span>
-                  {{/if}}
                 </div>
               </div>
             </div>
