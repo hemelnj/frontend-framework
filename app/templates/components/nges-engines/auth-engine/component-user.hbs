@@ -28,7 +28,6 @@
   }
 
   .table-all thead th {
-    padding: 7px;
     color: black;
     font-size: 12px;
     font-weight: bolder;
@@ -41,7 +40,6 @@
   }
 
   .table-all td {
-    padding: 7px;
     color: #3e3e3c;
     font-size: 12px;
     white-space: nowrap;
@@ -73,7 +71,7 @@
       <div class="row">
         <div class="col-md-6">
 
-          <div class="form-group has-search" style="margin-top:15px;">
+          <div class="form-group has-search">
             <span class="fa fa-search form-control-feedback"></span>
             <input type="text" class="input-field" onkeyup={{action 'getFilterKey' value='target.value'}}
                    placeholder="Type to Search">
@@ -191,9 +189,9 @@
             </div>
 
 
-            <div class="col" style="margin-left:0;">
-              <label for="name" class="input-field-label" style="margin-left:-12px;">Select Roles</label>
-              <select class="custom-select" id="userRole" style="margin-left:-5px;" multiple>
+            <div>
+              <label for="name" class="input-field-label">Select Roles</label>
+              <select class="custom-select" id="userRole" multiple>
                 {{#each roleList as |item index|}}
                   <option class="muliti-select-item" value={{item.attributes.id}}
                           name={{item.attributes.name}}>{{item.attributes.name}}</option>
@@ -201,8 +199,8 @@
               </select>
             </div>
 
-            <div class="row">
-              <div class="form-check" style="margin-left:10px;">
+            <div class="row" style="margin-left:2px;">
+              <div class="form-check" >
                 <label class="form-check-label input-field-label">
                   {{input type="checkbox" class="form-check-input" id="isEnabled"  name="option1" checked=true}}
                   Account Enabled
@@ -215,8 +213,8 @@
                 </label>
               </div>
             </div>
-            <div class="row">
-              <div class="form-check" style="margin-left:10px;">
+            <div class="row" style="margin-left:2px;">
+              <div class="form-check">
                 <label class="form-check-label input-field-label">
                   {{input type="checkbox" class="form-check-input" id="accExpired"  name="option1"}}Account Expired
                 </label>
