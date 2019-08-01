@@ -7,10 +7,10 @@ export default Component.extend({
 
     var div = d3.select("body").append("div").attr("class", "toolTip");
     var dataset = [
-      { name: 'Firearms', total: 2500, percent: 30.9 },
-      { name: 'Knives or cutting instruments', total: 1500, percent: 20.1 },
-      { name: 'Other weapons', total: 1800, percent: 33 },
-      { name: 'Hands, fists, feet, etc.', total: 1000, percent: 16 }
+      { name: 'Product A', total: 2500, percent: 30.9 },
+      { name: 'Product B', total: 1500, percent: 20.1 },
+      { name: 'Product C', total: 1800, percent: 33 },
+      { name: 'Product D', total: 1000, percent: 16 }
     ];
 
     var width = 400,
@@ -44,7 +44,7 @@ export default Component.extend({
     g.append("path")
       .style("fill", function(d) { return color(d.data.name); })
       .transition().delay(function(d,i) {
-      return i * 1000; }).duration(1000)
+      return i * 700; }).duration(500)
       .attrTween('d', function(d) {
         var i = d3.interpolate(d.startAngle+0.1, d.endAngle);
         return function(t) {
@@ -56,7 +56,7 @@ export default Component.extend({
       .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
       .attr("dy", ".35em")
       .transition()
-      .delay(3000)
+      .delay(2500)
       .text(function(d) { return d.data.name; });
 
     d3.selectAll("path").on("mousemove", function(d) {

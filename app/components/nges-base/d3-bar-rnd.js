@@ -71,9 +71,9 @@ export default Component.extend({
       })
       .attr("height", 0)
       .transition()
-      .duration(750)
+      .duration(2200)
       .delay(function (d, i) {
-        return i * 150;
+        return i * 30;
       })
       .attr("y", d => {
         return y(d.value);
