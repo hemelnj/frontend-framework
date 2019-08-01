@@ -194,6 +194,7 @@
                   </div>
 
                   <div class="action-list-container">
+
                     {{#each actionList as |actionValue|}}
                       <div {{action "updateAction" actionValue}}
                         class="then-action action-context">{{actionValue.rawValue}}</div>

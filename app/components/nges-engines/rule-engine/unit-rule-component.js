@@ -280,10 +280,7 @@ export default Component.extend({
     //let rule_data = [];
     // let unit_rule_properties = ['id', 'name', 'rule', 'extra'];
     this.get('store').findAll(UNIT_RULE_MODEL_NAME).then(function (unitRuleData) {
-
       context.set('data_unit_rules', unitRuleData);
-
-
     });
 
   },
@@ -381,7 +378,7 @@ export default Component.extend({
     this.set('showOptFormOnModal', false);
   },
   changeData(d) {
-    console.log("Here.............. in change datadgdgdgd" + d)
+    console.log("Here.............. in change datadgdgdgd" + d);
     this.set('unitRule', this.getRuleFromStringByName(d));
     this.set('finalRuleString', this.getStringFromRuleArray(this.get('unitRule')));
   },
