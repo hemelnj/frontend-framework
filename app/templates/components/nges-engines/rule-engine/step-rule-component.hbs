@@ -132,46 +132,50 @@
           <div class="row">
             <div class="col-md-4">
 
+
               <div class="{{if diagramView "hide" "show"}}">
 
-                <div>
-                  <div class="inline">
-                    <label for="exampleFormControlSelect1">Atomic rule</label>
+                <div class="" style="border: 1px solid #bebebe; padding-bottom: 10px;">
+                  <div>
+                    <div class="inline">
+                      <label for="exampleFormControlSelect1">Atomic rule</label>
 
-                    <select class="form-control inline-mini" id="atomicrulesFormView">
-                      {{#each atomicrules as |rule|}}
-                        <option value="{{rule.ruleName}}" class="atomicrulesFormView">
-                          {{rule.objectType}} {{rule.property}} {{rule.operator}}
-                          {{#if (nges-engines/rule-engine/check-object-type rule.compObjectType)}}
-                            <span>
-                              {{rule.compObjectType}}
-                            </span>
-                          {{/if}}
-                          {{rule.compProperty}}
-                        </option>
-                      {{/each}}
-                    </select>
+                      <select class="form-control inline-mini" id="atomicrulesFormView">
+                        {{#each atomicrules as |rule|}}
+                          <option value="{{rule.ruleName}}" class="atomicrulesFormView">
+                            {{rule.objectType}} {{rule.property}} {{rule.operator}}
+                            {{#if (nges-engines/rule-engine/check-object-type rule.compObjectType)}}
+                              <span>
+                                {{rule.compObjectType}}
+                              </span>
+                            {{/if}}
+                            {{rule.compProperty}}
+                          </option>
+                        {{/each}}
+                      </select>
 
-                    <div class="btn btn-info mar-5" id="addAtomicRuleTOList">
-                      Add
+                      <div class="btn btn-info" id="addAtomicRuleTOList">
+                        Add
+                      </div>
+                    </div>
+                    <div class="inline">
+                      <label for="exampleFormControlSelect1">Operator</label>
+                      <br/>
+                      <select class="form-control inline-mini" id="#operatorsFormView">
+                        {{#each manualOperators as |opt|}}
+                          <option class="operators operatorsFormView" value="{{opt}}">{{opt}}</option>
+                        {{/each}}
+                      </select>
+                      <div class="btn btn-info mar-5" id="addOptToList">
+                        Add
+                      </div>
                     </div>
                   </div>
-                  <div class="inline">
-                    <label for="exampleFormControlSelect1">Operator</label>
-                    <br/>
-                    <select class="form-control inline-mini" id="#operatorsFormView">
-                      {{#each manualOperators as |opt|}}
-                        <option class="operators operatorsFormView" value="{{opt}}">{{opt}}</option>
-                      {{/each}}
-                    </select>
-                    <div class="btn btn-info mar-5" id="addOptToList">
-                      Add
-                    </div>
+                  <div class="btn btn-info mar-5" id="remove">
+                    Remove
                   </div>
                 </div>
-                <div class="btn btn-info mar-5" id="remove">
-                  Remove
-                </div>
+
               </div>
 
               <div class="max-width-600">
@@ -179,7 +183,7 @@
                 <div class="form-group">
                   <div class="then-container">
                   </div>
-
+                  <br>
                   <div class="btn btn-info" id="showDiagram">
                     {{#unless diagramView}}
                       <span>Use diagram view</span>
