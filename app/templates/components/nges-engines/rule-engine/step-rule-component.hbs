@@ -181,15 +181,10 @@
                   </div>
                   <div class="action-list-container">
                     {{#each actionList as |actionValue|}}
-
-
-                      <div {{action "addnewaction" actionValue}} class="then-action action-context" >{{actionValue}}</div>
-
+                      <div {{action "updateAction" actionValue}} class="then-action action-context" >{{actionValue.rawValue}}</div>
                     {{/each}}
                   </div>
-
-
-
+                  <br>
                   <button id="add_new_action" {{action "addnewaction"}} class="btn btn-danger">
                     Add new action
                   </button>
@@ -378,32 +373,52 @@
     <div class="modal-wrapper">
       <div class="container add-action-modal">
         <div class="form-group">
-          <label for="sel1">Select class:</label>
-          <select class="form-control" id="action-class-name">
-            <option></option>
-            <option class="action-class-name">State</option>
-          </select>
+          <div class="row">
+            <div class="col-md-3">
+              <label for="sel1">Select class:</label>
+            </div>
+            <div class="col-md-9">
+              <label id="selected-class-name" style="color: red;"></label>
+              <select class="form-control" id="action-class-name">
+                <option></option>
+                <option class="action-class-name">State</option>
+              </select>
+            </div>
+          </div>
+
         </div>
         <div class="form-group">
-          <label for="sel1">Select property:</label>
+          <div class="row">
+            <div class="col-md-3">
+              <label for="sel1">Select property:</label>
+            </div>
+            <div class="col-md-9">
+              <label id="selected-property-name" style="color: red;"></label>
+              <!-- todo: here parameter need to updated base on requirement-->
+              <select class="form-control" id="action-property-name">
+                <option></option>
+                <option class="action-property-name">id</option>
+                <option class="action-property-name">type</option>
+                <option class="action-property-name">percentage</option>
+                <option class="action-property-name">baseMoney</option>
+                <option class="action-property-name">amountOfCharge</option>
+                <option class="action-property-name">min</option>
+                <option class="action-property-name">max</option>
+              </select>
+            </div>
+          </div>
 
-
-          <!-- todo: here parameter need to updated base on requirement-->
-
-          <select class="form-control" id="action-property-name">
-            <option></option>
-            <option class="action-property-name">id</option>
-            <option class="action-property-name">type</option>
-            <option class="action-property-name">percentage</option>
-            <option class="action-property-name">baseMoney</option>
-            <option class="action-property-name">amountOfCharge</option>
-            <option class="action-property-name">min</option>
-            <option class="action-property-name">max</option>
-          </select>
         </div>
         <div class="form-group">
-          <label for="usr">Value:</label>
-          <input type="text" class="form-control" id="action-property-value">
+          <div class="row">
+            <div class="col-md-3">
+              <label for="usr">Value:</label>
+            </div>
+            <div class="col-md-9">
+              <input type="text" class="form-control" id="action-property-value">
+            </div>
+          </div>
+
           <div class="btn btn-info mar-top-30" id="submit-new-action">
             Submit
           </div>

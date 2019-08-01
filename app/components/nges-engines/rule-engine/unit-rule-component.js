@@ -52,6 +52,28 @@ export default Component.extend({
       $(".modal-wrapper").fadeIn();
     },
 
+    updateAction(actionValue) {
+      $(".modal-wrapper").fadeIn();
+      console.log('message--actionValue', actionValue);
+      let className = actionValue.className;
+      let field = actionValue.field;
+      let value = actionValue.value;
+      $("#selected-class-name").text(className);
+      $("#selected-property-name").text(field);
+      $("#action-property-value").val(value);
+
+      $("#action-property-name").change(function(){
+        let changedField =  document.getElementById("action-property-name").value;
+        $("#selected-property-name").text(changedField);
+      });
+
+      $("#selected-class-name").change(function(){
+        let changedClass =  document.getElementById("selected-class-name").value;
+        $("#selected-class-name").text(changedClass);
+      });
+
+    },
+
     closenewaction() {
       $(".modal-wrapper").fadeOut();
     },
@@ -68,7 +90,14 @@ export default Component.extend({
 
         let actionList = [];
         for (let j = 0; j < action.length; j++) {
-          actionList.push(action[j]);
+          let parseRuleObject = action[j].split(' ');
+
+          actionList.push({
+            className: parseRuleObject[0],
+            field: parseRuleObject[1],
+            value: parseRuleObject[2],
+            rawValue: action[j]
+          });
           //$(".action-list-container").append("<div><div class='then-action action-context'>" + action[j] + "</div><div>");
         }
 
@@ -107,7 +136,7 @@ export default Component.extend({
         name: $("#nameofrule").val(),
         rule: str,
         extra: then,
-      }
+      };
       console.log("Then value " + data.extra);
       this.get('store').findRecord(UNIT_RULE_MODEL_NAME, id).then(function (ruleData) {
         ruleData.set('name', data.name);
@@ -172,7 +201,7 @@ export default Component.extend({
         name: $("#nameofrule").val(),
         rule: str,
         extra: then,
-      }
+      };
       let newRecord = this.get('store').createRecord(UNIT_RULE_MODEL_NAME, data);
       newRecord.save();
       console.log("Here I am on new record ");
@@ -281,10 +310,13 @@ export default Component.extend({
     });
     $("#submit-new-action").click(function () {
       $(".modal-wrapper").fadeOut();
-      let className = $(".action-class-name:selected").val();
-      let propertyName = $(".action-property-name:selected").val();
+      //let className = $(".action-class-name:selected").val();
+      let className = $("#selected-class-name").text();
+      //let propertyName = $(".action-property-name:selected").val();
+      let propertyName = $("#selected-property-name").text();
       let propertyValue = $("#action-property-value").val();
       let action = className + " " + propertyName + " " + propertyValue;
+      console.log('message--action', action);
       $(".action-list-container").append("<div><div class='then-action action-context'>" + action + "</div><div>");
       $(".then-action").off();
       $(".then-action").click(function () {
@@ -292,7 +324,9 @@ export default Component.extend({
         $(".popup-for-delete-wrapper").fadeIn();
         context.currentRuleAction = $(this);
       });
-    })
+    });
+
+
 
 
     $("#delete-yes").click(function () {
