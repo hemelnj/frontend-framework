@@ -5,41 +5,6 @@
     font-size: 0.75rem;
     font-weight: bold;
   }
-
-  .button-all {
-    position: relative;
-    display: inline-block;
-    padding: 0;
-    background: transparent;
-    background-clip: border-box;
-    border: 1px solid transparent;
-    border-radius: .25rem;
-    line-height: 1.575rem;
-    text-decoration: none;
-    color: #0070d2;
-    -webkit-appearance: none;
-    white-space: normal;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-
-    font-size: .75rem;
-    white-space: nowrap;
-    position: relative;
-  }
-
-  .button-edit {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    text-align: center;
-    vertical-align: middle;
-    border: 1px solid #dddbda;
-    -webkit-transition: border 0.15s linear;
-    transition: border 0.15s linear;
-    background-color: #fff;
-  }
-
 </style>
 
 {{#each dataContextTree as |item|}}
@@ -48,7 +13,6 @@
     <input type="checkbox"  checked={{item.isItThere}} onclick={{action
       (action treeDataModifiedAction item) value="target.checked"}}>
     {{item.name}}
-   <!-- <button class="button-all button-edit"> -></button>-->
 
 
     {{#if item.children}}
