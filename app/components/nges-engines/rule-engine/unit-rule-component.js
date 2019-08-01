@@ -78,6 +78,7 @@ export default Component.extend({
       $(".modal-wrapper").fadeOut();
     },
     edit(i) {
+      console.log('message----------edit', i);
       this.set('id', i.id);
       console.log("Hey the id is " + i.id);
       $("#nameofrule").val(i.name);
