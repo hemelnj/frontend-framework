@@ -46,7 +46,7 @@ export default Component.extend({
         "operator": $(".operationName:selected").val(),
         "compObjectType": $(".comparedClassName:selected").val(),
         "compProperty": val
-      }
+      };
       if (this.get('id') != -1) {
         data.id = this.get('id');
         console.log("Data id is : " + data.id);
@@ -60,6 +60,8 @@ export default Component.extend({
           ruleData.set('compObjectType', data.compObjectType);
           ruleData.set('compProperty', data.compProperty);
           ruleData.save();
+
+          context.set('id', -1);
           alert("One record updated");
           context.initAlldata();
         });
