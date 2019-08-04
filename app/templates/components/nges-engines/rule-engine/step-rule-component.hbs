@@ -99,18 +99,18 @@
                   {{/if}}
                   {{#unless showOptFormOnModal}}
                     <div class="box">
-                      <div class="form-group">
+                      <div class="form-group" style="width: 350px; margin-left: -8%">
                         <label for="sel1">Select atomic rule:</label>
                         <select class="form-control" id="atomicrules">
                           {{#each atomicrules as |rule|}}
                             <option value="{{rule.ruleName}}" class="atomicrules">
-                              {{rule.objectType}} {{rule.property}} {{rule.operator}}
+                              {{rule.ruleName}}: ({{rule.objectType}} | {{rule.property}} {{rule.operator}}
+
                               {{#if (nges-engines/rule-engine/check-object-type rule.compObjectType)}}
-                                <span>
-                                  {{rule.compObjectType}}
-                                </span>
+                                <span>{{rule.compObjectType}}</span>
                               {{/if}}
-                              {{rule.compProperty}}
+
+                              {{rule.compProperty}})
                             </option>
                           {{/each}}
                         </select>
@@ -132,46 +132,50 @@
           <div class="row">
             <div class="col-md-4">
 
+
               <div class="{{if diagramView "hide" "show"}}">
 
-                <div>
-                  <div class="inline">
-                    <label for="exampleFormControlSelect1">Atomic rule</label>
+                <div class="" style="border: 1px solid #bebebe; padding-bottom: 10px;">
+                  <div>
+                    <div class="inline">
+                      <label for="exampleFormControlSelect1">Atomic rule</label>
 
-                    <select class="form-control inline-mini" id="atomicrulesFormView">
-                      {{#each atomicrules as |rule|}}
-                        <option value="{{rule.ruleName}}" class="atomicrulesFormView">
-                          {{rule.objectType}} {{rule.property}} {{rule.operator}}
-                          {{#if (nges-engines/rule-engine/check-object-type rule.compObjectType)}}
-                            <span>
-                              {{rule.compObjectType}}
-                            </span>
-                          {{/if}}
-                          {{rule.compProperty}}
-                        </option>
-                      {{/each}}
-                    </select>
+                      <select class="form-control inline-mini" id="atomicrulesFormView">
+                        {{#each atomicrules as |rule|}}
+                          <option value="{{rule.ruleName}}" class="atomicrulesFormView">
+                            {{rule.objectType}} {{rule.property}} {{rule.operator}}
+                            {{#if (nges-engines/rule-engine/check-object-type rule.compObjectType)}}
+                              <span>
+                                {{rule.compObjectType}}
+                              </span>
+                            {{/if}}
+                            {{rule.compProperty}}
+                          </option>
+                        {{/each}}
+                      </select>
 
-                    <div class="btn btn-info mar-5" id="addAtomicRuleTOList">
-                      Add
+                      <div class="btn btn-info" id="addAtomicRuleTOList">
+                        Add
+                      </div>
+                    </div>
+                    <div class="inline">
+                      <label for="exampleFormControlSelect1">Operator</label>
+                      <br/>
+                      <select class="form-control inline-mini" id="#operatorsFormView">
+                        {{#each manualOperators as |opt|}}
+                          <option class="operators operatorsFormView" value="{{opt}}">{{opt}}</option>
+                        {{/each}}
+                      </select>
+                      <div class="btn btn-info mar-5" id="addOptToList">
+                        Add
+                      </div>
                     </div>
                   </div>
-                  <div class="inline">
-                    <label for="exampleFormControlSelect1">Operator</label>
-                    <br/>
-                    <select class="form-control inline-mini" id="#operatorsFormView">
-                      {{#each manualOperators as |opt|}}
-                        <option class="operators operatorsFormView" value="{{opt}}">{{opt}}</option>
-                      {{/each}}
-                    </select>
-                    <div class="btn btn-info mar-5" id="addOptToList">
-                      Add
-                    </div>
+                  <div class="btn btn-info mar-5" id="remove">
+                    Remove
                   </div>
                 </div>
-                <div class="btn btn-info mar-5" id="remove">
-                  Remove
-                </div>
+
               </div>
 
               <div class="max-width-600">
@@ -179,32 +183,37 @@
                 <div class="form-group">
                   <div class="then-container">
                   </div>
+                  <br>
+                  <div class="btn btn-info" id="showDiagram">
+                    {{#unless diagramView}}
+                      <span>Use diagram view</span>
+                    {{/unless}}
+                    {{#if diagramView}}
+                      <span>Use form view</span>
+                    {{/if}}
+                  </div>
+
                   <div class="action-list-container">
+
                     {{#each actionList as |actionValue|}}
-                      <div {{action "updateAction" actionValue}} class="then-action action-context" >{{actionValue.rawValue}}</div>
+                      <div {{action "updateAction" actionValue}}
+                        class="then-action action-context">{{actionValue.rawValue}}</div>
                     {{/each}}
                   </div>
                   <br>
+
                   <button id="add_new_action" {{action "addnewaction"}} class="btn btn-danger">
                     Add new action
                   </button>
                 </div>
 
-                <div class="btn btn-info mar-5" id="save">
+                <div class="btn btn-info" id="save">
                   {{#if isEditView}}
                     <span {{action "update"}}>Update</span>
                   {{/if}}
                   {{#unless isEditView}}
                     <span {{action "save"}}>Save Unit/Regular Rule</span>
                   {{/unless}}
-                </div>
-                <div class="btn btn-info mar-5" id="showDiagram">
-                  {{#unless diagramView}}
-                    <span>Use diagram view</span>
-                  {{/unless}}
-                  {{#if diagramView}}
-                    <span>Use form view</span>
-                  {{/if}}
                 </div>
               </div>
             </div>
@@ -260,7 +269,7 @@
               <tr>
                 <td>{{unitRuleForStepRule.salience}}</td>
                 <td>{{unitRuleForStepRule.name}}</td>
-                <td>{{unitRuleForStepRule.extra}}</td>
+                <td>{{nges-engines/rule-engine/rule-view-update unitRuleForStepRule.extra}}</td>
                 <td>
                   {{ unitRuleForStepRule.rule}}
                 </td>
@@ -339,12 +348,17 @@
           {{#each allStepRules as | stepRule|}}
             <tr>
               <td>{{stepRule.name}}</td>
-
+            <tr>
+              <th>SL</th>
+              <th>Slab</th>
+              <th>Process</th>
+              <th>Condition</th>
+            </tr>
             {{#each stepRule.unitRuleList as | unitRuleForStepRule|}}
               <tr>
                 <td>{{unitRuleForStepRule.salience}}</td>
                 <td>{{unitRuleForStepRule.name}}</td>
-                <td>{{unitRuleForStepRule.extra}}</td>
+                <td>{{nges-engines/rule-engine/rule-view-update unitRuleForStepRule.extra}}</td>
                 <td>
                   {{ unitRuleForStepRule.rule}}
                 </td>
