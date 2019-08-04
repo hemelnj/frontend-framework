@@ -49,7 +49,19 @@ export default Component.extend({
       this.fieldId = this.fieldId - 1;
     },
     addnewaction() {
+
       $(".modal-wrapper").fadeIn();
+
+      $("#action-property-name").change(function () {
+        let changedField = $(".action-property-name:selected").val();
+        $("#selected-property-name").text(changedField);
+      });
+
+      $("#action-class-name").change(function () {
+        let changedClass = $(".action-class-name:selected").val();
+        $("#selected-class-name").text(changedClass);
+      });
+
     },
 
     updateAction(actionValue) {
@@ -62,13 +74,13 @@ export default Component.extend({
       $("#selected-property-name").text(field);
       $("#action-property-value").val(value);
 
-      $("#action-property-name").change(function(){
-        let changedField =  document.getElementById("action-property-name").value;
+      $("#action-property-name").change(function () {
+        let changedField = document.getElementById("action-property-name").value;
         $("#selected-property-name").text(changedField);
       });
 
-      $("#selected-class-name").change(function(){
-        let changedClass =  document.getElementById("selected-class-name").value;
+      $("#selected-class-name").change(function () {
+        let changedClass = document.getElementById("selected-class-name").value;
         $("#selected-class-name").text(changedClass);
       });
 
@@ -101,7 +113,7 @@ export default Component.extend({
           //$(".action-list-container").append("<div><div class='then-action action-context'>" + action[j] + "</div><div>");
         }
 
-        this.set('actionList',actionList);
+        this.set('actionList', actionList);
         console.log('message---heyyyyy', actionList);
       }
 
@@ -268,10 +280,7 @@ export default Component.extend({
     //let rule_data = [];
     // let unit_rule_properties = ['id', 'name', 'rule', 'extra'];
     this.get('store').findAll(UNIT_RULE_MODEL_NAME).then(function (unitRuleData) {
-
       context.set('data_unit_rules', unitRuleData);
-
-
     });
 
   },
@@ -327,8 +336,6 @@ export default Component.extend({
     });
 
 
-
-
     $("#delete-yes").click(function () {
       context.currentRuleAction.remove();
       $(".popup-for-delete-wrapper").fadeOut();
@@ -371,7 +378,7 @@ export default Component.extend({
     this.set('showOptFormOnModal', false);
   },
   changeData(d) {
-    console.log("Here.............. in change datadgdgdgd" + d)
+    console.log("Here.............. in change datadgdgdgd" + d);
     this.set('unitRule', this.getRuleFromStringByName(d));
     this.set('finalRuleString', this.getStringFromRuleArray(this.get('unitRule')));
   },

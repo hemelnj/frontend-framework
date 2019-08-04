@@ -15,7 +15,7 @@ const STEP_RULE_MODEL_NAME = 'nges-engines/rule-engine/steprule';
 export default Component.extend({
 
   id: '',
-  stepRuleId:'',
+  stepRuleId: '',
   fieldId: '',
   diagram: '',
   store: service(),
@@ -36,7 +36,7 @@ export default Component.extend({
   isEditView: '',
   isStepRuleEditView: '',
   currentRuleAction: '',
-  unitRuleForStepRuleList:'',
+  unitRuleForStepRuleList: '',
 
   actions: {
     cancel() {
@@ -55,6 +55,16 @@ export default Component.extend({
     },
     addnewaction() {
       $(".modal-wrapper").fadeIn();
+
+      $("#action-property-name").change(function () {
+        let changedField = $(".action-property-name:selected").val();
+        $("#selected-property-name").text(changedField);
+      });
+
+      $("#action-class-name").change(function () {
+        let changedClass = $(".action-class-name:selected").val();
+        $("#selected-class-name").text(changedClass);
+      });
     },
 
     updateAction(actionValue) {
@@ -68,13 +78,13 @@ export default Component.extend({
       $("#selected-property-name").text(field);
       $("#action-property-value").val(value);
 
-      $("#action-property-name").change(function(){
-        let changedField =  document.getElementById("action-property-name").value;
+      $("#action-property-name").change(function () {
+        let changedField = document.getElementById("action-property-name").value;
         $("#selected-property-name").text(changedField);
       });
 
-      $("#selected-class-name").change(function(){
-        let changedClass =  document.getElementById("selected-class-name").value;
+      $("#selected-class-name").change(function () {
+        let changedClass = document.getElementById("selected-class-name").value;
         $("#selected-class-name").text(changedClass);
       });
     },
@@ -90,7 +100,7 @@ export default Component.extend({
       $("#then").val(i.extra);
       this.set('isEditView', true);
 
-      if(i.extra!="") {
+      if (i.extra != "") {
         let action = i.extra.split("##@@");
         let actionList = [];
         for (let j = 0; j < action.length; j++) {
@@ -104,13 +114,13 @@ export default Component.extend({
           });
         }
 
-        this.set('actionList',actionList);
+        this.set('actionList', actionList);
         console.log('message---heyyyyy', actionList);
       }
 
 
       this.drawDiagramOnEdit(i.rule);
-      console.log("in edit ......."+i.rule);
+      console.log("in edit ......." + i.rule);
       this.changeData(this.diagram.generateDataToSave());
 
     },
@@ -145,12 +155,12 @@ export default Component.extend({
       }
 
 
-      for(let i=0; i<this.get('unitRuleForStepRuleList').length; i++ ){
-          if(this.get('unitRuleForStepRuleList')[i].id==id){
-            this.get('unitRuleForStepRuleList').splice(i, 1);
-            this.get('unitRuleForStepRuleList').pushObject(data);
+      for (let i = 0; i < this.get('unitRuleForStepRuleList').length; i++) {
+        if (this.get('unitRuleForStepRuleList')[i].id == id) {
+          this.get('unitRuleForStepRuleList').splice(i, 1);
+          this.get('unitRuleForStepRuleList').pushObject(data);
 
-          }
+        }
 
 
       }
@@ -161,20 +171,18 @@ export default Component.extend({
       this.$('#nameofrule').val("");
       this.$('#priority').val("");
       $(".action-list-container").empty();
-      this.set('isEditView',false);
-
-
+      this.set('isEditView', false);
 
 
     },
-    delete(rule){
+    delete(rule) {
 
       let temp = [];
 
       let unitRuleForStepRuleList = this.get('unitRuleForStepRuleList');
 
-      for(let i=0; i < unitRuleForStepRuleList.length; i++ ){
-        if(unitRuleForStepRuleList[i].id === rule.id) {
+      for (let i = 0; i < unitRuleForStepRuleList.length; i++) {
+        if (unitRuleForStepRuleList[i].id === rule.id) {
           continue;
         }
         temp.push(unitRuleForStepRuleList[i])
@@ -183,8 +191,8 @@ export default Component.extend({
       this.set('unitRuleForStepRuleList', temp);
     },
 
-    deleteStepRule(rule){
-      this.get('store').findRecord(STEP_RULE_MODEL_NAME, rule.id,{reload : true}).then(function (stepRule) {
+    deleteStepRule(rule) {
+      this.get('store').findRecord(STEP_RULE_MODEL_NAME, rule.id, {reload: true}).then(function (stepRule) {
         stepRule.destroyRecord();
         alert("One step rule is deleted");
 
@@ -192,17 +200,17 @@ export default Component.extend({
 
     },
 
-    editStepRule(rule){
-      this.set('stepRuleId',rule.id);
-      this.set('isStepRuleEditView',true);
-      this.set('unitRuleForStepRuleList',rule.unitRuleList);
+    editStepRule(rule) {
+      this.set('stepRuleId', rule.id);
+      this.set('isStepRuleEditView', true);
+      this.set('unitRuleForStepRuleList', rule.unitRuleList);
       this.$("#nameOfStepRule").val(rule.name);
 
     },
     save() {
 
       let array = this.get('unitRule');
-      console.log("here......"+array);
+      console.log("here......" + array);
       let str = "";
       for (let i = 0; i < array.length; i++) {
         if (array[i].ruleName) {
@@ -226,7 +234,6 @@ export default Component.extend({
         }
 
 
-
       }
       //then = then.substring(0, then.length - 4);
 
@@ -234,7 +241,7 @@ export default Component.extend({
       let data = {
 
         name: $("#nameofrule").val(),
-        salience:$("#priority").val(),
+        salience: $("#priority").val(),
         rule: str,
         extra: then,
       }
@@ -247,7 +254,7 @@ export default Component.extend({
       console.log("Here I am on new record ");
       console.log(newRecord);*/
       alert("One record added");
-     // this.initLoadData();
+      // this.initLoadData();
       this.get('diagram').clearAll();
       this.$('#nameofrule').val("");
       this.$('#priority').val("");
@@ -256,7 +263,7 @@ export default Component.extend({
     },
     saveStepRule() {
 
-      let context= this;
+      let context = this;
 
       let data = {
 
@@ -268,14 +275,14 @@ export default Component.extend({
       let newRecord = this.get('store').createRecord(STEP_RULE_MODEL_NAME, data);
       newRecord.save();
       alert("One step rule added");
-      this.set('unitRuleForStepRuleList',[]);
+      this.set('unitRuleForStepRuleList', []);
       this.$('#nameOfStepRule').val("");
 
 
     },
     updateStepRule() {
 
-      let context= this;
+      let context = this;
 
       let data = {
 
@@ -284,32 +291,21 @@ export default Component.extend({
 
       };
       console.log("here.....................in step rule" + this.get('unitRuleForStepRuleList'))
-      this.get('store').findRecord(STEP_RULE_MODEL_NAME,this.get('stepRuleId')).then(function (oldStepRule) {
+      this.get('store').findRecord(STEP_RULE_MODEL_NAME, this.get('stepRuleId')).then(function (oldStepRule) {
         oldStepRule.set('name', data.name);
         oldStepRule.set('unitRuleList', data.unitRuleList);
         oldStepRule.save();
 
       });
       alert("One step rule updated");
-      this.set('unitRuleForStepRuleList',[]);
+      this.set('unitRuleForStepRuleList', []);
       this.$('#nameOfStepRule').val("");
-      this.set('isStepRuleEditView',false);
+      this.set('isStepRuleEditView', false);
 
     }
 
 
   },
-
-
-
-
-
-
-
-
-
-
-
 
 
   init() {
@@ -344,7 +340,7 @@ export default Component.extend({
     this.set('showPopUp', false);
     this.set('showOptFormOnModal', false);
     this.set('unitRuleForStepRuleList', []);
-    this.set('allStepRules',[]);
+    this.set('allStepRules', []);
     this.initLoadData();
   },
   initLoadData() {
@@ -370,7 +366,7 @@ export default Component.extend({
     this.diagram.diagramInit();
     this.diagram.setViewInstance(this);
     let context = this;
-    $(".tools").click(function() {
+    $(".tools").click(function () {
       let clickedItem = this.id;
       if (clickedItem == "clear") {
         context.diagram.clearAll();
@@ -380,25 +376,25 @@ export default Component.extend({
         context.diagram.setBtnKey(clickedItem);
       }
     });
-    $("#addAtomicRuleTOList").click(function() {
+    $("#addAtomicRuleTOList").click(function () {
       console.log("Here add rule is called");
       let ruleName = $(".atomicrulesFormView:selected").val();
       //add that to the list
       context.addAtomicRuleTOList(ruleName)
     });
-    $("#addOptToList").click(function() {
+    $("#addOptToList").click(function () {
       console.log("Here add opt is called");
       let opt = $(".operatorsFormView:selected").val();
       context.addOptToList(opt);
     });
-    $("#remove").click(function() {
+    $("#remove").click(function () {
       context.remove();
     });
-    $("#showDiagram").click(function() {
+    $("#showDiagram").click(function () {
       context.set('diagramView', !context.get('diagramView'));
       context.triggerDrawDiagramOnCanvas();
     });
-    $("#submit-new-action").click(function() {
+    $("#submit-new-action").click(function () {
       $(".modal-wrapper").fadeOut();
       //let className = $(".action-class-name:selected").val();
       let className = $("#selected-class-name").text();
@@ -409,32 +405,31 @@ export default Component.extend({
       console.log('message--action', action);
       $(".action-list-container").append("<div><div class='then-action action-context'>" + action + "</div><div>");
       $(".then-action").off();
-      $(".then-action").click(function() {
+      $(".then-action").click(function () {
 
         $(".popup-for-delete-wrapper").fadeIn();
         context.currentRuleAction = $(this);
       });
     });
-    $("#delete-yes").click(function() {
+    $("#delete-yes").click(function () {
       context.currentRuleAction.remove();
       $(".popup-for-delete-wrapper").fadeOut();
     })
-    $("#delete-no").click(function() {
+    $("#delete-no").click(function () {
       $(".popup-for-delete-wrapper").fadeOut();
     })
   },
   didRender() {
     let context = this;
-    $(".operatorSubmitBtn").click(function() {
+    $(".operatorSubmitBtn").click(function () {
       let opt = $(".operators:selected").val();
       context.drawOperatorInDiagram(context.mousePos, opt);
     });
-    $(".atomicRuleSubmitBtn").click(function() {
+    $(".atomicRuleSubmitBtn").click(function () {
       let selectedRule = $(".atomicrules:selected").val();
       let rule = context.findRuleByName(selectedRule);
       context.drawAtomicRuleInDiagram(rule);
     });
-
 
 
   },
@@ -458,7 +453,7 @@ export default Component.extend({
     this.set('showOptFormOnModal', false);
   },
   changeData(d) {
-    console.log("Here.............. in change datadgdgdgd"+d)
+    console.log("Here.............. in change datadgdgdgd" + d)
     this.set('unitRule', this.getRuleFromStringByName(d));
     this.set('finalRuleString', this.getStringFromRuleArray(this.get('unitRule')));
   },

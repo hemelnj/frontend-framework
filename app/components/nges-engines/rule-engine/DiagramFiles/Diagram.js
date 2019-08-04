@@ -375,7 +375,7 @@ export class Diagram {
       if (rule.compObjectType == "noObject") {
         rule.compObjectType = "";
       }
-      ruledetail = rule.objectType + " " + rule.property + "  " + rule.operator + " " + rule.compObjectType + " " + rule.compProperty;
+      ruledetail = rule.objectType + "\n(" + rule.property + "  " + rule.operator + " " + rule.compObjectType + " " + rule.compProperty+")";
 
     }
     let k = this.konva;
@@ -388,8 +388,8 @@ export class Diagram {
     var ruleName = new k.Text({
       x: mousePos.x,
       y: mousePos.y,
-      text: name,
-      fontSize: 15,
+      text: ruledetail,
+      fontSize: 16,
       fontFamily: 'Calibri',
       fill: 'White'
     });
@@ -401,11 +401,12 @@ export class Diagram {
     var ruledetailg = new k.Text({
       x: mousePos.x,
       y: mousePos.y + 30,
-      text: ruledetail,
-      fontSize: 10,
+      text: name,
+      fontSize: 14,
       fontFamily: 'Calibri',
       fill: 'black'
     });
+
     ruledetailg.setOffset({
       x: ruledetailg.getWidth() / 2,
       y: ruledetailg.getHeight() / 2
@@ -415,7 +416,7 @@ export class Diagram {
       x: mousePos.x,
       y: mousePos.y,
       width: ruleName.getWidth() + 20,
-      height: 30,
+      height: 40,
       fill: '#369688',
       stroke: '#369688',
       strokeWidth: 4

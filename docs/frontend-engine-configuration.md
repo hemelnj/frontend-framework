@@ -64,9 +64,10 @@ Development, versioning and management flow for `NGES Team`
 - [ ] Always Front Framework on one Baseline Version (`latest`, `stable`). 
 - [ ] Development Team will `start` with `stable version`. 
 - [ ] NGES team will `continuously improve` the `stable` changing the `version` number in 2nd and 3rd digit. `v1.0.1, v1.0.2,...`
-- [ ] The `development team` will `pull this manually` but the `compatibility and TODO guideline` should always be provided by NGES team.
+- [ ] ** The `development team` will `pull this manually` but the `compatibility and TODO guideline` should always be provided by NGES team.
 
 
+`** Note:` If product team want to `align with framework update feature` and `update working project automatically` Then need to `create new branch` at that framework specific version. Then start development on that branch, rest of the process will be same. Poduct team request for new feature update then NGES Frontend Team make it automatically with helps of git merge.
 
 ## Framework Project Layout
 

@@ -57,7 +57,7 @@ export default Component.extend({
     };
 
 
-    d3.selectAll("input")
+    d3.selectAll("#dataset")
       .on("change", update);
 
     function update(val = this.value) {

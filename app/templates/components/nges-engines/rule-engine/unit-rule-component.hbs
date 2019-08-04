@@ -66,18 +66,18 @@
                 {{/if}}
                 {{#unless showOptFormOnModal}}
                   <div class="box">
-                    <div class="form-group">
+                    <div class="form-group" style="width: 350px;margin-left: -8%;">
                       <label for="sel1">Select atomic rule:</label>
                       <select class="form-control" id="atomicrules">
                         {{#each atomicrules as |rule|}}
                           <option value="{{rule.ruleName}}" class="atomicrules">
-                            {{rule.objectType}} {{rule.property}} {{rule.operator}}
+                            {{rule.ruleName}} : ({{rule.objectType}} | {{rule.property}} {{rule.operator}}
+
                             {{#if (nges-engines/rule-engine/check-object-type rule.compObjectType)}}
-                              <span>
-                                {{rule.compObjectType}}
-                              </span>
+                              <span>{{rule.compObjectType}}</span>
                             {{/if}}
-                            {{rule.compProperty}}
+
+                            {{rule.compProperty}})
                           </option>
                         {{/each}}
                       </select>
@@ -143,6 +143,7 @@
 
 
             <div class="form-group">
+              <div class="action-list-container"></div>
               <div class="then-container">
 
 
@@ -155,7 +156,6 @@
               <button id="add_new_action" {{action "addnewaction"}} class="btn btn-danger">
                 Add new action
               </button>
-
             </div>
 
 
@@ -246,7 +246,7 @@
         {{#each data_unit_rules as |unit_rule|}}
           <tr>
             <td>{{unit_rule.name}}</td>
-            <td>{{unit_rule.extra}}</td>
+            <td>{{nges-engines/rule-engine/rule-view-update unit_rule.extra}}</td>
             <td>
               {{ unit_rule.rule}}
             </td>
@@ -322,20 +322,22 @@
     </div>
 
 
-    <div class="container mar-top-100 popup-for-delete-wrapper" style="text-align:center">
-      <div class="pop-up-for-delete">
-        <div>
-          Do you want to delete?
-        </div>
-        <div>
-          <div class="btn btn-danger all-mar" id="delete-yes">
-            Yes
+    <div class="container mar-top-100 popup-for-delete-wrapper" style="text-align:center;">
+
+      <div class="pop-up-for-delete" style="border: 1px solid rgba(0, 0, 0, 0.125);border-radius: 0.25rem;">
+            <div>
+              Do you want to delete?
+            </div>
+            <div>
+              <div class="btn btn-danger all-mar" id="delete-yes">
+                Yes
+              </div>
+              <div class="btn btn-danger all-mar" id="delete-no">
+                No
+              </div>
+            </div>
           </div>
-          <div class="btn btn-danger all-mar" id="delete-no">
-            No
-          </div>
-        </div>
-      </div>
+
     </div>
   </div>
 </div>
