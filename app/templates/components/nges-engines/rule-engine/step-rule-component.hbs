@@ -348,7 +348,12 @@
           {{#each allStepRules as | stepRule|}}
             <tr>
               <td>{{stepRule.name}}</td>
-
+            <tr>
+              <th>SL</th>
+              <th>Slab</th>
+              <th>Process</th>
+              <th>Condition</th>
+            </tr>
             {{#each stepRule.unitRuleList as | unitRuleForStepRule|}}
               <tr>
                 <td>{{unitRuleForStepRule.salience}}</td>
