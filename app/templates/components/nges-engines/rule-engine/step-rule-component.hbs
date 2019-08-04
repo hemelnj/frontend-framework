@@ -99,18 +99,18 @@
                   {{/if}}
                   {{#unless showOptFormOnModal}}
                     <div class="box">
-                      <div class="form-group">
+                      <div class="form-group" style="width: 350px; margin-left: -8%">
                         <label for="sel1">Select atomic rule:</label>
                         <select class="form-control" id="atomicrules">
                           {{#each atomicrules as |rule|}}
                             <option value="{{rule.ruleName}}" class="atomicrules">
-                              {{rule.objectType}} {{rule.property}} {{rule.operator}}
+                              {{rule.ruleName}}: ({{rule.objectType}} | {{rule.property}} {{rule.operator}}
+
                               {{#if (nges-engines/rule-engine/check-object-type rule.compObjectType)}}
-                                <span>
-                                  {{rule.compObjectType}}
-                                </span>
+                                <span>{{rule.compObjectType}}</span>
                               {{/if}}
-                              {{rule.compProperty}}
+
+                              {{rule.compProperty}})
                             </option>
                           {{/each}}
                         </select>
