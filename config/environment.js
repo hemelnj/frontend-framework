@@ -77,7 +77,8 @@ module.exports = function (environment) {
       APP_OLM_SERVICE_HOST: 'http://rms.olm-apps.115.127.24.184.nip.io',
       APP_SERVICE_POST_HOST: '-apps.115.127.24.184.nip.io',
 
-      RULE_ENGINE_SERVICE_HOST: 'http://192.168.20.2:8084',
+      //RULE_ENGINE_SERVICE_HOST: 'http://droolsbackend-ngfs-core-framework.apps.115.127.24.184.nip.io',
+      RULE_ENGINE_SERVICE_HOST: 'http://192.168.20.2:8080',
     };
   }
 
