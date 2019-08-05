@@ -65,11 +65,11 @@
         <div class="form-group">
           <div class="row">
             <div class="col-sm-2">
-              <label class="input-field-label" style="margin-top: 15px;">Country:</label>
+              <label class="input-field-label">Country:</label>
             </div>
 
             <div class="col-sm-6">
-              <label style="float: right">{{selectedCountry.label}}</label>
+              <!--<label style="font-size: 11px;">{{selectedCountry.label}}</label>-->
               {{nges-core/nges-searchable-dropdown
                 dataList=countryList
                 message = "Select Country"
@@ -82,11 +82,11 @@
         <div class="form-group">
           <div class="row">
             <div class="col-sm-2">
-              <label class="input-field-label" style="margin-top: 15px;">State/District:</label>
+              <label class="input-field-label">State/District:</label>
             </div>
 
             <div class="col-sm-6">
-              <label style="float: right">{{selectedState.label}}</label>
+              <!--<label style="float: right">{{selectedState.label}}</label>-->
               {{nges-core/nges-searchable-dropdown
                 dataList=stateList
                 message = "Select State/District"
@@ -143,11 +143,11 @@
         <div class="row">
 
           <div class="col-sm-2">
-            <label class="input-field-label" style="margin-top: 15px;">Choose Nationality:</label>
+            <label class="input-field-label">Choose Nationality:</label>
           </div>
 
           <div class="col-sm-6">
-            <label style="float: right">{{selectedNationality.label}}</label>
+            <!--<label style="float: right">{{selectedNationality.label}}</label>-->
             {{nges-core/nges-searchable-dropdown
               dataList=countryList
               message = "Select Nationality"
@@ -175,10 +175,10 @@
               <div class="col-sm-4">
                 <div class="row">
                   <div class="col-sm-6">
-                    <label class="input-field-label" style="margin-top: 15px">Risk</label>
+                    <label class="input-field-label">Risk</label>
                   </div>
                   <div class="col-sm-6">
-                    <label style="float: right">{{selectedRisk.label}}</label>
+                    <!--<label style="float: right">{{selectedRisk.label}}</label>-->
                     {{nges-core/nges-searchable-dropdown
                       dataList=riskType
                       message = "Select Risk"
