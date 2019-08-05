@@ -45,8 +45,9 @@
                   </div>
                   <div class="col-md-8">
                     <select class="form-control" id="attributeName">
+                      <option></option>
                       {{#each attributes as |attr|}}
-                        <option value={{attr}} class="attributeName">{{attr}}</option>
+                        <option value={{attr}} id="attributeName">{{attr}}</option>
                       {{/each}}
                     </select>
                   </div>
@@ -64,7 +65,7 @@
                   </div>
                   <div class="col-md-8">
                     <select class="form-control" id="operationName">
-
+                      <option></option>
                       {{#each operations as |operation|}}
                         <option value={{operation}} class="operationName">{{operation}}</option>
                       {{/each}}
