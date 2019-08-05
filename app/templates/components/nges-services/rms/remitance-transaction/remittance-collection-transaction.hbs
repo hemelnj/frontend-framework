@@ -358,12 +358,12 @@
         {{/if}}
         <br>
         <hr class="rms-bottom-hr-line">
-        <button id='save' class="rms-button-all rms-button-save" {{action 'validate'}}>Save</button>
-        <button id='status_check' class="rms-button-all rms-button-save" {{action 'checkRiskStatus'}}>Risk Status Check
+        <button id='save' class="nges-button nges-button-success" {{action 'validate'}}>Save</button>
+        <button id='status_check' class="nges-button nges-button-success" {{action 'checkRiskStatus'}}>Risk Status Check
         </button>
 
         {{#each stateActions as |state|}}
-          <button id='save' class="nges-button nges-button-save" {{action 'getNextAllowableStateIdForCurrentState'
+          <button id='save' class="nges-button nges-button-success" {{action 'getNextAllowableStateIdForCurrentState'
                                                                           state.attributes.id}}>{{state.attributes.name}}</button>
         {{/each}}
 
