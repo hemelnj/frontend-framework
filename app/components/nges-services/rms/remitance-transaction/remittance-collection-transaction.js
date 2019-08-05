@@ -44,10 +44,11 @@ export default Component.extend({
 
   didUpdateAttrs() {
     this._super(...arguments);
-    let beneficiaryData = this.get('beneficiaryData');
-    let type = beneficiaryData.type;
+    let collectionData = this.get('collectionData');
+    let type = collectionData.type;
     if (type === "edit") {
-      this.setModel(beneficiaryData.data);
+      //this.setModel(beneficiaryData.data);
+      console.log('message--collectionData', collectionData.data);
     }
   },
 
