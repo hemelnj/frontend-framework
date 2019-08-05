@@ -52,7 +52,7 @@ export default Route.extend({
 
 });
 
-
+// todo need to remove later
 let duplicateRemoveFun = (params) => {
   const names = params;
   let count = 0;
