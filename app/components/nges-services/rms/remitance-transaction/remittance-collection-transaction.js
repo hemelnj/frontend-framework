@@ -42,6 +42,16 @@ export default Component.extend({
     this.getDefaultUserFunctionId();
   },
 
+  didUpdateAttrs() {
+    this._super(...arguments);
+    let beneficiaryData = this.get('beneficiaryData');
+    let type = beneficiaryData.type;
+    if (type === "edit") {
+      this.setModel(beneficiaryData.data);
+    }
+  },
+
+
   setRisk() {
     let data = [
       {
