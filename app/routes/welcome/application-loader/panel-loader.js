@@ -23,11 +23,13 @@ export default Route.extend({
     //console.log('appCode', appCode);                                    // app->rms
     //console.log('appPanelCode', appPanelCode);                          // panel->operation
 
-    let serviceList = this.appWelcome.getAllApplicationPanelList();
+
+    let serviceList = duplicateRemoveFun(this.appWelcome.getAllApplicationPanelList());//todo remove it later
+    //let serviceList = this.appWelcome.getAllApplicationPanelList();
+
     let moduleList = this.appWelcome.getMenuListByPanelCode(appPanelCode);
 
     let hasSuperAdmin = this.appConfiguration.hasThisRoleByName("role_super_admin");
-
 
 
 
@@ -49,3 +51,23 @@ export default Route.extend({
 
 
 });
+
+// todo need to remove later
+let duplicateRemoveFun = (params) => {
+  const names = params;
+  let count = 0;
+  let newArray = [];
+
+  for (let n of names) {
+    if (n.displayName === 'Operation panel') {
+      count++;
+      if (count > 1) {
+        break;
+      }
+      //newArray.push(n);
+      console.log('message--newArray', newArray);
+    }
+    newArray.push(n);
+  }
+  return newArray;
+};

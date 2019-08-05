@@ -46,7 +46,7 @@ export default Component.extend({
         "operator": $(".operationName:selected").val(),
         "compObjectType": $(".comparedClassName:selected").val(),
         "compProperty": val
-      }
+      };
       if (this.get('id') != -1) {
         data.id = this.get('id');
         console.log("Data id is : " + data.id);
@@ -60,6 +60,8 @@ export default Component.extend({
           ruleData.set('compObjectType', data.compObjectType);
           ruleData.set('compProperty', data.compProperty);
           ruleData.save();
+
+          context.set('id', -1);
           alert("One record updated");
           context.initAlldata();
         });
@@ -76,9 +78,16 @@ export default Component.extend({
       let context = this;
       console.log(rule.id);
       this.set('id', rule.id);
-      console.log(rule);
+      console.log("RULE IS HEREE____________________--",rule);
       $("#name").val(rule.ruleName);
       $("#firstClassName").val(rule.objectType);
+
+      $("#operationName").val(rule.operator);
+      $("#comparedClassName").val(rule.compObjectType);
+
+
+      $("#attributeName").val(rule.property);
+
       let mclass = this.findItemFromArray(this.get('classes'), rule.objectType);
       context.set('attributes', mclass != null ? mclass.properties : null);
 
@@ -86,8 +95,7 @@ export default Component.extend({
         .attr("value", rule.property)
         .text(rule.property));*/
 
-      $("#operationName").val(rule.operator);
-      $("#comparedClassName").val(rule.compObjectType);
+
       if (rule.compObjectType == 'noObject') {
         this.set('showValueInput', false);
         this.set('dontShowValueInput', true);
@@ -160,6 +168,7 @@ export default Component.extend({
       let itemname = $(".className:selected").val();
       let mclass = context.findItemFromArray(context.get('classes'), itemname);
       context.set('attributes', mclass != null ? mclass.properties : null);
+      console.log('message--attributes', context.get('attributes'));
     });
 
     $("#comparedClassName").on('change', function () {
