@@ -19,13 +19,13 @@ export default Component.extend(Authorization, {
       this.appConfiguration.logoutUser();
       this.clearAuthorization();
     },
-    changeLocaleENG(){
+    changeLocaleENG() {
       this.get('intl').setLocale(['en-us']);
     },
-    changeLocaleBNG(){
+    changeLocaleBNG() {
       this.get('intl').setLocale(['bn-ln']);
     },
-    navigateToUpdatePassword(){
+    navigateToUpdatePassword() {
       console.log('message-app welcome', 'navigateToUpdatePassword');
       this.get('router').transitionTo('update-password');
     }
@@ -51,7 +51,7 @@ export default Component.extend(Authorization, {
     let userEmail = this.appConfiguration.getAuthorizedUserInformation().email;
     let accessToken = this.appConfiguration.getAccessToken();
 
-    context.set('userEmail',userEmail);
+    context.set('userEmail', userEmail);
     context.appWelcome.getInitialMenuTreeInformation(roles, accessToken).then(function (results) {
       let menuTreeData = results.data.children;
 
@@ -62,11 +62,13 @@ export default Component.extend(Authorization, {
 
       authorizationStatus = true;
 
-      context.set('serviceList', context.appWelcome.getAllApplicationPanelList());
+      context.set('serviceList', duplicateRemoveFun(context.appWelcome.getAllApplicationPanelList()));
+      //context.set('serviceList', context.appWelcome.getAllApplicationPanelList());
 
     }).then(function (data) {
 
-      context.set('serviceList', context.appWelcome.getAllApplicationPanelList());
+      //context.set('serviceList', context.appWelcome.getAllApplicationPanelList());
+      context.set('serviceList', duplicateRemoveFun(context.appWelcome.getAllApplicationPanelList()));
     });
 
     if (authorizationStatus) {
@@ -76,3 +78,23 @@ export default Component.extend(Authorization, {
   }
 
 });
+
+//todo need to remove after demo :)
+let duplicateRemoveFun = (params) => {
+  const names = params;
+  let count = 0;
+  let newArray = [];
+
+  for (let n of names) {
+    if (n.displayName === 'Operation panel') {
+      count++;
+      if (count > 1) {
+        break;
+      }
+      //newArray.push(n);
+      console.log('message--newArray', newArray);
+    }
+    newArray.push(n);
+  }
+  return newArray;
+};
