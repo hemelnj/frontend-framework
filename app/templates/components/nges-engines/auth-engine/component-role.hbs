@@ -29,15 +29,14 @@
       <label class="layout-header-title">User Roles</label>
       <hr class="header-label-line">
       <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-6">
           <div class="form-group has-search">
             <span class="fa fa-search form-control-feedback"></span>
             <input type="text" class="input-field" onkeyup={{action 'getFilterKey' value='target.value'}}
                    placeholder="Type to Search">
           </div>
 
-          <div class=""
-               style="overflow-y: auto; max-height: 250px; overflow-x: auto;">
+          <div class="table-all" style="overflow-y: auto; max-height: 250px;">
             <table class="table-all">
               <thead>
               <tr class="line-height-reset">
@@ -75,7 +74,8 @@
                     </div>
                   </td>
                   <td class="table-data table-bordered">
-                    <button data-toggle="modal" data-target="#actionEventModal" {{action 'editActionEvent' item }}
+                    <button data-toggle="modal" data-target="#actionEventModal" style="width: 100px;" {{action
+                      'editActionEvent' item }}
                             class="nges-button nges-button-success">Edit
                     </button>
                   </td>
@@ -87,7 +87,7 @@
           </div>
         </div>
 
-        <div class="col-md-7">
+        <div class="col-md-6">
           <div id="actionEventInfo" class="adjust-card-style field-form max-width" method="post">
             <label class="instruction-label" style="font-size: 16px">Registration</label>
             <div class="row" style="margin-top: 4px;">
