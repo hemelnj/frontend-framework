@@ -1,0 +1,257 @@
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: $primary-color-workspace;
+  //color: $primary-color-text;
+  //font-size: 80%;
+}
+
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.dynamicTab {
+  cursor: pointer;
+}
+
+.row {
+  margin-bottom: 10px;
+}
+
+.container-fluid {
+  top: -24px;
+  position: relative;
+}
+
+.card {
+  .breadcrumb-nav {
+    padding: 3px 0 3px 20px;
+  }
+}
+
+.pie-chart {
+  text-align: center;
+
+  img {
+    height: 200px;
+  }
+}
+
+.add-button {
+  text-align: right;
+
+  button {
+    border-radius: 50%;
+  }
+}
+
+.item-count {
+  right: 15px;
+  top: 56px;
+  position: absolute;
+}
+
+.max-width-sm {
+  max-width: 310px;
+}
+
+.adjust-mar-pad {
+  padding: 1.25rem;
+  margin: 20px;
+  font-size: 12px;
+
+  div {
+    padding-bottom: 10px;
+  }
+
+  #classtype {
+    font-size: 12px;
+  }
+}
+
+//layout title header style
+.layout-header-title {
+  color: $primary-color-title-text;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.header-label-line {
+  margin-top: -3px;
+  border: 1.2px solid $primary-color-title-line;
+  opacity: 0.5;
+}
+//////////////////////
+
+//input field and fieldset style
+.input-field-label {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  display: inline-block;
+  color: $primary-color-field-label;
+  font-size: $link-font-size;
+  font-weight: bold;
+  padding: -1rem 1rem 0 .75rem;
+}
+
+.field-set-label {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  display: inline-block;
+  color: $primary-color-field-set-label;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 0 1rem 0 .75rem;
+  margin-bottom: .125rem;
+}
+
+.input-field {
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  border-bottom: 1.1px solid $primary-color-input-field;
+  width: 100%;
+  -webkit-transition: border .1s linear, background-color .1s linear;
+  transition: border .1s linear, background-color .1s linear;
+  display: inline-block;
+  padding: 0 1rem 0 .75rem;
+  font-size: $link-font-size;
+  line-height: 1.475rem;
+  background: $primary-color-field-background;
+}
+
+.input-field:focus {
+  outline: none;
+  border-bottom: 1.5px solid rgba(81, 203, 238, 1);
+}
+///////////////////////
+
+// login ui
+.instruction-label {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  display: inline-block;
+  color: $primary-color-instruction-text;
+  font-size: 0.73rem;
+  font-weight: bold;
+}
+
+// Navbar button on hover no shadow
+.navbar {
+
+  padding: 0 8px !important;
+
+  button:focus {
+    box-shadow: none;
+  }
+}
+
+.bg-dark {
+  background-color: $primary-color-main !important;
+}
+
+
+.sidebar-toggler:not(:disabled):not(.disabled) {
+  cursor: pointer;
+}
+
+.sidebar-toggler {
+  color: #fff !important;
+  border-color: $primary-color-border !important;
+  background-color: $primary-color-main !important;
+}
+
+
+fieldset {
+  padding: 0 10px 10px 10px;
+  border: 1px groove rgba(0, 0, 0, 0.2) !important;
+  //border: 1px groove $ui-border-bg !important;
+  /* -webkit-box-shadow:  0px 0px 0px 0px #000;
+   box-shadow:  0px 0px 0px 0px #000;*/
+}
+
+legend {
+  width: auto !important;
+  border: none;
+  font-size: 14px;
+  color: $primary-color-main;
+  padding: 2px;
+}
+
+
+.card {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  display: block !important;
+  background: #ffffff61;
+  border: none;
+  border-radius: unset;
+}
+
+.card:hover {
+  box-shadow: 0 6px 9px 0 rgba(0, 0, 0, 0.2);
+}
+
+.cardContainer {
+  padding: 2px 16px;
+}
+
+.buttonAdjust {
+  margin-top: -10px;
+  margin-right: 20px;
+}
+
+
+
+
+
+.pagination-active {
+  background: $primary-color-main;
+  color: white
+}
+
+.vertical-line {
+  border-left: 1px solid #B2B2B2;
+  height: 100%;
+  position: absolute;
+  left: 50%;
+  margin-left: -3px;
+  top: 0;
+}
+
+
+
+.login-logo-bg {
+  background: $primary-color-app-logo-background;
+}
+
+
+.form-control {
+  height: 30px!important;
+  font-size: 12px!important;
+  color: #333;
+  border-radius: 1px;
+  padding: 0px;
+  padding-left: 2%;
+}
+
+.dropdown{
+  color: $primary-color-text!important;
+}
+.dropdown-item:active{
+  background: $primary-color-selected!important;
+}
