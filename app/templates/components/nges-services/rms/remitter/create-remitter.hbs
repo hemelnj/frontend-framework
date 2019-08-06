@@ -11,562 +11,582 @@
 
 </style>
 
-<div class="">
 
-  <div class="card">
-    <div class="card-body">
-      <h1 class="layout-header-title">Remitter Registration</h1>
-      <hr class="header-label-line">
-      <form class="form-horizontal">
+<div class="card">
+  <div class="card-body">
+    <h1 class="layout-header-title">Remitter Registration</h1>
+    <hr class="header-label-line">
+    <form class="form-horizontal">
+
+      {{nges-core/nges-input-component
+        type='text'
+        input-field-name="Id"
+        model=model
+        valuePath='remId'
+        placeholder='[Auto]'
+        readonly="true"
+        sectionFirst = 'col-sm-2'
+        sectionLast = 'col-sm-4'
+        didValidate=didValidate}}
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-2">
+            <label class="input-field-label">Type</label>
+          </div>
+
+          <div class="col-sm-4">
+            {{#if selectedType.label}}
+              <label style="font-size: 12px;">{{selectedType.label}}</label>
+            {{/if}}
+
+            {{nges-core/nges-searchable-dropdown
+              dataList=remittanceType
+              message = "Select Type"
+              autocompleteOnSelect=(action 'onChangeTypes')
+            }}
+
+          </div>
+        </div>
+      </div>
+
+
+      {{nges-core/nges-input-component
+        type='text'
+        input-field-name="Name"
+        model=model
+        valuePath='remitterName'
+        placeholder='Remitter Name'
+        sectionFirst = 'col-sm-2'
+        sectionLast = 'col-sm-9'
+        didValidate=didValidate}}
+
+
+      {{nges-core/nges-input-component
+        type='text'
+        input-field-name="Father Name"
+        model=model
+        valuePath='fathersName'
+        placeholder='Father Name'
+        sectionFirst = 'col-sm-2'
+        sectionLast = 'col-sm-9'
+        didValidate=didValidate}}
+
+
+      {{nges-core/nges-input-component
+        type='text'
+        input-field-name="Mother Name"
+        model=model
+        valuePath='mothersName'
+        placeholder='Mothers Name'
+        sectionFirst = 'col-sm-2'
+        sectionLast = 'col-sm-9'
+        didValidate=didValidate}}
+
+
+      <div class="row">
+        <div class="col-md-6">
+          {{nges-core/nges-input-component
+            type='date'
+            input-field-name="Date of Birth"
+            model=model
+            valuePath='dob'
+            placeholder='Date of Birth'
+            sectionFirst = 'col-sm-4'
+            sectionLast = 'col-sm-7'
+            didValidate=didValidate}}
+        </div>
+        <div class="col-md-6">
+          <div class="row">
+
+            <div class="col-sm-4">
+              <label class="input-field-label">Choose Nationality</label>
+            </div>
+
+            <div class="col-sm-6">
+              {{#if selectedNationality.label}}
+                <label style="font-size: 12px;">{{selectedNationality.label}}</label>
+              {{/if}}
+
+              {{nges-core/nges-searchable-dropdown
+                dataList=countryList
+                message = "Select Nationality"
+                autocompleteOnSelect=(action 'onChangeNationality')
+              }}
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          {{nges-core/nges-input-component
+            type='text'
+            input-field-name="Mobile Number"
+            model=model
+            valuePath='mNumber'
+            placeholder='Mobile Number'
+            sectionFirst = 'col-sm-4'
+            sectionLast = 'col-sm-8'
+            didValidate=didValidate}}
+        </div>
+
+        <div class="col-md-6">
+          {{nges-core/nges-input-component
+            type='text'
+            input-field-name="Email"
+            model=model
+            valuePath='email'
+            placeholder='Email Address'
+            sectionFirst = 'col-sm-2'
+            sectionLast = 'col-sm-8'
+            didValidate=didValidate}}
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-2">
+            <label class="input-field-label">Nature of Job</label>
+          </div>
+          <div class="col-sm-9">
+            {{#if selectedNOJ.label}}
+              <label style="font-size: 12px;">{{selectedNOJ.label}}</label>
+            {{/if}}
+
+            {{nges-core/nges-searchable-dropdown
+              dataList=jobNature
+              message = "Select Nature Of Job"
+              autocompleteOnSelect=(action 'onChangeJobNature')
+            }}
+
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-6">
+          {{nges-core/nges-input-component
+            type='number'
+            input-field-name="Income Range"
+            model=model
+            valuePath='incomeRange'
+            placeholder='Income Range'
+            sectionFirst = 'col-sm-4'
+            sectionLast = 'col-sm-8'
+            didValidate=didValidate}}
+        </div>
+        <div class="col-md-6">
+          {{nges-core/nges-input-component
+            type='number'
+            input-field-name="Yearly Expected Vol. of Remitance"
+            model=model
+            valuePath='expetedRemitance'
+            placeholder='Expected Remitance'
+            sectionFirst = 'col-sm-5'
+            sectionLast = 'col-sm-5'
+            didValidate=didValidate}}
+        </div>
+      </div>
+
+      {{nges-core/nges-input-component
+        type='text'
+        input-field-name="Remarks"
+        model=model
+        valuePath='remarks'
+        placeholder='Remarks'
+        sectionFirst = 'col-sm-2'
+        sectionLast = 'col-sm-9'
+        didValidate=didValidate}}
+
+      <fieldset>
+        <legend class="input-field-label">Present Address</legend>
+
+
+        <div>
+          {{nges-core/nges-input-component
+            type='text'
+            input-field-name="Address 1"
+            model=model
+            valuePath='address1'
+            placeholder='Address 1'
+            sectionFirst = 'col-sm-2'
+            sectionLast = 'col-sm-9'
+            didValidate=didValidate}}
+        </div>
+        <div>
+          {{nges-core/nges-input-component
+            type='text'
+            input-field-name="Address 2"
+            model=model
+            valuePath='address2'
+            placeholder='Address 2'
+            sectionFirst = 'col-sm-2'
+            sectionLast = 'col-sm-9'
+            didValidate=didValidate}}
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-2">
+              <label class="input-field-label">Country</label>
+            </div>
+
+            <div class="col-sm-9">
+              {{#if selectedCountry.label}}
+                <label style="font-size: 12px;">{{selectedCountry.label}}</label>
+              {{/if}}
+
+              {{nges-core/nges-searchable-dropdown
+                dataList=countryList
+                message = "Select Country"
+                autocompleteOnSelect=(action 'onChangeCountry')
+              }}
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-2">
+              <label class="input-field-label">State/District</label>
+            </div>
+
+            <div class="col-sm-9">
+              {{#if selectedState.label}}
+                <label style="font-size: 12px;">{{selectedState.label}}</label>
+              {{/if}}
+
+              {{nges-core/nges-searchable-dropdown
+                dataList=stateList
+                message = "Select State/District"
+                autocompleteOnSelect=(action 'onChangeStateOrDistrict')
+              }}
+            </div>
+          </div>
+        </div>
+
 
         {{nges-core/nges-input-component
           type='text'
-          input-field-name="Id"
+          input-field-name="City/Town"
           model=model
-          valuePath='remId'
-          placeholder='[Auto]'
-          readonly="true"
+          valuePath='cityOrTown'
+          placeholder='Enter City/Town Name'
           sectionFirst = 'col-sm-2'
           sectionLast = 'col-sm-4'
           didValidate=didValidate}}
 
+
+        {{nges-core/nges-input-component
+          type='text'
+          input-field-name="Zip Code"
+          model=model
+          valuePath='zipCode'
+          placeholder='Zip Code'
+          sectionFirst = 'col-sm-2'
+          sectionLast = 'col-sm-9'
+          didValidate=didValidate}}
+
+        {{nges-core/nges-input-component
+          type='text'
+          input-field-name="Proof of Address"
+          model=model
+          valuePath='proofOfAddress'
+          placeholder='Proof of Address'
+          sectionFirst = 'col-sm-2'
+          sectionLast = 'col-sm-9'
+          didValidate=didValidate}}
+
+      </fieldset>
+
+      <br>
+      <fieldset>
+        <legend class="input-field-label">Primary Photo ID</legend>
+
         <div class="form-group">
           <div class="row">
-            <div class="col-sm-2">
-              <label class="input-field-label">Type</label>
-            </div>
+            <div class="col-sm-6">
+              <div class="row">
+                <div class="col-sm-4">
+                  <label class="input-field-label">Type</label>
+                </div>
 
+                <div class="col-sm-8">
+                  {{#if selectedPrimaryPhotoType.label}}
+                    <label style="font-size: 12px;">{{selectedPrimaryPhotoType.label}}</label>
+                  {{/if}}
+
+                  {{nges-core/nges-searchable-dropdown
+                    dataList=photoIdType
+                    message = "Select Type"
+                    autocompleteOnSelect=(action 'onChangePrimaryPhotoType')
+                  }}
+
+                </div>
+              </div>
+
+
+              {{nges-core/nges-input-component
+                type='text'
+                input-field-name="ID No 1"
+                model=model
+                valuePath='primaryPhotoId'
+                placeholder='ID'
+                sectionFirst = 'col-sm-4'
+                sectionLast = 'col-sm-8'
+                didValidate=didValidate}}
+
+              {{nges-core/nges-input-component
+                type='date'
+                input-field-name="Issue 1"
+                model=model
+                valuePath='primaryPhotoIssue'
+                placeholder='Issue'
+                sectionFirst = 'col-sm-4'
+                sectionLast = 'col-sm-8'
+                didValidate=didValidate}}
+
+
+              {{nges-core/nges-input-component
+                type='date'
+                input-field-name="Expiry 1"
+                model=model
+                valuePath='primaryPhotoExpiry'
+                placeholder='Expiry'
+                sectionFirst = 'col-sm-4'
+                sectionLast = 'col-sm-8'
+                didValidate=didValidate}}
+
+            </div>
+            <!--<div class="col-sm-6">
+              <h2>Image Choose Option</h2>
+            </div>-->
+          </div>
+        </div>
+
+      </fieldset>
+
+
+      <br>
+
+      <fieldset>
+        <legend class="input-field-label">Secondary Photo ID</legend>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="row">
+                <div class="col-sm-4">
+                  <label class="input-field-label">Type</label>
+                </div>
+
+                <div class="col-sm-8">
+                  {{#if selectedSecondaryPhotoType.label}}
+                    <label style="font-size: 12px;">{{selectedSecondaryPhotoType.label}}</label>
+                  {{/if}}
+
+                  {{nges-core/nges-searchable-dropdown
+                    dataList=photoIdType
+                    message = "Select Type"
+                    autocompleteOnSelect=(action 'onChangeSecondaryPhotoType')
+                  }}
+
+                </div>
+              </div>
+              {{nges-core/nges-input-component
+                type='text'
+                input-field-name="ID No 2"
+                model=model
+                valuePath='secondaryPhotoId'
+                placeholder='ID'
+                sectionFirst = 'col-sm-4'
+                sectionLast = 'col-sm-8'
+                didValidate=didValidate}}
+
+              {{nges-core/nges-input-component
+                type='date'
+                input-field-name="Issue 2"
+                model=model
+                valuePath='secondaryPhotoIssue'
+                placeholder='Issue'
+                sectionFirst = 'col-sm-4'
+                sectionLast = 'col-sm-8'
+                didValidate=didValidate}}
+
+
+              {{nges-core/nges-input-component
+                type='date'
+                input-field-name="Expiry 2"
+                model=model
+                valuePath='secondaryPhotoExpiry'
+                placeholder='Expiry'
+                sectionFirst = 'col-sm-4'
+                sectionLast = 'col-sm-8'
+                didValidate=didValidate}}
+            </div>
+            <!--<div class="col-sm-6">
+              <h2>Image Choose Option</h2>
+            </div>-->
+          </div>
+        </div>
+      </fieldset>
+
+      <br>
+
+      <fieldset>
+        <legend class="input-field-label">Risk Status</legend>
+        <div class="form-group">
+
+          <div class="row">
             <div class="col-sm-4">
-              <label style="float: right">{{selectedType.label}}</label>
-              {{nges-core/nges-searchable-dropdown
-                dataList=remittanceType
-                message = "Select Type"
-                autocompleteOnSelect=(action 'onChangeTypes')
-              }}
+              <div class="row">
+                <div class="col-sm-6">
+                  <label class="input-field-label">Risk</label>
+                </div>
+                <div class="col-sm-6">
+                  {{#if selectedRisk.label}}
+                    <label style="font-size: 12px;">{{selectedRisk.label}}</label>
+                  {{/if}}
+
+                  {{nges-core/nges-searchable-dropdown
+                    dataList=riskType
+                    message = "Select Risk"
+                    autocompleteOnSelect=(action 'onChangeRisk')
+                  }}
+                </div>
+              </div>
 
             </div>
           </div>
-        </div>
 
-
-        {{nges-core/nges-input-component
-          type='text'
-          input-field-name="Name"
-          model=model
-          valuePath='remitterName'
-          placeholder='Remitter Name'
-          sectionFirst = 'col-sm-2'
-          sectionLast = 'col-sm-9'
-          didValidate=didValidate}}
-
-
-        {{nges-core/nges-input-component
-          type='text'
-          input-field-name="Father Name"
-          model=model
-          valuePath='fathersName'
-          placeholder='Father Name'
-          sectionFirst = 'col-sm-2'
-          sectionLast = 'col-sm-9'
-          didValidate=didValidate}}
-
-
-        {{nges-core/nges-input-component
-          type='text'
-          input-field-name="Mother Name"
-          model=model
-          valuePath='mothersName'
-          placeholder='Mothers Name'
-          sectionFirst = 'col-sm-2'
-          sectionLast = 'col-sm-9'
-          didValidate=didValidate}}
-
-
-        <div class="row">
-          <div class="col-md-6">
-            {{nges-core/nges-input-component
-              type='date'
-              input-field-name="Date of Birth"
-              model=model
-              valuePath='dob'
-              placeholder='Date of Birth'
-              sectionFirst = 'col-sm-4'
-              sectionLast = 'col-sm-7'
-              didValidate=didValidate}}
-          </div>
-          <div class="col-md-6">
-            <div class="row">
-
-              <div class="col-sm-4">
-                <label class="input-field-label">Choose Nationality</label>
-              </div>
-
-              <div class="col-sm-6">
-                <label style="float: right">{{selectedNationality.label}}</label>
-                {{nges-core/nges-searchable-dropdown
-                  dataList=countryList
-                  message = "Select Nationality"
-                  autocompleteOnSelect=(action 'onChangeNationality')
-                }}
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-6">
-            {{nges-core/nges-input-component
-              type='text'
-              input-field-name="Mobile Number"
-              model=model
-              valuePath='mNumber'
-              placeholder='Mobile Number'
-              sectionFirst = 'col-sm-4'
-              sectionLast = 'col-sm-8'
-              didValidate=didValidate}}
-          </div>
-
-          <div class="col-md-6">
-            {{nges-core/nges-input-component
-              type='text'
-              input-field-name="Email"
-              model=model
-              valuePath='email'
-              placeholder='Email Address'
-              sectionFirst = 'col-sm-2'
-              sectionLast = 'col-sm-8'
-              didValidate=didValidate}}
-          </div>
-        </div>
-
-
-        <div class="form-group">
           <div class="row">
             <div class="col-sm-2">
-              <label class="input-field-label">Nature of Job</label>
+              <label class="input-field-label">Sanction Screening</label>
             </div>
             <div class="col-sm-9">
-              <label style="float: right">{{selectedNOJ.label}}</label>
-              {{nges-core/nges-searchable-dropdown
-                dataList=jobNature
-                message = "Select Nature Of Job"
-                autocompleteOnSelect=(action 'onChangeJobNature')
-              }}
-
+              <table class="table-all">
+                <thead>
+                <th>Source</th>
+                <th>Name</th>
+                <th>Country</th>
+                <th>Date of Birth</th>
+                <th>Father Name</th>
+                <th>Score</th>
+                </thead>
+                <tbody>
+                <td>{{source}}</td>
+                <td>{{name}}</td>
+                <td>{{country}}</td>
+                <td>{{dob}}</td>
+                <td>{{fname}}</td>
+                <td>{{score}}</td>
+                </tbody>
+              </table>
             </div>
           </div>
+
         </div>
 
+      </fieldset>
 
-        <div class="row">
-          <div class="col-md-6">
-            {{nges-core/nges-input-component
-              type='number'
-              input-field-name="Income Range"
-              model=model
-              valuePath='incomeRange'
-              placeholder='Income Range'
-              sectionFirst = 'col-sm-4'
-              sectionLast = 'col-sm-8'
-              didValidate=didValidate}}
+
+      <br>
+      <!--only MLRO will see this fieldset-->
+      {{#if showMLROReview}}
+        <fieldset>
+          <legend class="input-field-label">MLRO Review</legend>
+          <div class="row">
+            <div class="col-sm-3">
+              <label class="form-check-label input-field-label" style="margin-left: 15px;">
+                <input type="checkbox" class="form-check-input" onclick="myFunction()" style="margin-top: 14px;">
+                <label class="input-field-title" style="margin-top: 12px;">False Positive</label>
+              </label>
+            </div>
+            <div class="col-sm-6">
+              <div>
+                {{nges-core/nges-input-component
+                  type='text'
+                  input-field-name="MLRO Comment"
+                  model=model
+                  valuePath='mlroComment'
+                  placeholder='MLRO Comment'
+                  sectionFirst = 'col-sm-4'
+                  sectionLast = 'col-sm-8'
+                  didValidate=didValidate}}
+              </div>
+            </div>
+
           </div>
-          <div class="col-md-6">
-            {{nges-core/nges-input-component
-              type='number'
-              input-field-name="Yearly Expected Vol. of Remitance"
-              model=model
-              valuePath='expetedRemitance'
-              placeholder='Expected Remitance'
-              sectionFirst = 'col-sm-5'
-              sectionLast = 'col-sm-5'
-              didValidate=didValidate}}
-          </div>
+
+        </fieldset>
+      {{/if}}
+
+      {{#if showPropertyExtender}}
+
+        {{nges-engines/property-extender/add-property
+          attributeList=attributeList
+        }}
+
+      {{/if}}
+
+      {{#if showAlert}}
+        <div class='alert'>
+          <div class='fa fa-times icon-remove' {{action 'toggleProperty' 'showAlert'}}></div>
+          <h1 style="color: red; font-size: 12px">Please fix all the errors above before continuing.</h1>
         </div>
+      {{/if}}
 
-        {{nges-core/nges-input-component
-          type='text'
-          input-field-name="Remarks"
-          model=model
-          valuePath='remarks'
-          placeholder='Remarks'
-          sectionFirst = 'col-sm-2'
-          sectionLast = 'col-sm-9'
-          didValidate=didValidate}}
+      {{#if isValid}}
+        <span class='valid-input fa fa-check'><h1 style="color: red;font-size: 12px">Error Message</h1></span>
+      {{/if}}
 
-        <fieldset>
-          <legend class="input-field-label">Present Address</legend>
+      <br>
+      <hr class="rms-bottom-hr-line">
 
-
-          <div>
-            {{nges-core/nges-input-component
-              type='text'
-              input-field-name="Address 1"
-              model=model
-              valuePath='address1'
-              placeholder='Address 1'
-              sectionFirst = 'col-sm-2'
-              sectionLast = 'col-sm-9'
-              didValidate=didValidate}}
-          </div>
-          <div>
-            {{nges-core/nges-input-component
-              type='text'
-              input-field-name="Address 2"
-              model=model
-              valuePath='address2'
-              placeholder='Address 2'
-              sectionFirst = 'col-sm-2'
-              sectionLast = 'col-sm-9'
-              didValidate=didValidate}}
-          </div>
-
-          <div class="form-group">
-            <div class="row">
-              <div class="col-sm-2">
-                <label class="input-field-label">Country</label>
-              </div>
-
-              <div class="col-sm-9">
-                <label style="float: right">{{selectedCountry.label}}</label>
-                {{nges-core/nges-searchable-dropdown
-                  dataList=countryList
-                  message = "Select Country"
-                  autocompleteOnSelect=(action 'onChangeCountry')
-                }}
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="row">
-              <div class="col-sm-2">
-                <label class="input-field-label">State/District</label>
-              </div>
-
-              <div class="col-sm-9">
-                <label style="float: right">{{selectedState.label}}</label>
-                {{nges-core/nges-searchable-dropdown
-                  dataList=stateList
-                  message = "Select State/District"
-                  autocompleteOnSelect=(action 'onChangeStateOrDistrict')
-                }}
-              </div>
-            </div>
-          </div>
-
-
-          {{nges-core/nges-input-component
-            type='text'
-            input-field-name="City/Town"
-            model=model
-            valuePath='cityOrTown'
-            placeholder='Enter City/Town Name'
-            sectionFirst = 'col-sm-2'
-            sectionLast = 'col-sm-4'
-            didValidate=didValidate}}
-
-
-          {{nges-core/nges-input-component
-            type='text'
-            input-field-name="Zip Code"
-            model=model
-            valuePath='zipCode'
-            placeholder='Zip Code'
-            sectionFirst = 'col-sm-2'
-            sectionLast = 'col-sm-9'
-            didValidate=didValidate}}
-
-          {{nges-core/nges-input-component
-            type='text'
-            input-field-name="Proof of Address"
-            model=model
-            valuePath='proofOfAddress'
-            placeholder='Proof of Address'
-            sectionFirst = 'col-sm-2'
-            sectionLast = 'col-sm-9'
-            didValidate=didValidate}}
-
-        </fieldset>
-
-        <br>
-        <fieldset>
-          <legend class="input-field-label">Primary Photo ID</legend>
-
-          <div class="form-group">
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="row">
-                  <div class="col-sm-4">
-                    <label class="input-field-label">Type</label>
-                  </div>
-
-                  <div class="col-sm-8">
-                    <label style="float: right">{{selectedPrimaryPhotoType.label}}</label>
-                    {{nges-core/nges-searchable-dropdown
-                      dataList=photoIdType
-                      message = "Select Type"
-                      autocompleteOnSelect=(action 'onChangePrimaryPhotoType')
-                    }}
-
-                  </div>
-                </div>
-
-
-                {{nges-core/nges-input-component
-                  type='text'
-                  input-field-name="ID No 1"
-                  model=model
-                  valuePath='primaryPhotoId'
-                  placeholder='ID'
-                  sectionFirst = 'col-sm-4'
-                  sectionLast = 'col-sm-8'
-                  didValidate=didValidate}}
-
-                {{nges-core/nges-input-component
-                  type='date'
-                  input-field-name="Issue 1"
-                  model=model
-                  valuePath='primaryPhotoIssue'
-                  placeholder='Issue'
-                  sectionFirst = 'col-sm-4'
-                  sectionLast = 'col-sm-8'
-                  didValidate=didValidate}}
-
-
-                {{nges-core/nges-input-component
-                  type='date'
-                  input-field-name="Expiry 1"
-                  model=model
-                  valuePath='primaryPhotoExpiry'
-                  placeholder='Expiry'
-                  sectionFirst = 'col-sm-4'
-                  sectionLast = 'col-sm-8'
-                  didValidate=didValidate}}
-
-              </div>
-              <!--<div class="col-sm-6">
-                <h2>Image Choose Option</h2>
-              </div>-->
-            </div>
-          </div>
-
-        </fieldset>
-
-
-        <br>
-
-        <fieldset>
-          <legend class="input-field-label">Secondary Photo ID</legend>
-
-          <div class="form-group">
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="row">
-                  <div class="col-sm-4">
-                    <label class="input-field-label">Type</label>
-                  </div>
-
-                  <div class="col-sm-8">
-                    <label style="float: right">{{selectedSecondaryPhotoType.label}}</label>
-                    {{nges-core/nges-searchable-dropdown
-                      dataList=photoIdType
-                      message = "Select Type"
-                      autocompleteOnSelect=(action 'onChangeSecondaryPhotoType')
-                    }}
-
-                  </div>
-                </div>
-                {{nges-core/nges-input-component
-                  type='text'
-                  input-field-name="ID No 2"
-                  model=model
-                  valuePath='secondaryPhotoId'
-                  placeholder='ID'
-                  sectionFirst = 'col-sm-4'
-                  sectionLast = 'col-sm-8'
-                  didValidate=didValidate}}
-
-                {{nges-core/nges-input-component
-                  type='date'
-                  input-field-name="Issue 2"
-                  model=model
-                  valuePath='secondaryPhotoIssue'
-                  placeholder='Issue'
-                  sectionFirst = 'col-sm-4'
-                  sectionLast = 'col-sm-8'
-                  didValidate=didValidate}}
-
-
-                {{nges-core/nges-input-component
-                  type='date'
-                  input-field-name="Expiry 2"
-                  model=model
-                  valuePath='secondaryPhotoExpiry'
-                  placeholder='Expiry'
-                  sectionFirst = 'col-sm-4'
-                  sectionLast = 'col-sm-8'
-                  didValidate=didValidate}}
-              </div>
-              <!--<div class="col-sm-6">
-                <h2>Image Choose Option</h2>
-              </div>-->
-            </div>
-          </div>
-        </fieldset>
-
-        <br>
-
-        <fieldset>
-          <legend class="input-field-label">Risk Status</legend>
-          <div class="form-group">
-
-            <div class="row">
-              <div class="col-sm-4">
-                <div class="row">
-                  <div class="col-sm-6">
-                    <label class="input-field-label">Risk</label>
-                  </div>
-                  <div class="col-sm-6">
-                    <label style="float: right">{{selectedRisk.label}}</label>
-                    {{nges-core/nges-searchable-dropdown
-                      dataList=riskType
-                      message = "Select Risk"
-                      autocompleteOnSelect=(action 'onChangeRisk')
-                    }}
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-sm-2">
-                <label class="input-field-label">Sanction Screening</label>
-              </div>
-              <div class="col-sm-9">
-                <table class="table-all">
-                  <thead>
-                  <th>Source</th>
-                  <th>Name</th>
-                  <th>Country</th>
-                  <th>Date of Birth</th>
-                  <th>Father Name</th>
-                  <th>Score</th>
-                  </thead>
-                  <tbody>
-                  <td>{{source}}</td>
-                  <td>{{name}}</td>
-                  <td>{{country}}</td>
-                  <td>{{dob}}</td>
-                  <td>{{fname}}</td>
-                  <td>{{score}}</td>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-          </div>
-
-        </fieldset>
-
-
-        <br>
-        <!--only MLRO will see this fieldset-->
-        {{#if showMLROReview}}
-          <fieldset>
-            <legend class="input-field-label">MLRO Review</legend>
-            <div class="row">
-              <div class="col-sm-3">
-                <label class="form-check-label input-field-label" style="margin-left: 15px;">
-                  <input type="checkbox" class="form-check-input" onclick="myFunction()" style="margin-top: 14px;">
-                  <label class="input-field-title" style="margin-top: 12px;">False Positive</label>
-                </label>
-              </div>
-              <div class="col-sm-6">
-                <div>
-                  {{nges-core/nges-input-component
-                    type='text'
-                    input-field-name="MLRO Comment"
-                    model=model
-                    valuePath='mlroComment'
-                    placeholder='MLRO Comment'
-                    sectionFirst = 'col-sm-4'
-                    sectionLast = 'col-sm-8'
-                    didValidate=didValidate}}
-                </div>
-              </div>
-
-            </div>
-
-          </fieldset>
-        {{/if}}
-
-        {{#if showPropertyExtender}}
-
-          {{nges-engines/property-extender/add-property
-            attributeList=attributeList
-          }}
-
-        {{/if}}
-
-        {{#if showAlert}}
-          <div class='alert'>
-            <div class='fa fa-times icon-remove' {{action 'toggleProperty' 'showAlert'}}></div>
-            <h1 style="color: red; font-size: 12px">Please fix all the errors above before continuing.</h1>
-          </div>
-        {{/if}}
-
-        {{#if isValid}}
-          <span class='valid-input fa fa-check'><h1 style="color: red;font-size: 12px">Error Message</h1></span>
-        {{/if}}
-
-        <br>
-        <hr class="rms-bottom-hr-line">
-
-        <!--<select onChange={{action 'onSelectedSingleState' value="target.value"}} >
+      <!--<select onChange={{action 'onSelectedSingleState' value="target.value"}} >
           <option value="">--Select Action Event--</option>
           {{#each stateActions as |state|}}
             <option value="{{state.attributes.id}}">{{state.attributes.name}}</option>
           {{/each}}
         </select>-->
 
-        <br>
-        {{#if actionAccess}}
-          <button id='status_check' class="nges-button nges-button-success" {{action 'updateAction'}}>Submit</button>
-          <button id='status_check' class="nges-button nges-button-success" {{action 'propertyExtend'}}>Add Property
-          </button>
-        {{else}}
-          <button id='save' class="nges-button nges-button-success" {{action 'validate'}}>Save</button>
-        {{/if}}
-        <button id='status_check' class="nges-button nges-button-success" {{action 'checkRiskStatus'}}>Risk Status
-          Check
+      <br>
+      {{#if actionAccess}}
+        <button id='status_check' class="nges-button nges-button-success" {{action 'updateAction'}}>Submit</button>
+        <button id='status_check' class="nges-button nges-button-success" {{action 'propertyExtend'}}>Add Property
         </button>
+      {{else}}
+        <button id='save' class="nges-button nges-button-success" {{action 'validate'}}>Save</button>
+      {{/if}}
+      <button id='status_check' class="nges-button nges-button-success" {{action 'checkRiskStatus'}}>Risk Status
+        Check
+      </button>
 
-        {{#each stateActions as |state|}}
-          <button id='save' class="nges-button nges-button-success" {{action 'getNextAllowableStateIdForCurrentState'
-                                                                             state.attributes.id}}>{{state.attributes.name}}</button>
-        {{/each}}
-        <!--<button id='duplicate_check' class="rms-button-all rms-button-save" {{action 'checkDuplicate'}}>Duplicate Check</button>
+      {{#each stateActions as |state|}}
+        <button id='save' class="nges-button nges-button-success" {{action 'getNextAllowableStateIdForCurrentState'
+                                                                           state.attributes.id}}>{{state.attributes.name}}</button>
+      {{/each}}
+      <!--<button id='duplicate_check' class="rms-button-all rms-button-save" {{action 'checkDuplicate'}}>Duplicate Check</button>
     <button id='clear' class="rms-button-all rms-button-save" {{action 'reset'}}>Clear</button>-->
 
 
-      </form>
-    </div>
+    </form>
   </div>
-
-
-
-
-
-
-  {{!--nges-core/nges-link
-    route = 'welcome.application-loader.panel-loader.module-loader.service-holder-loader.menu-template-loader.submenu-template-loader'
-    routePath = 'remitter-reg'
-    label =  'Remitter Registration'
-    params = actionableRoute
-  --}}
-
-
 </div>
+
+
+
+
+
+
+{{!--nges-core/nges-link
+  route = 'welcome.application-loader.panel-loader.module-loader.service-holder-loader.menu-template-loader.submenu-template-loader'
+  routePath = 'remitter-reg'
+  label =  'Remitter Registration'
+  params = actionableRoute
+--}}
 
