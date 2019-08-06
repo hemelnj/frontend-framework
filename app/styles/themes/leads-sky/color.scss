@@ -67,17 +67,15 @@ $primary-color-input-field: $selected-text;
 
 
 
-//button
-$success-hover: #1c497c; // success button hover
-$primary-color-btn-text: $default-text; // btn text
+//button pack
+$primary-color-btn-text: $default-text;
+
+$success-hover: #1c497c;
+
 $primary-color-btn-success: $foreground;
 $primary-color-btn-success-hover: $success-hover;
 $primary-color-btn-success-border: $default-border;
 
-// Button Pack
-//$primary-color-btn-text: #000000; // btn text
-$primary-color-btn-default: #d2d1d0;
-$primary-color-btn-default-hover: #c6c5c4;
-$primary-color-btn-default-border: #1a639e;
+
 
 
