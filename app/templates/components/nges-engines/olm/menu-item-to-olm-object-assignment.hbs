@@ -3,46 +3,12 @@
 <style>
   .te-bottom-hr-line {
     border: 0;
-    max-width: 70%;
+    max-width: 100%;
     margin-left: 0;
-    margin-top: -8px;
     border-top: 2px solid;
     border-color: #666666;
   }
 
-  .table-all thead th {
-    background-color: #FEFEFE;
-    color: #666666;
-    font-size: .75rem;
-    font-weight: bold;
-    line-height: normal;
-    font-weight: bolder;
-    border-collapse: separate;
-    border-top: 1px solid #EDEEEF;
-    border-bottom: 1px solid #EDEEEF;
-  }
-
-  .table-all td {
-    padding: 0.25rem 0.25rem;
-    color: #3e3e3c;
-    font-size: .75rem;
-    white-space: nowrap;
-    position: relative;
-    line-height: normal;
-  }
-
-  .table-bordered {
-    border-collapse: separate;
-    border-top: 1px solid #dddbda;
-    border-bottom: 1px solid #dddbda;
-  }
-
-  .table-data {
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
 </style>
 
 <div class="card">
@@ -60,7 +26,7 @@
         {{#if subMenuList}}
           <h5 class="input-field-label">Menu Item Object Data</h5>
           <div class="table-container" style="overflow-y: auto; max-height: 350px; overflow-x: auto; margin-top:10px;">
-            <table class="table-all" style="width: 100%">
+            <table class="table-all">
               <thead>
               <tr>
                 <th class="table-data table-bordered">
@@ -140,12 +106,10 @@
 
             </div>-->
           </div>
-
-
         </div>
 
         <div class="form-group">
-          <div class="row">
+          <div class="row" style="margin-top: -4%">
             <div class="col-md-3">
               <label for="olmObject" class="input-field-label">OLM Object</label>
             </div>
@@ -158,15 +122,16 @@
             </div>
 
           </div>
-
-
         </div>
 
 
-        {{nges-elements/sadhan-dual-list-box
-          dualBoxData = dualBoxData
-        }}
-        {{!nges-engines/tree-engine/object-to-string dualBoxData}}
+        <div style="margin-top: -4%">
+          {{nges-elements/sadhan-dual-list-box
+            dualBoxData = dualBoxData
+          }}
+          {{!nges-engines/tree-engine/object-to-string dualBoxData}}
+        </div>
+
 
         <div class="form-group">
           <div class="row">
@@ -182,7 +147,7 @@
         </div>
 
         <div class="form-group">
-          <div class="row">
+          <div class="row" style="margin-top: -2%">
             <div class="col-md-4">
               <label for="stateName" class="input-field-label">Choose Resource</label>
             </div>
@@ -208,21 +173,17 @@
 
         </div>
 
-        <div>
+        <div style="margin-top: -4%">
           <button {{action 'addSubMenu'}} class="nges-button nges-button-success float-right">Select SubMenu</button>
-          <br>
         </div>
 
-
+        <br>
         <div>
-          <br>
-          <hr class="te-bottom-hr-line" style="margin-left: 30%">
+          <hr class="te-bottom-hr-line">
           <button class="nges-button nges-button-success float-right" {{action 'saveData' }} >Save Information</button>
-
           <!--<button style="margin-right: 30px;" class="button-save float-right" {{action 'updateData' }} >Update
             Information
           </button>-->
-
         </div>
 
       </div>

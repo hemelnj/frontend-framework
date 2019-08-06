@@ -1,13 +1,10 @@
 {{outlet}}
 <div class="card">
   <div class="card-body">
-
     <h4 class="layout-header-title">Action Events</h4>
-    <hr class="olm-hr-line">
+    <hr class="header-label-line">
     <div class="row">
-
-
-      <div class="col-md-5">
+      <div class="col-md-6">
         {{#if showTable}}
           <div>
             <div class="form-group has-search">
@@ -16,7 +13,7 @@
                      placeholder=" Type to Search">
             </div>
             <div class="table-container"
-                 style="overflow-y: auto; max-height: 350px; overflow-x: auto;">
+                 style="overflow-y: auto; max-height: 300px; overflow-x: auto;">
               <table class="table-all">
                 <thead>
                 <tr>
@@ -83,12 +80,13 @@
         {{/if}}
       </div>
 
-      <div class="col-md-1">
+      <!--<div class="col-md-1">
         <div class="vertical-line"></div>
-      </div>
+      </div>-->
 
-      <div class="col-md-5">
+      <div class="col-md-6">
         <form id="actionEventInfo" class="adjust-card-style field-form max-width" method="post">
+          <label class="instruction-label" style="font-size: 16px">Registration</label>
           <div class="row">
             <div class="col-md-3">
               <label for="name" class="input-field-label">Name</label>
@@ -96,13 +94,13 @@
             {{#if editClick}}
               <div class="col-md-9">
                 {{input type="text" class="input-field" id="role"  name="role"
-                        placeholder="Enter Role Name" value=name}}
+                        placeholder="Enter Action Name" value=name}}
               </div>
             {{/if}}
             {{#if resetClick}}
               <div class="col-md-9">
                 <input type="text" class="input-field" id="role" name="role"
-                       placeholder="Enter Role Name"
+                       placeholder="Enter Action Name"
                        oninput={{action (mut name) value="target.value"}} onkeyup={{action 'actionNameCheck'
                                                                                            value='target.value'}}>
 
@@ -157,7 +155,7 @@
             <div class="col-md-4">
               <div class="form-btn-container">
                 <div class="nges-button nges-button-success"
-                     style="width: 100px;margin-bottom: 5px;margin-top: 10px;" {{action "viewTableData"}}>
+                     style="width: 100px;" {{action "viewTableData"}}>
                   View
                 </div>
               </div>
@@ -165,7 +163,7 @@
             <div class="col-md-4">
               <div class="form-btn-container">
                 <div class="nges-button nges-button-success"
-                     style="width: 100px; margin-bottom: 5px;margin-top: 10px;" {{action "refreshPage"}}>
+                     style="width: 100px;" {{action "refreshPage"}}>
                   Clear
                 </div>
               </div>
@@ -174,7 +172,7 @@
               <div class="form-btn-container">
                 {{#if editClick}}
                   <div class="nges-button nges-button-success"
-                       style="width: 100px; margin-bottom: 5px;margin-top: 10px;" {{action "updateActionEvent"
+                       style="width: 100px;" {{action "updateActionEvent"
                                                                                            actionEvent}}>
                     Update
                   </div>
@@ -182,7 +180,7 @@
 
                 {{#if resetClick}}
                   <div class="nges-button nges-button-success"
-                       style="width: 100px; margin-bottom: 5px; margin-top: 10px;" {{action "save"}}>
+                       style="width: 100px;" {{action "save"}}>
                     Save
                   </div>
                 {{/if}}
@@ -195,7 +193,6 @@
         </form>
         <br>
       </div>
-
 
     </div>
 
@@ -223,7 +220,7 @@
             <input class="input-field" name="name" value={{actionEvent.name}}>
 
             <button class="nges-button nges-button-success" data-dismiss="modal" {{action "updateActionEvent" actionEvent}}
-                    style="width: 100px;margin-top: 15px">Update
+                    style="width: 100px;">Update
             </button>
           {{/if}}
 
