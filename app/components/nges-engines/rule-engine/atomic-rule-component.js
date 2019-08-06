@@ -34,7 +34,7 @@ export default Component.extend({
       let context = this;
       let compareClassName = $(".comparedClassName:selected").val();
       let val = "";
-      if (compareClassName == 'noObject') {
+      if (compareClassName === 'noObject') {
         val = $("#customComparedValue").val();
       } else {
         val = $(".comparedAttributeName:selected").val();
@@ -47,7 +47,7 @@ export default Component.extend({
         "compObjectType": $(".comparedClassName:selected").val(),
         "compProperty": val
       };
-      if (this.get('id') != -1) {
+      if (this.get('id') !== -1) {
         data.id = this.get('id');
         console.log("Data id is : " + data.id);
         let context = this;
@@ -76,9 +76,11 @@ export default Component.extend({
     },
     update(rule) {
       let context = this;
-      console.log(rule.id);
       this.set('id', rule.id);
-      console.log("RULE IS HEREE____________________--",rule);
+
+      this.set('firstAttributeName', rule.property);
+
+
       $("#name").val(rule.ruleName);
       $("#firstClassName").val(rule.objectType);
 
@@ -86,17 +88,10 @@ export default Component.extend({
       $("#comparedClassName").val(rule.compObjectType);
 
 
-      $("#attributeName").val(rule.property);
-
       let mclass = this.findItemFromArray(this.get('classes'), rule.objectType);
       context.set('attributes', mclass != null ? mclass.properties : null);
 
-      /*$("#attributeName").append($("<option></option>")
-        .attr("value", rule.property)
-        .text(rule.property));*/
-
-
-      if (rule.compObjectType == 'noObject') {
+      if (rule.compObjectType === 'noObject') {
         this.set('showValueInput', false);
         this.set('dontShowValueInput', true);
         $("#customComparedValue").val(rule.compProperty);
@@ -107,8 +102,6 @@ export default Component.extend({
         let mclass = context.findItemFromArray(context.get('classes'), rule.compObjectType);
         context.set('comparedAttributes', mclass != null ? mclass.properties : null);
       }
-
-
     },
 
     delete(rule) {
@@ -141,13 +134,13 @@ export default Component.extend({
 
     /* todo: here parameter need to updated base on requirement */
 
-    let cl =[];
+    let cl = [];
     let accessToken = this.appConfiguration.getAccessToken();
     let allCreatedClassTypes = this.olmSetupService.getAllClassType(accessToken);
     allCreatedClassTypes.then(function (msg) {
 
-      for(let i=0;i<msg.data.length;i++) {
-        let p = {name:msg.data[i].attributes.displayName, properties: ['id', 'incomeRange', 'risk', 'status']};
+      for (let i = 0; i < msg.data.length; i++) {
+        let p = {name: msg.data[i].attributes.displayName, properties: ['id', 'incomeRange', 'risk', 'status']};
         cl.pushObject(p);
       }
 
@@ -162,18 +155,17 @@ export default Component.extend({
     this.set('operations', opts);
   },
   didInsertElement() {
-    console.log("Hello world");
     let context = this;
     $('#firstClassName').on('change', function () {
       let itemname = $(".className:selected").val();
       let mclass = context.findItemFromArray(context.get('classes'), itemname);
       context.set('attributes', mclass != null ? mclass.properties : null);
-      console.log('message--attributes', context.get('attributes'));
+      //console.log('message--attributes', context.get('attributes'));
     });
 
     $("#comparedClassName").on('change', function () {
       let itemname = $(".comparedClassName:selected").val();
-      if (itemname == 'noObject') {
+      if (itemname === 'noObject') {
         context.set('showValueInput', false);
         context.set('dontShowValueInput', true);
       } else {
@@ -187,7 +179,7 @@ export default Component.extend({
   },
   findItemFromArray(array, itemName) {
     for (let c = 0; c < array.length; c++) {
-      if (array[c].name == itemName)
+      if (array[c].name === itemName)
         return array[c];
     }
     return null;
