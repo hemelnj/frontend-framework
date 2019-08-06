@@ -21,10 +21,10 @@
           <hr class="header-label-line">
 
           <div class="row">
-            <div class="col-sm-2">
+            <div class="col-sm-1">
               <label class="input-field-label">Select User</label>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-5">
               {{nges-core/nges-searchable-dropdown
                 dataList=userList
                 message = "Select a User"
@@ -32,9 +32,6 @@
               }}
             </div>
           </div>
-
-          <br>
-
 
           <!--<input placeholder="name" class="form-control " name="name"  onkeyup={{action (mut userInfo.name)
                                                                                             value='target.value'}}>-->
@@ -47,11 +44,11 @@
             </div>-->
 
 
-          <div class="row">
+          <div class="row" style="margin-top: -10px;">
             <div class="col-sm-6">
               <div class="card">
                 <div class="card-body"
-                     style="overflow-y: auto; max-height: 500px; overflow-x: auto; background: #f0faff; padding: 10px; color: black;">
+                     style="overflow-y: auto; max-height: 500px; overflow-x: auto; padding: 10px; color: black;">
                   <label class="">Function</label>
 
                   <li style="list-style: none; color: #000;">{{dataContextFunctionTree.name}}</li>
@@ -65,7 +62,7 @@
             <div class="col-sm-6">
               <div class="card">
                 <div class="card-body"
-                     style="overflow-y: auto; max-height: 500px; overflow-x: auto; background: #f0faff; padding: 10px; color: black;">
+                     style="overflow-y: auto; max-height: 500px; overflow-x: auto; padding: 10px; color: black;">
                   <label class="">Location</label>
 
                   <li style="list-style: none; color: #000; ">{{dataContextLocationTree.name}}</li>
@@ -78,9 +75,6 @@
             </div>
           </div>
 
-
-          <br>
-
           <!--<div style="padding-bottom: 20px">
               &lt;!&ndash; populated items with relative selected into box for selection&ndash;&gt;
               {{nges-elements/ngfs-item-selector-box-simple
@@ -90,8 +84,6 @@
           }}
             </div>-->
 
-
-          <hr class="te-bottom-hr-line" style="margin-left: 30%">
           <button class="nges-button nges-button-success float-right" {{action 'savedUserInfo'}} >Save User</button>
 
         </div>
