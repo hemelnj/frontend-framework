@@ -227,8 +227,8 @@
                     <th>Class</th>
                     <th>Attribute</th>
                     <th>Operation</th>
+                    <th>Value/Attribute</th>
                     <th>Class</th>
-                    <th>Attribute</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -236,10 +236,10 @@
                     <tr>
                       <td>{{rule.ruleName}}</td>
                       <td>{{rule.objectType}}</td>
-                      <td>{{rule.property}}</td>
-                      <td>{{rule.operator}}</td>
+                      <td style="font-weight: bold;">( {{rule.property}}</td>
+                      <td style="font-weight: bold;">{{rule.operator}}</td>
+                      <td style="font-weight: bold;">{{rule.compProperty}} )</td>
                       <td>{{rule.compObjectType}}</td>
-                      <td>{{rule.compProperty}}</td>
                     </tr>
                   {{/each}}
                   </tbody>

@@ -45,7 +45,7 @@
                   </div>
                   <div class="col-md-8">
                     <select class="form-control" id="attributeName">
-                      <option></option>
+                      <option value={{firstAttributeName}}>{{firstAttributeName}}</option>
                       {{#each attributes as |attr|}}
                         <option value={{attr}} id="attributeName">{{attr}}</option>
                       {{/each}}
@@ -126,9 +126,9 @@
               </div>
             {{/if}}
 
-              <button class="nges-button nges-button-success float-right" {{ action  "save" }} >
-                Save Rule
-              </button>
+            <button class="nges-button nges-button-success float-right" {{ action  "save" }} >
+              Save Rule
+            </button>
 
           </div>
 
@@ -149,8 +149,8 @@
               <th>Class</th>
               <th>Attribute</th>
               <th>Operation</th>
+              <th>Value/Attribute</th>
               <th>Class</th>
-              <th>Attribute</th>
               <th>Action</th>
 
             </tr>
@@ -160,10 +160,10 @@
               <tr>
                 <td>{{rule.ruleName}}</td>
                 <td>{{rule.objectType}}</td>
-                <td>{{rule.property}}</td>
-                <td>{{rule.operator}}</td>
+                <td style="font-weight: bold;">( {{rule.property}}</td>
+                <td style="font-weight: bold;">{{rule.operator}}</td>
+                <td style="font-weight: bold;">{{rule.compProperty}} )</td>
                 <td>{{rule.compObjectType}}</td>
-                <td>{{rule.compProperty}}</td>
                 <td>
 
                   <button class="nges-button nges-button-success" {{ action  "update" rule}}> Update</button> &nbsp;
