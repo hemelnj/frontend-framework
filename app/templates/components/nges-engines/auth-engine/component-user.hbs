@@ -27,38 +27,6 @@
     white-space: nowrap;
   }
 
-  .table-all thead th {
-    color: black;
-    font-size: 12px;
-    font-weight: bolder;
-    padding-right: 1.80rem;
-    line-height: normal;
-
-    border-collapse: separate;
-    border-top: 1px solid #EDEEEF;
-    border-bottom: 1px solid #EDEEEF;
-  }
-
-  .table-all td {
-    color: #3e3e3c;
-    font-size: 12px;
-    white-space: nowrap;
-    position: relative;
-    line-height: normal;
-  }
-
-  .table-bordered {
-    border-collapse: separate;
-    border-top: 1px solid #dddbda;
-    border-bottom: 1px solid #dddbda;
-  }
-
-  .table-data {
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
 </style>
 
 
@@ -99,7 +67,7 @@
                 </th>
                 <th class="table-data table-bordered">
                   <div>
-                    Account Enabled
+                    Account Status
                   </div>
                 </th>
                 <th class="table-data table-bordered">
@@ -119,7 +87,7 @@
                   </td>
                   <td class="table-data table-bordered">
                     <div>
-                      {{item.attributes.name}}
+                      {{nges-core/capitalize-first-letter item.attributes.name}}
                     </div>
                   </td>
                   <td class="table-data table-bordered">
@@ -130,14 +98,14 @@
 
                   <td class="table-data table-bordered">
                     <div>
-                      {{item.attributes.enabled}}
+                      {{nges-core/check-account-status item.attributes.enabled}}
                     </div>
                   </td>
                   <td class="table-data table-bordered">
                     <div>
 
                       {{#each item.attributes.roles as |value|}}
-                        <span>{{value.name}},</span><br>
+                        <span>{{nges-core/capitalize-first-letter value.name}},</span><br>
                       {{/each}}
                       <!--<button data-toggle="modal" data-target="#actionEventModal" {{action 'editActionEvent' item }}
                                 style="width: 100px; margin-bottom: 5px" class="button-all button-edit">Edit
@@ -155,8 +123,8 @@
         </div>
         <div class="col-md-6">
           <div id="actionEventInfo" class="adjust-card-style field-form max-width" method="post">
-
-            <div class="row">
+            <label class="instruction-label" style="font-size: 16px">Registration</label>
+            <div class="row" style="margin-top: 4px;">
               <div class="col-md-3">
                 <label for="name" class="input-field-label">Display Name</label>
               </div>
@@ -194,12 +162,12 @@
               <select class="custom-select" id="userRole" multiple>
                 {{#each roleList as |item index|}}
                   <option class="muliti-select-item" value={{item.attributes.id}}
-                          name={{item.attributes.name}}>{{item.attributes.name}}</option>
+                          name={{item.attributes.name}}>{{nges-core/capitalize-first-letter item.attributes.name}}</option>
                 {{/each}}
               </select>
             </div>
 
-            <div class="row" style="margin-left:2px;">
+            <div class="row" style="margin-left:2px; margin-top: 9px;">
               <div class="form-check" >
                 <label class="form-check-label input-field-label">
                   {{input type="checkbox" class="form-check-input" id="isEnabled"  name="option1" checked=true}}

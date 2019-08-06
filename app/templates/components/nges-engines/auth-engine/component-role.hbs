@@ -21,42 +21,7 @@
     color: #aaa;
   }
 
-  .table-all thead th {
-    color: black;
-    font-size: 12px;
-    font-weight: bolder;
-    padding-right: 2.80rem;
-    line-height: normal;
-
-    border-collapse: separate;
-    border-top: 1px solid #EDEEEF;
-    border-bottom: 1px solid #EDEEEF;
-  }
-
-  .table-all td {
-    color: #3e3e3c;
-    font-size: 12px;
-    white-space: nowrap;
-    position: relative;
-    line-height: normal;
-  }
-
-  .table-bordered {
-    width: auto;
-    border-collapse: separate;
-    border-top: 1px solid #dddbda;
-    border-bottom: 1px solid #dddbda;
-  }
-
-  .table-data {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
 </style>
-
-
-<br>
 
 <div class="card">
   <div class="card-body">
@@ -64,14 +29,14 @@
       <label class="layout-header-title">User Roles</label>
       <hr class="header-label-line">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-5">
           <div class="form-group has-search">
             <span class="fa fa-search form-control-feedback"></span>
             <input type="text" class="input-field" onkeyup={{action 'getFilterKey' value='target.value'}}
                    placeholder="Type to Search">
           </div>
 
-          <div class="table-container"
+          <div class=""
                style="overflow-y: auto; max-height: 250px; overflow-x: auto;">
             <table class="table-all">
               <thead>
@@ -106,7 +71,7 @@
                   </td>
                   <td class="table-data table-bordered">
                     <div>
-                      {{item.attributes.name}}
+                      {{nges-core/capitalize-first-letter item.attributes.name}}
                     </div>
                   </td>
                   <td class="table-data table-bordered">
@@ -122,9 +87,10 @@
           </div>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-7">
           <div id="actionEventInfo" class="adjust-card-style field-form max-width" method="post">
-            <div class="row">
+            <label class="instruction-label" style="font-size: 16px">Registration</label>
+            <div class="row" style="margin-top: 4px;">
               <div class="col-md-3">
                 <label for="name" class="input-field-label">Name</label>
               </div>
@@ -145,7 +111,6 @@
 
 
             </div>
-
             <div class="row">
               <div class="col-md-3">
                 <label for="description" class="input-field-label">Description</label>
@@ -157,7 +122,6 @@
 
 
             </div>
-
             <div class="form-btn-container float-right">
               <div class="nges-button nges-button-success" style="width: 100px;" {{action "save"}}>
                 Save
