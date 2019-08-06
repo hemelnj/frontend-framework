@@ -1,109 +1,9 @@
-
-
 .olm-hr-line {
   margin-top: -3px;
   border: 1.2px solid #123F62;
   opacity: 0.5;
 }
 
-.olm-button-all {
-  position: relative;
-  display: inline-block;
-  padding: 0;
-  background: transparent;
-  background-clip: border-box;
-  border: 1px solid transparent;
-  border-radius: .25rem;
-  line-height: 1.275rem;
-  text-decoration: none;
-  //color: #0070d2;
-  -webkit-appearance: none;
-  white-space: normal;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  font-size: .75rem;
-  white-space: nowrap;
-  position: relative;
-}
-
-.olm-button-save {
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-  font-weight: 200;
-  text-align: center;
-  vertical-align: middle;
-  background-color: #123F62;
-  border-color: #123F62;
-  -webkit-transition: border 0.15s linear;
-  transition: border 0.15s linear;
-  color: #E8F0FE;
-}
-
-.olm-button-save:hover {
-  background-color: #12466b;
-  border-color: #12466b;
-  color: #fff;
-  cursor: pointer;
-}
-
-.button-danger {
-  padding-left: 1rem;
-  padding-right: 1rem;
-  text-align: center;
-  vertical-align: middle;
-  border: 1px solid #c23934;
-  -webkit-transition: border 0.15s linear;
-  transition: border 0.15s linear;
-  background-color: #c23934;
-  color: #fff;
-}
-
-.button-danger:hover {
-  background-color: #a61a14;
-  border-color: #a61a14;
-  color: #fff;
-  cursor: pointer;
-}
-
-.olm-button-edit {
-  padding-left: 1rem;
-  padding-right: 1rem;
-  text-align: center;
-  vertical-align: middle;
-  border: 1px solid #dddbda;
-  -webkit-transition: border 0.15s linear;
-  transition: border 0.15s linear;
-  border-color: #dddbda;
-  background-color: #fff;
-  border-color: #0070d2;
-}
-
-.olm-button-edit:hover {
-  background-color: #f4f6f9;
-  border-color: #0070d2;
-  color: #000;
-  cursor: pointer;
-}
-
-.button-logout {
-  padding-left: 1rem;
-  padding-right: 1rem;
-  text-align: center;
-  vertical-align: middle;
-  border: 1px solid #dddbda;
-  -webkit-transition: border 0.15s linear;
-  transition: border 0.15s linear;
-  background-color: #fff;
-  color: #c23934;
-}
-
-.button-logout:hover {
-  background-color: #f4f6f9;
-  color: #a12b2b;
-  cursor: pointer;
-}
 
 .form-group {
   position: relative;
@@ -152,14 +52,11 @@
 }
 
 .table-all thead th {
-  padding: 7px;
+  padding: 6px 6px 6px 15px;
   background-color: #FEFEFE;
-  color: #666666;
+  color: #383736;
   font-size: 12px;
   font-weight: bolder;
-  //padding: 0.25rem 0.25rem;
-  //padding-left: .30rem;
-  padding-right: 1.80rem;
   line-height: normal;
 
   border-collapse: separate;
@@ -168,7 +65,7 @@
 }
 
 .table-all td {
-  padding: 7px;
+  padding: 6px 6px 6px 15px;
   color: #3e3e3c;
   font-size: 12px;
   white-space: nowrap;
@@ -183,7 +80,6 @@
 }
 
 .table-data {
-  max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

@@ -6,7 +6,7 @@
     <hr class="olm-hr-line">
     <div class="row">
 
-      <div class="col-md-5">
+      <div class="col-md-6">
         <div>
           {{#if showTable}}
             <div class="table-container" style="overflow-y: auto; max-height: 400px; overflow-x: auto;">
@@ -60,7 +60,7 @@
                       <td class="table-data table-bordered">
                         <div>
                           <button {{action 'editState' state }}
-                            class="nges-button nges-button-success">Edit
+                            class="nges-button nges-button-success" style="width: 100px;">Edit
                           </button>
                         </div>
                       </td>
@@ -84,14 +84,15 @@
         </div>
       </div>
 
-      <div class="col-md-1">
+      <!--<div class="col-md-1">
         <div class="vertical-line"></div>
-      </div>
+      </div>-->
 
-      <div class="col-md-5">
+
+      <div class="col-md-6">
         <form id="classTypeStateInfo" method="post">
-
-          <div class="field-form max-width">
+          <div class="field-form">
+            <label class="instruction-label" style="font-size: 16px">Registration</label>
             <div class="row">
               <div class="col-md-3">
                 <label for="name" class="input-field-label">OLM Object</label>
@@ -110,7 +111,7 @@
             </div>
 
 
-            <div class="row">
+            <div class="row" style="margin-top: -6%">
               <div class="col-md-3">
                 <label for="name" class="input-field-label">Name</label>
               </div>
@@ -177,35 +178,27 @@
             </div>
 
 
-            <div class="row float-right">
+            <div class="row float-right" style="width: 60%; margin-right: -10%">
 
               <div class="col-md-4">
-                <button class="nges-button nges-button-success"
-                  {{action "refreshPage"}} style="width: 100px; margin-top: 15px">
-                  Clear
-                </button>
-              </div>
-
-              <div class="col-md-4">
-                {{#if visibleViewButton}}
+                {{#if showTable}}
                   <button class="nges-button nges-button-success"
-                          {{action "viewTableData"}}style="width: 100px; margin-top: 15px">
-                    View
+                    {{action "refreshPage"}} style="width: 100px;">
+                    Clear
                   </button>
                 {{/if}}
               </div>
-
+              <div class="col-md-1"></div>
               <div class="col-md-4">
                 {{#if editClick}}
                   <button class="nges-button nges-button-success" {{action "updateState" state}}
-                          style="width: 100px; margin-top: 15px">Update
+                          style="width: 100px;">Update
                   </button>
-
                 {{/if}}
 
                 {{#if resetClick}}
                   <button class="nges-button nges-button-success"
-                          {{action "getNewClassType" state}}style="width: 100px; margin-top: 15px">
+                          {{action "getNewClassType" state}}style="width: 100px;">
                     Save
                   </button>
                 {{/if}}

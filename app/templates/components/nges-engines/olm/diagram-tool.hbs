@@ -1,7 +1,4 @@
 {{yield}}
-
-
-
 <style>
 
   .tools {
@@ -13,13 +10,6 @@
     color: red;
   }
 
-  .form-container {
-    border: 1px solid black;
-    margin: auto;
-    margin-top: 50px;
-    width: 800px;
-    padding: 50px;
-  }
 
   .parent-container {
 
@@ -59,9 +49,6 @@
 
   }
 
-  .colors {
-
-  }
 
   .color {
     height: 25px;
@@ -110,20 +97,18 @@
 <div class="row">
 
   <div class="col-sm-6">
-
     {{nges-core/nges-searchable-dropdown
       dataList=classtypes
       message="Select OLM Object"
       autocompleteOnSelect=(action 'onChangeClassTypes')
     }}
-
   </div>
   <div class="col-sm-6">
     <button class="nges-button nges-button-success float-right" {{action "saveDiagram"}}> Save</button>
   </div>
 
 </div>
-<div class="diagram-tool">
+<div class="diagram-tool" style="margin-top: -2%">
 
   <div class="diagram-modal-container">
     <div class="color-modal">

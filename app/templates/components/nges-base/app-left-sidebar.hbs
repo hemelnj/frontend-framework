@@ -54,7 +54,7 @@
           <li>
             <a href="#pageSubmenu{{moduleIndex}}" data-toggle="collapse" aria-expanded="false"
                class="dropdown-toggle dropdown-toggle-header">{{nges-core/capitalize-first-letter module.name}}</a>
-            <hr style="margin-top: 0px; margin-bottom: 0px; background: white;">
+            <hr style="margin-top: 0px; margin-bottom: 0px; background: #d3d3d3;">
             <ul class="list-unstyled collapse show" id="pageSubmenu{{moduleIndex}}">
 
               {{#each module.serviceHolders as |serviceHolder serviceHolderIndex|}}
@@ -66,7 +66,6 @@
                     <a href="#pageSubMenuList{{serviceHolderIndex}}" data-toggle="collapse" aria-expanded="false"
                        class="dropdown-toggle dropdown-toggle-header">{{nges-core/capitalize-first-letter
                       serviceHolder.name}}</a>
-                    <hr style="margin-top: 0px; margin-bottom: 0px; background: #3A95D3;">
                     <ul class="list-unstyled collapse show" id="pageSubMenuList{{serviceHolderIndex}}">
 
                       {{#each serviceHolder.children as |menu menuIndex|}}
@@ -98,7 +97,7 @@
                       'welcome.application-loader.panel-loader.module-loader.service-holder-loader.menu-template-loader.submenu-template-loader.index'
                       module.code serviceHolder.menuTreeTemplate.code serviceHolder.code subMenu.code
                       class="nav-link nav-link-active" }} {{nges-core/capitalize-first-letter
-                      subMenu.name}} <hr style="margin-top: 0px; margin-bottom: 0px; background: #3A95D3;">
+                      subMenu.name}}
                     {{/link-to}}
 
                   {{/each}}
@@ -134,7 +133,7 @@
             <li>
               <a href="#pageSubmenu_{{menu.code}}" data-toggle="collapse" aria-expanded="true"
                  class="dropdown-toggle dropdown-toggle-header">{{nges-core/capitalize-first-letter menu.label}}</a>
-              <hr style="margin-top: 1px; margin-bottom: 0px; background: white;">
+              <hr style="margin-top: 1px; margin-bottom: 0px; background: #d3d3d3;">
               <ul class="list-unstyled collapse show" id="pageSubmenu_{{menu.code}}">
 
                 {{!log menu}}
@@ -145,7 +144,7 @@
                       'welcome.application-loader.panel-loader.module-loader.service-holder-loader.menu-template-loader.submenu-template-loader.index'
                       'module.code' 'module.code' 'serviceHolder.menuTreeTemplate.code' 'menu.code subMenu.code'
                       class="nav-link" }} {{nges-core/capitalize-first-letter subMenu.label}}
-                      <hr style="margin-top: 0px; margin-bottom: 0px; background: #3A95D3;">{{/link-to}}
+                      {{/link-to}}
 
                   </li>
                 {{/each}}
