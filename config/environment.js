@@ -43,7 +43,7 @@ module.exports = function (environment) {
     APP: {
       appName: 'Remittance Management System',
       appTitle: 'Remittance Management System',
-      appLogo: '/app-logo-rms.png',
+      appLogo: '/app-logo-rms-v3.png',
     },
 
 
