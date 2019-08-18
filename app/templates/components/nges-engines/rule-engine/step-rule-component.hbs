@@ -135,7 +135,7 @@
 
               <div class="{{if diagramView "hide" "show"}}">
 
-                <div class="" style="border: 1px solid #bebebe; padding-bottom: 10px;">
+                <div class="">
                   <div>
                     <div class="inline">
                       <label for="exampleFormControlSelect1">Atomic rule</label>
@@ -154,7 +154,7 @@
                         {{/each}}
                       </select>
 
-                      <div class="btn btn-info" id="addAtomicRuleTOList">
+                      <div class="nges-button nges-button-info" id="addAtomicRuleTOList">
                         Add
                       </div>
                     </div>
@@ -166,12 +166,12 @@
                           <option class="operators operatorsFormView" value="{{opt}}">{{opt}}</option>
                         {{/each}}
                       </select>
-                      <div class="btn btn-info mar-5" id="addOptToList">
+                      <div class="nges-button nges-button-info" id="addOptToList">
                         Add
                       </div>
                     </div>
                   </div>
-                  <div class="btn btn-info mar-5" id="remove">
+                  <div class="nges-button nges-button-info mar-5" id="remove">
                     Remove
                   </div>
                 </div>
@@ -184,7 +184,7 @@
                   <div class="then-container">
                   </div>
                   <br>
-                  <div class="btn btn-info" id="showDiagram">
+                  <div class="nges-button nges-button-info" id="showDiagram">
                     {{#unless diagramView}}
                       <span>Use diagram view</span>
                     {{/unless}}
@@ -202,12 +202,12 @@
                   </div>
                   <br>
 
-                  <button id="add_new_action" {{action "addnewaction"}} class="btn btn-danger">
+                  <button id="add_new_action" {{action "addnewaction"}} class="nges-button nges-button-danger">
                     Add new action
                   </button>
                 </div>
 
-                <div class="btn btn-info" id="save">
+                <div class="nges-button nges-button-info" id="save">
                   {{#if isEditView}}
                     <span {{action "update"}}>Update</span>
                   {{/if}}
@@ -274,10 +274,10 @@
                   {{ unitRuleForStepRule.rule}}
                 </td>
                 <td>
-                  <div class="btn btn-info mar-5" {{ action "edit" unitRuleForStepRule}} id="edit">
+                  <div class="nges-button nges-button-info mar-5" {{ action "edit" unitRuleForStepRule}} id="edit">
                     Edit
                   </div>
-                  <div class="btn btn-info mar-5" {{ action "delete" unitRuleForStepRule}} id="delete">
+                  <div class="nges-button nges-button-info mar-5" {{ action "delete" unitRuleForStepRule}} id="delete">
                     Delete
                   </div>
                 </td>
@@ -371,7 +371,7 @@
               </div>
             </td>
             <td>
-              <div class="nges-button nges-button-success mar-5" {{ action "deleteStepRule" stepRule}}
+              <div class="nges-button nges-button-danger mar-5" {{ action "deleteStepRule" stepRule}}
                    id="deleteStepRule">Delete
               </div>
             </td>
@@ -433,10 +433,10 @@
             </div>
           </div>
 
-          <div class="btn btn-info mar-top-30" id="submit-new-action">
+          <div class="nges-button nges-button-info mar-top-30" id="submit-new-action">
             Submit
           </div>
-          <div {{action "closenewaction"}} class="btn btn-danger mar-top-30" id="submit-new-action">
+          <div {{action "closenewaction"}} class="nges-button nges-button-danger mar-top-30" id="submit-new-action">
             Close
           </div>
         </div>
@@ -449,10 +449,10 @@
           Do you want to delete?
         </div>
         <div>
-          <div class="btn btn-danger all-mar" id="delete-yes">
+          <div class="nges-button nges-button-danger all-mar" id="delete-yes">
             Yes
           </div>
-          <div class="btn btn-danger all-mar" id="delete-no">
+          <div class="nges-button nges-button-danger all-mar" id="delete-no">
             No
           </div>
         </div>
