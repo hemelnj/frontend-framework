@@ -101,7 +101,6 @@ export default Component.extend({
         "startEdges": null
       }];
 
-      console.log('message', stateData);
 
       let accessToken = this.appConfiguration.getAccessToken();
       let responseAfterAddingState = this.olmSetupService.addNewState(stateData, accessToken);
@@ -172,18 +171,17 @@ export default Component.extend({
         }
       };
 
-      console.log('message--updateData', updateData);
 
-      /*let context = this;
+      let context = this;
       let accessToken = this.appConfiguration.getAccessToken();
       this.olmSetupService.updateObjectState(updateData, accessToken, state.id).done(function (data) {
 
         context.get('notifier').success('Update Successfully');
-        context.dataInit(selectedClassTypeId);
+        context.dataInit(classType.id);
 
       }).fail(function (msg) {
         context.get('notifier').danger('Fail to Update');
-      });*/
+      });
 
     }
   },
