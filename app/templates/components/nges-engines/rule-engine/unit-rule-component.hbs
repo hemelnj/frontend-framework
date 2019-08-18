@@ -4,8 +4,6 @@
 
 
     <div class="" style="border: 1px solid #bebebe; padding: 5px">
-      <br>
-
 
       <div>
         {{#if finalRuleString}}
@@ -18,7 +16,7 @@
 
 
       <div class=" {{if diagramView "show" "hide"}} ">
-        <h5 class="layout-header-title">Regular/Unit Rule Mapping Panel</h5>
+        <h5 class="instruction-label" style="font-size: 16px">Regular/Unit Rule Mapping Panel</h5>
         <div class="diagram-container" style="background: #dfdfdf;">
           <div>
             <div class="tools-container">
@@ -93,137 +91,135 @@
         </div>
       </div>
 
-
       <br>
-      <div class="">
-        <div class="row">
-          <div class="col-md-4">
+      <div class="row">
+        <div class="col-md-4">
 
-            <div class="{{if diagramView "hide" "show"}}">
+          <div class="{{if diagramView "hide" "show"}}">
 
-              <div>
-                <div class="inline">
-                  <label for="exampleFormControlSelect1">Atomic rule</label>
+            <div>
+              <div class="inline">
+                <label for="exampleFormControlSelect1" class="instruction-label" style="font-size: 16px">Atomic
+                  rule</label>
 
-                  <select class="form-control inline-mini" id="atomicrulesFormView">
-                    {{#each atomicrules as |rule|}}
-                      <option value="{{rule.ruleName}}" class="atomicrulesFormView">
-                        {{rule.objectType}} {{rule.property}} {{rule.operator}}
-                        {{#if (nges-engines/rule-engine/check-object-type rule.compObjectType)}}
-                          <span>
-                            {{rule.compObjectType}}
-                          </span>
-                        {{/if}}
-                        {{rule.compProperty}}
-                      </option>
-                    {{/each}}
-                  </select>
+                <select class="form-control inline-mini" id="atomicrulesFormView">
+                  {{#each atomicrules as |rule|}}
+                    <option value="{{rule.ruleName}}" class="atomicrulesFormView">
+                      {{rule.objectType}} {{rule.property}} {{rule.operator}}
+                      {{#if (nges-engines/rule-engine/check-object-type rule.compObjectType)}}
+                        <span>
+                          {{rule.compObjectType}}
+                        </span>
+                      {{/if}}
+                      {{rule.compProperty}}
+                    </option>
+                  {{/each}}
+                </select>
 
-                  <div class="nges-button nges-button-info" id="addAtomicRuleTOList">
-                    Add
-                  </div>
-                </div>
-                <div class="inline">
-                  <label for="exampleFormControlSelect1">Operator</label>
-                  <br/>
-                  <select class="form-control inline-mini" id="#operatorsFormView">
-                    {{#each manualOperators as |opt|}}
-                      <option class="operators operatorsFormView" value="{{opt}}">{{opt}}</option>
-                    {{/each}}
-                  </select>
-                  <div class="nges-button nges-button-info" id="addOptToList">
-                    Add
-                  </div>
+                <div class="nges-button nges-button-info" id="addAtomicRuleTOList">
+                  Add
                 </div>
               </div>
-              <div class="nges-button nges-button-info mar-5" id="remove">
-                Remove
+              <div class="inline">
+                <label for="exampleFormControlSelect1">Operator</label>
+                <br/>
+                <select class="form-control inline-mini" id="#operatorsFormView">
+                  {{#each manualOperators as |opt|}}
+                    <option class="operators operatorsFormView" value="{{opt}}">{{opt}}</option>
+                  {{/each}}
+                </select>
+                <div class="nges-button nges-button-info" id="addOptToList">
+                  Add
+                </div>
               </div>
             </div>
-
-
-            <div class="form-group">
-              <div class="action-list-container"></div>
-              <div class="then-container">
-
-
-                {{#each actionList as |actionValue|}}
-                  <div id="update_action" {{action "updateAction" actionValue}}
-                       class="then-action action-context">{{actionValue.rawValue}}</div>
-                {{/each}}
-              </div>
-              <br>
-              <button id="add_new_action" {{action "addnewaction"}} class="nges-button nges-button-danger">
-                Add new action
-              </button>
-            </div>
-
-
-            <div class="form-group">
-              <label class="input-field-label">Regular/Unit Rule Name</label>
-              <input type="text" class="input-field" placeholder="Enter Regular/Unit Rule Name" id="nameofrule">
-            </div>
-
-
-            <div class="row">
-
-            </div>
-
-            <div class="mar-5" id="save">
-              {{#if isEditView}}
-                <button {{action "update"}} class="nges-button nges-button-success">
-                  Update
-                </button>
-              {{/if}}
-              {{#unless isEditView}}
-                <button {{action "save"}} class="nges-button nges-button-success">
-                  Save Unit/Regular Rule
-                </button>
-              {{/unless}}
-            </div>
-
-            <div class="mar-5" id="showDiagram">
-              {{#unless diagramView}}
-                <button class="nges-button nges-button-success">
-                  Use diagram view
-                </button>
-              {{/unless}}
-              {{#if diagramView}}
-                <button class="nges-button nges-button-success">
-                  Use form view
-                </button>
-              {{/if}}
+            <div class="nges-button nges-button-info mar-5" id="remove">
+              Remove
             </div>
           </div>
 
-          <div class="col-md-8">
-            <h5 class="layout-header-title">Atomic Rules List</h5>
-            <div class="" style="border: 1px solid #bebebe; background: #dfdfdf;">
-              <table class="table table-striped">
-                <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Class</th>
-                  <th>Attribute</th>
-                  <th>Operation</th>
-                  <th>Value/Attribute</th>
-                  <th>Class</th>
-                </tr>
-                </thead>
-                <tbody>
-                {{#each atomicrules as |rule|}}
-                  <tr>
-                    <td>{{rule.ruleName}}</td>
-                    <td>{{rule.objectType}}</td>
-                    <td style="font-weight: bold;">( {{rule.property}}</td>
-                    <td style="font-weight: bold;">{{rule.operator}}</td>
-                    <td style="font-weight: bold;">{{rule.compProperty}} )</td>
-                    <td>{{rule.compObjectType}}</td>
-                  </tr>
-                {{/each}}
-                </tbody>
-              </table>
+
+          <div class="form-group">
+            <div class="action-list-container"></div>
+            <div class="then-container">
+
+
+              {{#each actionList as |actionValue|}}
+                <div id="update_action" {{action "updateAction" actionValue}}
+                     class="then-action action-context">{{actionValue.rawValue}}</div>
+              {{/each}}
             </div>
+            <br>
+            <button id="add_new_action" {{action "addnewaction"}} class="nges-button nges-button-danger">
+              Add new action
+            </button>
+          </div>
+
+
+          <div class="form-group">
+            <label class="input-field-label">Regular/Unit Rule Name</label>
+            <input type="text" class="input-field" placeholder="Enter Regular/Unit Rule Name" id="nameofrule">
+          </div>
+
+
+          <div class="row">
+
+          </div>
+
+          <div id="save">
+            {{#if isEditView}}
+              <button {{action "update"}} class="nges-button nges-button-success">
+                Update
+              </button>
+            {{/if}}
+            {{#unless isEditView}}
+              <button {{action "save"}} class="nges-button nges-button-success">
+                Save Unit/Regular Rule
+              </button>
+            {{/unless}}
+          </div>
+
+          <div id="showDiagram" style="margin-top: 5px;">
+            {{#unless diagramView}}
+              <button class="nges-button nges-button-success">
+                Use diagram view
+              </button>
+            {{/unless}}
+            {{#if diagramView}}
+              <button class="nges-button nges-button-success">
+                Use form view
+              </button>
+            {{/if}}
+          </div>
+        </div>
+
+        <div class="col-md-8">
+          <h5 class="instruction-label" style="font-size: 16px">Atomic Rules List</h5>
+          <div class="" style="border: 1px solid #bebebe; background: #dfdfdf;">
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th>Name</th>
+                <th>Class</th>
+                <th>Attribute</th>
+                <th>Operation</th>
+                <th>Value/Attribute</th>
+                <th>Class</th>
+              </tr>
+              </thead>
+              <tbody>
+              {{#each atomicrules as |rule|}}
+                <tr>
+                  <td>{{rule.ruleName}}</td>
+                  <td>{{rule.objectType}}</td>
+                  <td style="font-weight: bold;">( {{rule.property}}</td>
+                  <td style="font-weight: bold;">{{rule.operator}}</td>
+                  <td style="font-weight: bold;">{{rule.compProperty}} )</td>
+                  <td>{{rule.compObjectType}}</td>
+                </tr>
+              {{/each}}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -231,7 +227,7 @@
       <br>
     </div>
     <br>
-    <h2 class="layout-header-title">All Regular Rules</h2>
+    <h2 class="instruction-label" style="font-size: 16px">All Regular Rules</h2>
     <div class="" style="border: 1px solid #bebebe; background: #dfdfdf;">
       <table class="table table-striped">
         <thead>
@@ -325,18 +321,18 @@
     <div class="container mar-top-100 popup-for-delete-wrapper" style="text-align:center;">
 
       <div class="pop-up-for-delete" style="border: 1px solid rgba(0, 0, 0, 0.125);border-radius: 0.25rem;">
-            <div>
-              Do you want to delete?
-            </div>
-            <div>
-              <div class="nges-button nges-button-danger all-mar" id="delete-yes">
-                Yes
-              </div>
-              <div class="nges-button nges-button-danger all-mar" id="delete-no">
-                No
-              </div>
-            </div>
+        <div>
+          Do you want to delete?
+        </div>
+        <div>
+          <div class="nges-button nges-button-danger all-mar" id="delete-yes">
+            Yes
           </div>
+          <div class="nges-button nges-button-danger all-mar" id="delete-no">
+            No
+          </div>
+        </div>
+      </div>
 
     </div>
   </div>
