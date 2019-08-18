@@ -119,6 +119,7 @@ export default Component.extend({
         let accessToken = this.appConfiguration.getAccessToken();
         let responseAfterAddingActionEvent = this.olmSetupService.addNewActionEvent(actionEventDataFromUI, accessToken);
 
+        console.log('message--actionEventDataFromUI', JSON.stringify(actionEventDataFromUI) );
         let context = this;
         responseAfterAddingActionEvent.then(function (msg) {
           if (msg) {
@@ -162,8 +163,7 @@ export default Component.extend({
 
     updateActionEvent(actionEvent) {
 
-      let formId = '#' + 'actionEventInfo';
-      let params = this.$(formId).serializeArray();
+      let params = this.$("#actionEventInfo").serializeArray();
       // convert parameters to dictionary
       const paramsDict = {};
       params.forEach((param) => {
