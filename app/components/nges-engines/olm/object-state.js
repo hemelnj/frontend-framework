@@ -210,7 +210,7 @@ export default Component.extend({
     let allCreatedClassTypes = this.olmSetupService.getAllClassType(accessToken);
 
     allCreatedClassTypes.then(function (msg) {
-      console.log('message-classtypes', msg.data);
+
       context.set('classtypes', msg.data);
       context.set('tmpClassTypeList', msg.data);
     }).catch(function (errorMsg) {
