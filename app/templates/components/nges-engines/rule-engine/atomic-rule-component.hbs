@@ -4,29 +4,25 @@
       <h1 class="layout-header-title">Atomic Rule</h1>
       <div class="inputPanel" style="border: 1px solid #bebebe; padding: 5px;">
 
-        <div class="row">
-
+        <div class="row" style="margin-top:10px;">
           <div class="col-md-6">
-            <div class="col-md-12" style="margin-top: 10px;">
               <div class="form-group">
                 <div class="row">
-                  <div class="col-md-4">
-                    <label for="email">Name</label>
+                  <div class="col-md-3">
+                    <label for="email" class="input-field-label">Name</label>
                   </div>
-                  <div class="col-md-8">
-                    {{input type="text" class="form-control" id="name" name="name" placeholder="name" value=name}}
+                  <div class="col-md-9">
+                    {{input type="text" class="input-field" id="name" name="name" placeholder="Enter rule name" value=name}}
                   </div>
                 </div>
 
               </div>
-            </div>
-            <div class="col-md-12">
               <div class="form-group">
                 <div class="row">
-                  <div class="col-md-4">
-                    <label for="exampleFormControlSelect1">OLM Object</label>
+                  <div class="col-md-3">
+                    <label for="exampleFormControlSelect1" class="input-field-label">OLM Object</label>
                   </div>
-                  <div class="col-md-8">
+                  <div class="col-md-9">
                     <select class="form-control" id="firstClassName">
                       <option></option>
                       {{#each classes as |class|}}
@@ -36,14 +32,12 @@
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="col-md-12">
               <div class="form-group">
                 <div class="row">
-                  <div class="col-md-4">
-                    <label for="labeForAttriburtesOfFirstPartOfCondition">Attribute</label>
+                  <div class="col-md-3">
+                    <label for="labeForAttriburtesOfFirstPartOfCondition" class="input-field-label">Attribute</label>
                   </div>
-                  <div class="col-md-8">
+                  <div class="col-md-9">
                     <select class="form-control" id="attributeName">
                       <option value={{firstAttributeName}}>{{firstAttributeName}}</option>
                       {{#each attributes as |attr|}}
@@ -53,17 +47,15 @@
                   </div>
                 </div>
               </div>
-            </div>
           </div>
 
           <div class="col-md-6">
-            <div class="col-md-12" style="margin-top: 10px;">
               <div class="form-group">
                 <div class="row">
-                  <div class="col-md-4">
-                    <label for="exampleFormControlSelect1">Operation</label>
+                  <div class="col-md-3">
+                    <label for="exampleFormControlSelect1" class="input-field-label">Operation</label>
                   </div>
-                  <div class="col-md-8">
+                  <div class="col-md-9">
                     <select class="form-control" id="operationName">
                       <option></option>
                       {{#each operations as |operation|}}
@@ -73,14 +65,12 @@
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="col-md-12">
               <div class="form-group">
                 <div class="row">
-                  <div class="col-md-4">
-                    <label for="exampleFormControlSelect1">OLM Object</label>
+                  <div class="col-md-3">
+                    <label for="exampleFormControlSelect1" class="input-field-label">OLM Object</label>
                   </div>
-                  <div class="col-md-8">
+                  <div class="col-md-9">
                     <select class="form-control" id="comparedClassName">
                       <option value="noObject" class="comparedClassName">No object</option>
                       {{#each classes as |class|}}
@@ -91,15 +81,13 @@
                   </div>
                 </div>
               </div>
-            </div>
             {{#if showValueInput}}
-              <div class="col-md-12">
                 <div class="form-group">
                   <div class="row">
-                    <div class="col-md-4">
-                      <label for="exampleFormControlSelect1">Attribute</label>
+                    <div class="col-md-3">
+                      <label for="exampleFormControlSelect1" class="input-field-label">Attribute</label>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-9">
                       <select class="form-control" id="comparedAttributeName">
                         {{#each comparedAttributes as |attr|}}
                           <option value={{attr}} class="comparedAttributeName">{{attr}}</option>
@@ -108,22 +96,19 @@
                     </div>
                   </div>
                 </div>
-              </div>
             {{/if}}
             {{#if dontShowValueInput}}
-              <div class="col-md-12">
                 <div class="form-group">
                   <div class="row">
-                    <div class="col-md-4">
-                      <label for="email">Value</label>
+                    <div class="col-md-3">
+                      <label for="email" class="input-field-label">Value</label>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-9">
                       {{input type="text" class="form-control" id="customComparedValue" class="customComparedValue"
                               value=selectedValue}}
                     </div>
                   </div>
                 </div>
-              </div>
             {{/if}}
 
             <button class="nges-button nges-button-success float-right" {{ action  "save" }} >
