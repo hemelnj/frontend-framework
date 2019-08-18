@@ -22,7 +22,6 @@ export default Component.extend({
 
       let stateList = this.get('stateList');
 
-      console.log('message--stateList', stateList);
       let res = stateList.filter(function (el) {
         return (el.name.includes(value));
       });
@@ -30,11 +29,9 @@ export default Component.extend({
       if (res[0] !== undefined) {
         if (res[0].name === value) {
           this.set('nameMatchedAlert', true);
-          console.log('message-matched', 'matched');
 
         } else {
           this.set('nameMatchedAlert', false);
-          console.log('message-not matched', 'not matched');
         }
       }
 
@@ -52,7 +49,6 @@ export default Component.extend({
     getClassTypeKey(searchKeyword) {
       let tmpClassTypeList = this.get('tmpClassTypeList');
       let classTypeList = tmpClassTypeList;
-      console.log('message-classTypeList', classTypeList);
       let classTypeListRes = classTypeList.filter(function (el) {
         return (el.name.includes(searchKeyword));
       });
@@ -71,11 +67,6 @@ export default Component.extend({
       let description = this.get('objectStateFormData.description');
       let classType = this.get('classType');
 
-
-      console.log('message-objectStateFormData-name', stateName);
-      console.log('message-objectStateFormData-code', stateCode);
-      console.log('message-objectStateFormData-description', description);
-      console.log('message-objectStateFormData-classTypeId', classType.id);
 
 
       let classTypeData = {
@@ -101,14 +92,12 @@ export default Component.extend({
         "startEdges": null
       }];
 
-      console.log('message', stateData);
 
       let accessToken = this.appConfiguration.getAccessToken();
       let responseAfterAddingState = this.olmSetupService.addNewState(stateData, accessToken);
       let context = this;
       responseAfterAddingState.then(function (msg) {
         if (msg) {
-          console.log('responseAfterAddingState', msg);
           context.get('notifier').success('New State Added');
           context.dataInit(classType.id);
         } else {
@@ -120,7 +109,6 @@ export default Component.extend({
     },
 
     editState(item) {
-      console.log('message-edit State', item);
       this.set('editClick', true);
       this.set('resetClick', false);
 
@@ -129,8 +117,6 @@ export default Component.extend({
         code: item.code,
         description: item.describtion,
       });
-
-      console.log('message-objectStateFormData', this.get('objectStateFormData'));
 
       this.set('state', item);
     },
@@ -154,11 +140,6 @@ export default Component.extend({
       let classType = this.get('classType');
 
 
-      console.log('message-objectStateFormData-name', stateName);
-      console.log('message-objectStateFormData-code', stateCode);
-      console.log('message-objectStateFormData-description', description);
-      console.log('message-objectStateFormData-classTypeId', classType.id);
-
 
       let updateData = {
         data: {
@@ -172,18 +153,17 @@ export default Component.extend({
         }
       };
 
-      console.log('message--updateData', updateData);
 
-      /*let context = this;
+      let context = this;
       let accessToken = this.appConfiguration.getAccessToken();
       this.olmSetupService.updateObjectState(updateData, accessToken, state.id).done(function (data) {
 
         context.get('notifier').success('Update Successfully');
-        context.dataInit(selectedClassTypeId);
+        context.dataInit(classType.id);
 
       }).fail(function (msg) {
         context.get('notifier').danger('Fail to Update');
-      });*/
+      });
 
     }
   },
@@ -193,7 +173,6 @@ export default Component.extend({
 
     let serviceInformation = this.get('serviceInformation');
 
-    console.log('message', serviceInformation);
 
     this.set('resetClick', true);
     this.set('editClick', false);
@@ -212,7 +191,7 @@ export default Component.extend({
     let allCreatedClassTypes = this.olmSetupService.getAllClassType(accessToken);
 
     allCreatedClassTypes.then(function (msg) {
-      console.log('message-classtypes', msg.data);
+
       context.set('classtypes', msg.data);
       context.set('tmpClassTypeList', msg.data);
     }).catch(function (errorMsg) {

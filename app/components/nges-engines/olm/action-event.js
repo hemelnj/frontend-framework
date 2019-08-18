@@ -44,7 +44,6 @@ export default Component.extend({
   actions: {
     onChangeClassTypes(value) {
       let classType = JSON.parse(value);
-      console.log('onChangeClassTypeId (or objectId):', classType.id);
       this.loadData();
     },
 
@@ -72,11 +71,9 @@ export default Component.extend({
       if (res[0] !== undefined) {
         if (res[0].attributes.name === value) {
           this.set('nameMatchedAlert', true);
-          console.log('message-matched', 'matched');
 
         } else {
           this.set('nameMatchedAlert', false);
-          console.log('message-not matched', 'not matched');
         }
       }
 
@@ -147,11 +144,9 @@ export default Component.extend({
     },
 
     deleteActionEvent(item) {
-      console.log('message-delete action name:', item);
     },
 
     editActionEvent(item) {
-      console.log('message-edit action event', item);
       this.set('name', item.attributes.name);
       this.set('code', item.attributes.code);
       this.set('description', item.attributes.describtion);
@@ -162,8 +157,7 @@ export default Component.extend({
 
     updateActionEvent(actionEvent) {
 
-      let formId = '#' + 'actionEventInfo';
-      let params = this.$(formId).serializeArray();
+      let params = this.$("#actionEventInfo").serializeArray();
       // convert parameters to dictionary
       const paramsDict = {};
       params.forEach((param) => {
