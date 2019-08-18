@@ -5,7 +5,6 @@
   background: transparent;
   background-clip: border-box;
   border: 1px solid transparent;
-  //border-radius: .25rem;
   line-height: 1.275rem;
   text-decoration: none;
   -webkit-appearance: none;
@@ -50,16 +49,62 @@
   font-weight: 200;
   text-align: center;
   vertical-align: middle;
-  background-color: $primary-color-btn-success;
-  border-color: $primary-color-btn-success-border;
+  background-color: $primary-color-btn-info;
+  border-color: $primary-color-btn-info-border;
   -webkit-transition: border 0.15s linear;
   transition: border 0.15s linear;
   color: $primary-color-btn-text;
   font-weight: bold;
 }
 .nges-button-info:hover {
-  background-color: $primary-color-btn-success-hover;
-  border-color: $primary-color-btn-success-border;
+  background-color: $primary-color-btn-info-hover;
+  border-color: $primary-color-btn-info-border;
+  color: $primary-color-btn-text;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
+// warning button
+.nges-button-warning {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  font-weight: 200;
+  text-align: center;
+  vertical-align: middle;
+  background-color: $primary-color-btn-warning;
+  border-color: $primary-color-btn-warning-border;
+  -webkit-transition: border 0.15s linear;
+  transition: border 0.15s linear;
+  color: $primary-color-btn-text;
+  font-weight: bold;
+}
+.nges-button-warning:hover {
+  background-color: $primary-color-btn-warning-hover;
+  border-color: $primary-color-btn-warning-border;
+  color: $primary-color-btn-text;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
+// danger button
+.nges-button-danger {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  font-weight: 200;
+  text-align: center;
+  vertical-align: middle;
+  background-color: $primary-color-btn-danger;
+  border-color: $primary-color-btn-danger-border;
+  -webkit-transition: border 0.15s linear;
+  transition: border 0.15s linear;
+  color: $primary-color-btn-text;
+  font-weight: bold;
+}
+.nges-button-danger:hover {
+  background-color: $primary-color-btn-danger-hover;
+  border-color: $primary-color-btn-danger-border;
   color: $primary-color-btn-text;
   cursor: pointer;
   font-weight: bold;

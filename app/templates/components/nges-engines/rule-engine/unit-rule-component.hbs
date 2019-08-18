@@ -119,7 +119,7 @@
                     {{/each}}
                   </select>
 
-                  <div class="btn btn-info mar-5" id="addAtomicRuleTOList">
+                  <div class="nges-button nges-button-info" id="addAtomicRuleTOList">
                     Add
                   </div>
                 </div>
@@ -131,12 +131,12 @@
                       <option class="operators operatorsFormView" value="{{opt}}">{{opt}}</option>
                     {{/each}}
                   </select>
-                  <div class="btn btn-info mar-5" id="addOptToList">
+                  <div class="nges-button nges-button-info" id="addOptToList">
                     Add
                   </div>
                 </div>
               </div>
-              <div class="btn btn-info mar-5" id="remove">
+              <div class="nges-button nges-button-info mar-5" id="remove">
                 Remove
               </div>
             </div>
@@ -153,7 +153,7 @@
                 {{/each}}
               </div>
               <br>
-              <button id="add_new_action" {{action "addnewaction"}} class="btn btn-danger">
+              <button id="add_new_action" {{action "addnewaction"}} class="nges-button nges-button-danger">
                 Add new action
               </button>
             </div>
@@ -254,7 +254,7 @@
               <div class="nges-button nges-button-success mar-5" {{ action "edit" unit_rule}} id="edit">
                 Edit
               </div>
-              <div class="nges-button nges-button-success mar-5" {{ action "delete" unit_rule}} id="delete">
+              <div class="nges-button nges-button-danger mar-5" {{ action "delete" unit_rule}} id="delete">
                 Delete
               </div>
             </td>
@@ -310,10 +310,10 @@
               <input type="text" class="form-control" id="action-property-value">
             </div>
           </div>
-          <div class="btn btn-info mar-top-30" id="submit-new-action">
+          <div class="nges-button nges-button-info mar-top-30" id="submit-new-action">
             Submit
           </div>
-          <div {{action "closenewaction"}} class="btn btn-danger mar-top-30" id="submit-new-action">
+          <div {{action "closenewaction"}} class="nges-button nges-button-danger mar-top-30" id="submit-new-action">
             Close
           </div>
         </div>
@@ -329,10 +329,10 @@
               Do you want to delete?
             </div>
             <div>
-              <div class="btn btn-danger all-mar" id="delete-yes">
+              <div class="nges-button nges-button-danger all-mar" id="delete-yes">
                 Yes
               </div>
-              <div class="btn btn-danger all-mar" id="delete-no">
+              <div class="nges-button nges-button-danger all-mar" id="delete-no">
                 No
               </div>
             </div>

@@ -70,12 +70,20 @@ $primary-color-input-field: $selected-text;
 //button pack
 $primary-color-btn-text: $default-text;
 
-$success-hover: #1c497c;
+$primary-color-btn-success: #0056a5;
+$primary-color-btn-success-hover: #1c497c;
+$primary-color-btn-success-border: #7db5f5;
 
-$primary-color-btn-success: $foreground;
-$primary-color-btn-success-hover: $success-hover;
-$primary-color-btn-success-border: $default-border;
+$primary-color-btn-info: #54aac8;
+$primary-color-btn-info-hover: #4e9ab8;
+$primary-color-btn-info-border: #68e1ff;
 
+$primary-color-btn-warning: #EFAB4F;
+$primary-color-btn-warning-hover: #c38f3f;
+$primary-color-btn-warning-border: #ffb555;
 
+$primary-color-btn-danger: #D85450;
+$primary-color-btn-danger-hover: #cd504c;
+$primary-color-btn-danger-border: #ff625e;
 
 
