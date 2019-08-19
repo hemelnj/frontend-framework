@@ -1,9 +1,5 @@
 <style>
 
-  .auth-hr-line {
-    margin-top: -3px;
-    border: 1.5px solid #123F62;
-  }
 
   .te-bottom-hr-line {
     border: 0;
@@ -18,7 +14,6 @@
     position: relative;
     min-width: 0;
   }
-
 
   .has-search .input-field {
     padding-left: 4.275rem;
@@ -37,7 +32,6 @@
     color: #aaa;
   }
 
-
   .table-all thead th {
     background-color: #FEFEFE;
     color: #313131;
@@ -54,34 +48,152 @@
 
 <div class="card">
   <div class="card-body">
-    <div class="col-md-12">
-      <label class="layout-header-title">Property Extender</label>
-      <hr class="header-label-line">
+    <label class="layout-header-title">Property Extender</label>
+    <hr class="header-label-line">
 
-      <div class="row">
-        <div class="col-md-6">
-          {{#if attributeList}}
-          <div class="table-container" style="overflow-y: auto; max-height: 250px; overflow-x: auto; margin-top:10px;">
+    <div class="row">
+      <div class="col-md-6">
+        {{#if propertyList}}
+          <div class="table-container"
+               style="overflow-y: auto; max-height: 250px; overflow-x: auto; margin-top:10px;">
             <table class="table-all">
               <thead>
-                <tr class="line-height-reset">
-                  <th class="table-data table-bordered">
-                    <div>
-                      Property
-                    </div>
-                  </th>
+              <tr class="line-height-reset">
+                <th class="table-data table-bordered">
+                  <div>
+                    Property
+                  </div>
+                </th>
 
-                  <th class="table-data table-bordered">
-                    <div>
-                      Action
-                    </div>
-                  </th>
-                </tr>
+                <th class="table-data table-bordered">
+                  <div>
+                    Code
+                  </div>
+                </th>
+
+                <th class="table-data table-bordered">
+                  <div>
+                    Type
+                  </div>
+                </th>
+
+                <th class="table-data table-bordered">
+                  <div>
+                    Action
+                  </div>
+                </th>
+              </tr>
               </thead>
               <tbody>
 
 
-                {{#each attributeList as |attribute|}}
+              {{#each propertyList as |property|}}
+                <tr>
+                  <td class="table-data table-bordered">
+                    <div>
+                      {{property.name}}
+                    </div>
+                  </td>
+                  <td class="table-data table-bordered">
+                    <div>
+                      {{property.code}}
+                    </div>
+                  </td>
+                  <td class="table-data table-bordered">
+                    <div>
+                      {{property.type}}
+                    </div>
+                  </td>
+
+                  <td class="table-data table-bordered">
+                    <div>
+                      <button data-toggle="modal" data-target="#actionEventModal" onClick={{action
+                        (action 'editAction' classType.id) value="target.value"}} style="width: 100px;"
+                              class="nges-button nges-button-success">Edit
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              {{/each}}
+
+              </tbody>
+            </table>
+          </div>
+        {{/if}}
+
+        {{#unless propertyList}}
+          <h1 class="instruction-label">No OLM Object Selected / Property Not Found!</h1>
+        {{/unless}}
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-4">
+              <label for="olmObject" class="input-field-label">OLM Object</label>
+            </div>
+            <div class="col-md-8">
+              {{nges-core/nges-searchable-dropdown
+                dataList=classTypeList
+                message="Select OLM Object"
+                autocompleteOnSelect=(action 'selectOlmObject')
+              }}
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-5" style="margin-top: 10px">
+            <label for="stateName" class="input-field-label">Selected OLM Object</label>
+          </div>
+          <div class="col-md-7">
+            <input disabled type="text" class="input-field" id="stateName" value={{formData.olmObject}}>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <hr class="header-label-line">
+
+
+    <div class="row">
+
+      <div class="col-md-6">
+        {{#if attributeList}}
+          <div class="table-container"
+               style="overflow-y: auto; max-height: 250px; overflow-x: auto; margin-top:10px;">
+            <table class="table-all">
+              <thead>
+              <tr class="line-height-reset">
+                <th class="table-data table-bordered">
+                  <div>
+                    Property
+                  </div>
+                </th>
+
+                <th class="table-data table-bordered">
+                  <div>
+                    Code
+                  </div>
+                </th>
+
+                <th class="table-data table-bordered">
+                  <div>
+                    Type
+                  </div>
+                </th>
+
+                <th class="table-data table-bordered">
+                  <div>
+                    Action
+                  </div>
+                </th>
+              </tr>
+              </thead>
+              <tbody>
+
+
+              {{#each attributeList as |attribute|}}
                 <tr>
                   <td class="table-data table-bordered">
                     <div>
@@ -90,192 +202,129 @@
                   </td>
                   <td class="table-data table-bordered">
                     <div>
-                      <button data-toggle="modal" data-target="#actionEventModal" onClick={{action
-                          (action 'editAction' classType.id) value="target.value"}} style="width: 100px;"
-                        class="nges-button nges-button-success">Edit
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-                {{/each}}
-
-              </tbody>
-            </table>
-          </div>
-          {{/if}}
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <div class="row">
-              <div class="col-md-4">
-                <label for="olmObject" class="input-field-label">OLM Object</label>
-              </div>
-              <div class="col-md-8">
-                {{nges-core/nges-searchable-dropdown
-                  dataList=classTypeList
-                  message="Select OLM Object"
-                  autocompleteOnSelect=(action 'selectOlmObject')
-                }}
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-5" style="margin-top: 10px">
-              <label for="stateName" class="input-field-label">Selected OLM Object</label>
-            </div>
-            <div class="col-md-7">
-              <input disabled type="text" class="input-field" id="stateName" value={{formData.olmObject}}>
-            </div>
-          </div>
-
-          {{#if propertyList}}
-          <div class="table-container" style="overflow-y: auto; max-height: 250px; overflow-x: auto; margin-top:10px;">
-            <table class="table-all">
-              <thead>
-                <tr class="line-height-reset">
-                  <th class="table-data table-bordered">
-                    <div>
-                      Property
-                    </div>
-                  </th>
-
-                  <th class="table-data table-bordered">
-                    <div>
-                      Action
-                    </div>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-
-
-                {{#each attributeList as |attribute|}}
-                <tr>
-                  <td class="table-data table-bordered">
-                    <div>
-                      {{attribute.attributes.name}}
+                      {{attribute.code}}
                     </div>
                   </td>
                   <td class="table-data table-bordered">
                     <div>
+                      {{attribute.type}}
+                    </div>
+                  </td>
+
+                  <td class="table-data table-bordered">
+                    <div>
                       <button data-toggle="modal" data-target="#actionEventModal" onClick={{action
-                          (action 'editAction' classType.id) value="target.value"}} style="width: 100px;"
+                        (action 'editAction' classType.id) value="target.value"}} style="width: 100px;"
                               class="nges-button nges-button-success">Edit
                       </button>
                     </div>
                   </td>
                 </tr>
-                {{/each}}
+              {{/each}}
 
               </tbody>
             </table>
           </div>
-          {{else}}
-          <h1 class="input-field-label">Select OLM Object</h1>
-          {{/if}}
-        </div>
+        {{/if}}
       </div>
 
-      <hr class="auth-hr-line">
+      <div class="col-md-6">
 
-      <!--input field-->
-      <div class="row">
-        <div class="col-md-6">
-          <div class="row">
-            <div class="col-sm-4">
-              <label class="input-field-label">Choose Type</label>
-            </div>
-            <div class="col-sm-8">
-              {{nges-core/nges-searchable-dropdown
-                dataList=typeList
-                message = "Select Type"
-                autocompleteOnSelect=(action 'onChangeType')
-              }}
-            </div>
+        <h1 class="instruction-label" style="font-size: 16px;">Registration</h1>
+        <div>
+          {{nges-core/nges-input-component
+            type='text'
+            input-field-name="Property Name"
+            model=model
+            valuePath='classTypeName'
+            placeholder='Property Name'
+            sectionFirst = 'col-sm-3'
+            sectionLast = 'col-sm-9'
+            didValidate=didValidate}}
+        </div>
+        <div>
+          {{nges-core/nges-input-component
+            type='text'
+            input-field-name="Code"
+            model=model
+            valuePath='classTypeCode'
+            placeholder='Code'
+            sectionFirst = 'col-sm-3'
+            sectionLast = 'col-sm-9'
+            didValidate=didValidate}}
+        </div>
+        <div>
+          {{nges-core/nges-input-component
+            type='text'
+            input-field-name='Display Name'
+            model=model
+            valuePath='displayName'
+            placeholder='Display Name'
+            sectionFirst = 'col-sm-3'
+            sectionLast = 'col-sm-9'
+            didValidate=didValidate}}
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <label class="input-field-label">Choose Type</label>
           </div>
-          {{#if showTypeLengthField}}
+          <div class="col-sm-9">
+            {{nges-core/nges-searchable-dropdown
+              dataList=typeList
+              message = "Select Type"
+              autocompleteOnSelect=(action 'onChangeType')
+            }}
+          </div>
+        </div>
+        {{#if showTypeLengthField}}
           <div>
             {{nges-core/nges-input-component
-                type='number'
-                input-field-name="Length"
-                model=model
-                valuePath='typeLength'
-                placeholder='Length'
-                sectionFirst = 'col-sm-4'
-                sectionLast = 'col-sm-8'
-                didValidate=didValidate}}
+              type='number'
+              input-field-name="Length"
+              model=model
+              valuePath='typeLength'
+              placeholder='Length'
+              sectionFirst = 'col-sm-3'
+              sectionLast = 'col-sm-9'
+              didValidate=didValidate}}
           </div>
-          {{/if}}
-          {{#if showRefObjectDropDown}}
+        {{/if}}
+        {{#if showRefObjectDropDown}}
           <div class="row">
             <div class="col-sm-5">
               <label class="input-field-label">Choose Reference Object</label>
             </div>
             <div class="col-sm-7">
               {{nges-core/nges-searchable-dropdown
-                  dataList=refObjectList
-                  message = "Select Reference Object"
-                  autocompleteOnSelect=(action 'onChangeRefObject')
-                }}
+                dataList=refObjectList
+                message = "Select Reference Object"
+                autocompleteOnSelect=(action 'onChangeRefObject')
+              }}
             </div>
           </div>
-          {{/if}}
+        {{/if}}
 
-          <div class="form-check" style="margin-top:15px;">
-            <label class="form-check-label input-field-label">
+        <div class="row" style="margin-top: -3%">
+          <div class="col-sm-10"></div>
+          <div class="col-sm-2">
+            <label class="input-field-label">
               {{input type="checkbox" class="form-check-input" id="optional"  name="option1"}}Optional
             </label>
           </div>
-
         </div>
-        <div class="col-md-6">
-          <div>
-            {{nges-core/nges-input-component
-              type='text'
-              input-field-name="Property Name"
-              model=model
-              valuePath='classTypeName'
-              placeholder='Property Name'
-              sectionFirst = 'col-sm-4'
-              sectionLast = 'col-sm-8'
-              didValidate=didValidate}}
-          </div>
-          <div>
-            {{nges-core/nges-input-component
-              type='text'
-              input-field-name="Code"
-              model=model
-              valuePath='classTypeCode'
-              placeholder='Code'
-              sectionFirst = 'col-sm-4'
-              sectionLast = 'col-sm-8'
-              didValidate=didValidate}}
-          </div>
-          <div>
-            {{nges-core/nges-input-component
-              type='text'
-              input-field-name='Display Name'
-              model=model
-              valuePath='displayName'
-              placeholder='Display Name'
-              sectionFirst = 'col-sm-4'
-              sectionLast = 'col-sm-8'
-              didValidate=didValidate}}
-          </div>
 
-          <div>
-            <button id='add' class="nges-button nges-button-success float-right" {{action 'addAction'}}>Add</button>
-            <br>
-          </div>
-          <div>
-            <br>
-            <hr class="te-bottom-hr-line" style="margin-left: 30%">
-            <button id='save' class="nges-button nges-button-success float-right" {{action 'saveAction'}}>Save</button>
-          </div>
 
-        </div>
+        <button id='add' class="nges-button nges-button-success float-right" {{action 'addAction'}}>Add</button>
+        <br>
+
+        <br>
+        <hr class="te-bottom-hr-line" style="margin-left: 30%">
+        <button id='save' class="nges-button nges-button-success float-right" {{action 'saveAction'}}>Save</button>
+
+
       </div>
 
     </div>
+
   </div>
 </div>
