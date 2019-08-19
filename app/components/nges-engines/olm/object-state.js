@@ -18,6 +18,9 @@ export default Component.extend({
   notifier: service(),
   actions: {
 
+    onChangeStatusFlag(selectedFlag) {
+      this.set('selectedFlag', selectedFlag);
+    },
     stateNameCheck(value) {
 
       let stateList = this.get('stateList');
@@ -65,8 +68,8 @@ export default Component.extend({
       let stateName = this.get('objectStateFormData.name');
       let stateCode = this.get('objectStateFormData.name').toUpperCase().split(' ').join('_');
       let description = this.get('objectStateFormData.description');
+      let selectedStatusFlag = this.get('selectedFlag');
       let classType = this.get('classType');
-
 
 
       let classTypeData = {
@@ -89,7 +92,8 @@ export default Component.extend({
         "comments": "1",
         "describtion": description,
         "createdBy": "11",
-        "startEdges": null
+        "startEdges": null,
+        "statusFlag": selectedStatusFlag,
       }];
 
 
@@ -138,7 +142,6 @@ export default Component.extend({
       let stateCode = this.get('objectStateFormData.code');
       let description = this.get('objectStateFormData.description');
       let classType = this.get('classType');
-
 
 
       let updateData = {
