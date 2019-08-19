@@ -88,16 +88,16 @@
         <div class="vertical-line"></div>
       </div>-->
 
-
       <div class="col-md-6">
         <form id="classTypeStateInfo" method="post">
           <div class="field-form">
             <label class="instruction-label" style="font-size: 16px">Registration</label>
+
             <div class="row">
-              <div class="col-md-3">
+              <div class="col-md-2">
                 <label for="name" class="input-field-label">OLM Object</label>
               </div>
-              <div class="col-md-9">
+              <div class="col-md-10">
                 <div class="form-group">
 
                   {{nges-core/nges-searchable-dropdown
@@ -109,14 +109,12 @@
                 </div>
               </div>
             </div>
-
-
-            <div class="row" style="margin-top: -6%">
-              <div class="col-md-3">
+            <div class="row" style="margin-top: -20px;">
+              <div class="col-md-2">
                 <label for="name" class="input-field-label">Name</label>
               </div>
               {{#if resetClick}}
-                <div class="col-md-9">
+                <div class="col-md-10">
                   <input type="text" class="input-field" placeholder="Enter State Name"
                          oninput={{action (mut objectStateFormData.name) value="target.value"}} onkeyup={{action
                     'stateNameCheck'value='target.value'}}>
@@ -127,29 +125,27 @@
                 </div>
               {{/if}}
               {{#if editClick}}
-                <div class="col-md-9">
+                <div class="col-md-10">
                   <input type="text" class="input-field" placeholder="Enter State Name"
                          oninput={{action (mut objectStateFormData.name) value="target.value"}}
                          value={{objectStateFormData.name}}>
                 </div>
               {{/if}}
 
-
             </div>
 
-
             <div class="row">
-              <div class="col-md-3">
+              <div class="col-md-2">
                 <label for="name" class="input-field-label">Code</label>
               </div>
               {{#if editClick}}
-                <div class="col-md-9">
+                <div class="col-md-10">
                   <input type="text" disabled class="input-field" id="classTypeCode" name="classTypeCode"
                          placeholder="Enter ClassType Code" value={{mut objectStateFormData.code}}>
                 </div>
               {{/if}}
               {{#if resetClick}}
-                <div class="col-md-9">
+                <div class="col-md-10">
 
                   <input type="text" disabled class="input-field" name="classTypeCode"
                          placeholder="Generated automatically from state name" value={{nges-engines/olm/code-generator
@@ -158,18 +154,36 @@
               {{/if}}
             </div>
 
+
             <div class="row">
-              <div class="col-md-3">
+              {{#if resetClick}}
+                <div class="col-md-2">
+                  <label class="input-field-label">Status Flag</label>
+                </div>
+                <div class="col-md-10">
+                  <select class="form-control" onchange={{action 'onChangeStatusFlag' value='target.value'}} >
+                    <option value="none">Select Status Flag</option>
+                    <option value="A">A</option>
+                    <option value="U">U</option>
+                    <option value="D">D</option>
+                  </select>
+                </div>
+              {{/if}}
+            </div>
+
+
+            <div class="row">
+              <div class="col-md-2">
                 <label for="description" class="input-field-label">Description</label>
               </div>
               {{#if editClick}}
-                <div class="col-md-9">
+                <div class="col-md-10">
                   <input type="text" class="input-field" placeholder="Enter State Description"
                          oninput={{action (mut objectStateFormData.description) value="target.value"}}>
                 </div>
               {{/if}}
               {{#if resetClick}}
-                <div class="col-md-9">
+                <div class="col-md-10">
                   <input type="text" class="input-field" placeholder="Enter State Description"
                          oninput={{action (mut objectStateFormData.description) value="target.value"}}
                          value={{objectStateFormData.description}}>
@@ -178,7 +192,7 @@
             </div>
 
 
-            <div class="row float-right" style="width: 60%; margin-right: -10%">
+            <div class="row float-right" style="width: 60%; margin-right: -6%">
 
               <div class="col-md-4">
                 {{#if showTable}}
@@ -188,7 +202,7 @@
                   </button>
                 {{/if}}
               </div>
-              <div class="col-md-1"></div>
+              <div class="col-md-2"></div>
               <div class="col-md-4">
                 {{#if editClick}}
                   <button class="nges-button nges-button-success" {{action "updateState" state}}

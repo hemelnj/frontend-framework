@@ -91,17 +91,17 @@
         <form id="actionEventInfo" class="adjust-card-style field-form max-width" method="post">
           <label class="instruction-label" style="font-size: 16px">Registration</label>
           <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-2">
               <label for="name" class="input-field-label">Name</label>
             </div>
             {{#if editClick}}
-              <div class="col-md-9">
+              <div class="col-md-10">
                 {{input type="text" class="input-field" id="role"  name="role"
                         placeholder="Enter Action Name" value=name}}
               </div>
             {{/if}}
             {{#if resetClick}}
-              <div class="col-md-9">
+              <div class="col-md-10">
                 <input type="text" class="input-field" id="role" name="role"
                        placeholder="Enter Action Name"
                        oninput={{action (mut name) value="target.value"}} onkeyup={{action 'actionNameCheck'
@@ -116,12 +116,12 @@
           </div>
 
           <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-2">
               <label for="code" class="input-field-label">Code</label>
             </div>
 
             {{#if editClick}}
-              <div class="col-md-9">
+              <div class="col-md-10">
                 {{input type="text" class="input-field" id="classTypeCode" name="classTypeCode"
                         placeholder="Enter ClassType Code"  value=code
                 }}
@@ -129,7 +129,7 @@
             {{/if}}
 
             {{#if resetClick}}
-              <div class="col-md-9">
+              <div class="col-md-10">
                 {{input type="text" class="input-field" id="classTypeCode" name="classTypeCode"
                         placeholder="Enter ClassType Code"  value=( nges-engines/olm/code-generator name)
                 }}
@@ -143,10 +143,10 @@
           </div>
 
           <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-2">
               <label for="description" class="input-field-label">Description</label>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-10">
               {{input type="text" class="input-field" id="roleDescription" name="roleDescription"
                       placeholder="Enter Description" value=description}}
             </div>
