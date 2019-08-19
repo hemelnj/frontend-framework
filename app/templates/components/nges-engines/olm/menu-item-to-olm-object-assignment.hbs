@@ -83,11 +83,11 @@
 
         <div class="form-group">
           <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-2">
               <label for="menuItems" class="input-field-label">Menu Item</label>
             </div>
 
-            <div class="col-md-9">
+            <div class="col-md-10">
               {{nges-core/nges-searchable-dropdown
                 dataList=menuItems
                 autocompleteOnSelect=(action 'selectMenuItem')
@@ -110,11 +110,11 @@
 
         <div class="form-group">
           <div class="row" style="margin-top: -4%">
-            <div class="col-md-3">
+            <div class="col-md-2">
               <label for="olmObject" class="input-field-label">OLM Object</label>
             </div>
 
-            <div class="col-md-9">
+            <div class="col-md-10">
               {{nges-core/nges-searchable-dropdown
                 dataList=olmObjects
                 autocompleteOnSelect=(action 'selectOlmObject')
@@ -135,10 +135,10 @@
 
         <div class="form-group">
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
               <label for="stateName" class="input-field-label">Menu Display Name</label>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-9">
               <input type="text" placeholder="Enter Label Name" class="input-field" id="stateName"
                      value={{formData.stateName}}
                      oninput={{action (mut formData.stateName) value="target.value"}}>
@@ -148,11 +148,11 @@
 
         <div class="form-group">
           <div class="row" style="margin-top: -2%">
-            <div class="col-md-4">
+            <div class="col-md-3">
               <label for="stateName" class="input-field-label">Choose Resource</label>
             </div>
 
-            <div class="col-md-8">
+            <div class="col-md-9">
               {{nges-core/nges-searchable-dropdown
                 dataList=templateList
                 autocompleteOnSelect=(action 'selectTemplateList')
