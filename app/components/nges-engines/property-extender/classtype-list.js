@@ -25,7 +25,7 @@ export default Component.extend({
 
   didUpdateAttrs() {
     this._super(...arguments);
-    this.set('tmpClassTypeList',this.get('classTypeList'));
+    this.set('tmpClassTypeList', this.get('classTypeList'));
   },
 
   loadAllOLMObject() {
@@ -98,11 +98,11 @@ export default Component.extend({
     selectOlmObject(selectedClasstype) {
       this.set('attributeList', []);
       let context = this;
-      context.set('formData.olmObject',selectedClasstype.attributes.name);
+      context.set('formData.olmObject', selectedClasstype.attributes.name);
       let selectedClasstypeId = selectedClasstype.id;
       this.set('selectedClasstypeId', selectedClasstypeId);
       let refObjectList = this.get('tmpClassTypeList');
-      
+
       for (let i = 0; i < refObjectList.length; i++) {
         if (refObjectList[i].id === selectedClasstypeId) {
           refObjectList.splice(i, 1);
@@ -118,10 +118,11 @@ export default Component.extend({
 
       console.log('message--onChangeType', selectedClasstypeId);
 
-      let allCreatedAttributes = this.peSetupService.getAttributesByClassTypeId(selectedClasstypeId, accessToken);
+      let allCreatedAttributes = this.peSetupService.getAllAttributesByClassTypeId(selectedClasstypeId, accessToken);
 
       allCreatedAttributes.then(function (classType) {
-        context.set('propertyList', classType.data);
+        console.log('message--propertyList', classType.result);
+        context.set('propertyList', classType.result);
       }).catch(function (errorMsg) {
         context.get('notifier').danger('Failed To Load OLM Objects');
       });
@@ -210,12 +211,12 @@ export default Component.extend({
               }
             };*/
 
-            if(model.refObject === '' || model.refObject === undefined || model.refObject === null){
-              this.set('model.refObject',"n/a");
+            if (model.refObject === '' || model.refObject === undefined || model.refObject === null) {
+              this.set('model.refObject', "n/a");
             }
 
-            if(model.typeLength === '' || model.typeLength === undefined || model.typeLength === null){
-              this.set('model.typeLength',"n/a");
+            if (model.typeLength === '' || model.typeLength === undefined || model.typeLength === null) {
+              this.set('model.typeLength', "n/a");
             }
 
             let classTypeId = this.get('selectedClasstypeId');
