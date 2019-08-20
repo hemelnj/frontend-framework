@@ -9,6 +9,7 @@ export default Route.extend({
 
   appConfiguration: service('app-configuration'),
   appLogin: service('nges-core/app-login'),
+  notifier: service(),
   init(){
     console.log('message---init', 'application.js');
     let accessTokenExpireIn = this.appConfiguration.getAccessExpireIn();
