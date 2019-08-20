@@ -88,7 +88,7 @@ export default Service.extend(Authorization, {
     setInterval(function () {
       let dif = context.getExpectedTokenExpireTime() - context.getCurrentTime();
       console.log('message-timeDifference', dif);
-      if (dif < 100) {
+      if (dif < 300) {
         context.generateTokenUsingRefreshToken().then(function (msg) {
           localStorage.setItem(appUserToken, JSON.stringify(msg));
           let newExpireTime = context.getCurrentTime() + context.getAccessExpireIn() * 1000;
@@ -132,7 +132,7 @@ export default Service.extend(Authorization, {
 
   getRefreshToken() {
     let refreshToken = this.getAuthorizedUserToken().refresh_token;
-    console.log('message-refreshToken', refreshToken);
+    console.log('message-refreshToken taken');
     if (refreshToken === undefined) {
       console.error('getRefreshToken: ', 'User Refresh Token Not Found');
     } else if (refreshToken === null) {

@@ -11,6 +11,8 @@ export default Route.extend({
   appLogin: service('nges-core/app-login'),
   init(){
     console.log('message---init', 'application.js');
+    let accessTokenExpireIn = this.appConfiguration.getAccessExpireIn();
+    this.appConfiguration.setExpectedTokenExpireTime(accessTokenExpireIn);
   },
   beforeModel(){
 

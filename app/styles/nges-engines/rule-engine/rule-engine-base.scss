@@ -98,16 +98,15 @@ table {
   position: absolute;
 
   float: left;
-  z-index: +999999;
+  z-index: +10;
   display: inline-block;
-  margin: 20px;
+  margin: 5px;
 }
 
 .tools-container div {
-  padding: 5px;
+  padding: 3px;
   border: 1px solid gray;
   text-align: center;
-  color: #000;
 }
 
 .diagram-tool {
