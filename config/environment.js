@@ -54,8 +54,8 @@ module.exports = function (environment) {
 
 
   //let HOST_BASE_URL = 'http://localhost';
+  let HOST_BASE_URL = 'http://192.168.20.147';
   //let HOST_BASE_URL = 'http://192.168.20.2';
-  let HOST_BASE_URL = 'http://192.168.20.2';
 
   //-:#############################################: development environment block
   if (environment === 'development') {

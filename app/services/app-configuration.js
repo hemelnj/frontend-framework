@@ -5,8 +5,12 @@ import Authorization from "../mixins/authorization";
 const {computed: {alias}, observer} = Ember;
 
 let appUserToken = 'appUserToken';
+let appUserRoles = 'appUserRole';
 let appRouteKey = 'appRoute';
 let menuTree = 'menuTree';
+let orgCode = 'orgCode';
+let appCode = 'appCode';
+
 let appExpectedExpireTime = 'appExpectedExpireTime';
 
 export default Service.extend(Authorization, {
@@ -14,6 +18,47 @@ export default Service.extend(Authorization, {
   appName: config.APP.appName,
   authEngineHost: config.NGES_SERVICE_HOSTS.AUTH_SERVICE_HOST,
 
+  setUserRoles(roleList) {
+    localStorage.setItem(appUserRoles, JSON.stringify(roleList));
+  },
+
+  getUserRoles() {
+    let appRoles = localStorage.getItem(appUserRoles);   // get by key
+
+    appRoles = rawDataValidator(appRoles);
+    appRoles = (appRoles === null) ? appRoles : JSON.parse(appRoles);
+
+    if (appRoles == null) {
+      console.error('appRoles: ', 'appRoles Not Found');
+    }
+    return appRoles;
+  },
+
+  setOrganizationCode(organizationCode) {
+    localStorage.setItem(orgCode, organizationCode);
+  },
+
+  getOrganizationCode() {
+    let orgCode = localStorage.getItem(orgCode);
+    if(orgCode == null){
+      console.error('orgCode: ', 'orgCode Not Found');
+    }
+    return orgCode;
+  },
+
+  setApplicationCode(organizationCode) {
+    localStorage.setItem(appCode, organizationCode);
+  },
+
+  getApplicationCode() {
+
+    let appCode = localStorage.getItem(appCode);
+    if(appCode == null){
+      console.error('appCode: ', 'appCode Not Found');
+    }
+    return appCode;
+    return appCode;
+  },
 
   setAuthorizedUserToken(userTokenInfo) {
     localStorage.setItem(appUserToken, JSON.stringify(userTokenInfo));
@@ -89,7 +134,7 @@ export default Service.extend(Authorization, {
     setInterval(function () {
       let dif = context.getExpectedTokenExpireTime() - context.getCurrentTime();
       console.log('message-timeDifference', dif);
-      if (dif < 970000) {
+      if (dif < 70000) {
         context.generateTokenUsingRefreshToken().then(function (msg) {
           localStorage.setItem(appUserToken, JSON.stringify(msg));
           let newExpireTime = context.getCurrentTime() + context.getAccessExpireIn() * 1000;
@@ -100,7 +145,7 @@ export default Service.extend(Authorization, {
           context.clearAuthorization();
         })
       }
-    }, 7000);
+    }, 8000);
   },
 
   getAuthorizedUserInformation() {
@@ -191,7 +236,7 @@ export default Service.extend(Authorization, {
     return userId;
   },
   getUserRoleId() {
-    let userRoles = this.getAuthorizedUserToken().roles;
+    let userRoles = this.getUserRoles();
 
     for (let i = 0; i < userRoles.length; i++) {
       if (userRoles[i].name !== 'role_user') {
@@ -206,7 +251,7 @@ export default Service.extend(Authorization, {
   },
 
   hasThisRoleByName(roleName) {
-    let userRoles = this.getAuthorizedUserToken().roles;
+    let userRoles = this.getUserRoles();
 
     for (let role of userRoles) {
       if (role.name === roleName) {
@@ -217,7 +262,7 @@ export default Service.extend(Authorization, {
   },
 
   getUserRoleIdList() {
-    let userRoles = this.getAuthorizedUserToken().roles;
+    let userRoles = this.getUserRoles();
 
     let roles = [];
     userRoles.forEach(function (v, k) {

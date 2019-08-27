@@ -41,7 +41,7 @@ export default Service.extend({
     this._super(...arguments);
   },
 
-  getInitialMenuTreeInformation(roles, accessToken) {
+  getInitialMenuTreeInformation(roles, appCode, orgCode, accessToken) {
 
     roles = JSON.stringify(roles);
 
@@ -50,7 +50,7 @@ export default Service.extend({
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
-    let url = this.treeEngineHost + "/menuTrees/findMenuTreeByRoleList";
+    let url = this.treeEngineHost + "/menuTrees/findMenuTreeByRoleList/org/"+orgCode+"/app/"+appCode;
     return this.appRestTemplate.httpRestClient(url, "POST",
       roles, null, beforeSend
     );

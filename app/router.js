@@ -14,6 +14,7 @@ Router.map(function () {
   this.route('lab');
   this.route('security-login');
   this.route('registration');
+  this.route('landing-page');
 
   this.route('welcome', {path: '/'}, function () {
 

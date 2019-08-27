@@ -8,7 +8,7 @@ export default Service.extend({
 
   authEngineHost: config.NGES_SERVICE_HOSTS.AUTH_SERVICE_HOST,
 
-  getAllCreatedUsers(accessToken){
+  getAllCreatedUsers(accessToken) {
     let beforeSend = function (xhr) {
       xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
@@ -20,7 +20,7 @@ export default Service.extend({
     );
   },
 
-  getAllCreatedRoles(accessToken){
+  getAllCreatedRoles(accessToken) {
     let beforeSend = function (xhr) {
       xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
@@ -32,8 +32,8 @@ export default Service.extend({
     );
   },
 
-  addNewUser(userData,accessToken){
-    let data= JSON.stringify(userData);
+  addNewUser(userData, accessToken) {
+    let data = JSON.stringify(userData);
 
     let beforeSend = function (xhr) {
       xhr.setRequestHeader('content-type', 'application/json');
@@ -46,8 +46,8 @@ export default Service.extend({
     );
   },
 
-  addNewRole(roleData,accessToken){
-    let data= JSON.stringify(roleData);
+  addNewRole(roleData, accessToken) {
+    let data = JSON.stringify(roleData);
 
     let beforeSend = function (xhr) {
       xhr.setRequestHeader('content-type', 'application/json');
@@ -60,14 +60,76 @@ export default Service.extend({
     );
   },
 
-  requestForResponseToken(refreshToken){
+  //////
+  getAllEntity(nodeId, accessToken) {
+    let beforeSend = function (xhr) {
+      xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+      xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
+    };
+
+    let url = this.authEngineHost + "/entities/" + nodeId;
+    return this.appRestTemplate.httpRestClient(url, "GET",
+      null, {}, beforeSend
+    );
+  },
+
+  getEntityByUserId(userId, accessToken) {
+    let beforeSend = function (xhr) {
+      xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+      xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
+    };
+
+    let url = this.authEngineHost + "/users/"+userId+"/entities";
+    return this.appRestTemplate.httpRestClient(url, "GET",
+      null, {}, beforeSend
+    );
+  },
+
+  getAllApplication(entityId, accessToken) {
+    let beforeSend = function (xhr) {
+      xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+      xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
+    };
+
+    let url = this.authEngineHost + "/entities/" + entityId + "/applications";
+    return this.appRestTemplate.httpRestClient(url, "GET",
+      null, {}, beforeSend
+    );
+  },
+
+  getApplicationByUserIdAndEntityId(entityId, userId, accessToken) {
+    let beforeSend = function (xhr) {
+      xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+      xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
+    };
+
+    let url = this.authEngineHost  +"/users/"+userId+"/entities/"+entityId+"/applications";
+    return this.appRestTemplate.httpRestClient(url, "GET",
+      null, {}, beforeSend
+    );
+  },
+
+
+  getRoleByUserId(id, accessToken) {
+    let beforeSend = function (xhr) {
+      xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+      xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
+    };
+
+    let url = this.authEngineHost + '/users/' + id + "/roles";
+    return this.appRestTemplate.httpRestClient(url, "GET",
+      null, {}, beforeSend
+    );
+  },
+  //////
+  requestForResponseToken(refreshToken) {
 
     let beforeSend = function (xhr) {
       xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
       xhr.setRequestHeader('authorization', 'Basic ' + btoa('USER_CLIENT_APP' + ':' + 'password'));
     };
 
-    let url = this.authEngineHost + "/oauth/token?grant_type=refresh_token&refresh_token="+refreshToken;
+    let url = this.authEngineHost + "/oauth/token?grant_type=refresh_token&refresh_token=" + refreshToken;
 
     return this.appRestTemplate.httpRestClient(url, "POST",
       null, {}, beforeSend

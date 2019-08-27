@@ -1,0 +1,59 @@
+<style>
+
+
+  .width {
+    width: 450px;
+  }
+
+  .width-400 input {
+    margin-top: 10px;
+  }
+
+  .login-box {
+    box-shadow: 0 0 10px -1px #8c8c8c;
+    margin-top: 100px;
+    /* padding: 50 px;*/
+  }
+
+</style>
+
+
+<div class="container width login-box" style="padding-left: 0; padding-right: 0; background: #F4F4F4">
+  <div class="card">
+    <div class="card-body">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-3">
+            <label for="menuItems" class="input-field-label">Organization</label>
+          </div>
+
+          <div class="col-md-6">
+            {{nges-core/nges-searchable-dropdown
+              dataList=orgList
+              autocompleteOnSelect=(action 'onChangeOrganization')
+            }}
+          </div>
+
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-3">
+            <label for="menuItems" class="input-field-label">Application</label>
+          </div>
+
+          <div class="col-md-6">
+            {{nges-core/nges-searchable-dropdown
+              dataList=appList
+              autocompleteOnSelect=(action 'onChangeApplication')
+            }}
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
