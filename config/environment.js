@@ -69,7 +69,7 @@ module.exports = function (environment) {
     ENV.NGES_SERVICE_HOSTS = {
       OLM_SERVICE_HOST: 'http://olm-ngfs-core-framework.apps.115.127.24.184.nip.io',
       TREE_SERVICE_HOST: 'http://treeengine-ngfs-core-framework.apps.115.127.24.184.nip.io',
-      AUTH_SERVICE_HOST: 'http://auth-ngfs-core-framework.apps.115.127.24.184.nip.io',
+      AUTH_SERVICE_HOST: 'http://auth-rms.apps.115.127.24.184.nip.io',
       MOCK_SERVICE_HOST: 'http://192.168.20.2:8089',
 
 
@@ -79,6 +79,8 @@ module.exports = function (environment) {
 
       RULE_ENGINE_SERVICE_HOST: 'http://droolsbackend-ngfs-core-framework.apps.115.127.24.184.nip.io',
       //RULE_ENGINE_SERVICE_HOST: 'http://192.168.20.2:8080',
+
+      GATEWAY_SERVICE_HOST:'http://gateway-ngfs-core-framework.apps.115.127.24.184.nip.io',
     };
   }
 

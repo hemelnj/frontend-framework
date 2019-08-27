@@ -14,6 +14,7 @@ export default Service.extend(Authorization, {
   appName: config.APP.appName,
   authEngineHost: config.NGES_SERVICE_HOSTS.AUTH_SERVICE_HOST,
 
+
   setAuthorizedUserToken(userTokenInfo) {
     localStorage.setItem(appUserToken, JSON.stringify(userTokenInfo));
   },
@@ -88,12 +89,13 @@ export default Service.extend(Authorization, {
     setInterval(function () {
       let dif = context.getExpectedTokenExpireTime() - context.getCurrentTime();
       console.log('message-timeDifference', dif);
-      if (dif < 300) {
+      if (dif < 970000) {
         context.generateTokenUsingRefreshToken().then(function (msg) {
           localStorage.setItem(appUserToken, JSON.stringify(msg));
           let newExpireTime = context.getCurrentTime() + context.getAccessExpireIn() * 1000;
           localStorage.setItem(appExpectedExpireTime, newExpireTime);
         }).catch(function (res) {
+          context.get('notifier').warning('Failed to fetch token! Try to Sign In again.');
           context.logoutUser();
           context.clearAuthorization();
         })
