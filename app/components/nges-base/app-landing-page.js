@@ -18,34 +18,33 @@ export default Component.extend({
   init() {
     this._super(...arguments);
     let userId = this.appConfiguration.getUserId();
-    this.set('userId', userId);
+
+
     let context = this;
 
     let accessToken = this.appConfiguration.getAccessToken();
 
 
     let allRolesOfThisUser = this.appAuthEngine.getRoleByUserId(userId, accessToken);
-
     allRolesOfThisUser.then(function (role) {
       context.set('roleList', role.data);
       context.appConfiguration.setUserRoles(role.data);
     });
 
 
-    let entityListByUser = this.appAuthEngine.getEntityByUserId(userId, accessToken);
-
-    entityListByUser.then(function (entity) {
-      console.log('message--entity', entity.data);
-      context.set('orgList', entity.data);
+    let orgListByUser = this.appAuthEngine.getOrganizationByUserId(userId, accessToken);
+    orgListByUser.then(function (org) {
+      console.log('message--entity', org.data);
+      context.set('orgList', org.data);
     });
 
   },
 
-  loadApplication(entityId) {
+  loadApplication(orgId) {
     let context = this;
     let accessToken = this.appConfiguration.getAccessToken();
-    let userId = this.get('userId');
-    let allCreatedUsers = this.appAuthEngine.getApplicationByUserIdAndEntityId(entityId, userId, accessToken);
+    let userId = this.appConfiguration.getUserId();
+    let allCreatedUsers = this.appAuthEngine.getApplicationByUserIdAndEntityId(orgId, userId, accessToken);
 
     allCreatedUsers.then(function (application) {
       console.log('message--application', application.data);
@@ -55,10 +54,8 @@ export default Component.extend({
 
   loadMenu() {
     let app = this.appConfiguration.getApplicationCode();
-    let entity = this.appConfiguration.getOrganizationCode();
+    let org = this.appConfiguration.getOrganizationCode();
 
-
-    let userId = this.get('userId');
 
     let accessToken = this.appConfiguration.getAccessToken();
 
@@ -70,7 +67,7 @@ export default Component.extend({
     console.log('roles', roles);
     let context = this;
     // load menu tree data
-    context.appWelcome.getInitialMenuTreeInformation(roles, app, entity, accessToken).then(function (result) {
+    context.appWelcome.getInitialMenuTreeInformation(roles, app, org, accessToken).then(function (result) {
 
       context.appConfiguration.setMenuTreeInformation(result.data);
       if (result.data === undefined) {
@@ -88,11 +85,11 @@ export default Component.extend({
 
   actions: {
 
-    onChangeOrganization(entityData) {
-      this.appConfiguration.setOrganizationCode(entityData.attributes.code);
-      console.log('entityCode', entityData.attributes.code);
-      this.set('entityId', entityData.id);
-      this.loadApplication(entityData.id);
+    onChangeOrganization(orgData) {
+      this.appConfiguration.setOrganizationCode(orgData.attributes.code);
+      console.log('entityCode', orgData.attributes.code);
+      this.set('entityId', orgData.id);
+      this.loadApplication(orgData.id);
     },
 
     onChangeApplication(appData) {

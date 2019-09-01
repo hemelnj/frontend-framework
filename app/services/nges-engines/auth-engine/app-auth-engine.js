@@ -73,7 +73,7 @@ export default Service.extend({
     );
   },
 
-  getEntityByUserId(userId, accessToken) {
+  getOrganizationByUserId(userId, accessToken) {
     let beforeSend = function (xhr) {
       xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
