@@ -39,25 +39,24 @@ export default Service.extend(Authorization, {
   },
 
   getOrganizationCode() {
-    let orgCode = localStorage.getItem(orgCode);
-    if(orgCode == null){
+    let code = localStorage.getItem(orgCode);
+    if(code == null){
       console.error('orgCode: ', 'orgCode Not Found');
     }
-    return orgCode;
+    return code;
   },
 
-  setApplicationCode(organizationCode) {
-    localStorage.setItem(appCode, organizationCode);
+  setApplicationCode(applicationCode) {
+    localStorage.setItem(appCode, applicationCode);
   },
 
   getApplicationCode() {
 
-    let appCode = localStorage.getItem(appCode);
-    if(appCode == null){
+    let code = localStorage.getItem(appCode);
+    if(code == null){
       console.error('appCode: ', 'appCode Not Found');
     }
-    return appCode;
-    return appCode;
+    return code;
   },
 
   setAuthorizedUserToken(userTokenInfo) {

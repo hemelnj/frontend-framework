@@ -49,26 +49,33 @@ export default Component.extend(Authorization, {
     let authorizationStatus = false;
     let roles = this.appConfiguration.getUserRoleIdList();
     let userEmail = this.appConfiguration.getAuthorizedUserInformation().email;
+
+    let app = this.appConfiguration.getApplicationCode();
+    let entity = this.appConfiguration.getOrganizationCode();
+
     let accessToken = this.appConfiguration.getAccessToken();
 
     context.set('userEmail', userEmail);
-    context.appWelcome.getInitialMenuTreeInformation(roles, accessToken).then(function (results) {
-      let menuTreeData = results.data.children;
+    context.appWelcome.getInitialMenuTreeInformation(roles, app, entity, accessToken).then(function (results) {
+
+      let menuTreeData = results.data.children; // children of root
+      let orgMenuTreeData = menuTreeData[0].children;
+      let appMenuTreeData = orgMenuTreeData[0].children;
 
 
       // store menuTree
-      context.appConfiguration.setMenuTreeInformation(menuTreeData);
+      context.appConfiguration.setMenuTreeInformation(appMenuTreeData);
 
 
       authorizationStatus = true;
 
-      context.set('serviceList', duplicateRemoveFun(context.appWelcome.getAllApplicationPanelList()));
-      //context.set('serviceList', context.appWelcome.getAllApplicationPanelList());
+      //context.set('serviceList', duplicateRemoveFun(context.appWelcome.getAllApplicationPanelList()));
+      context.set('serviceList', context.appWelcome.getAllApplicationPanelList());
 
     }).then(function (data) {
 
-      //context.set('serviceList', context.appWelcome.getAllApplicationPanelList());
-      context.set('serviceList', duplicateRemoveFun(context.appWelcome.getAllApplicationPanelList()));
+      context.set('serviceList', context.appWelcome.getAllApplicationPanelList());
+      //context.set('serviceList', duplicateRemoveFun(context.appWelcome.getAllApplicationPanelList()));
     });
 
     if (authorizationStatus) {

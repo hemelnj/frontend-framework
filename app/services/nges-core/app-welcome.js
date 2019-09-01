@@ -59,6 +59,7 @@ export default Service.extend({
   getAllApplicationPanelList() {
     let serviceData = this.appConfiguration.getMenuTreeInformation();
 
+
     let serviceList = [];
     for (let serviceIndex = 0; serviceIndex < serviceData.length; serviceIndex++) {
 
@@ -75,6 +76,9 @@ export default Service.extend({
       }
 
     }
+
+
+    console.log('message---serviceList', serviceList);
 
     if (serviceList === []) {
       console.error('GetAllApplicationPanelList: ', 'User Service List Empty');

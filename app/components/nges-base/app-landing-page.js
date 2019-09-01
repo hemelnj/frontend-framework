@@ -54,11 +54,9 @@ export default Component.extend({
   },
 
   loadMenu() {
-    let appCode = this.get('appCode');
-    let entityCode = this.get('entityCode');
+    let app = this.appConfiguration.getApplicationCode();
+    let entity = this.appConfiguration.getOrganizationCode();
 
-    this.appConfiguration.setOrganizationCode(entityCode);
-    this.appConfiguration.setApplicationCode(appCode);
 
     let userId = this.get('userId');
 
@@ -72,7 +70,7 @@ export default Component.extend({
     console.log('roles', roles);
     let context = this;
     // load menu tree data
-    context.appWelcome.getInitialMenuTreeInformation(roles, appCode, entityCode, accessToken).then(function (result) {
+    context.appWelcome.getInitialMenuTreeInformation(roles, app, entity, accessToken).then(function (result) {
 
       context.appConfiguration.setMenuTreeInformation(result.data);
       if (result.data === undefined) {
@@ -84,7 +82,7 @@ export default Component.extend({
 
     }).catch(function (msg) {
       context.get('notifier').danger('Failed! Fetch Menus Information');
-      context.get("router").transitionTo("welcome");
+      //context.get("router").transitionTo("welcome");
       //window.location.replace(context.frontendEngineUIHost + "/welcome");
     });
   },
@@ -92,15 +90,15 @@ export default Component.extend({
   actions: {
 
     onChangeOrganization(entityData) {
-
-      this.set('entityCode',entityData.attributes.code);
+      this.appConfiguration.setOrganizationCode(entityData.attributes.code);
+      console.log('entityCode', entityData.attributes.code);
       this.set('entityId', entityData.id);
       this.loadApplication(entityData.id);
     },
 
     onChangeApplication(appData) {
-
-      this.set('appCode',appData.attributes.code);
+      console.log('appCode', appData.attributes.code);
+      this.appConfiguration.setApplicationCode(appData.attributes.code);
       this.set('applicationId', appData.id);
       this.loadMenu();
     },
