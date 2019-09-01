@@ -17,13 +17,12 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    let userId = this.appConfiguration.getUserId();
 
+    let userId = this.appConfiguration.getUserId();
 
     let context = this;
 
     let accessToken = this.appConfiguration.getAccessToken();
-
 
     let allRolesOfThisUser = this.appAuthEngine.getRoleByUserId(userId, accessToken);
     allRolesOfThisUser.then(function (role) {
@@ -34,7 +33,6 @@ export default Component.extend({
 
     let orgListByUser = this.appAuthEngine.getOrganizationByUserId(userId, accessToken);
     orgListByUser.then(function (org) {
-      console.log('message--entity', org.data);
       context.set('orgList', org.data);
     });
 
@@ -44,29 +42,28 @@ export default Component.extend({
     let context = this;
     let accessToken = this.appConfiguration.getAccessToken();
     let userId = this.appConfiguration.getUserId();
-    let allCreatedUsers = this.appAuthEngine.getApplicationByUserIdAndEntityId(orgId, userId, accessToken);
+    let allCreatedUsers = this.appAuthEngine.getApplicationByUserIdAndOrgId(orgId, userId, accessToken);
 
     allCreatedUsers.then(function (application) {
-      console.log('message--application', application.data);
       context.set('appList', application.data);
     });
   },
 
   loadMenu() {
-    let app = this.appConfiguration.getApplicationCode();
     let org = this.appConfiguration.getOrganizationCode();
-
+    let app = this.appConfiguration.getApplicationCode();
 
     let accessToken = this.appConfiguration.getAccessToken();
 
-    let roleList = this.get('roleList');
+    let roleList = this.appConfiguration.getUserRoles();
+
     let roles = [];
     roleList.forEach(function (v, k) {
       roles.push(v.id);
     });
-    console.log('roles', roles);
+
     let context = this;
-    // load menu tree data
+
     context.appWelcome.getInitialMenuTreeInformation(roles, app, org, accessToken).then(function (result) {
 
       context.appConfiguration.setMenuTreeInformation(result.data);
@@ -99,6 +96,5 @@ export default Component.extend({
       this.loadMenu();
     },
   }
-
 
 });

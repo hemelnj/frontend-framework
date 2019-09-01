@@ -50,7 +50,7 @@ export default Service.extend({
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
-    let url = this.treeEngineHost + "/menuTrees/findMenuTreeByRoleList/org/"+orgCode+"/app/"+appCode;
+    let url = this.treeEngineHost + "/menuTrees/findMenuTreeByRoleList/org/" + orgCode + "/app/" + appCode;
     return this.appRestTemplate.httpRestClient(url, "POST",
       roles, null, beforeSend
     );
@@ -76,9 +76,6 @@ export default Service.extend({
       }
 
     }
-
-
-    console.log('message---serviceList', serviceList);
 
     if (serviceList === []) {
       console.error('GetAllApplicationPanelList: ', 'User Service List Empty');
