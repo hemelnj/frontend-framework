@@ -136,7 +136,10 @@ export default Component.extend({
 
     let cl = [];
     let accessToken = this.appConfiguration.getAccessToken();
-    let allCreatedClassTypes = this.olmSetupService.getAllClassType(accessToken);
+    let appCode = this.appConfiguration.getApplicationCode();
+    let orgCode = this.appConfiguration.getOrganizationCode();
+    let engineCode = "olm";
+    let allCreatedClassTypes = this.olmSetupService.getAllClassType(orgCode,appCode,engineCode,accessToken);
     allCreatedClassTypes.then(function (msg) {
 
       for (let i = 0; i < msg.data.length; i++) {

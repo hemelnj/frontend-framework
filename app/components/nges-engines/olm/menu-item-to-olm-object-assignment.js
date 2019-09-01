@@ -10,6 +10,7 @@ export default Component.extend({
   olcmHost: config.NGES_SERVICE_HOSTS.OLM_SERVICE_HOST,
   rmsHost: config.NGES_SERVICE_HOSTS.APP_OLM_SERVICE_HOST,
   rmsOLMHost: config.NGES_SERVICE_HOSTS.APP_OLM_SERVICE_HOST,
+  olmSetupService: service('nges-engines/olm/olm-setup'),
   tree_engine_object_assignment: service('nges-engines/tree-engine/tree-engine-object-assignment'),
   appTreeEngine: service('nges-engines/tree-engine/app-tree-engine'),
   appConfiguration: service('app-configuration'),
@@ -48,16 +49,17 @@ export default Component.extend({
     });
 
 
+    let appCode = this.appConfiguration.getApplicationCode();
+    let orgCode = this.appConfiguration.getOrganizationCode();
+    let engineCode = "olm";
+    let allCreatedClassTypes = this.olmSetupService.getAllClassType(orgCode,appCode,engineCode,accessToken);
 
-    //let olmObjectsUrl = context.olcmHost + '/classtypes';
-
-    let olmObjectsUrl = context.rmsOLMHost + '/classtypes';
-
-    let olmObjects = context.appTreeEngine.getOLMObjects(accessToken,olmObjectsUrl).then(function (result) {
-      context.set('olmObjects', result.data);
+    allCreatedClassTypes.then(function (msg) {
+      context.set('olmObjects', msg.data);
     }).catch(function (errorMsg) {
-      context.get('notifier').danger('Failed Load OLM Objects');
+      context.get('notifier').danger('Failed to Load OLM Objects');
     });
+
 
   },
 
