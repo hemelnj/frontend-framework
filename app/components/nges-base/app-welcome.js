@@ -51,17 +51,19 @@ export default Component.extend(Authorization, {
     let userEmail = this.appConfiguration.getAuthorizedUserInformation().email;
 
     let app = this.appConfiguration.getApplicationCode();
-    let entity = this.appConfiguration.getOrganizationCode();
+    let org = this.appConfiguration.getOrganizationCode();
 
     let accessToken = this.appConfiguration.getAccessToken();
 
     context.set('userEmail', userEmail);
-    context.appWelcome.getInitialMenuTreeInformation(roles, app, entity, accessToken).then(function (results) {
+    context.appWelcome.getInitialMenuTreeInformation(roles, app, org, accessToken).then(function (results) {
 
       let menuTreeData = results.data.children; // children of root
       let orgMenuTreeData = menuTreeData[0].children;
       let appMenuTreeData = orgMenuTreeData[0].children;
 
+      let entityCode = menuTreeData[0].code;
+      context.appConfiguration.setEntityCode(entityCode);
 
       // store menuTree
       context.appConfiguration.setMenuTreeInformation(appMenuTreeData);

@@ -35,8 +35,8 @@ export default Service.extend(Authorization, {
     return appRoles;
   },
 
-  setEntityCode(entityCode) {
-    localStorage.setItem(appCode, entityCode);
+  setEntityCode(code) {
+    localStorage.setItem(entityCode, code);
   },
 
   getEntityCode() {
