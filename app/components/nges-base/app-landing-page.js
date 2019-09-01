@@ -76,7 +76,6 @@ export default Component.extend({
       if (result.data === undefined) {
         context.get('warning').success('Menu Tree Should not be empty!');
       }
-      //context.get('notifier').success('Login Successful!');
       context.get("router").transitionTo("welcome");
 
 

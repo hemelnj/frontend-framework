@@ -10,6 +10,7 @@ let appRouteKey = 'appRoute';
 let menuTree = 'menuTree';
 let orgCode = 'orgCode';
 let appCode = 'appCode';
+let entityCode = 'entityCode';
 
 let appExpectedExpireTime = 'appExpectedExpireTime';
 
@@ -34,13 +35,26 @@ export default Service.extend(Authorization, {
     return appRoles;
   },
 
+  setEntityCode(entityCode) {
+    localStorage.setItem(appCode, entityCode);
+  },
+
+  getEntityCode() {
+
+    let code = localStorage.getItem(entityCode);
+    if (code == null) {
+      console.error('entityCode: ', 'entityCode Not Found');
+    }
+    return code;
+  },
+
   setOrganizationCode(organizationCode) {
     localStorage.setItem(orgCode, organizationCode);
   },
 
   getOrganizationCode() {
     let code = localStorage.getItem(orgCode);
-    if(code == null){
+    if (code == null) {
       console.error('orgCode: ', 'orgCode Not Found');
     }
     return code;
@@ -53,7 +67,7 @@ export default Service.extend(Authorization, {
   getApplicationCode() {
 
     let code = localStorage.getItem(appCode);
-    if(code == null){
+    if (code == null) {
       console.error('appCode: ', 'appCode Not Found');
     }
     return code;
@@ -227,7 +241,12 @@ export default Service.extend(Authorization, {
     localStorage[menuTree] = null;
     localStorage[appUserToken] = null;
     localStorage[appExpectedExpireTime] = null;
+    localStorage[appUserRoles] = null;
     localStorage[appRouteKey] = null;
+    localStorage[menuTree] = null;
+    localStorage[orgCode] = null;
+    localStorage[appCode] = null;
+    localStorage[entityCode] = null;
   },
 
   getUserId() {
