@@ -11,6 +11,7 @@ export default Component.extend({
 
 
   appTreeEngine: service('nges-engines/tree-engine/app-tree-engine'),
+  appAuthEngine: service('nges-engines/auth-engine/app-auth-engine'),
   appConfiguration: service('app-configuration'),
   notifier: service(),
   userInfo: {
@@ -23,49 +24,48 @@ export default Component.extend({
 
     this.set('selectedResult', []);
 
-    let context = this;
-    let accessToken = this.appConfiguration.getAccessToken();
+    this.set('dataContextFunctionTree', {});
+    this.set('dataContextLocationTree', {});
 
-    context.set('dataContextFunctionTree', {});
-    let dataContextDataUrl = context.treeEngineHost + '/functionalHierarchies/1';
-    let dataContextTree = context.appTreeEngine.getDataContext(accessToken,dataContextDataUrl);
-    dataContextTree.then(function (result) {
-      result = result.data;
-      console.log('message-inside init', result);
-      context.set('dataContextFunctionTree', result);
-    }).catch(function (errorMsg) {
-      context.get('notifier').danger('Failed To Load Function Tree');
-    });
-
-    context.set('dataContextLocationTree', {});
-    let locationContextDataUrl = context.treeEngineHost + '/locationHierarchies/1';
-    let locationContextTree = context.appTreeEngine.getDataContext(accessToken,locationContextDataUrl);
-    locationContextTree.then(function (result) {
-      result = result.data;
-      context.set('dataContextLocationTree', result);
-    }).catch(function (errorMsg) {
-      context.get('notifier').danger('Failed To Load Location Tree');
-    });
-
-
-    this.set('listUserRoles', {});
-    let roleRequest = context.appTreeEngine.getAllRoles(accessToken).then(function (result) {
-      context.set('listUserRoles', result);
-    }).catch(function (errorMsg) {
-      context.get('notifier').danger('Failed To Load User Roles');
-    });
-
-
-
-    let userData = context.appTreeEngine.getAllUsers(accessToken).then(function (result) {
-      context.set('userList', result.data);
-    }).catch(function (errorMsg) {
-      context.get('notifier').danger('Failed To Load Users');
-    });
+    this.loadEntity();
 
   },
 
 
+
+  loadEntity() {
+
+    let context = this;
+    let root = 1;
+    let accessToken = this.appConfiguration.getAccessToken();
+    let allCreatedUsers = this.appAuthEngine.getAllEntity(root, accessToken);
+
+    allCreatedUsers.then(function (entity) {
+      context.set('entityList', entity.data.attributes.children);
+    });
+
+  },
+
+  loadAllUser(entityId) {
+    let context = this;
+    let accessToken = this.appConfiguration.getAccessToken();
+    let allCreatedUsers = this.appAuthEngine.getAllUserEntityWise(entityId, accessToken);
+
+    allCreatedUsers.then(function (entity) {
+      context.set('userList', entity.data);
+    });
+  },
+
+
+  loadRoleByUser(userId) {
+    let context = this;
+    let accessToken = this.appConfiguration.getAccessToken();
+    let allCreatedUsers = this.appAuthEngine.getRoleByUserId(userId, accessToken);
+
+    allCreatedUsers.then(function (role) {
+      context.set('roleList', role.data);
+    });
+  },
 
 
   treeTraverseToGetOnlySelectedItem(contextTree, selectedClassTypeId) {
@@ -105,49 +105,38 @@ export default Component.extend({
 
   actions: {
 
+    onChangeEntity(entityId){
+      this.set('entityId', entityId);
+      this.loadAllUser(entityId);
+    },
+
     autocompleteOnSelectAction(selectedValue){
-      console.log('message', selectedValue);
+      let userData = selectedValue;
+      let userId = userData.id;
+      let userName = userData.attributes.name;
+      let entityId = this.get('entityId');
+      console.log('userName', userName);
+      this.set('userName', userName);
+      this.set('userId', userId);
+      this.loadRoleByUser(userId);
 
-      let flag=true;
-      let userRole = selectedValue.attributes.roles;
-
-
-      let accessToken = this.appConfiguration.getAccessToken();
       let context = this;
+      let accessToken = this.appConfiguration.getAccessToken();
+      //this.set('userId', selectedValue.id);
 
-
-      let defaultRole={
-        id:1,
-        name:"role_user"
-      };
-
-      for (let i = 0; i < userRole.length; i++) {
-        if(userRole[i].id===1){
-          flag=false;
-        }
-      }
-
-      if(flag){
-        userRole = userRole.push(defaultRole);
-      }
-
-      this.set('userId',selectedValue.id);
-      this.set('userRole',userRole);
-
-
-      let locationalHieararchyData = this.appTreeEngine.getLocationalHierarchyById(selectedValue.id,accessToken).then(function (result) {
+      let locationalHieararchyData = this.appTreeEngine.getLocationalHierarchyById(userId, entityId, accessToken).then(function (result) {
+        console.log('locationalHieararchyData', result.data.attributes);
         context.set('dataContextLocationTree', result.data.attributes);
       }).catch(function (errorMsg) {
         context.get('notifier').danger('Failed To Load Locational Hierarchy by User Id');
       });
 
-      let functionalHieararchyData = this.appTreeEngine.getFunctionalHierarchyById(selectedValue.id,accessToken).then(function (result) {
+      let functionalHieararchyData = this.appTreeEngine.getFunctionalHierarchyById(userId, entityId, accessToken).then(function (result) {
+        console.log('functionalHieararchyData', result.data.attributes);
         context.set('dataContextFunctionTree', result.data.attributes);
       }).catch(function (errorMsg) {
-        context.get('notifier').danger('Failed To Load Functional Hierarchy By User Id');
+        context.get('notifier').danger('Failed To Load Functional Hierarchy by User Id');
       });
-
-      //this.dataInit(classType.id);
     },
 
     treeDataFunctionModifiedAction(treeSelectedData, isActive) {
@@ -161,7 +150,6 @@ export default Component.extend({
     },
 
     savedUserInfo() {
-      let userInfo = this.get('userInfo');
       let roleList = this.get('userRole');
 
       let treeDataFunctionModified = this.get('treeDataFunctionModified');
@@ -194,14 +182,19 @@ export default Component.extend({
             "id": treeDataLocationModified.id
           },
 
-          "name": userInfo.name,
+          "name": this.get('userName'),
           "roleList": roleList
         };
 
         console.log('message-submitData', JSON.stringify(submitData));
 
         let locationContextTree = context.appTreeEngine.postDataContext(accessToken,submitData).then(function (result) {
-          context.get('notifier').success('User Successfully Assigned with Default Function and Location');
+          if(result.data == false){
+            context.get('notifier').danger('Failed to Assign User with Default Function and Location');
+          }else{
+            context.get('notifier').success('User Successfully Assigned with Default Function and Location');
+          }
+
         }).catch(function (errorMsg) {
           context.get('notifier').danger('Failed to Assign User with Default Function and Location');
         });

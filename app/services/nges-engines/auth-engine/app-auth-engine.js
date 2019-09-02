@@ -60,7 +60,7 @@ export default Service.extend({
     );
   },
 
-  //////
+
   getAllEntity(nodeId, accessToken) {
     let beforeSend = function (xhr) {
       xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
@@ -68,6 +68,19 @@ export default Service.extend({
     };
 
     let url = this.authEngineHost + "/entities/" + nodeId;
+    return this.appRestTemplate.httpRestClient(url, "GET",
+      null, {}, beforeSend
+    );
+  },
+
+
+  getAllUserEntityWise(id,accessToken) {
+    let beforeSend = function (xhr) {
+      xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+      xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
+    };
+
+    let url = this.authEngineHost + "/entities/"+id+"/users";
     return this.appRestTemplate.httpRestClient(url, "GET",
       null, {}, beforeSend
     );
