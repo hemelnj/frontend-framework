@@ -7,7 +7,6 @@ export default Component.extend({
 
   authEngineHost: config.NGES_SERVICE_HOSTS.AUTH_SERVICE_HOST,
   frontendEngineUIHost: config.NGES_UI_HOSTS.FRONTEND_ENGINE_UI_HOST,
-  authEngineUIHost: config.NGES_UI_HOSTS.AUTH_ENGINE_UI_HOST,
 
   appAuthEngine: service('nges-engines/auth-engine/app-auth-engine'),
   appConfiguration: service('app-configuration'),
@@ -72,17 +71,17 @@ export default Component.extend({
     });
   },
 
-  loadRoleList() {
+
+
+  loadRoleList(applicationId) {
     let context = this;
 
     let accessToken = this.appConfiguration.getAccessToken();
 
-    let allCreatedRoles = this.appAuthEngine.getAllCreatedRoles(accessToken);
+    let allCreatedRoles = this.appAuthEngine.getAllCreatedRoles(applicationId, accessToken);
 
     allCreatedRoles.then(function (role) {
       context.set('roleList', role.data);
-    }).catch(function (errorMsg) {
-      context.get('notifier').danger('Failed To Load Roles');
     });
   },
 
@@ -175,39 +174,6 @@ export default Component.extend({
       let accExpired = document.getElementById("accExpired").checked;
       let credentialExpired = document.getElementById("credentialExpired").checked;
 
-
-      let text = $('#userRole option:selected').toArray().map(item => item.value + ':' + item.text).join();
-      let roleData = [];
-
-      let tmp = text.split(',');
-
-      for (let i = 0; i < tmp.length; i++) {
-        let r_data = tmp[i].split(':');
-        let p = {
-          id: r_data[0],
-          name: r_data[1],
-        };
-        roleData.push(p);
-      }
-
-      let flag = true;
-
-      for (let i = 0; i < roleData.length; i++) {
-        console.log('roleData[i].attributes', roleData[i].id);
-        if (roleData[i].id === "1") {
-          flag = false;
-          break;
-        }
-      }
-
-      if (flag) {
-        let p = {
-          id: 1,
-          name: "role_user",
-        };
-        roleData.push(p);
-      }
-
       let timestamp = Math.floor(Date.now() / 1000);
 
       let userData = {
@@ -222,7 +188,6 @@ export default Component.extend({
             accountNonLocked: accLocked,
             accountNonExpired: accExpired,
             credentialsNonExpired: credentialExpired,
-            roles: roleData,
             userApplications: this.get('userApplicationsList'),
           }
         }

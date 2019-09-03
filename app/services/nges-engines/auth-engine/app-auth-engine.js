@@ -20,13 +20,13 @@ export default Service.extend({
     );
   },
 
-  getAllCreatedRoles(accessToken) {
+  getAllCreatedRoles(applicationId, accessToken) {
     let beforeSend = function (xhr) {
       xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
-    let url = this.authEngineHost + "/roles";
+    let url = this.authEngineHost + "/applications/" + applicationId + "/roles";
     return this.appRestTemplate.httpRestClient(url, "GET",
       null, {}, beforeSend
     );

@@ -114,10 +114,14 @@ export default Component.extend({
           id: timestamp,
           type: 'roles',
           attributes: {
-            name: name
+            name: name,
+            application: {
+              id: this.get('applicationId'),
+            }
           }
         }
       };
+
       let context = this;
 
       let accessToken = this.appConfiguration.getAccessToken();
@@ -126,7 +130,7 @@ export default Component.extend({
       }).then(function (response) {
         console.log('message-role-response', response.status);
         context.get('notifier').success('Role Created Successfully');
-      })
+      });
     },
 
     editActionEvent() {

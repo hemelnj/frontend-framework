@@ -30,7 +30,6 @@
 </style>
 
 
-
 <div class="card">
   <div class="card-body">
     <div class="col-md-12">
@@ -40,61 +39,65 @@
         <div class="col-md-6">
 
           <div class="col">
-            <div class="table-container"
-                 style="overflow-y: auto; max-height: 350px; overflow-x: auto; padding:1rem; margin-top:15px;">
-              <table class="table-all">
-                <thead>
-                <tr class="line-height-reset">
-                  <th class="table-data table-bordered">
-                    <div>
-                      Entity
-                    </div>
-                  </th>
-                  <th class="table-data table-bordered">
-                    <div>
-                      Application
-                    </div>
-                  </th>
-                  <th class="table-data table-bordered">
-                    <div>
-                      Role
-                    </div>
-                  </th>
-                </tr>
-                </thead>
-                <tbody>
-                {{#each userApplicationsList as |item index|}}
-                  <tr>
-                    <td class="table-data table-bordered">
+            {{#if userApplicationsList}}
+              <div class="table-container"
+                   style="overflow-y: auto; max-height: 350px; overflow-x: auto; padding:1rem; margin-top:15px;">
+                <table class="table-all">
+                  <thead>
+                  <tr class="line-height-reset">
+                    <th class="table-data table-bordered">
                       <div>
-                        {{item.entityHierarchy.id}}
+                        Entity
                       </div>
-                    </td>
-                    <td class="table-data table-bordered">
+                    </th>
+                    <th class="table-data table-bordered">
                       <div>
-                        {{item.application.id}}
+                        Application
                       </div>
-                    </td>
-
-                    <td class="table-data table-bordered">
+                    </th>
+                    <th class="table-data table-bordered">
                       <div>
+                        Role
+                      </div>
+                    </th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {{#each userApplicationsList as |item index|}}
+                    <tr>
+                      <td class="table-data table-bordered">
+                        <div>
+                          {{item.entityHierarchy.id}}
+                        </div>
+                      </td>
+                      <td class="table-data table-bordered">
+                        <div>
+                          {{item.application.id}}
+                        </div>
+                      </td>
 
-                        {{#each item.roles as |value|}}
-                          <span>{{value.name}},</span><br>
-                        {{/each}}
-                        <!--<button data-toggle="modal" data-target="#actionEventModal" {{action 'editActionEvent' item }}
+                      <td class="table-data table-bordered">
+                        <div>
+
+                          {{#each item.roles as |value|}}
+                            <span>{{value.name}},</span><br>
+                          {{/each}}
+                          <!--<button data-toggle="modal" data-target="#actionEventModal" {{action 'editActionEvent'
+                                                                                                   item }}
                                 style="width: 100px; margin-bottom: 5px" class="button-all button-edit">Edit
                         </button>-->
-                        <!--<button {{action 'deleteActionEvent'
-                                             item }} style="width: 100px; margin-bottom: 5px" class="button-all button-danger">Delete</button>-->
-                      </div>
-                    </td>
-                  </tr>
-                {{/each}}
+                          <!--<button {{action 'deleteActionEvent'
+                                               item }} style="width: 100px; margin-bottom: 5px" class="button-all button-danger">Delete</button>-->
+                        </div>
+                      </td>
+                    </tr>
+                  {{/each}}
 
-                </tbody>
-              </table>
-            </div>
+                  </tbody>
+                </table>
+              </div>
+            {{/if}}
+
             <div class="form-group has-search">
               <span class="fa fa-search form-control-feedback"></span>
               <input type="text" class="input-field" onkeyup={{action 'getFilterKey' value='target.value'}}
@@ -162,7 +165,8 @@
                         {{#each item.attributes.roles as |value|}}
                           <span>{{nges-core/capitalize-first-letter value.name}},</span><br>
                         {{/each}}
-                        <!--<button data-toggle="modal" data-target="#actionEventModal" {{action 'editActionEvent' item }}
+                        <!--<button data-toggle="modal" data-target="#actionEventModal" {{action 'editActionEvent'
+                                                                                                 item }}
                                 style="width: 100px; margin-bottom: 5px" class="button-all button-edit">Edit
                         </button>-->
                         <!--<button {{action 'deleteActionEvent'
@@ -257,13 +261,14 @@
               <select class="custom-select" id="userRole" multiple>
                 {{#each roleList as |item index|}}
                   <option class="muliti-select-item" value={{item.attributes.id}}
-                          name={{item.attributes.name}}>{{nges-core/capitalize-first-letter item.attributes.name}}</option>
+                          name={{item.attributes.name}}>{{nges-core/capitalize-first-letter
+                    item.attributes.name}}</option>
                 {{/each}}
               </select>
             </div>
 
             <div class="row" style="margin-left:2px; margin-top: 9px;">
-              <div class="form-check" >
+              <div class="form-check">
                 <label class="form-check-label input-field-label">
                   {{input type="checkbox" class="form-check-input" id="isEnabled"  name="option1" checked=true}}
                   Account Enabled
