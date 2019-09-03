@@ -7,7 +7,6 @@ export default Component.extend({
 
   authEngineHost: config.NGES_SERVICE_HOSTS.AUTH_SERVICE_HOST,
   frontendEngineUIHost: config.NGES_UI_HOSTS.FRONTEND_ENGINE_UI_HOST,
-  authEngineUIHost: config.NGES_UI_HOSTS.AUTH_ENGINE_UI_HOST,
 
   appAuthEngine: service('nges-engines/auth-engine/app-auth-engine'),
   appConfiguration: service('app-configuration'),
@@ -64,7 +63,7 @@ export default Component.extend({
 
     let accessToken = this.appConfiguration.getAccessToken();
 
-    let allCreatedRoles = this.appAuthEngine.getAllCreatedRoles(accessToken);
+    let allCreatedRoles = this.appAuthEngine.getAllRoles(accessToken);
 
     allCreatedRoles.then(function (role) {
       context.set('roleList', role.data);

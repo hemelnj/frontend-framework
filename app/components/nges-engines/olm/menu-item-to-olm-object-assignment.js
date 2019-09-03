@@ -250,9 +250,7 @@ export default Component.extend({
                     dualBoxStates.splice(i, 1);
                   }
                 }
-
               }
-
             }
           }
 
