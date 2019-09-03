@@ -20,12 +20,12 @@ export default Component.extend({
   roles: '',
   email: '',
 
+  userApplicationsList: [],
+
   init() {
     this._super(...arguments);
-
-
     this.loadUserData();
-    this.loadRoleList();
+    this.loadEntity();
   },
 
   didReceiveAttrs() {
@@ -33,6 +33,31 @@ export default Component.extend({
     this.set('tmpUserList', this.get('userList'));
   },
 
+
+  loadEntity() {
+
+    let context = this;
+    let root = 2;
+    let accessToken = this.appConfiguration.getAccessToken();
+    let allCreatedUsers = this.appAuthEngine.getAllEntity(root, accessToken);
+
+    allCreatedUsers.then(function (entity) {
+      console.log('message--entity', entity.data.attributes.children);
+      context.set('entityList', entity.data.attributes.children);
+    });
+
+  },
+
+  loadApplication(orgId) {
+    let context = this;
+    let accessToken = this.appConfiguration.getAccessToken();
+    let allCreatedUsers = this.appAuthEngine.getAllApplication(orgId, accessToken);
+
+    allCreatedUsers.then(function (application) {
+      console.log('message--application', application.data);
+      context.set('appList', application.data);
+    });
+  },
 
   loadUserData() {
     let context = this;
@@ -75,6 +100,68 @@ export default Component.extend({
       } else {
         this.set('userList', userListRes);
       }
+    },
+
+    onChangeEntity(entity) {
+      let entityData = JSON.parse(entity);
+      console.log('message--entity', entityData.name);
+      this.set('entityId', entityData.id);
+      this.loadApplication(entityData.id);
+    },
+
+    onChangeApplication(application) {
+      let appData = JSON.parse(application);
+      console.log('message--application', appData.name);
+      this.set('applicationId', appData.id);
+      this.loadRoleList(appData.id);
+    },
+
+    add() {
+      let text = $('#userRole option:selected').toArray().map(item => item.value + ':' + item.text).join();
+      let roleData = [];
+
+      let tmp = text.split(',');
+
+      for (let i = 0; i < tmp.length; i++) {
+        let r_data = tmp[i].split(':');
+        let p = {
+          id: r_data[0],
+          name: r_data[1],
+        };
+        roleData.push(p);
+      }
+
+      let flag = true;
+
+      for (let i = 0; i < roleData.length; i++) {
+        console.log('roleData[i].attributes', roleData[i].name);
+        if (roleData[i].name === "role_user") {
+          flag = false;
+          break;
+        }
+      }
+
+      if (flag) {
+        let p = {
+          id: '',
+          name: "role_user",
+        };
+        roleData.push(p);
+      }
+
+      let userApplicationData = {
+        application:{
+          id:this.get('applicationId')
+        },
+        entityHierarchy:{
+          id:this.get('entityId')
+        },
+        roles:roleData,
+      };
+
+      this.get('userApplicationsList').pushObject(userApplicationData);
+      roleData = [];
+
     },
 
     save() {
@@ -135,7 +222,8 @@ export default Component.extend({
             accountNonLocked: accLocked,
             accountNonExpired: accExpired,
             credentialsNonExpired: credentialExpired,
-            roles: roleData
+            roles: roleData,
+            userApplications: this.get('userApplicationsList'),
           }
         }
       };
@@ -150,6 +238,8 @@ export default Component.extend({
       }).catch(function (msg) {
         context.get('notifier').danger('Failed! To Create New User');
       });
+
+      this.set('userApplicationsList',[]);
     }
   }
 });
