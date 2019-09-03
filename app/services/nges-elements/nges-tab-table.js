@@ -9,6 +9,9 @@ export default Service.extend({
   store: service(),
   appConfiguration: service('app-configuration'),
   serviceInitializer: service('nges-services/service-initializer'),
+
+
+
   getProcessedTabMeta(defaultActiveTab, tabMetaInfo) {
 
     let tabsDataAfterProcess = [];
@@ -54,6 +57,9 @@ export default Service.extend({
       context.serviceInitializer.getClassType(accessToken).then(function (result) {
         let classTypeId = result.data;
 
+        let orgCode = context.appConfiguration.getOrganizationCode();
+        let appCode = context.appConfiguration.getApplicationCode();
+
         let payload = {
           roleList: roleList,
           defaultFunction: defaultFunction,
@@ -62,7 +68,7 @@ export default Service.extend({
           stateList: stateList
         };
 
-        context.serviceInitializer.getFindAll(accessToken, payload).then(function (result) {
+        context.serviceInitializer.getFindAll(orgCode,appCode, accessToken, payload).then(function (result) {
           if (result) {
             resolve(result);
           } else {

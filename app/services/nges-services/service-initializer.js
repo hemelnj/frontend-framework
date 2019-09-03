@@ -10,6 +10,7 @@ export default Service.extend({
   rmsOLMServiceHost: config.NGES_SERVICE_HOSTS.APP_OLM_SERVICE_HOST,
   appWelcome: service('nges-core/app-welcome'),
 
+  apiGatewayHost: config.NGES_SERVICE_HOSTS.GATEWAY_SERVICE_HOST,
   init() {
     this._super(...arguments);
 
@@ -31,7 +32,7 @@ export default Service.extend({
   //------------------------
 
 
-  getFindAll(accessToken, data) {
+  getFindAll(orgCode, appCode, accessToken, data) {
     let serviceCode = this.appWelcome.getServiceOrMenuInformation().serviceCode;
     data = JSON.stringify(data);
 
@@ -42,7 +43,8 @@ export default Service.extend({
 
     let baseUrl = this.getServiceBaseHostURL();
 
-    let url = baseUrl + "/" + serviceCode + "/findAll";
+    let url = this.apiGatewayHost + "/" + orgCode + "/" + appCode + "/api/" + serviceCode +"/findAll";
+    //let url = baseUrl + "/" + serviceCode + "/findAll";
     return this.appRestTemplate.httpRestClient(url, "POST",
       data, {}, beforeSend
     );
