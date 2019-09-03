@@ -3,18 +3,19 @@ import Service, {inject as service} from '@ember/service';
 import config from 'frontend-engine/config/environment';
 
 
-
 export default Component.extend({
 
   treeEngineHost: config.NGES_SERVICE_HOSTS.TREE_SERVICE_HOST,
   olcmHost: config.NGES_SERVICE_HOSTS.OLM_SERVICE_HOST,
   rmsHost: config.NGES_SERVICE_HOSTS.APP_OLM_SERVICE_HOST,
   rmsOLMHost: config.NGES_SERVICE_HOSTS.APP_OLM_SERVICE_HOST,
+
   olmSetupService: service('nges-engines/olm/olm-setup'),
   tree_engine_object_assignment: service('nges-engines/tree-engine/tree-engine-object-assignment'),
   appTreeEngine: service('nges-engines/tree-engine/app-tree-engine'),
   appAuthEngine: service('nges-engines/auth-engine/app-auth-engine'),
   appConfiguration: service('app-configuration'),
+
   notifier:service(),
 
   formData: {
@@ -48,18 +49,6 @@ export default Component.extend({
       context.set('menuItems', result.data);
     }).catch(function (errorMsg) {
       context.get('notifier').danger('Failed Load Menu Items');
-    });
-
-
-    let appCode = this.appConfiguration.getApplicationCode();
-    let orgCode = this.appConfiguration.getOrganizationCode();
-    let engineCode = "olm";
-    let allCreatedClassTypes = this.olmSetupService.getAllClassType(orgCode,appCode,engineCode,accessToken);
-
-    allCreatedClassTypes.then(function (msg) {
-      context.set('olmObjects', msg.data);
-    }).catch(function (errorMsg) {
-      context.get('notifier').danger('Failed to Load OLM Objects');
     });
 
 
@@ -257,7 +246,7 @@ export default Component.extend({
                 if(subMenuStates[k].id || tempDualBoxStates[i].id){
                   console.log('message-subMenuStates[k].id', subMenuStates[k].id);
                   console.log('message-tempDualBoxStates[i].id', tempDualBoxStates[i].id);
-                  if (tempDualBoxStates[i].id === subMenuStates[k].id) {
+                  if (tempDualBoxStates[i].id !== subMenuStates[k].id) {
                     dualBoxStates.splice(i, 1);
                   }
                 }

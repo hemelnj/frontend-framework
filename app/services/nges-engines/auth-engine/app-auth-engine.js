@@ -7,6 +7,7 @@ export default Service.extend({
   appRestTemplate: service('app-rest-template'),
 
   authEngineHost: config.NGES_SERVICE_HOSTS.AUTH_SERVICE_HOST,
+  treeEngineHost: config.NGES_SERVICE_HOSTS.TREE_SERVICE_HOST,
 
   getAllCreatedUsers(accessToken) {
     let beforeSend = function (xhr) {
@@ -135,14 +136,16 @@ export default Service.extend({
     );
   },
 
-  getAllRolesByOrganization(orgId, accessToken) {
+  getAllRolesByOrganization(orgCode, accessToken) {
     let beforeSend = function (xhr) {
       xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
     //let roleDataUrl = this.treeEngineHost + '/roles';
-    let url = this.treeEngineHost + '/organizations/' + orgId + '/roles';
+
+    console.log('this.treeEngineHost', this.treeEngineHost);
+    let url = this.treeEngineHost + '/organizations/' + orgCode + '/roles';
     return this.appRestTemplate.httpRestClient(url, "GET",
       null, {}, beforeSend
     );

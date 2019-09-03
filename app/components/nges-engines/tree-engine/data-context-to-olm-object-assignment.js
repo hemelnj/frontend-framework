@@ -11,6 +11,7 @@ export default Component.extend({
   appAuthEngine: service('nges-engines/auth-engine/app-auth-engine'),
 
   treeEngineHost: config.NGES_SERVICE_HOSTS.TREE_SERVICE_HOST,
+
   notifier: service(),
 
   selectedClassType: '',
@@ -84,7 +85,7 @@ export default Component.extend({
   loadRoles(orgCode) {
     let context = this;
     let accessToken = this.appConfiguration.getAccessToken();
-    let roles = context.appAuthEngine.getAllRolesByOrganization(orgCode, accessToken).then(function (result) {
+    let roles = this.appAuthEngine.getAllRolesByOrganization(orgCode, accessToken).then(function (result) {
       console.log('listUserRoles', result.data);
       context.set('listUserRoles', result.data);
     }).catch(function (errorMsg) {
