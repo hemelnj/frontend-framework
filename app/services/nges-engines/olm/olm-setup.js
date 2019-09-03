@@ -79,7 +79,7 @@ export default Service.extend({
     //let url = this.olmEngineHost + "/classtypes";
     //let url = this.rmsOLMEngineHost + "/classtypes";
 
-    let url = this.apiGatewayHost + "/" + orgCode + "/" + appCode + "/" + engineCode + "/api/classtypes";
+    let url = this.olmEngineHost + "/" + orgCode + "/" + appCode + "/" + engineCode + "/api/classtypes";
 
     return this.appRestTemplate.httpRestClient(url, "GET",
       null, {}, beforeSend
