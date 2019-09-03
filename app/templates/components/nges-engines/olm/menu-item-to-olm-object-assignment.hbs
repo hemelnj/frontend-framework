@@ -109,7 +109,57 @@
         </div>
 
         <div class="form-group">
-          <div class="row" style="margin-top: -4%">
+          <div class="row">
+            <div class="col-md-2">
+              <label class="input-field-label">Entity</label>
+            </div>
+            <div class="col-md-10">
+              <select class="form-control" onchange={{action "onChangeEntity" value="target.value"}} >
+                <option>Select Entity</option>
+
+                {{#each entityList as |entity|}}
+                  <option value={{nges-core/json entity}}>{{entity.name}}</option>
+                {{/each}}
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-2">
+              <label class="input-field-label">Organization</label>
+            </div>
+            <div class="col-md-10">
+              <select class="form-control" onchange={{action "onChangeOrganization" value="target.value"}} >
+                <option>Select Organization</option>
+
+                {{#each orgList as |org|}}
+                  <option value={{nges-core/json org}}>{{org.name}}</option>
+                {{/each}}
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-2">
+              <label class="input-field-label">Application</label>
+            </div>
+            <div class="col-md-10">
+              <select class="form-control" onchange={{action "onChangeApplication" value="target.value"}} >
+                <option>Select Application</option>
+
+                {{#each appList as |app|}}
+                  <option value={{nges-core/json app}}>{{app.attributes.name}}</option>
+                {{/each}}
+              </select>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <div class="row">
             <div class="col-md-2">
               <label for="olmObject" class="input-field-label">OLM Object</label>
             </div>
