@@ -248,9 +248,11 @@ export default Component.extend({
   loadInitialData() {
 
     let context = this;
-
     let accessToken = this.appConfiguration.getAccessToken();
-    let allCreatedClassTypes = this.olmSetupService.getAllClassType(accessToken);
+    let appCode = this.appConfiguration.getApplicationCode();
+    let orgCode = this.appConfiguration.getOrganizationCode();
+    let engineCode = "olm";
+    let allCreatedClassTypes = this.olmSetupService.getAllClassType(orgCode,appCode,engineCode,accessToken);
     allCreatedClassTypes.then(function (msg) {
       context.set('classtypes', msg.data);
     }).catch(function (errorMsg) {

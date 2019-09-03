@@ -15,15 +15,13 @@ export default Controller.extend(Authorization, {
     this._super(...arguments);
 
     this.set('userInformation', {
-      name: 'Mukit03',
+      name: 'SI',
       password: 'password'
     })
   },
   actions: {
     signin(userInformation) {
       this.set('isLoadingIconVisible',true);
-
-
 
       let makeLogin = this.appLogin.makeLogin(userInformation);
       let context = this;
@@ -33,25 +31,11 @@ export default Controller.extend(Authorization, {
           context.set('isLoadingIconVisible',false);
 
           context.appConfiguration.setAuthorizedUserToken(result);
-          let roleList = context.appConfiguration.getUserRoleIdList();
-          let accessToken = result['access_token'];
 
           let accessTokenExpireIn = context.appConfiguration.getAccessExpireIn();
           context.appConfiguration.setExpectedTokenExpireTime(accessTokenExpireIn);
 
-          // load menu tree data
-          context.appWelcome.getInitialMenuTreeInformation(roleList, accessToken).then(function (result) {
-
-            context.appConfiguration.setMenuTreeInformation(result.data);
-            if (result.data === undefined) {
-              context.get('warning').success('Menu Tree Should not be empty!');
-            }
-            //context.get('notifier').success('Login Successful!');
-            context.transitionToRoute("welcome");
-          }).catch(function (msg) {
-            context.get('notifier').danger('Failed! Fetch Menus Information');
-            context.transitionToRoute("welcome");
-          });
+          context.transitionToRoute("landing-page");
 
         } else {
           context.get('notifier').danger('Failed! Menu Tree Should not be Empty');

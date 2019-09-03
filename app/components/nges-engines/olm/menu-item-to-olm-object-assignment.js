@@ -3,16 +3,19 @@ import Service, {inject as service} from '@ember/service';
 import config from 'frontend-engine/config/environment';
 
 
-
 export default Component.extend({
 
   treeEngineHost: config.NGES_SERVICE_HOSTS.TREE_SERVICE_HOST,
   olcmHost: config.NGES_SERVICE_HOSTS.OLM_SERVICE_HOST,
   rmsHost: config.NGES_SERVICE_HOSTS.APP_OLM_SERVICE_HOST,
   rmsOLMHost: config.NGES_SERVICE_HOSTS.APP_OLM_SERVICE_HOST,
+
+  olmSetupService: service('nges-engines/olm/olm-setup'),
   tree_engine_object_assignment: service('nges-engines/tree-engine/tree-engine-object-assignment'),
   appTreeEngine: service('nges-engines/tree-engine/app-tree-engine'),
+  appAuthEngine: service('nges-engines/auth-engine/app-auth-engine'),
   appConfiguration: service('app-configuration'),
+
   notifier:service(),
 
   formData: {
@@ -27,6 +30,7 @@ export default Component.extend({
     this._super(...arguments);
     this.set('subMenuList', []);
 
+    this.loadEntity();
 
     let templateList =  this.appTreeEngine.getResourceTemplates();
 
@@ -48,17 +52,59 @@ export default Component.extend({
     });
 
 
+  },
 
-    //let olmObjectsUrl = context.olcmHost + '/classtypes';
 
-    let olmObjectsUrl = context.rmsOLMHost + '/classtypes';
+  loadEntity() {
 
-    let olmObjects = context.appTreeEngine.getOLMObjects(accessToken,olmObjectsUrl).then(function (result) {
-      context.set('olmObjects', result.data);
-    }).catch(function (errorMsg) {
-      context.get('notifier').danger('Failed Load OLM Objects');
+    let context = this;
+    let root = 1;
+    let accessToken = this.appConfiguration.getAccessToken();
+    let allCreatedEntity = this.appAuthEngine.getAllEntity(root, accessToken);
+
+    allCreatedEntity.then(function (entity) {
+      context.set('entityList', entity.data.attributes.children);
+
     });
 
+  },
+
+  loadOrganization(orgList) {
+    this.set('orgList', orgList);
+  },
+
+  loadApplication(orgId) {
+    let context = this;
+    let accessToken = this.appConfiguration.getAccessToken();
+    let allCreatedUsers = this.appAuthEngine.getAllApplication(orgId, accessToken);
+
+    allCreatedUsers.then(function (application) {
+      context.set('appList', application.data);
+    });
+  },
+
+  loadOlmObject(orgCode, appCode) {
+    let context = this;
+    let engineCode = "olm";
+    let accessToken = this.appConfiguration.getAccessToken();
+    let classtypes = context.olmSetupService.getAllClassType(orgCode, appCode, engineCode, accessToken);
+    classtypes.then(function (result) {
+      console.log('olmObjects', result.data);
+      context.set('olmObjects', result.data);
+    }).catch(function (errorMsg) {
+      console.log('Failed To Load OLM Objects');
+    });
+  },
+
+  loadRoles(orgId) {
+    let context = this;
+    let accessToken = this.appConfiguration.getAccessToken();
+    let roles = context.appAuthEngine.getAllRolesByOrganization(orgId, accessToken).then(function (result) {
+      console.log('listUserRoles', result.data);
+      context.set('listUserRoles', result.data);
+    }).catch(function (errorMsg) {
+      console.log('Failed To Load Roles');
+    });
   },
 
   menuTreeProcessing(url, formData, menuTree, subMenuList) {
@@ -124,6 +170,30 @@ export default Component.extend({
       this.set('formData.menuItem',value);
     },
 
+    onChangeEntity(value) {
+      let entityData = JSON.parse(value);
+      let orgList = entityData.children;
+      this.loadOrganization(orgList);
+    },
+
+    onChangeOrganization(value) {
+      let orgData = JSON.parse(value);
+      let orgCode = orgData.code;
+      this.set('orgCode', orgCode);
+      this.loadApplication(orgData.id);
+      this.loadRoles(orgCode);
+    },
+
+    onChangeApplication(value) {
+      let appData = JSON.parse(value);
+      let appCode = appData.attributes.code;
+      this.set('appCode', appCode);
+      console.log('appCode', appCode);
+      let orgCode = this.get('orgCode');
+      this.loadOlmObject(orgCode, appCode);
+
+    },
+
     selectTemplateList(value) {
       console.log('message--selectTemplateList', value.attributes.code);
       this.set('formData.individualSubmenuCode',value.attributes.code);
@@ -176,13 +246,11 @@ export default Component.extend({
                 if(subMenuStates[k].id || tempDualBoxStates[i].id){
                   console.log('message-subMenuStates[k].id', subMenuStates[k].id);
                   console.log('message-tempDualBoxStates[i].id', tempDualBoxStates[i].id);
-                  if (tempDualBoxStates[i].id === subMenuStates[k].id) {
+                  if (tempDualBoxStates[i].id !== subMenuStates[k].id) {
                     dualBoxStates.splice(i, 1);
                   }
                 }
-
               }
-
             }
           }
 

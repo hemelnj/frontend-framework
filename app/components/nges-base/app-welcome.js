@@ -49,26 +49,53 @@ export default Component.extend(Authorization, {
     let authorizationStatus = false;
     let roles = this.appConfiguration.getUserRoleIdList();
     let userEmail = this.appConfiguration.getAuthorizedUserInformation().email;
+
+    let org = this.appConfiguration.getOrganizationCode();
+    let app = this.appConfiguration.getApplicationCode();
+
     let accessToken = this.appConfiguration.getAccessToken();
 
     context.set('userEmail', userEmail);
-    context.appWelcome.getInitialMenuTreeInformation(roles, accessToken).then(function (results) {
-      let menuTreeData = results.data.children;
+    context.appWelcome.getInitialMenuTreeInformation(roles, app, org, accessToken).then(function (results) {
 
+      let menuTreeData = results.data.children;
+      let orgMenuTreeData = [];
+      let appMenuTreeData = [];
+
+      for (let i = 0; i < menuTreeData.length; i++) {
+        orgMenuTreeData = menuTreeData[i].children;
+        for (let j = 0; j < orgMenuTreeData.length; j++) {
+          if (orgMenuTreeData[j].code === org) {
+            appMenuTreeData = orgMenuTreeData[j].children;
+            break;
+          }
+        }
+      }
+
+      for (let i = 0; i < appMenuTreeData.length; i++) {
+        if (appMenuTreeData[i].code === app) {
+          appMenuTreeData = orgMenuTreeData[i].children;
+          break;
+        }
+      }
+
+
+      let entityCode = menuTreeData[0].code;
+      context.appConfiguration.setEntityCode(entityCode);
 
       // store menuTree
-      context.appConfiguration.setMenuTreeInformation(menuTreeData);
+      context.appConfiguration.setMenuTreeInformation(appMenuTreeData);
 
 
       authorizationStatus = true;
 
-      context.set('serviceList', duplicateRemoveFun(context.appWelcome.getAllApplicationPanelList()));
-      //context.set('serviceList', context.appWelcome.getAllApplicationPanelList());
+      //context.set('serviceList', duplicateRemoveFun(context.appWelcome.getAllApplicationPanelList()));
+      context.set('serviceList', context.appWelcome.getAllApplicationPanelList());
 
     }).then(function (data) {
 
-      //context.set('serviceList', context.appWelcome.getAllApplicationPanelList());
-      context.set('serviceList', duplicateRemoveFun(context.appWelcome.getAllApplicationPanelList()));
+      context.set('serviceList', context.appWelcome.getAllApplicationPanelList());
+      //context.set('serviceList', duplicateRemoveFun(context.appWelcome.getAllApplicationPanelList()));
     });
 
     if (authorizationStatus) {

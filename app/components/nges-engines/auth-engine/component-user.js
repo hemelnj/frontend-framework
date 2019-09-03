@@ -7,7 +7,6 @@ export default Component.extend({
 
   authEngineHost: config.NGES_SERVICE_HOSTS.AUTH_SERVICE_HOST,
   frontendEngineUIHost: config.NGES_UI_HOSTS.FRONTEND_ENGINE_UI_HOST,
-  authEngineUIHost: config.NGES_UI_HOSTS.AUTH_ENGINE_UI_HOST,
 
   appAuthEngine: service('nges-engines/auth-engine/app-auth-engine'),
   appConfiguration: service('app-configuration'),
@@ -20,12 +19,12 @@ export default Component.extend({
   roles: '',
   email: '',
 
+  userApplicationsList: [],
+
   init() {
     this._super(...arguments);
-
-
     this.loadUserData();
-    this.loadRoleList();
+    this.loadEntity();
   },
 
   didReceiveAttrs() {
@@ -33,6 +32,31 @@ export default Component.extend({
     this.set('tmpUserList', this.get('userList'));
   },
 
+
+  loadEntity() {
+
+    let context = this;
+    let root = 2;
+    let accessToken = this.appConfiguration.getAccessToken();
+    let allCreatedUsers = this.appAuthEngine.getAllEntity(root, accessToken);
+
+    allCreatedUsers.then(function (entity) {
+      console.log('message--entity', entity.data.attributes.children);
+      context.set('entityList', entity.data.attributes.children);
+    });
+
+  },
+
+  loadApplication(orgId) {
+    let context = this;
+    let accessToken = this.appConfiguration.getAccessToken();
+    let allCreatedUsers = this.appAuthEngine.getAllApplication(orgId, accessToken);
+
+    allCreatedUsers.then(function (application) {
+      console.log('message--application', application.data);
+      context.set('appList', application.data);
+    });
+  },
 
   loadUserData() {
     let context = this;
@@ -47,17 +71,17 @@ export default Component.extend({
     });
   },
 
-  loadRoleList() {
+
+
+  loadRoleList(applicationId) {
     let context = this;
 
     let accessToken = this.appConfiguration.getAccessToken();
 
-    let allCreatedRoles = this.appAuthEngine.getAllCreatedRoles(accessToken);
+    let allCreatedRoles = this.appAuthEngine.getAllCreatedRoles(applicationId, accessToken);
 
     allCreatedRoles.then(function (role) {
       context.set('roleList', role.data);
-    }).catch(function (errorMsg) {
-      context.get('notifier').danger('Failed To Load Roles');
     });
   },
 
@@ -77,18 +101,21 @@ export default Component.extend({
       }
     },
 
-    save() {
+    onChangeEntity(entity) {
+      let entityData = JSON.parse(entity);
+      console.log('message--entity', entityData.name);
+      this.set('entityId', entityData.id);
+      this.loadApplication(entityData.id);
+    },
 
-      let name = this.get('name');
-      let uniqueName = this.get('uniqueName');
-      let email = this.get('email');
+    onChangeApplication(application) {
+      let appData = JSON.parse(application);
+      console.log('message--application', appData.name);
+      this.set('applicationId', appData.id);
+      this.loadRoleList(appData.id);
+    },
 
-      let enabled = document.getElementById("isEnabled").checked;
-      let accLocked = document.getElementById("accLocked").checked;
-      let accExpired = document.getElementById("accExpired").checked;
-      let credentialExpired = document.getElementById("credentialExpired").checked;
-
-
+    add() {
       let text = $('#userRole option:selected').toArray().map(item => item.value + ':' + item.text).join();
       let roleData = [];
 
@@ -106,8 +133,8 @@ export default Component.extend({
       let flag = true;
 
       for (let i = 0; i < roleData.length; i++) {
-        console.log('roleData[i].attributes', roleData[i].id);
-        if (roleData[i].id === "1") {
+        console.log('roleData[i].attributes', roleData[i].name);
+        if (roleData[i].name === "role_user") {
           flag = false;
           break;
         }
@@ -115,11 +142,37 @@ export default Component.extend({
 
       if (flag) {
         let p = {
-          id: 1,
+          id: '',
           name: "role_user",
         };
         roleData.push(p);
       }
+
+      let userApplicationData = {
+        application:{
+          id:this.get('applicationId')
+        },
+        entityHierarchy:{
+          id:this.get('entityId')
+        },
+        roles:roleData,
+      };
+
+      this.get('userApplicationsList').pushObject(userApplicationData);
+      roleData = [];
+
+    },
+
+    save() {
+
+      let name = this.get('name');
+      let uniqueName = this.get('uniqueName');
+      let email = this.get('email');
+
+      let enabled = document.getElementById("isEnabled").checked;
+      let accLocked = document.getElementById("accLocked").checked;
+      let accExpired = document.getElementById("accExpired").checked;
+      let credentialExpired = document.getElementById("credentialExpired").checked;
 
       let timestamp = Math.floor(Date.now() / 1000);
 
@@ -135,7 +188,7 @@ export default Component.extend({
             accountNonLocked: accLocked,
             accountNonExpired: accExpired,
             credentialsNonExpired: credentialExpired,
-            roles: roleData
+            userApplications: this.get('userApplicationsList'),
           }
         }
       };
@@ -150,6 +203,8 @@ export default Component.extend({
       }).catch(function (msg) {
         context.get('notifier').danger('Failed! To Create New User');
       });
+
+      this.set('userApplicationsList',[]);
     }
   }
 });

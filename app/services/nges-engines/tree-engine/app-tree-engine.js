@@ -62,25 +62,25 @@ export default Service.extend({
     );
   },
 
-  getLocationalHierarchyById(userId, accessToken) {
+  getLocationalHierarchyById(userId, orgId, accessToken) {
     let beforeSend = function (xhr) {
       xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
-    let url = this.treeEngineHost + "/users/" + userId + "/locationHierarchy";
+    let url = this.treeEngineHost + "/users/" + userId + "/org/" + orgId + "/locationHierarchy";
     return this.appRestTemplate.httpRestClient(url, "GET",
       null, {}, beforeSend
     );
   },
 
-  getFunctionalHierarchyById(userId, accessToken) {
+  getFunctionalHierarchyById(userId, orgId, accessToken) {
     let beforeSend = function (xhr) {
       xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
-    let url = this.treeEngineHost + "/users/" + userId + "/functionalHierarchy";
+    let url = this.treeEngineHost + "/users/" + userId + "/org/" + orgId + "/functionalHierarchy";
     return this.appRestTemplate.httpRestClient(url, "GET",
       null, {}, beforeSend
     );

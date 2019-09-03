@@ -20,6 +20,23 @@
           <h1 class="layout-header-title">User Functions & Location</h1>
           <hr class="header-label-line">
 
+            <div class="row">
+              <div class="col-sm-1">
+                <label class="input-field-label">Select Entity</label>
+              </div>
+
+              <div class="col-sm-5">
+
+                <select class="form-control" onchange={{action "onChangeEntity" value='target.value'}} >
+                  <option>Select Entity</option>
+                  {{#each entityList as |entity|}}
+                    <option value={{entity.id}}>{{entity.name}}</option>
+                  {{/each}}
+                </select>
+
+              </div>
+            </div>
+
           <div class="row">
             <div class="col-sm-1">
               <label class="input-field-label">Select User</label>

@@ -7,7 +7,6 @@ export default Component.extend({
 
   authEngineHost: config.NGES_SERVICE_HOSTS.AUTH_SERVICE_HOST,
   frontendEngineUIHost: config.NGES_UI_HOSTS.FRONTEND_ENGINE_UI_HOST,
-  authEngineUIHost: config.NGES_UI_HOSTS.AUTH_ENGINE_UI_HOST,
 
   appAuthEngine: service('nges-engines/auth-engine/app-auth-engine'),
   appConfiguration: service('app-configuration'),
@@ -22,6 +21,7 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
+    this.loadEntity();
     this.loadRoleList();
   },
 
@@ -30,12 +30,40 @@ export default Component.extend({
     this.set('tmpRoleList', this.get('roleList'));
   },
 
+  loadEntity() {
+
+    let context = this;
+    let root = 2;
+    let accessToken = this.appConfiguration.getAccessToken();
+    let allCreatedUsers = this.appAuthEngine.getAllEntity(root, accessToken);
+
+    allCreatedUsers.then(function (entity) {
+      context.set('entityList', entity.data.attributes.children);
+    });
+
+  },
+
+  loadApplication(entityId) {
+    let context = this;
+    let accessToken = this.appConfiguration.getAccessToken();
+    let allCreatedUsers = this.appAuthEngine.getAllApplication(entityId, accessToken);
+
+    allCreatedUsers.then(function (application) {
+      context.set('appList', application.data);
+    });
+  },
+
+  makePrefix(orgName) {
+    let name = orgName.toLowerCase().replace(/ /g, '');
+    this.set('name', name + '_');
+  },
+
   loadRoleList() {
     let context = this;
 
     let accessToken = this.appConfiguration.getAccessToken();
 
-    let allCreatedRoles = this.appAuthEngine.getAllCreatedRoles(accessToken);
+    let allCreatedRoles = this.appAuthEngine.getAllRoles(accessToken);
 
     allCreatedRoles.then(function (role) {
       context.set('roleList', role.data);
@@ -59,6 +87,19 @@ export default Component.extend({
         this.set('roleList', roleListRes);
       }
     },
+
+    onChangeOrganization(value) {
+      let orgData = JSON.parse(value);
+      this.makePrefix(orgData.name);
+      this.set('orgDataId', orgData.id);
+      this.loadApplication(orgData.id);
+    },
+
+    onChangeApplication(application) {
+      let appData = JSON.parse(application);
+      this.set('applicationId', appData.id);
+    },
+
     save() {
 
       let name = this.get('name');
@@ -72,19 +113,23 @@ export default Component.extend({
           id: timestamp,
           type: 'roles',
           attributes: {
-            name: name
+            name: name,
+            application: {
+              id: this.get('applicationId'),
+            }
           }
         }
       };
+
       let context = this;
 
       let accessToken = this.appConfiguration.getAccessToken();
-      let responseAfterAddingRole = this.appAuthEngine.addNewRole(roleData,accessToken);
+      let responseAfterAddingRole = this.appAuthEngine.addNewRole(roleData, accessToken);
       responseAfterAddingRole.then(function (msg) {
       }).then(function (response) {
-        console.log('message-role-response',response.status);
+        console.log('message-role-response', response.status);
         context.get('notifier').success('Role Created Successfully');
-      })
+      });
     },
 
     editActionEvent() {
@@ -95,7 +140,7 @@ export default Component.extend({
     updatePassword() {
       let context = this;
       let accessToken = this.appConfiguration.getAccessToken();
-      window.location.replace(context.authEngineUIHost+"/update-user-credential?access_token="+accessToken);
+      window.location.replace(context.authEngineUIHost + "/update-user-credential?access_token=" + accessToken);
     }
   }
 

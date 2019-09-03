@@ -7,8 +7,11 @@ export default Component.extend({
 
   appConfiguration: service('app-configuration'),
   appTreeEngine: service('nges-engines/tree-engine/app-tree-engine'),
+  olmSetupService: service('nges-engines/olm/olm-setup'),
+  appAuthEngine: service('nges-engines/auth-engine/app-auth-engine'),
 
   treeEngineHost: config.NGES_SERVICE_HOSTS.TREE_SERVICE_HOST,
+
   notifier: service(),
 
   selectedClassType: '',
@@ -17,19 +20,11 @@ export default Component.extend({
   init() {
     this._super(...arguments);
 
-    let context = this;
-    let accessToken = this.appConfiguration.getAccessToken();
-    let classtypes = context.appTreeEngine.getAllClassTypes(accessToken);
-    classtypes.then(function (result) {
-      context.set('classtypes', result.data);
-    }).catch(function (errorMsg) {
-      context.get('notifier').danger('Failed To Load OLM Objects');
-    });
+    this.loadEntity();
 
     this.set('listGroupData', []);
     this.set('modifiedTreeDataLists', []);
     this.set('dataContextTree', []);
-
 
     // meta data for tree view test components
     let items = [{name: 'First Level-1', items: [{name: 'Second Level-1-1'}, {name: 'Second Level-1-2'}]},
@@ -46,17 +41,83 @@ export default Component.extend({
       },
       {name: 'First Level-3'}];
     this.set('items', items);
+  },
 
+  loadEntity() {
+    let context = this;
+    let root = 1;
+    let accessToken = this.appConfiguration.getAccessToken();
+    let allCreatedEntity = this.appAuthEngine.getAllEntity(root, accessToken);
 
-    let roles = context.appTreeEngine.getAllRoles(accessToken).then(function (result) {
+    allCreatedEntity.then(function (entity) {
+      context.set('entityList', entity.data.attributes.children);
+
+    });
+  },
+
+  loadOrganization(orgList) {
+    this.set('orgList', orgList);
+  },
+
+  loadApplication(orgId) {
+    let context = this;
+    let accessToken = this.appConfiguration.getAccessToken();
+    let allCreatedUsers = this.appAuthEngine.getAllApplication(orgId, accessToken);
+
+    allCreatedUsers.then(function (application) {
+      context.set('appList', application.data);
+    });
+  },
+
+  loadOlmObject(orgCode, appCode) {
+    let context = this;
+    let engineCode = "olm";
+    let accessToken = this.appConfiguration.getAccessToken();
+    let classtypes = context.olmSetupService.getAllClassType(orgCode, appCode, engineCode, accessToken);
+    classtypes.then(function (result) {
+      console.log('classtypes', result.data);
+      context.set('classtypes', result.data);
+    }).catch(function (errorMsg) {
+      console.log('Failed To Load OLM Objects');
+    });
+  },
+
+  loadRoles(orgCode) {
+    let context = this;
+    let accessToken = this.appConfiguration.getAccessToken();
+    let roles = this.appAuthEngine.getAllRolesByOrganization(orgCode, accessToken).then(function (result) {
+      console.log('listUserRoles', result.data);
       context.set('listUserRoles', result.data);
     }).catch(function (errorMsg) {
-      context.get('notifier').danger('Failed To Load Roles');
+      console.log('Failed To Load Roles');
     });
-
   },
 
   actions: {
+
+    onChangeEntity(value) {
+      let entityData = JSON.parse(value);
+      let orgList = entityData.children;
+      this.loadOrganization(orgList);
+    },
+
+    onChangeOrganization(value) {
+      let orgData = JSON.parse(value);
+      let orgCode = orgData.code;
+      this.set('orgCode', orgCode);
+      this.loadApplication(orgData.id);
+      this.loadRoles(orgCode);
+    },
+
+    onChangeApplication(value) {
+      let appData = JSON.parse(value);
+      let appCode = appData.attributes.code;
+      this.set('appCode', appCode);
+      console.log('appCode', appCode);
+      let orgCode = this.get('orgCode');
+      this.loadOlmObject(orgCode, appCode);
+
+    },
 
     onChangeClassTypes(value) {
       console.log('message-onChangeClassTypes', value);
@@ -98,7 +159,7 @@ export default Component.extend({
 
       if (flag) {
         let accessToken = this.appConfiguration.getAccessToken();
-        let dataContextTree = context.appTreeEngine.getDataContext(accessToken,dataContextDataUrl);
+        let dataContextTree = context.appTreeEngine.getDataContext(accessToken, dataContextDataUrl);
         dataContextTree.then(function (result) {
           result = result.data.attributes;
           context.set('dataContextTree', result);
@@ -131,7 +192,7 @@ export default Component.extend({
       console.log('message-modifiedOnlyTrueDataList', modifiedOnlyTrueDataList);
       let accessToken = this.appConfiguration.getAccessToken();
 
-      let dataContextTreeRequest = context.appTreeEngine.putDataContext(accessToken,dataContextUpdateUrl,modifiedOnlyTrueDataList);
+      let dataContextTreeRequest = context.appTreeEngine.putDataContext(accessToken, dataContextUpdateUrl, modifiedOnlyTrueDataList);
       dataContextTreeRequest.then(function (result) {
         console.log('message-updated', result);
         context.get('notifier').success('Saved Successfully');
@@ -178,7 +239,7 @@ export default Component.extend({
     },
   },
 
-  index :0,
+  index: 0,
   treeTraverseToGetOnlySelectedItem(contextTree, selectedClassTypeId, selectedRoleId) {
 
     let context = this;

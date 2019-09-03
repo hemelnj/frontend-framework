@@ -8,6 +8,7 @@ export default Component.extend({
   store: service(),
   appConfiguration: service('app-configuration'),
   peSetupService: service('nges-engines/property-extender/pe-setup'),
+  olmSetupService: service('nges-engines/olm/olm-setup'),
 
   formData: {
     olmObject: null,
@@ -29,19 +30,22 @@ export default Component.extend({
   },
 
   loadAllOLMObject() {
+
     let context = this;
-
     let accessToken = this.appConfiguration.getAccessToken();
+    let appCode = this.appConfiguration.getApplicationCode();
+    let orgCode = this.appConfiguration.getOrganizationCode();
+    let engineCode = "olm";
+    let allCreatedClassTypes = this.olmSetupService.getAllClassType(orgCode,appCode,engineCode,accessToken);
 
-    let allCreatedOLMObject = this.peSetupService.getAllClassType(accessToken);
-
-    allCreatedOLMObject.then(function (classType) {
+    allCreatedClassTypes.then(function (classType) {
       context.set('classTypeList', classType.data);
       context.set('tmpClassTypeList', classType.data);
       context.didUpdateAttrs();
     }).catch(function (errorMsg) {
-      context.get('notifier').danger('Failed To Load OLM Objects');
+      context.get('notifier').danger('Failed to Load OLM Objects');
     });
+
   },
 
   setModel(classType) {

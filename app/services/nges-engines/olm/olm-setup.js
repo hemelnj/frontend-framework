@@ -7,7 +7,7 @@ export default Service.extend({
   appRestTemplate: service('app-rest-template'),
   olmEngineHost: config.NGES_SERVICE_HOSTS.OLM_SERVICE_HOST,
   rmsOLMEngineHost: config.NGES_SERVICE_HOSTS.APP_OLM_SERVICE_HOST,
-
+  apiGatewayHost: config.NGES_SERVICE_HOSTS.GATEWAY_SERVICE_HOST,
 
   getAllActionEvents(accessToken) {
     let beforeSend = function (xhr) {
@@ -69,15 +69,18 @@ export default Service.extend({
     );
   },
 
-  getAllClassType(accessToken) {
+  getAllClassType(orgCode,appCode,engineCode,accessToken) {
+
 
     let beforeSend = function (xhr) {
       xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
-
     //let url = this.olmEngineHost + "/classtypes";
-    let url = this.rmsOLMEngineHost + "/classtypes";
+    //let url = this.rmsOLMEngineHost + "/classtypes";
+
+    let url = this.apiGatewayHost + "/" + orgCode + "/" + appCode + "/" + engineCode + "/api/classtypes";
+
     return this.appRestTemplate.httpRestClient(url, "GET",
       null, {}, beforeSend
     );
