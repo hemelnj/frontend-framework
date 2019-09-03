@@ -26,14 +26,14 @@
 
         <div class="row">
           <div class="col-md-3">
-            <label class="input-field-label" style="margin-top: 10px;">Entity</label>
+            <label class="input-field-label">Entity</label>
           </div>
           <div class="col-md-9">
-            <select class="input-field" onchange={{action "onChangeEntity" value="target.value"}} >
+            <select class="form-control" onchange={{action "onChangeEntity" value="target.value"}} >
               <option>Select Entity</option>
 
               {{#each entityList as |entity|}}
-                <option value={{json entity}}>{{entity.name}}</option>
+                <option value={{nges-core/json entity}}>{{entity.name}}</option>
               {{/each}}
             </select>
           </div>
@@ -41,14 +41,14 @@
 
         <div class="row">
           <div class="col-md-3">
-            <label class="input-field-label" style="margin-top: 15px;">Organization</label>
+            <label class="input-field-label">Organization</label>
           </div>
           <div class="col-md-9">
-            <select class="input-field" onchange={{action "onChangeOrganization" value="target.value"}} >
+            <select class="form-control" onchange={{action "onChangeOrganization" value="target.value"}} >
               <option>Select Organization</option>
 
               {{#each orgList as |org|}}
-                <option value={{json org}}>{{org.name}}</option>
+                <option value={{nges-core/json org}}>{{org.name}}</option>
               {{/each}}
             </select>
           </div>
@@ -56,14 +56,14 @@
 
         <div class="row">
           <div class="col-md-3">
-            <label class="input-field-label" style="margin-top: 15px;">Application</label>
+            <label class="input-field-label">Application</label>
           </div>
           <div class="col-md-9">
-            <select class="input-field" onchange={{action "onChangeApplication" value="target.value"}} >
+            <select class="form-control" onchange={{action "onChangeApplication" value="target.value"}} >
               <option>Select Application</option>
 
               {{#each appList as |app|}}
-                <option value={{json app}}>{{app.attributes.name}}</option>
+                <option value={{nges-core/json app}}>{{app.attributes.name}}</option>
               {{/each}}
             </select>
           </div>

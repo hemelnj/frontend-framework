@@ -134,6 +134,19 @@ export default Service.extend({
       null, {}, beforeSend
     );
   },
+
+  getAllRolesByOrganization(orgId, accessToken) {
+    let beforeSend = function (xhr) {
+      xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+      xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
+    };
+
+    //let roleDataUrl = this.treeEngineHost + '/roles';
+    let url = this.treeEngineHost + '/organizations/' + orgId + '/roles';
+    return this.appRestTemplate.httpRestClient(url, "GET",
+      null, {}, beforeSend
+    );
+  },
   //////
   requestForResponseToken(refreshToken) {
 

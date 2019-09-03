@@ -8,6 +8,7 @@ export default Component.extend({
   appConfiguration: service('app-configuration'),
   appTreeEngine: service('nges-engines/tree-engine/app-tree-engine'),
   olmSetupService: service('nges-engines/olm/olm-setup'),
+  appAuthEngine: service('nges-engines/auth-engine/app-auth-engine'),
 
   treeEngineHost: config.NGES_SERVICE_HOSTS.TREE_SERVICE_HOST,
   notifier: service(),
@@ -80,10 +81,10 @@ export default Component.extend({
     });
   },
 
-  loadRoles(orgId) {
+  loadRoles(orgCode) {
     let context = this;
     let accessToken = this.appConfiguration.getAccessToken();
-    let roles = context.appTreeEngine.getAllRolesByOrganization(orgId, accessToken).then(function (result) {
+    let roles = context.appAuthEngine.getAllRolesByOrganization(orgCode, accessToken).then(function (result) {
       console.log('listUserRoles', result.data);
       context.set('listUserRoles', result.data);
     }).catch(function (errorMsg) {
