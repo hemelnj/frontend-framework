@@ -68,6 +68,7 @@ export default Service.extend({
           stateList: stateList
         };
 
+        console.log('message--getFindAll',JSON.stringify(payload));
         context.serviceInitializer.getFindAll(orgCode,appCode, accessToken, payload).then(function (result) {
           if (result) {
             resolve(result);

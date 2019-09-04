@@ -8,7 +8,8 @@ export default Component.extend({
   treeEngineHost: config.NGES_SERVICE_HOSTS.TREE_SERVICE_HOST,
   olcmHost: config.NGES_SERVICE_HOSTS.OLM_SERVICE_HOST,
   rmsHost: config.NGES_SERVICE_HOSTS.APP_OLM_SERVICE_HOST,
-  rmsOLMHost: config.NGES_SERVICE_HOSTS.APP_OLM_SERVICE_HOST,
+  //rmsOLMHost: config.NGES_SERVICE_HOSTS.APP_OLM_SERVICE_HOST,
+
 
   olmSetupService: service('nges-engines/olm/olm-setup'),
   tree_engine_object_assignment: service('nges-engines/tree-engine/tree-engine-object-assignment'),
@@ -211,7 +212,7 @@ export default Component.extend({
       this.set('formData.selectOlmObject', selectOlmObject);// updated form data
 
       let context = this;
-      let olmObjectWiseStatesUrl = context.rmsOLMHost + '/classtypes/' + selectOlmObjectId + '/allStatesInAlphabeticOrder';
+      let olmObjectWiseStatesUrl = context.olcmHost + '/classtypes/' + selectOlmObjectId + '/allStatesInAlphabeticOrder';
 
 
       let olmObjectWiseStates = context.appTreeEngine.getOLMObjectWiseStates(accessToken,olmObjectWiseStatesUrl);

@@ -68,7 +68,7 @@ module.exports = function (environment) {
     //-------------------- NGES BACKEND  HOST
     ENV.NGES_SERVICE_HOSTS = {
       //OLM_SERVICE_HOST: 'http://olm-ngfs-core-framework.apps.115.127.24.184.nip.io',
-      OLM_SERVICE_HOST: 'http://leadssoft.rms.olm-apps.115.127.24.184.nip.io',
+      OLM_SERVICE_HOST: 'http://leadssoft.rmscore.olm-apps.115.127.24.184.nip.io',
       TREE_SERVICE_HOST: 'http://treeengine-ngfs-core-framework.apps.115.127.24.184.nip.io',
       AUTH_SERVICE_HOST: 'http://auth-rms.apps.115.127.24.184.nip.io',
       MOCK_SERVICE_HOST: 'http://192.168.20.2:8089',
