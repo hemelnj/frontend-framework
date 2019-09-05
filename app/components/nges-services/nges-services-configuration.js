@@ -26,6 +26,29 @@ export default [
     ]
   },
 
+  {
+    appCode: 'rmscore',
+    appPanelCode: 'operation',
+    appModuleCode: 'disbursement',
+    appMenuTemplateCode: 'coverfundtransactions',
+    name: 'Cover Fund Transaction',
+    templatePath: servicePath + '/rmscore',
+    templates: [
+      {
+        code: 'coverfundtransaction',
+        name: 'cover-fund-transaction',
+        label: 'Cover Fund Transaction',
+        detailPath: '/cover-fund-transaction',
+        detailView: [
+          {
+            code: 'create-collection',
+            name: 'cover-fund-transaction',
+            label: 'Cover Fund Transaction',
+          }
+        ],
+      }
+    ]
+  },
 
   // admin
 
