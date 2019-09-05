@@ -67,7 +67,6 @@ module.exports = function (environment) {
 
     //-------------------- NGES BACKEND  HOST
     ENV.NGES_SERVICE_HOSTS = {
-      //OLM_SERVICE_HOST: 'http://olm-ngfs-core-framework.apps.115.127.24.184.nip.io',
       OLM_SERVICE_HOST: 'http://leadssoft.rmscore.olm-apps.115.127.24.184.nip.io',
       TREE_SERVICE_HOST: 'http://treeengine-ngfs-core-framework.apps.115.127.24.184.nip.io',
       AUTH_SERVICE_HOST: 'http://auth-rms.apps.115.127.24.184.nip.io',
@@ -75,7 +74,7 @@ module.exports = function (environment) {
 
 
       APP_PE_SERVICE_HOST: 'http://rms.pe-apps.115.127.24.184.nip.io',
-      APP_OLM_SERVICE_HOST: 'http://rms.olm-apps.115.127.24.184.nip.io',
+      //APP_OLM_SERVICE_HOST: 'http://rms.olm-apps.115.127.24.184.nip.io',
       APP_SERVICE_POST_HOST: '-apps.115.127.24.184.nip.io',
 
       RULE_ENGINE_SERVICE_HOST: 'http://droolsbackend-ngfs-core-framework.apps.115.127.24.184.nip.io',
