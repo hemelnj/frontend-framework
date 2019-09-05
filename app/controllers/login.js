@@ -15,8 +15,8 @@ export default Controller.extend(Authorization, {
     this._super(...arguments);
 
     this.set('userInformation', {
-      name: 'SI',
-      password: 'password'
+      name: 'shahidul',
+      password: '1\\Z-.^E0'
     })
   },
   actions: {
