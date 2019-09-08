@@ -6,7 +6,8 @@ export default Service.extend({
   appRestTemplate: service('app-rest-template'),
   appConfiguration: service('app-configuration'),
 
-  rmsCoreOlmServiceHost: config.NGES_SERVICE_HOSTS.OLM_SERVICE_HOST,
+  rmsOLMServiceHost: config.NGES_SERVICE_HOSTS.OLM_SERVICE_HOST,
+  gatewayServiceHost: config.NGES_SERVICE_HOSTS.GATEWAY_SERVICE_HOST,
   treeEngineHost: config.NGES_SERVICE_HOSTS.TREE_SERVICE_HOST,
 
 
@@ -15,18 +16,6 @@ export default Service.extend({
 
   },
 
-
-  getDefaultLocationId(accessToken, userId) {
-    let beforeSend = function (xhr) {
-      xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
-      xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
-    };
-
-    let url = this.treeEngineHost + "/users/" + userId + "/locationHierarchy";
-    return this.appRestTemplate.httpRestClient(url, "GET",
-      null, {}, beforeSend
-    );
-  },
 
   getNextAllowableStateId(accessToken, data) {
     data = JSON.stringify(data);
@@ -42,13 +31,25 @@ export default Service.extend({
     );
   },
 
-  getDefaultFunctionId(accessToken, userId) {
+  getDefaultLocationId(accessToken, userId, orgId) {
     let beforeSend = function (xhr) {
       xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
-    let url = this.treeEngineHost + "/users/" + userId + "/functionalHierarchy";
+    let url = this.treeEngineHost + "/users/" + userId + "/org/"+orgId+"/locationHierarchy";
+    return this.appRestTemplate.httpRestClient(url, "GET",
+      null, {}, beforeSend
+    );
+  },
+
+  getDefaultFunctionId(accessToken, userId,orgId) {
+    let beforeSend = function (xhr) {
+      xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+      xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
+    };
+
+    let url = this.treeEngineHost + "/users/" + userId + "/org/"+orgId+"/functionalHierarchy";
     return this.appRestTemplate.httpRestClient(url, "GET",
       null, {}, beforeSend
     );

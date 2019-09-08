@@ -41,8 +41,8 @@ export default [
         detailPath: '/cover-fund-transaction',
         detailView: [
           {
-            code: 'create-collection',
-            name: 'cover-fund-transaction',
+            code: 'create-cover-fund-transaction',
+            name: 'create-cover-fund-transaction',
             label: 'Cover Fund Transaction',
           }
         ],

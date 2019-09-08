@@ -25,10 +25,13 @@ export default Component.extend({
 
 
     let startStateId = this.appWelcome.getStartStateId();
+
     this.getNextAllowableState(startStateId);
 
     this.getDefaultUserLocationId();
     this.getDefaultUserFunctionId();
+
+    this.loadExchangeHouse();
   },
 
   didUpdateAttrs() {
@@ -85,7 +88,8 @@ export default Component.extend({
     let context = this;
     let accessToken = this.appConfiguration.getAccessToken();
     let userId = this.appConfiguration.getUserId();
-    let functionId = this.rmsBaseService.getDefaultFunctionId(accessToken,userId);
+    let orgId = this.appConfiguration.getOrganizationId();
+    let functionId = this.rmsBaseService.getDefaultFunctionId(accessToken,userId,orgId);
 
     functionId.then(function (msg) {
       console.log('message--functionId', msg.data.attributes.id);
@@ -96,7 +100,8 @@ export default Component.extend({
     let context = this;
     let accessToken = this.appConfiguration.getAccessToken();
     let userId = this.appConfiguration.getUserId();
-    let locationId = this.rmsBaseService.getDefaultLocationId(accessToken,userId);
+    let orgId = this.appConfiguration.getOrganizationId();
+    let locationId = this.rmsBaseService.getDefaultLocationId(accessToken,userId,orgId);
 
     locationId.then(function (msg) {
       console.log('message--locationId', msg.data.attributes.id);
@@ -111,12 +116,12 @@ export default Component.extend({
   loadExchangeHouse() {
     let context = this;
     let accessToken = this.appConfiguration.getAccessToken();
-    let allBank = this.rmsSetupService.getPaymentMode(accessToken);
+    let allBank = this.rmsSetupService.getExchangeHouse(accessToken);
 
     allBank.then(function (msg) {
       context.set('exchangeHouseList', msg.data);
     }).catch(function (errorMsg) {
-      context.get('notifier').danger('Failed to Load All Payment Mode');
+      context.get('notifier').danger('Failed to Load Exchange House Data');
     });
   },
 
@@ -130,7 +135,7 @@ export default Component.extend({
     let roleId = this.appConfiguration.getUserRoleId();
 
     this.serviceInitializer.getClassType(accessToken).then(function (result) {
-      let classTypeId = result.data;//remitter classtype id
+      let classTypeId = result.data;
       console.log('classTypeId--classTypeId', classTypeId);
       let actionEventName = "create";
 
@@ -200,21 +205,16 @@ export default Component.extend({
                 "id": 1,
                 "type": "coverFundTransactions",
                 "attributes": {
-                  "id": 1,
                   "exchangeHouse": {
                     "id": model.exchangeHouseId
                   },
-                  "inputAmount": Number(model.inputAmount),
+                  "amount": Number(model.inputAmount),
 
                   "olcmState":{
                     "id":this.get('statusId'),
                   },
                   "function": this.get('functionId'),
-                  "location": this.get('locationId'),
-                  "createdBy": "msi",
-                  "createdAt": 1,
-                  "updatedBy": "msi",
-                  "updatedAt": 1
+                  "location": this.get('locationId')
                 }
               }
             };
@@ -222,14 +222,14 @@ export default Component.extend({
             console.log('message--remCollectionData', JSON.stringify(coverFundData));
 
             let accessToken = this.appConfiguration.getAccessToken();
-            let afterRemitterRegistration = this.transactionActionService.addNewCoverFund(accessToken, coverFundData);
+            let afterCoverFundRegistration = this.transactionActionService.addNewCoverFund(accessToken, coverFundData);
             let context = this;
-            afterRemitterRegistration.then(function (msg) {
+            afterCoverFundRegistration.then(function (msg) {
             }).catch(function (msg) {
               if(msg.status===201){
-                context.get('notifier').success('Remittance Collection Successful!');
+                context.get('notifier').success('Cover Fund Collection Successful!');
               }else{
-                context.get('notifier').danger('Remittance Collection Failed!\nError while committing the transaction.');
+                context.get('notifier').danger('Cover Fund Collection Failed!\nError while committing the transaction.');
               }
             });
 
