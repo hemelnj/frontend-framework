@@ -12,7 +12,7 @@
 
   <div class="card">
     <div class="card-body">
-      <h1 class="layout-header-title">Remittance Collection Transaction</h1>
+      <h1 class="layout-header-title">Cover Fund Transaction</h1>
       <hr class="header-label-line">
 
       <form class="form-horizontal">
@@ -31,234 +31,34 @@
         <div class="form-group">
           <div class="row">
             <div class="col-sm-2">
-              <label class="input-field-label">Type of Remittance</label>
+              <label class="input-field-label">Exchange House</label>
             </div>
 
             <div class="col-sm-6">
               {{nges-core/nges-searchable-dropdown
-                dataList=remittanceTypeList
-                message = "Select Type of Remittance"
-                autocompleteOnSelect=(action 'onChangeRemitanceType')
-              }}
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="row">
-            <div class="col-sm-2">
-              <label class="input-field-label">Purpose of Remittance</label>
-            </div>
-
-            <div class="col-sm-6">
-              {{nges-core/nges-searchable-dropdown
-                dataList=remittancePurposeList
-                message = "Select Purpose of Remittance"
-                autocompleteOnSelect=(action 'onChangeRemittancePurpose')
-              }}
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="row">
-            <div class="col-sm-2">
-              <label class="input-field-label">Source of Fund</label>
-            </div>
-            <div class="col-sm-6">
-
-              {{nges-core/nges-searchable-dropdown
-                dataList=fundSourceList
-                message = "Select Source of Fund"
-                autocompleteOnSelect=(action 'onChangeSourceOfFund')
-              }}
-
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="row">
-            <div class="col-sm-2">
-              <label class="input-field-label">Delivery Agent</label>
-            </div>
-            <div class="col-sm-6">
-              {{nges-core/nges-searchable-dropdown
-                dataList=deliveryAgentList
-                message = "Select Delivery Agent"
-                autocompleteOnSelect=(action 'onChangeDeliveryAgent')
+                dataList=exchangeHouseList
+                message = "Select Exchange House"
+                autocompleteOnSelect=(action 'onChangeExchangeHouse')
               }}
             </div>
           </div>
         </div>
 
 
-        <div class="form-group">
-          <div class="row">
-            <div class="col-sm-2">
-              <label class="input-field-label">Beneficiary Country</label>
-            </div>
-            <div class="col-sm-6">
-
-              {{nges-core/nges-searchable-dropdown
-                dataList=countryList
-                message = "Select Beneficiary Country"
-                autocompleteOnSelect=(action 'onChangeBeneficiaryCountry')
-              }}
-            </div>
-          </div>
-        </div>
-
-        {{nges-core/nges-input-component
-          type='text'
-          input-field-name="Beneficiary Id"
-          model=model
-          valuePath='beneficiaryId'
-          placeholder='Beneficiary Id'
-          sectionFirst = 'col-sm-2'
-          sectionLast = 'col-sm-4'
-          didValidate=didValidate}}
 
 
-        <div class="form-group">
-          <div class="row">
-            <div class="col-sm-2">
-              <label class="input-field-label">Beneficiary's Bank</label>
-            </div>
-            <div class="col-sm-6">
-
-              {{nges-core/nges-searchable-dropdown
-                dataList=bankList
-                message = "Select Beneficiary's Bank"
-                autocompleteOnSelect=(action 'onChangeBeneficiaryBank')
-              }}
-
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="row">
-            <div class="col-sm-2">
-              <label class="input-field-label">Beneficiary's Branch</label>
-            </div>
-            <div class="col-sm-6">
-
-              {{nges-core/nges-searchable-dropdown
-                dataList=bankBranchList
-                message = "Select Beneficiary's Branch"
-                autocompleteOnSelect=(action 'onChangeBeneficiaryBranch')
-              }}
-
-            </div>
-          </div>
-        </div>
 
         {{nges-core/nges-input-component
           type='number'
           input-field-name="Input Amount"
           model=model
           valuePath='inputAmount'
-          placeholder='Input Amount'
+          placeholder='Cover Amount'
           sectionFirst = 'col-sm-2'
           sectionLast = 'col-sm-4'
           didValidate=didValidate}}
 
-        <div class="form-group">
-          <div class="row">
-            <div class="col-sm-2">
-              <label class="input-field-label">Currency</label>
-            </div>
-            <div class="col-sm-6">
 
-
-              {{nges-core/nges-searchable-dropdown
-                dataList=currencyList
-                message = "Select Currency"
-                autocompleteOnSelect=(action 'onChangeCurrency')
-              }}
-            </div>
-          </div>
-        </div>
-
-        {{nges-core/nges-input-component
-          type='number'
-          input-field-name="Transfer Amount"
-          model=model
-          valuePath='transferAmount'
-          placeholder='Transfer Amount'
-          sectionFirst = 'col-sm-2'
-          sectionLast = 'col-sm-6'
-          didValidate=didValidate}}
-
-        {{nges-core/nges-input-component
-          type='number'
-          input-field-name="Local Amount"
-          model=model
-          valuePath='localAmount'
-          placeholder='Local Amount'
-          sectionFirst = 'col-sm-2'
-          sectionLast = 'col-sm-6'
-          didValidate=didValidate}}
-
-        {{nges-core/nges-input-component
-          type='number'
-          input-field-name="Comission Amount"
-          model=model
-          valuePath='comissionAmount'
-          placeholder='Comission Amount'
-          sectionFirst = 'col-sm-2'
-          sectionLast = 'col-sm-6'
-          didValidate=didValidate}}
-
-        {{nges-core/nges-input-component
-          type='number'
-          input-field-name="Total Value needed to Pay"
-          model=model
-          valuePath='totalPayValue'
-          placeholder='Total Value needed to Pay'
-          sectionFirst = 'col-sm-2'
-          sectionLast = 'col-sm-6'
-          didValidate=didValidate}}
-
-        {{nges-core/nges-input-component
-          type='number'
-          input-field-name="Total Value needed to Adjust"
-          model=model
-          valuePath='totalAdjustValue'
-          placeholder='Total Value needed to Adjust'
-          sectionFirst = 'col-sm-2'
-          sectionLast = 'col-sm-6'
-          didValidate=didValidate}}
-
-        {{nges-core/nges-input-component
-          type='number'
-          input-field-name="Total Pay Amount"
-          model=model
-          valuePath='totalPayAmount'
-          placeholder='Total Pay Amount'
-          sectionFirst = 'col-sm-2'
-          sectionLast = 'col-sm-6'
-          didValidate=didValidate}}
-
-
-        <div class="row">
-
-          <div class="col-sm-2">
-            <label class="input-field-label">Mode of Payment</label>
-          </div>
-
-          <div class="col-sm-6">
-
-            {{nges-core/nges-searchable-dropdown
-              dataList=paymentModeList
-              message = "Select Mode of Payment"
-              autocompleteOnSelect=(action 'onChangePaymentMode')
-            }}
-
-          </div>
-
-        </div>
 
         <br>
         <fieldset>

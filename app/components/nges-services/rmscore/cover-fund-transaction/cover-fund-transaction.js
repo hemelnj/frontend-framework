@@ -11,9 +11,9 @@ export default Component.extend({
   didValidate: false,
 
   appConfiguration: service('app-configuration'),
-  rmsSetupService: service('nges-services/rms/rms-setup'),
-  transactionActionService: service('nges-services/rms/transaction-action'),
-  rmsBaseService: service('nges-services/rms/rms-base-service'),
+  rmsSetupService: service('nges-services/rmscore/rmscore-setup'),
+  transactionActionService: service('nges-services/rmscore/cover-fund-transaction-action'),
+  rmsBaseService: service('nges-services/rmscore/rmscore-base-service'),
   notifier: service(),
   serviceInitializer: service('nges-services/service-initializer'),
 
@@ -21,19 +21,8 @@ export default Component.extend({
     this._super(...arguments);
     let serviceInformation = this.get('serviceInformation');
 
-    this.set('model', this.store.createRecord('nges-services/rms/remittance-collection-trans'));
+    this.set('model', this.store.createRecord('nges-services/rmscore/cover-fund-trans'));
 
-    this.initRiskStatus();
-    this.setRisk();
-    this.getUserType();
-    this.loadAllCountries();
-    this.loadRemittanceType();
-    this.loadRemittancePurpose();
-    this.loadFundSources();
-    this.loadDeliveryAgents();
-    this.loadAllBanks();
-    this.loadAllCurrency();
-    this.loadPaymentMode();
 
     let startStateId = this.appWelcome.getStartStateId();
     this.getNextAllowableState(startStateId);
@@ -91,6 +80,7 @@ export default Component.extend({
       context.set("showMLROReview",false);
     }
   },
+
   getDefaultUserFunctionId(){
     let context = this;
     let accessToken = this.appConfiguration.getAccessToken();
@@ -117,97 +107,14 @@ export default Component.extend({
   },
 
 
-  loadAllCountries() {
-    let context = this;
-    let accessToken = this.appConfiguration.getAccessToken();
-    let allCountryData = this.rmsSetupService.getAllCountries(accessToken);
 
-    allCountryData.then(function (msg) {
-      context.set('countryList', msg.data);
-    }).catch(function (errorMsg) {
-      context.get('notifier').danger('Failed to Load Country List');
-    });
-  },
-
-  loadRemittanceType() {
-    let context = this;
-    let accessToken = this.appConfiguration.getAccessToken();
-    let allRemittanceType = this.rmsSetupService.getAllRemittanceType(accessToken);
-
-    allRemittanceType.then(function (msg) {
-      context.set('remittanceTypeList', msg.data);
-    }).catch(function (errorMsg) {
-      context.get('notifier').danger('Failed to Load Remittance Types');
-    });
-  },
-
-  loadRemittancePurpose() {
-    let context = this;
-    let accessToken = this.appConfiguration.getAccessToken();
-    let allRemittancePurpose = this.rmsSetupService.getRemittancePurpose(accessToken);
-
-    allRemittancePurpose.then(function (msg) {
-      context.set('remittancePurposeList', msg.data);
-    }).catch(function (errorMsg) {
-      context.get('notifier').danger('Failed to Load Remittance Purposes');
-    });
-  },
-
-  loadFundSources() {
-    let context = this;
-    let accessToken = this.appConfiguration.getAccessToken();
-    let allFundSource = this.rmsSetupService.getAllFundSource(accessToken);
-
-    allFundSource.then(function (msg) {
-      context.set('fundSourceList', msg.data);
-    }).catch(function (errorMsg) {
-      context.get('notifier').danger('Failed to Load Fund Sources');
-    });
-  },
-
-  loadDeliveryAgents() {
-    let context = this;
-    let accessToken = this.appConfiguration.getAccessToken();
-    let allDeliveryAgent = this.rmsSetupService.getDeliveryAgent(accessToken);
-
-    allDeliveryAgent.then(function (msg) {
-      context.set('deliveryAgentList', msg.data);
-    }).catch(function (errorMsg) {
-      context.get('notifier').danger('Failed to Load Delivery Agents');
-    });
-  },
-
-  loadAllBanks() {
-    let context = this;
-    let accessToken = this.appConfiguration.getAccessToken();
-    let allBank = this.rmsSetupService.getAllBank(accessToken);
-
-    allBank.then(function (msg) {
-      context.set('bankList', msg.data);
-    }).catch(function (errorMsg) {
-      context.get('notifier').danger('Failed to Load Bank Lists');
-    });
-  },
-
-  loadAllCurrency() {
-    let context = this;
-    let accessToken = this.appConfiguration.getAccessToken();
-    let allBank = this.rmsSetupService.getAllCurrency(accessToken);
-
-    allBank.then(function (msg) {
-      context.set('currencyList', msg.data);
-    }).catch(function (errorMsg) {
-      context.get('notifier').danger('Failed to Load All Currencies');
-    });
-  },
-
-  loadPaymentMode() {
+  loadExchangeHouse() {
     let context = this;
     let accessToken = this.appConfiguration.getAccessToken();
     let allBank = this.rmsSetupService.getPaymentMode(accessToken);
 
     allBank.then(function (msg) {
-      context.set('paymentModeList', msg.data);
+      context.set('exchangeHouseList', msg.data);
     }).catch(function (errorMsg) {
       context.get('notifier').danger('Failed to Load All Payment Mode');
     });
@@ -265,60 +172,12 @@ export default Component.extend({
        console.log('message', selectedValue);
     },
 
-    onChangeRemitanceType(value) {
+    onChangeExchangeHouse(value) {
       let context = this;
-      let remittanceTypeId = value.id;
-      context.defaultInitializer('remTypeId',remittanceTypeId);
-    },
-    onChangeRemittancePurpose(value) {
-      let context = this;
-      let remittancePurposeId = value.id;
-      context.defaultInitializer('remPurposeId',remittancePurposeId);
-    },
-    onChangeSourceOfFund(value) {
-      let context = this;
-      let fundSourceId = value.id;
-      context.defaultInitializer('fundSourceId',fundSourceId);
-    },
-    onChangeDeliveryAgent(value) {
-      let context = this;
-      let deliveryAgentId = value.id;
-      context.defaultInitializer('deliveryAgentId',deliveryAgentId);
-    },
-    onChangeBeneficiaryCountry(value) {
-      let context = this;
-      let beneficiaryCountryId = value.id;
-      context.defaultInitializer('beneficiaryCountryId',beneficiaryCountryId);
-    },
-    onChangeBeneficiaryBank(value) {
-      let context = this;
-      let beneficiaryBankId = value.id;
-      context.defaultInitializer('beneficiaryBankId',beneficiaryBankId);
-      let accessToken = this.appConfiguration.getAccessToken();
-      let bankBranches = this.rmsSetupService.getBranchByBankId(accessToken, beneficiaryBankId);
-
-      bankBranches.then(function (msg) {
-        context.set('bankBranchList', msg.data);
-      }).catch(function (errorMsg) {
-        context.get('notifier').danger('Failed To Load Bank Branches');
-      });
-    },
-    onChangeBeneficiaryBranch(value) {
-      let context = this;
-      let beneficiaryBranchId = value.id;
-      context.defaultInitializer('beneficiaryBranchId',beneficiaryBranchId);
-    },
-    onChangeCurrency(value) {
-      let context = this;
-      let currencyId = value.id;
-      context.defaultInitializer('currencyId',currencyId);
+      let exchangeHouseId = value.id;
+      context.defaultInitializer('exchangeHouseId',exchangeHouseId);
     },
 
-    onChangePaymentMode(value) {
-      let context = this;
-      let payAmountModeId = value.id;
-      context.defaultInitializer('payAmountModeId',payAmountModeId);
-    },
 
     validate() {
       this.get('model')
@@ -336,52 +195,17 @@ export default Component.extend({
               isRegistered: true,
             });
 
-            let remCollectionData = {
+            let coverFundData = {
               "data": {
                 "id": 1,
-                "type": "remittanceTransactions",
+                "type": "coverFundTransactions",
                 "attributes": {
                   "id": 1,
-                  "remitter": {
-                    "id": model.remId
-                  },
-                  "remittanceType": {
-                    "id": 1
-                  },
-                  "remittancePurpose": {
-                    "id": model.remPurposeId
-                  },
-                  "fundSource": {
-                    "id": model.fundSourceId
-                  },
-                  "deliveryAgent": {
-                    "id": model.deliveryAgentId
-                  },
-                  "beneficiarysCountry": {
-                    "id": model.beneficiaryCountryId
-                  },
-                  "beneficiary": {
-                    "id": model.beneficiaryId
-                  },
-                  "beneficiarysBank": {
-                    "id": model.beneficiaryBankId
-                  },
-                  "beneficiarysBranch": {
-                    "id": model.beneficiaryBranchId
+                  "exchangeHouse": {
+                    "id": model.exchangeHouseId
                   },
                   "inputAmount": Number(model.inputAmount),
-                  "currency": {
-                    "id": model.currencyId
-                  },
-                  "transferAmount": Number(model.transferAmount),
-                  "localAmount": Number(model.localAmount),
-                  "commissionAmount": Number(model.comissionAmount),
-                  "totalValueNeedToPay": Number(model.totalPayValue),
-                  "totalValueNeedToAdjust": Number(model.totalAdjustValue),
-                  "totalPayAmount": Number(model.totalPayAmount),
-                  "paymentMode": {
-                    "id": model.payAmountModeId
-                  },
+
                   "olcmState":{
                     "id":this.get('statusId'),
                   },
@@ -395,10 +219,10 @@ export default Component.extend({
               }
             };
 
-            console.log('message--remCollectionData', JSON.stringify(remCollectionData));
+            console.log('message--remCollectionData', JSON.stringify(coverFundData));
 
             let accessToken = this.appConfiguration.getAccessToken();
-            let afterRemitterRegistration = this.transactionActionService.addNewRemittanceCollection(accessToken, remCollectionData);
+            let afterRemitterRegistration = this.transactionActionService.addNewCoverFund(accessToken, coverFundData);
             let context = this;
             afterRemitterRegistration.then(function (msg) {
             }).catch(function (msg) {
