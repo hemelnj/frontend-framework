@@ -15,8 +15,14 @@ export default Service.extend({
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
-    let baseUrl = this.serviceInitializer.getServiceBaseHostURL();
-    let url = baseUrl + "/remittanceTransactions";
+    let appCode = this.appConfiguration.getApplicationCode();
+    let orgCode = this.appConfiguration.getOrganizationCode();
+
+
+    let url = this.gatewayServiceHost + "/" + orgCode + "/" + appCode + "/api/remittanceTransactions/";
+
+    //let url = baseUrl + "/remittanceTransactions";
+
     return this.appRestTemplate.httpRestClient(url, "POST",
       data, {}, beforeSend
     );

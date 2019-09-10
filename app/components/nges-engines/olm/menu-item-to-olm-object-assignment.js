@@ -6,9 +6,9 @@ import config from 'frontend-engine/config/environment';
 export default Component.extend({
 
   treeEngineHost: config.NGES_SERVICE_HOSTS.TREE_SERVICE_HOST,
-  olcmHost: config.NGES_SERVICE_HOSTS.OLM_SERVICE_HOST,
+  //olcmHost: config.NGES_SERVICE_HOSTS.OLM_SERVICE_HOST,
   rmsHost: config.NGES_SERVICE_HOSTS.APP_OLM_SERVICE_HOST,
-  rmsOLMHost: config.NGES_SERVICE_HOSTS.APP_OLM_SERVICE_HOST,
+  rmsOLMHost: config.NGES_SERVICE_HOSTS.OLM_SERVICE_HOST,
 
   olmSetupService: service('nges-engines/olm/olm-setup'),
   tree_engine_object_assignment: service('nges-engines/tree-engine/tree-engine-object-assignment'),
@@ -89,7 +89,7 @@ export default Component.extend({
     let accessToken = this.appConfiguration.getAccessToken();
     let classtypes = context.olmSetupService.getAllClassType(orgCode, appCode, engineCode, accessToken);
     classtypes.then(function (result) {
-      console.log('olmObjects', result.data);
+      console.log('olmObjects--------', result.data);
       context.set('olmObjects', result.data);
     }).catch(function (errorMsg) {
       console.log('Failed To Load OLM Objects');
@@ -230,6 +230,7 @@ export default Component.extend({
           let tempDualBoxStates = dualBoxStates;
           let subMenuList = subMenus.data.attributes.subMenuList;
 
+
           for (let i = 0; i < tempDualBoxStates.length; i++) {
             for (let j = 0; j < subMenuList.length; j++) {
 
@@ -240,7 +241,9 @@ export default Component.extend({
 
 
               let subMenuStates = subMenuList[j].stateList;
+              console.log('message-subMenuStates-', subMenuStates);
               console.log('message-subMenuStates-Length', subMenuStates.length);
+
 
               for (let k = 0; k < subMenuStates.length; k++) {
                 if(subMenuStates[k].id || tempDualBoxStates[i].id){

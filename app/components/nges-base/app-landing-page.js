@@ -84,6 +84,7 @@ export default Component.extend({
 
     onChangeOrganization(orgData) {
       this.appConfiguration.setOrganizationCode(orgData.attributes.code);
+      this.appConfiguration.setOrganizationId(orgData.id);
       console.log('entityCode', orgData.attributes.code);
       this.set('entityId', orgData.id);
       this.loadApplication(orgData.id);

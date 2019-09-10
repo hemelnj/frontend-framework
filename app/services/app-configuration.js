@@ -10,6 +10,7 @@ let appRouteKey = 'appRoute';
 let menuTree = 'menuTree';
 let orgCode = 'orgCode';
 let appCode = 'appCode';
+let orgId = 'orgId';
 let entityCode = 'entityCode';
 
 let appExpectedExpireTime = 'appExpectedExpireTime';
@@ -58,6 +59,18 @@ export default Service.extend(Authorization, {
       console.error('orgCode: ', 'orgCode Not Found');
     }
     return code;
+  },
+
+  setOrganizationId(organizationId) {
+    localStorage.setItem(orgId, organizationId);
+  },
+
+  getOrganizationId() {
+    let id = localStorage.getItem(orgId);
+    if (id == null) {
+      console.error('id: ', 'id Not Found');
+    }
+    return id;
   },
 
   setApplicationCode(applicationCode) {
