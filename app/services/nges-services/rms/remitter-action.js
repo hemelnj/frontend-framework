@@ -6,8 +6,8 @@ export default Service.extend({
   appRestTemplate: service('app-rest-template'),
   serviceInitializer: service('nges-services/service-initializer'),
 
-
-
+  apiGatewayHost: config.NGES_SERVICE_HOSTS.GATEWAY_SERVICE_HOST,
+  appConfiguration: service('app-configuration'),
 
   addNewRemitter(accessToken, remitterData) {
     let data = JSON.stringify(remitterData);
@@ -17,8 +17,12 @@ export default Service.extend({
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
-    let baseUrl = this.serviceInitializer.getServiceBaseHostURL();
-    let url = baseUrl + "/remitters";
+    let appCode = this.appConfiguration.getApplicationCode();
+    let orgCode = this.appConfiguration.getOrganizationCode();
+
+
+    let url = this.gatewayServiceHost + "/" + orgCode + "/" + appCode + "/api/remitters";
+
     return this.appRestTemplate.httpRestClient(url, "POST",
       data, {}, beforeSend
     );
@@ -32,8 +36,12 @@ export default Service.extend({
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
-    let baseUrl = this.serviceInitializer.getServiceBaseHostURL();
-    let url = baseUrl + "/remitters/"+remId;
+    let appCode = this.appConfiguration.getApplicationCode();
+    let orgCode = this.appConfiguration.getOrganizationCode();
+
+
+    let url = this.gatewayServiceHost + "/" + orgCode + "/" + appCode + "/api/remitters/"+remId;
+
     return this.appRestTemplate.httpRestClient(url, "PUT",
       data, {}, beforeSend
     );
@@ -45,8 +53,12 @@ export default Service.extend({
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
-    let baseUrl = this.serviceInitializer.getServiceBaseHostURL();
-    let url = baseUrl + "/remitters/"+remitterId;
+    let appCode = this.appConfiguration.getApplicationCode();
+    let orgCode = this.appConfiguration.getOrganizationCode();
+
+
+    let url = this.gatewayServiceHost + "/" + orgCode + "/" + appCode + "/api/remitters/"+remitterId;
+
     return this.appRestTemplate.httpRestClient(url, "GET",
       null, {}, beforeSend
     );

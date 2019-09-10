@@ -237,9 +237,13 @@ export default Service.extend({
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
-    //let baseUrl = this.serviceInitializer.getServiceBaseHostURL();
-    let baseUrl = "http://rms.common-apps.115.127.24.184.nip.io";//may be custom url
-    let url = baseUrl + "/currencies";
+    let appCode = this.appConfiguration.getApplicationCode();
+    let orgCode = this.appConfiguration.getOrganizationCode();
+
+
+    let url = this.gatewayServiceHost + "/" + orgCode + "/" + appCode + "/api/currencies";
+    //let baseUrl = "http://rms.common-apps.115.127.24.184.nip.io";//may be custom url
+    //let url = baseUrl + "/currencies";
     return this.appRestTemplate.httpRestClient(url, "GET",
       null, {}, beforeSend
     );

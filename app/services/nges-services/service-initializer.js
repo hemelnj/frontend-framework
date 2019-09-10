@@ -104,8 +104,12 @@ export default Service.extend({
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
+    let orgCode = this.appConfiguration.getOrganizationCode();
+    let appCode = this.appConfiguration.getApplicationCode();
     let baseUrl = this.getServiceBaseHostURL();
-    let url = baseUrl + "/" + serviceCode + "/" + id;          // beneficiaries == microServiceFunctionId
+    //let url = baseUrl + "/" + serviceCode + "/" + id;          // beneficiaries == microServiceFunctionId
+
+    let url = this.apiGatewayHost + "/" + orgCode + "/" + appCode + "/api/" + serviceCode + "/" + id;         // beneficiaries == microServiceFunctionId
     return this.appRestTemplate.httpRestClient(url, "PATCH",
       payload, {}, beforeSend
     );

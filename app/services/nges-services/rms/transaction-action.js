@@ -7,6 +7,10 @@ export default Service.extend({
   appRestTemplate: service('app-rest-template'),
   serviceInitializer: service('nges-services/service-initializer'),
 
+  appConfiguration: service('app-configuration'),
+
+  gatewayServiceHost: config.NGES_SERVICE_HOSTS.GATEWAY_SERVICE_HOST,
+
   addNewRemittanceCollection(accessToken, remCollectionData) {
     let data = JSON.stringify(remCollectionData);
 
@@ -19,7 +23,7 @@ export default Service.extend({
     let orgCode = this.appConfiguration.getOrganizationCode();
 
 
-    let url = this.gatewayServiceHost + "/" + orgCode + "/" + appCode + "/api/remittanceTransactions/";
+    let url = this.gatewayServiceHost + "/" + orgCode + "/" + appCode + "/api/remittanceTransactions";
 
     //let url = baseUrl + "/remittanceTransactions";
 
