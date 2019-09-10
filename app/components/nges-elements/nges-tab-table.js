@@ -19,8 +19,6 @@ export default Component.extend({
     this._super(...arguments);
 
 
-
-
     this.set('tableShowEntries', [5, 10, 15, 20]);
 
     // update default globally default selection code
@@ -122,7 +120,7 @@ export default Component.extend({
         let roleId = context.appConfiguration.getUserRoleId();
         context.loadStateActions(accessToken, activeStateId, roleId);
       });
-      this.set('tabInformation',tabInformation);
+      this.set('tabInformation', tabInformation);
       this.onSelectedTabCallBack(tabInformation);  // call parent component method
     },
 
@@ -206,7 +204,6 @@ export default Component.extend({
       })
     });
   },
-
 
 
 })

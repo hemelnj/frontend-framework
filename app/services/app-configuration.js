@@ -298,7 +298,10 @@ export default Service.extend(Authorization, {
 
     let roles = [];
     userRoles.forEach(function (v, k) {
-      roles.push(v.id);
+      if(v.id !==18){
+        roles.push(v.id);
+      }
+
     });
 
     if (roles === []) {

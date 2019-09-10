@@ -150,7 +150,18 @@ export default Component.extend({
     },
 
     savedUserInfo() {
-      let roleList = this.get('userRole');
+      let roleList = this.get('roleList');
+      let role=[];
+      let data={};
+      for (let i = 0; i <roleList.length ; i++) {
+        if(roleList[i].id != 18){
+          data={
+            id:roleList[i].id,
+          };
+          role.pushObject(data);
+        }
+
+      }
 
       let treeDataFunctionModified = this.get('treeDataFunctionModified');
       let treeDataLocationModified = this.get('treeDataLocationModified');
@@ -183,9 +194,10 @@ export default Component.extend({
           },
 
           "name": this.get('userName'),
-          "roleList": roleList
+          "roleList": role
         };
 
+        console.log('roleListroleList', role);
         console.log('message-submitData', JSON.stringify(submitData));
 
         let locationContextTree = context.appTreeEngine.postDataContext(accessToken,submitData).then(function (result) {
@@ -194,6 +206,7 @@ export default Component.extend({
           }else{
             context.get('notifier').success('User Successfully Assigned with Default Function and Location');
           }
+          role=[];
 
         }).catch(function (errorMsg) {
           context.get('notifier').danger('Failed to Assign User with Default Function and Location');
