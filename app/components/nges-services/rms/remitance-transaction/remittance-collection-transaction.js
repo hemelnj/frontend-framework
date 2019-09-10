@@ -343,7 +343,7 @@ export default Component.extend({
                 "id": 1,
                 "type": "remittanceTransactions",
                 "attributes": {
-                  "id": 1,
+
                   "remitter": {
                     "id": model.remId
                   },
