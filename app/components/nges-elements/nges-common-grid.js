@@ -1,5 +1,6 @@
 import Component from '@ember/component';
 import {inject as service} from '@ember/service';
+import config from 'frontend-engine/config/environment';
 
 let DEFAULT_SELECTED_TAB_CODE = 'allStates';
 
@@ -12,6 +13,8 @@ export default Component.extend({
   ngesTabTableService: service('nges-elements/nges-tab-table'),
   serviceInitializer: service('nges-services/service-initializer'),
   notifier: service(),
+
+  frontendEngineUIHost: config.NGES_UI_HOSTS.FRONTEND_ENGINE_UI_HOST,
 
   init() {
     this._super(...arguments);
@@ -47,6 +50,13 @@ export default Component.extend({
     this.initialLoadTabTableData();
   },
   actions: {
+
+    exportAction(){
+      console.log('message--exportAction');
+      window.location.replace("http://staging-rmscore-rms.apps.115.127.24.184.nip.io/remittanceTransactions/export");
+      /*let accessToken = this.appConfiguration.getAccessToken();
+      this.serviceInitializer.getExportFile(accessToken);*/
+    },
     // callback call from item
     onSelectedSingleStateCallBack(item, actionEventId, stateId) {
       console.log('onSelectedSingleState-Item', item);
@@ -195,7 +205,6 @@ export default Component.extend({
       });
     });
   },
-
 
   editPermissionAccess(tab) {
     let context = this;

@@ -78,6 +78,21 @@ export default Service.extend({
     );
   },
 
+  getExportFile(accessToken){
+    let beforeSend = function (xhr) {
+      xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+      xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
+    };
+
+    let orgCode = this.appConfiguration.getOrganizationCode();
+    let appCode = this.appConfiguration.getApplicationCode();
+
+    let url = this.apiGatewayHost + "/" + orgCode + "/" + appCode + "/remittanceTransactions/export";
+    return this.appRestTemplate.httpRestClient(url, "GET",
+      null, {}, beforeSend
+    );
+  },
+
   getNextAllowableState(accessToken, payload) {
     payload = JSON.stringify(payload);
 

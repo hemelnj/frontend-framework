@@ -4,14 +4,19 @@
 
   <div class="card-body">
 
+    <div class="nges-button nges-button-success"
+      {{action "exportAction"}}>
+      Export
+    </div>
+
     {{#if viewCreateButton}}
 
-    {{!log serviceActionableRoute.create.routePath}}
-    {{!nges-core/nges-link
-      route = 'welcome.application-loader.panel-loader.module-loader.service-holder-loader.menu-template-loader.submenu-template-loader.submenu-detail-template-loader'
-      routePath = serviceActionableRoute.create.routePath
-      label =  serviceActionableRoute.create.label
-    }}
+      {{!log serviceActionableRoute.create.routePath}}
+      {{!nges-core/nges-link
+        route = 'welcome.application-loader.panel-loader.module-loader.service-holder-loader.menu-template-loader.submenu-template-loader.submenu-detail-template-loader'
+        routePath = serviceActionableRoute.create.routePath
+        label =  serviceActionableRoute.create.label
+      }}
 
       {{nges-core/nges-link-to
         routePath = serviceActionableRoute.create.routePath
