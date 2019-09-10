@@ -59,7 +59,10 @@ export default Component.extend({
 
     let roles = [];
     roleList.forEach(function (v, k) {
-      roles.push(v.id);
+      if(v.id !== 3){
+        roles.push(v.id);
+      }
+
     });
 
     let context = this;
