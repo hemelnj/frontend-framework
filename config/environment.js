@@ -41,8 +41,8 @@ module.exports = function (environment) {
     },
 
     APP: {
-      appName: 'Remittance Management System',
-      appTitle: 'Remittance Management System',
+      appName: 'RemitClick Portal',
+      appTitle: 'RemitClick Portal',
       appLogo: '/app-logo-rms-v3.png',
     },
 
