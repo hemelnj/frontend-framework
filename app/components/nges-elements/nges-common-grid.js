@@ -80,8 +80,8 @@ export default Component.extend({
   initialLoadTabTableData() {
     let context = this;
 
-    let defaultFunction = 2;
-    let defaultLocation = 2;
+    let defaultFunction = 1;
+    let defaultLocation = 1;
     this.set('defaultFunction', defaultFunction);
     this.set('defaultLocation', defaultLocation);
 
