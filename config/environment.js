@@ -41,8 +41,8 @@ module.exports = function (environment) {
     },
 
     APP: {
-      appName: 'Frontend Framework',
-      appTitle: 'Frontend Framework',
+      appName: 'RemitClick Core',
+      appTitle: 'RemitClick Core',
       appLogo: '/RemitClick Logo - 2-01.png',
     },
 
