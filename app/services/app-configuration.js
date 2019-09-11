@@ -271,7 +271,7 @@ export default Service.extend(Authorization, {
     let userRoles = this.getUserRoles();
 
     for (let i = 0; i < userRoles.length; i++) {
-      if (userRoles[i].name !== 'role_user') {
+      if (userRoles[i].attributes.name !== 'role_user') {
         return userRoles[i].id;
       }
     }
