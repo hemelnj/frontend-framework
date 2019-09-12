@@ -78,21 +78,6 @@ export default Service.extend({
     );
   },
 
-  getExportFile(accessToken){
-    let beforeSend = function (xhr) {
-      xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
-      xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
-    };
-
-    let orgCode = this.appConfiguration.getOrganizationCode();
-    let appCode = this.appConfiguration.getApplicationCode();
-
-    let url = this.apiGatewayHost + "/" + orgCode + "/" + appCode + "/remittanceTransactions/export";
-    return this.appRestTemplate.httpRestClient(url, "GET",
-      null, {}, beforeSend
-    );
-  },
-
   getNextAllowableState(accessToken, payload) {
     payload = JSON.stringify(payload);
 
@@ -119,21 +104,12 @@ export default Service.extend({
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
-<<<<<<< HEAD
-   let orgCode = this.appConfiguration.getOrganizationCode();
-   let appCode = this.appConfiguration.getApplicationCode();
-    let baseUrl = this.getServiceBaseHostURL();
-    //let url = baseUrl + "/" + serviceCode + "/" + id;          // beneficiaries == microServiceFunctionId
-
-    let url = this.apiGatewayHost + "/" + orgCode + "/" + appCode + "/api/" + serviceCode + "/" + id;          // beneficiaries == microServiceFunctionId
-=======
     let orgCode = this.appConfiguration.getOrganizationCode();
     let appCode = this.appConfiguration.getApplicationCode();
     let baseUrl = this.getServiceBaseHostURL();
     //let url = baseUrl + "/" + serviceCode + "/" + id;          // beneficiaries == microServiceFunctionId
 
     let url = this.apiGatewayHost + "/" + orgCode + "/" + appCode + "/api/" + serviceCode + "/" + id;         // beneficiaries == microServiceFunctionId
->>>>>>> 78119fb543c05ea729ac2f76d3902152ee877d90
     return this.appRestTemplate.httpRestClient(url, "PATCH",
       payload, {}, beforeSend
     );
