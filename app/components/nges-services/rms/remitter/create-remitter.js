@@ -17,9 +17,7 @@ export default Component.extend({
   serviceInitializer: service('nges-services/service-initializer'),
   peSetupService: service('nges-engines/property-extender/pe-setup'),
   init() {
-    this._super(...arguments
-  )
-    ;
+    this._super(...arguments);
     let serviceInformation = this.get('serviceInformation');
 
     //console.log('this.appConfiguration.getRouteParams()',this.appConfiguration.getRouteParams());
@@ -38,6 +36,7 @@ export default Component.extend({
 
     this.initRiskStatus();
     this.setType();
+
     let startStateId = this.appWelcome.getStartStateId();
     this.getNextAllowableStateForCreate(startStateId);
 
@@ -55,7 +54,7 @@ export default Component.extend({
 
   didUpdateAttrs() {
     this._super(...arguments
-  )
+    )
     ;
     let remitterData = this.get('remitterData');
     let type = remitterData.type;
@@ -405,107 +404,107 @@ export default Component.extend({
 
           context.get('model')
             .validate()
-            .then(({validations})=>{
+            .then(({validations}) => {
 
-            context.set('didValidate', true);
+              context.set('didValidate', true);
 
-          if (validations.get('isValid')) {
-            context.setProperties({
-              showAlert: false,
-              isRegistered: true,
-            });
+              if (validations.get('isValid')) {
+                context.setProperties({
+                  showAlert: false,
+                  isRegistered: true,
+                });
 
-            let model = context.get('model');
-            let primaryPhotoIssue = context.dateToLongConversion(model.primaryPhotoIssue);
-            let primaryPhotoExpiry = context.dateToLongConversion(model.primaryPhotoExpiry);
+                let model = context.get('model');
+                let primaryPhotoIssue = context.dateToLongConversion(model.primaryPhotoIssue);
+                let primaryPhotoExpiry = context.dateToLongConversion(model.primaryPhotoExpiry);
 
-            let dob = context.dateToLongConversion(model.dob);
+                let dob = context.dateToLongConversion(model.dob);
 
-            let secondaryPhotoIssue = context.dateToLongConversion(model.secondaryPhotoIssue);
-            let secondaryPhotoExpiry = context.dateToLongConversion(model.secondaryPhotoExpiry);
+                let secondaryPhotoIssue = context.dateToLongConversion(model.secondaryPhotoIssue);
+                let secondaryPhotoExpiry = context.dateToLongConversion(model.secondaryPhotoExpiry);
 
 
-            let remitterData = {
-              data: {
-                "id": model.remId,
-                "type": "remitters",
-                "attributes": {
-                  "id": model.remId,
-                  "fathersName": model.fathersName,
-                  "type": model.type,
-                  "mothersName": model.mothersName,
-                  "code": model.code,
-                  "contactNo": model.mNumber,
-                  "emailId": model.email,
-                  "addressOne": model.address1,
-                  "addressTwo": model.address2,
-                  "status": result.data.id,
-                  "olcmState": {
-                    "id": result.data.id,
-                  },
-                  "function": context.get('functionId'),
-                  "location": context.get('locationId'),
-                  "dateOfBirth": dob,
-                  "risk": model.risk,
-                  "country": {
-                    "id": model.countryId
-                  },
-                  "state": {
-                    "id": model.stateId
-                  },
+                let remitterData = {
+                  data: {
+                    "id": model.remId,
+                    "type": "remitters",
+                    "attributes": {
+                      "id": model.remId,
+                      "fathersName": model.fathersName,
+                      "type": model.type,
+                      "mothersName": model.mothersName,
+                      "code": model.code,
+                      "contactNo": model.mNumber,
+                      "emailId": model.email,
+                      "addressOne": model.address1,
+                      "addressTwo": model.address2,
+                      "status": result.data.id,
+                      "olcmState": {
+                        "id": result.data.id,
+                      },
+                      "function": context.get('functionId'),
+                      "location": context.get('locationId'),
+                      "dateOfBirth": dob,
+                      "risk": model.risk,
+                      "country": {
+                        "id": model.countryId
+                      },
+                      "state": {
+                        "id": model.stateId
+                      },
 
-                  "town": model.cityOrTown,
-                  "zipCode": model.zipCode,
-                  "proofOfAddressAndExpiryDate": model.proofOfAddress,
-                  "natureOfJob": model.noj,
-                  "nationality": {
-                    "id": model.nationalityId
-                  },
-                  "incomeRange": Number(model.incomeRange),
-                  "yearlyExpectedVolumeOfRemittance": Number(model.expetedRemitance),
-                  "remarks": model.remarks,
-                  "primaryPhotoId": {
-                    "id": "1",
-                    "idType": {
-                      "id": model.primaryPhotoId
-                    },
-                    "issueDate": primaryPhotoIssue,
-                    "expiryDate": primaryPhotoExpiry,
-                    "type": model.primaryPhotoType,
-                  },
-                  "secondaryPhotoId": {
-                    "id": "1",
-                    "idType": {
-                      "id": model.secondaryPhotoId
-                    },
-                    "issueDate": secondaryPhotoIssue,
-                    "expiryDate": secondaryPhotoExpiry,
-                    "type": model.secondaryPhotoType
-                  },
-                  "name": model.remitterName
-                }
-              }
-            };
+                      "town": model.cityOrTown,
+                      "zipCode": model.zipCode,
+                      "proofOfAddressAndExpiryDate": model.proofOfAddress,
+                      "natureOfJob": model.noj,
+                      "nationality": {
+                        "id": model.nationalityId
+                      },
+                      "incomeRange": Number(model.incomeRange),
+                      "yearlyExpectedVolumeOfRemittance": Number(model.expetedRemitance),
+                      "remarks": model.remarks,
+                      "primaryPhotoId": {
+                        "id": "1",
+                        "idType": {
+                          "id": model.primaryPhotoId
+                        },
+                        "issueDate": primaryPhotoIssue,
+                        "expiryDate": primaryPhotoExpiry,
+                        "type": model.primaryPhotoType,
+                      },
+                      "secondaryPhotoId": {
+                        "id": "1",
+                        "idType": {
+                          "id": model.secondaryPhotoId
+                        },
+                        "issueDate": secondaryPhotoIssue,
+                        "expiryDate": secondaryPhotoExpiry,
+                        "type": model.secondaryPhotoType
+                      },
+                      "name": model.remitterName
+                    }
+                  }
+                };
 
-            console.log('message--remitterData', JSON.stringify(remitterData));
+                console.log('message--remitterData', JSON.stringify(remitterData));
 
-            let accessToken = context.appConfiguration.getAccessToken();
-            let afterRemitterUpdate = context.serviceInitializer.stateActionUpdate(accessToken, model.remId, remitterData);
+                let accessToken = context.appConfiguration.getAccessToken();
+                let afterRemitterUpdate = context.serviceInitializer.stateActionUpdate(accessToken, model.remId, remitterData);
 
-            afterRemitterUpdate.then(function (msg) {
-              context.get('notifier').success('Remitter Data Updated And Send to Next State');
-            }).catch(function (msg) {
-              if (msg.status === 204) {
-                context.get('notifier').success('Remitter Data Updated And Send to Next State');
+                afterRemitterUpdate.then(function (msg) {
+                  context.get('notifier').success('Remitter Data Updated And Send to Next State');
+                }).catch(function (msg) {
+                  if (msg.status === 204) {
+                    context.get('notifier').success('Remitter Data Updated And Send to Next State');
+                  } else {
+                    context.get('notifier').danger('Remitter Data Update Failed!');
+                  }
+                });
+
               } else {
-                context.get('notifier').danger('Remitter Data Update Failed!');
+                context.get('notifier').danger('Fill up all the fields properly');
               }
-            });
-
-          } else {
-            context.get('notifier').danger('Fill up all the fields properly');
-          }
-        })
+            })
           ;
         });
 
@@ -727,106 +726,106 @@ export default Component.extend({
 
 
       this.get('model').validate()
-        .then(({validations})=>{
+        .then(({validations}) => {
 
-        this.set('didValidate', true);
+          this.set('didValidate', true);
 
-      if (validations.get('isValid')) {
-        this.setProperties({
-          showAlert: false,
-          isRegistered: true,
-        });
+          if (validations.get('isValid')) {
+            this.setProperties({
+              showAlert: false,
+              isRegistered: true,
+            });
 
-        let model = this.get('model');
-        let primaryPhotoIssue = this.dateToLongConversion(model.primaryPhotoIssue);
-        let primaryPhotoExpiry = this.dateToLongConversion(model.primaryPhotoExpiry);
+            let model = this.get('model');
+            let primaryPhotoIssue = this.dateToLongConversion(model.primaryPhotoIssue);
+            let primaryPhotoExpiry = this.dateToLongConversion(model.primaryPhotoExpiry);
 
-        let dob = this.dateToLongConversion(model.dob);
+            let dob = this.dateToLongConversion(model.dob);
 
-        let secondaryPhotoIssue = this.dateToLongConversion(model.secondaryPhotoIssue);
-        let secondaryPhotoExpiry = this.dateToLongConversion(model.secondaryPhotoExpiry);
+            let secondaryPhotoIssue = this.dateToLongConversion(model.secondaryPhotoIssue);
+            let secondaryPhotoExpiry = this.dateToLongConversion(model.secondaryPhotoExpiry);
 
 
-        let remitterData = {
-          data: {
-            "id": model.remId,
-            "type": "remitters",
-            "attributes": {
-              "id": model.remId,
-              "fathersName": model.fathersName,
-              "type": model.type,
-              "mothersName": model.mothersName,
-              "code": model.code,
-              "contactNo": model.mNumber,
-              "emailId": model.email,
-              "addressOne": model.address1,
-              "addressTwo": model.address2,
-              "status": this.get('statusId'),
-              "olcmState": {
-                "id": this.get('statusId'),
-              },
-              "function": this.get('functionId'),
-              "location": this.get('locationId'),
-              "dateOfBirth": dob,
-              "risk": model.risk,
-              "country": {
-                "id": model.countryId
-              },
-              "state": {
-                "id": model.stateId
-              },
+            let remitterData = {
+              data: {
+                "id": model.remId,
+                "type": "remitters",
+                "attributes": {
+                  "id": model.remId,
+                  "fathersName": model.fathersName,
+                  "type": model.type,
+                  "mothersName": model.mothersName,
+                  "code": model.code,
+                  "contactNo": model.mNumber,
+                  "emailId": model.email,
+                  "addressOne": model.address1,
+                  "addressTwo": model.address2,
+                  "status": this.get('statusId'),
+                  "olcmState": {
+                    "id": this.get('statusId'),
+                  },
+                  "function": this.get('functionId'),
+                  "location": this.get('locationId'),
+                  "dateOfBirth": dob,
+                  "risk": model.risk,
+                  "country": {
+                    "id": model.countryId
+                  },
+                  "state": {
+                    "id": model.stateId
+                  },
 
-              "town": model.cityOrTown,
-              "zipCode": model.zipCode,
-              "proofOfAddressAndExpiryDate": model.proofOfAddress,
-              "natureOfJob": model.noj,
-              "nationality": {
-                "id": model.nationalityId
-              },
-              "incomeRange": Number(model.incomeRange),
-              "yearlyExpectedVolumeOfRemittance": Number(model.expetedRemitance),
-              "remarks": model.remarks,
-              "primaryPhotoId": {
-                "id": "1",
-                "idType": {
-                  "id": model.primaryPhotoId
-                },
-                "issueDate": primaryPhotoIssue,
-                "expiryDate": primaryPhotoExpiry,
-                "type": model.primaryPhotoType,
-              },
-              "secondaryPhotoId": {
-                "id": "1",
-                "idType": {
-                  "id": model.secondaryPhotoId
-                },
-                "issueDate": secondaryPhotoIssue,
-                "expiryDate": secondaryPhotoExpiry,
-                "type": model.secondaryPhotoType
-              },
-              "name": model.remitterName
-            }
-          }
-        };
-        console.log('message--remitterData', JSON.stringify(remitterData));
-        let accessToken = this.appConfiguration.getAccessToken();
-        let afterRemitterUpdate = this.remitterActionService.updateRemitterData(accessToken, remitterData, model.remId);
-        let context = this;
-        afterRemitterUpdate.then(function (msg) {
-          context.get('notifier').success('Remitter Data Update Successful');
-        }).catch(function (msg) {
-          if (msg.status === 204) {
-            context.get('notifier').success('Remitter Data Update Successful');
+                  "town": model.cityOrTown,
+                  "zipCode": model.zipCode,
+                  "proofOfAddressAndExpiryDate": model.proofOfAddress,
+                  "natureOfJob": model.noj,
+                  "nationality": {
+                    "id": model.nationalityId
+                  },
+                  "incomeRange": Number(model.incomeRange),
+                  "yearlyExpectedVolumeOfRemittance": Number(model.expetedRemitance),
+                  "remarks": model.remarks,
+                  "primaryPhotoId": {
+                    "id": "1",
+                    "idType": {
+                      "id": model.primaryPhotoId
+                    },
+                    "issueDate": primaryPhotoIssue,
+                    "expiryDate": primaryPhotoExpiry,
+                    "type": model.primaryPhotoType,
+                  },
+                  "secondaryPhotoId": {
+                    "id": "1",
+                    "idType": {
+                      "id": model.secondaryPhotoId
+                    },
+                    "issueDate": secondaryPhotoIssue,
+                    "expiryDate": secondaryPhotoExpiry,
+                    "type": model.secondaryPhotoType
+                  },
+                  "name": model.remitterName
+                }
+              }
+            };
+            console.log('message--remitterData', JSON.stringify(remitterData));
+            let accessToken = this.appConfiguration.getAccessToken();
+            let afterRemitterUpdate = this.remitterActionService.updateRemitterData(accessToken, remitterData, model.remId);
+            let context = this;
+            afterRemitterUpdate.then(function (msg) {
+              context.get('notifier').success('Remitter Data Update Successful');
+            }).catch(function (msg) {
+              if (msg.status === 204) {
+                context.get('notifier').success('Remitter Data Update Successful');
+              } else {
+                context.get('notifier').danger('Remitter Data Update Failed!');
+              }
+            });
+
           } else {
-            context.get('notifier').danger('Remitter Data Update Failed!');
+            let context = this;
+            context.get('notifier').danger('Fill up all the fields properly');
           }
-        });
-
-      } else {
-        let context = this;
-        context.get('notifier').danger('Fill up all the fields properly');
-      }
-    })
+        })
       ;
     },
 
@@ -834,105 +833,105 @@ export default Component.extend({
 
       this.get('model')
         .validate()
-        .then(({validations})=>{
+        .then(({validations}) => {
 
-        this.set('didValidate', true);
+          this.set('didValidate', true);
 
-      if (validations.get('isValid')) {
-        this.setProperties({
-          showAlert: false,
-          isRegistered: true,
-        });
+          if (validations.get('isValid')) {
+            this.setProperties({
+              showAlert: false,
+              isRegistered: true,
+            });
 
-        let model = this.get('model');
-        let primaryPhotoIssue = this.dateToLongConversion(model.primaryPhotoIssue);
-        let primaryPhotoExpiry = this.dateToLongConversion(model.primaryPhotoExpiry);
+            let model = this.get('model');
+            let primaryPhotoIssue = this.dateToLongConversion(model.primaryPhotoIssue);
+            let primaryPhotoExpiry = this.dateToLongConversion(model.primaryPhotoExpiry);
 
-        let dob = this.dateToLongConversion(model.dob);
+            let dob = this.dateToLongConversion(model.dob);
 
-        let secondaryPhotoIssue = this.dateToLongConversion(model.secondaryPhotoIssue);
-        let secondaryPhotoExpiry = this.dateToLongConversion(model.secondaryPhotoExpiry);
+            let secondaryPhotoIssue = this.dateToLongConversion(model.secondaryPhotoIssue);
+            let secondaryPhotoExpiry = this.dateToLongConversion(model.secondaryPhotoExpiry);
 
 
-        let remitterData = {
-          data: {
-            "id": model.remId,
-            "type": "remitters",
-            "attributes": {
-              "id": model.remId,
-              "fathersName": model.fathersName,
-              "type": model.type,
-              "mothersName": model.mothersName,
-              "code": model.code,
-              "contactNo": model.mNumber,
-              "emailId": model.email,
-              "addressOne": model.address1,
-              "addressTwo": model.address2,
-              "status": this.get('statusId'),
-              "olcmState": {
-                "id": this.get('statusId'),
-              },
-              "function": this.get('functionId'),
-              "location": this.get('locationId'),
-              "dateOfBirth": dob,
-              "risk": model.risk,
-              "country": {
-                "id": model.countryId
-              },
-              "state": {
-                "id": model.stateId
-              },
+            let remitterData = {
+              data: {
+                "id": model.remId,
+                "type": "remitters",
+                "attributes": {
+                  "id": model.remId,
+                  "fathersName": model.fathersName,
+                  "type": model.type,
+                  "mothersName": model.mothersName,
+                  "code": model.code,
+                  "contactNo": model.mNumber,
+                  "emailId": model.email,
+                  "addressOne": model.address1,
+                  "addressTwo": model.address2,
+                  "status": this.get('statusId'),
+                  "olcmState": {
+                    "id": this.get('statusId'),
+                  },
+                  "function": this.get('functionId'),
+                  "location": this.get('locationId'),
+                  "dateOfBirth": dob,
+                  "risk": model.risk,
+                  "country": {
+                    "id": model.countryId
+                  },
+                  "state": {
+                    "id": model.stateId
+                  },
 
-              "town": model.cityOrTown,
-              "zipCode": model.zipCode,
-              "proofOfAddressAndExpiryDate": model.proofOfAddress,
-              "natureOfJob": model.noj,
-              "nationality": {
-                "id": model.nationalityId
-              },
-              "incomeRange": Number(model.incomeRange),
-              "yearlyExpectedVolumeOfRemittance": Number(model.expetedRemitance),
-              "remarks": model.remarks,
-              "primaryPhotoId": {
-                "id": "1",
-                "idType": {
-                  "id": model.primaryPhotoId
-                },
-                "issueDate": primaryPhotoIssue,
-                "expiryDate": primaryPhotoExpiry,
-                "type": model.primaryPhotoType,
-              },
-              "secondaryPhotoId": {
-                "id": "1",
-                "idType": {
-                  "id": model.secondaryPhotoId
-                },
-                "issueDate": secondaryPhotoIssue,
-                "expiryDate": secondaryPhotoExpiry,
-                "type": model.secondaryPhotoType
-              },
-              "name": model.remitterName
-            }
-          }
-        };
-        console.log('message--remitterData', JSON.stringify(remitterData));
-        let accessToken = this.appConfiguration.getAccessToken();
-        let afterRemitterRegistration = this.remitterActionService.addNewRemitter(accessToken, remitterData);
-        let context = this;
-        afterRemitterRegistration.then(function (msg) {
-        }).catch(function (msg) {
-          if (msg.status === 201) {
-            context.get('notifier').success('Remitter Registration Successful');
+                  "town": model.cityOrTown,
+                  "zipCode": model.zipCode,
+                  "proofOfAddressAndExpiryDate": model.proofOfAddress,
+                  "natureOfJob": model.noj,
+                  "nationality": {
+                    "id": model.nationalityId
+                  },
+                  "incomeRange": Number(model.incomeRange),
+                  "yearlyExpectedVolumeOfRemittance": Number(model.expetedRemitance),
+                  "remarks": model.remarks,
+                  "primaryPhotoId": {
+                    "id": "1",
+                    "idType": {
+                      "id": model.primaryPhotoId
+                    },
+                    "issueDate": primaryPhotoIssue,
+                    "expiryDate": primaryPhotoExpiry,
+                    "type": model.primaryPhotoType,
+                  },
+                  "secondaryPhotoId": {
+                    "id": "1",
+                    "idType": {
+                      "id": model.secondaryPhotoId
+                    },
+                    "issueDate": secondaryPhotoIssue,
+                    "expiryDate": secondaryPhotoExpiry,
+                    "type": model.secondaryPhotoType
+                  },
+                  "name": model.remitterName
+                }
+              }
+            };
+            console.log('message--remitterData', JSON.stringify(remitterData));
+            let accessToken = this.appConfiguration.getAccessToken();
+            let afterRemitterRegistration = this.remitterActionService.addNewRemitter(accessToken, remitterData);
+            let context = this;
+            afterRemitterRegistration.then(function (msg) {
+            }).catch(function (msg) {
+              if (msg.status === 201) {
+                context.get('notifier').success('Remitter Registration Successful');
+              } else {
+                context.get('notifier').danger('Remitter Registration Failed!');
+              }
+            });
+
           } else {
-            context.get('notifier').danger('Remitter Registration Failed!');
+            let context = this;
+            context.get('notifier').danger('Fill up all the fields properly');
           }
-        });
-
-      } else {
-        let context = this;
-        context.get('notifier').danger('Fill up all the fields properly');
-      }
-    })
+        })
       ;
     },
 
@@ -959,8 +958,7 @@ export default Component.extend({
 
 })
 
-let convert = (date) =>
-{
+let convert = (date) => {
   date = date.toString();
   let year = date.substring(0, 4);
   let month = date.substring(4, 6);
