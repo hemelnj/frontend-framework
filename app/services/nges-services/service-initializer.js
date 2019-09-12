@@ -144,4 +144,30 @@ export default Service.extend({
     );
   },
 
+  getDefaultFunctionId(accessToken, userId, orgId) {
+    let beforeSend = function (xhr) {
+      xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+      xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
+    };
+
+    let url = this.treeEngineHost + "/users/" + userId + "/org/"+orgId+"/functionalHierarchy";
+    //let url = this.treeEngineHost + "/users/" + userId + "/functionalHierarchy";
+    return this.appRestTemplate.httpRestClient(url, "GET",
+      null, {}, beforeSend
+    );
+  },
+
+  getDefaultLocationId(accessToken, userId, orgId) {
+    let beforeSend = function (xhr) {
+      xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+      xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
+    };
+
+    let url = this.treeEngineHost + "/users/" + userId + "/org/"+orgId+"/locationHierarchy";
+    //let url = this.treeEngineHost + "/users/" + userId + "/locationHierarchy";
+    return this.appRestTemplate.httpRestClient(url, "GET",
+      null, {}, beforeSend
+    );
+  },
+
 })
