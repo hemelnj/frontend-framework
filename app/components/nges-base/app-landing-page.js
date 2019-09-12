@@ -59,7 +59,10 @@ export default Component.extend({
 
     let roles = [];
     roleList.forEach(function (v, k) {
-      roles.push(v.id);
+      if(v.id !== 3){
+        roles.push(v.id);
+      }
+
     });
 
     let context = this;
@@ -84,6 +87,7 @@ export default Component.extend({
 
     onChangeOrganization(orgData) {
       this.appConfiguration.setOrganizationCode(orgData.attributes.code);
+      this.appConfiguration.setOrganizationId(orgData.id);
       console.log('entityCode', orgData.attributes.code);
       this.set('entityId', orgData.id);
       this.loadApplication(orgData.id);
