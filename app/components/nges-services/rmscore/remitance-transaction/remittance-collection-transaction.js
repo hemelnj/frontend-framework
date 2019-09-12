@@ -95,7 +95,7 @@ export default Component.extend({
     let context = this;
     let accessToken = this.appConfiguration.getAccessToken();
     let userId = this.appConfiguration.getUserId();
-    let functionId = this.rmsBaseService.getDefaultFunctionId(accessToken,userId);
+    let functionId = this.serviceInitializer.getDefaultFunctionId(accessToken,userId);
 
     functionId.then(function (msg) {
       console.log('message--functionId', msg.data.attributes.id);
@@ -106,7 +106,7 @@ export default Component.extend({
     let context = this;
     let accessToken = this.appConfiguration.getAccessToken();
     let userId = this.appConfiguration.getUserId();
-    let locationId = this.rmsBaseService.getDefaultLocationId(accessToken,userId);
+    let locationId = this.serviceInitializer.getDefaultLocationId(accessToken,userId);
 
     locationId.then(function (msg) {
       console.log('message--locationId', msg.data.attributes.id);
