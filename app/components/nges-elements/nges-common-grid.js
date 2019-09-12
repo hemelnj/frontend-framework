@@ -19,6 +19,8 @@ export default Component.extend({
   init() {
     this._super(...arguments);
     this.createButtonAccess();
+    this.getDefaultUserFunctionId();
+    this.getDefaultUserLocationId();
   },
 
   createButtonAccess() {
@@ -38,6 +40,34 @@ export default Component.extend({
         } catch (e) {
         }
       });
+    });
+  },
+
+
+  getDefaultUserFunctionId() {
+    let context = this;
+    let accessToken = this.appConfiguration.getAccessToken();
+    let userId = this.appConfiguration.getUserId();
+    let orgId = this.appConfiguration.getOrganizationId();
+    let functionId = this.serviceInitializer.getDefaultFunctionId(accessToken, userId, orgId);
+
+    functionId.then(function (msg) {
+      console.log('message--functionId', msg.data.attributes.id);
+      context.set('defaultFunction', msg.data.attributes.id);
+    });
+  },
+  getDefaultUserLocationId() {
+    let context = this;
+    let accessToken = this.appConfiguration.getAccessToken();
+    let userId = this.appConfiguration.getUserId();
+    let orgId = this.appConfiguration.getOrganizationId();
+    let locationId = this.serviceInitializer.getDefaultLocationId(accessToken, userId, orgId);
+
+    locationId.then(function (msg) {
+      console.log('message--locationId', msg.data.attributes.id);
+      context.set('defaultLocation', msg.data.attributes.id);
+    }).catch(function (errorMsg) {
+      context.get('notifier').danger('Failed to Load User Default Location Id');
     });
   },
 
@@ -80,10 +110,9 @@ export default Component.extend({
   initialLoadTabTableData() {
     let context = this;
 
-    let defaultFunction = 1;
-    let defaultLocation = 1;
-    this.set('defaultFunction', defaultFunction);
-    this.set('defaultLocation', defaultLocation);
+    let defaultFunction = this.get('defaultFunction');
+    let defaultLocation = this.get('defaultLocation');
+
 
 
     let accessToken = context.appConfiguration.getAccessToken();

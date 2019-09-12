@@ -119,12 +119,21 @@ export default Service.extend({
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
+<<<<<<< HEAD
    let orgCode = this.appConfiguration.getOrganizationCode();
    let appCode = this.appConfiguration.getApplicationCode();
     let baseUrl = this.getServiceBaseHostURL();
     //let url = baseUrl + "/" + serviceCode + "/" + id;          // beneficiaries == microServiceFunctionId
 
     let url = this.apiGatewayHost + "/" + orgCode + "/" + appCode + "/api/" + serviceCode + "/" + id;          // beneficiaries == microServiceFunctionId
+=======
+    let orgCode = this.appConfiguration.getOrganizationCode();
+    let appCode = this.appConfiguration.getApplicationCode();
+    let baseUrl = this.getServiceBaseHostURL();
+    //let url = baseUrl + "/" + serviceCode + "/" + id;          // beneficiaries == microServiceFunctionId
+
+    let url = this.apiGatewayHost + "/" + orgCode + "/" + appCode + "/api/" + serviceCode + "/" + id;         // beneficiaries == microServiceFunctionId
+>>>>>>> 78119fb543c05ea729ac2f76d3902152ee877d90
     return this.appRestTemplate.httpRestClient(url, "PATCH",
       payload, {}, beforeSend
     );
@@ -156,6 +165,32 @@ export default Service.extend({
     let url = this.rmsOLMServiceHost + "/actionevents/allAllowableActions";
     return this.appRestTemplate.httpRestClient(url, "POST",
       data, {}, beforeSend
+    );
+  },
+
+  getDefaultFunctionId(accessToken, userId, orgId) {
+    let beforeSend = function (xhr) {
+      xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+      xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
+    };
+
+    let url = this.treeEngineHost + "/users/" + userId + "/org/"+orgId+"/functionalHierarchy";
+    //let url = this.treeEngineHost + "/users/" + userId + "/functionalHierarchy";
+    return this.appRestTemplate.httpRestClient(url, "GET",
+      null, {}, beforeSend
+    );
+  },
+
+  getDefaultLocationId(accessToken, userId, orgId) {
+    let beforeSend = function (xhr) {
+      xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+      xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
+    };
+
+    let url = this.treeEngineHost + "/users/" + userId + "/org/"+orgId+"/locationHierarchy";
+    //let url = this.treeEngineHost + "/users/" + userId + "/locationHierarchy";
+    return this.appRestTemplate.httpRestClient(url, "GET",
+      null, {}, beforeSend
     );
   },
 

@@ -11,6 +11,7 @@ let menuTree = 'menuTree';
 let orgCode = 'orgCode';
 let orgId = 'orgId';
 let appCode = 'appCode';
+let orgId = 'orgId';
 let entityCode = 'entityCode';
 
 let appExpectedExpireTime = 'appExpectedExpireTime';
@@ -61,7 +62,10 @@ export default Service.extend(Authorization, {
     return code;
   },
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 78119fb543c05ea729ac2f76d3902152ee877d90
   setOrganizationId(organizationId) {
     localStorage.setItem(orgId, organizationId);
   },
