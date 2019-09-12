@@ -5,9 +5,9 @@ export default Service.extend({
   store: service(),
   appRestTemplate: service('app-rest-template'),
   appConfiguration: service('app-configuration'),
-  rmsServiceHost: config.NGES_SERVICE_HOSTS.APP_OLM_SERVICE_HOST,
+  //rmsServiceHost: config.NGES_SERVICE_HOSTS.APP_OLM_SERVICE_HOST,
   treeEngineHost: config.NGES_SERVICE_HOSTS.TREE_SERVICE_HOST,
-  rmsOLMServiceHost: config.NGES_SERVICE_HOSTS.APP_OLM_SERVICE_HOST,
+  rmsOLMServiceHost: config.NGES_SERVICE_HOSTS.OLM_SERVICE_HOST,
   appWelcome: service('nges-core/app-welcome'),
 
   apiGatewayHost: config.NGES_SERVICE_HOSTS.GATEWAY_SERVICE_HOST,
@@ -104,8 +104,12 @@ export default Service.extend({
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
+    let orgCode = this.appConfiguration.getOrganizationCode();
+    let appCode = this.appConfiguration.getApplicationCode();
     let baseUrl = this.getServiceBaseHostURL();
-    let url = baseUrl + "/" + serviceCode + "/" + id;          // beneficiaries == microServiceFunctionId
+    //let url = baseUrl + "/" + serviceCode + "/" + id;          // beneficiaries == microServiceFunctionId
+
+    let url = this.apiGatewayHost + "/" + orgCode + "/" + appCode + "/api/" + serviceCode + "/" + id;         // beneficiaries == microServiceFunctionId
     return this.appRestTemplate.httpRestClient(url, "PATCH",
       payload, {}, beforeSend
     );
@@ -137,6 +141,32 @@ export default Service.extend({
     let url = this.rmsOLMServiceHost + "/actionevents/allAllowableActions";
     return this.appRestTemplate.httpRestClient(url, "POST",
       data, {}, beforeSend
+    );
+  },
+
+  getDefaultFunctionId(accessToken, userId, orgId) {
+    let beforeSend = function (xhr) {
+      xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+      xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
+    };
+
+    let url = this.treeEngineHost + "/users/" + userId + "/org/"+orgId+"/functionalHierarchy";
+    //let url = this.treeEngineHost + "/users/" + userId + "/functionalHierarchy";
+    return this.appRestTemplate.httpRestClient(url, "GET",
+      null, {}, beforeSend
+    );
+  },
+
+  getDefaultLocationId(accessToken, userId, orgId) {
+    let beforeSend = function (xhr) {
+      xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+      xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
+    };
+
+    let url = this.treeEngineHost + "/users/" + userId + "/org/"+orgId+"/locationHierarchy";
+    //let url = this.treeEngineHost + "/users/" + userId + "/locationHierarchy";
+    return this.appRestTemplate.httpRestClient(url, "GET",
+      null, {}, beforeSend
     );
   },
 
