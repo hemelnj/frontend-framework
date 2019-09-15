@@ -4,6 +4,7 @@ import {inject as service} from '@ember/service';
 
 export default Component.extend({
 
+  appLogo: config.APP.appLogo,
   router: service(),
   notifier: service(),
 
@@ -14,6 +15,13 @@ export default Component.extend({
   appAuthEngine: service('nges-engines/auth-engine/app-auth-engine'),
   appConfiguration: service('app-configuration'),
   appAuthEngineCredential: service('nges-engines/auth-engine/app-auth-engine-credential'),
+
+  model(service_data, transition) {
+
+    return {
+      appLogo: this.appLogo
+    }
+  },
 
   init() {
     this._super(...arguments);

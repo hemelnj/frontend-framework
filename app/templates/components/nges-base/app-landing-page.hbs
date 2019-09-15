@@ -1,8 +1,8 @@
 <style>
 
 
-  .width {
-    width: 450px;
+  .width{
+    width: 350px;
   }
 
   .width-400 input {
@@ -17,17 +17,34 @@
 
 </style>
 
-
 <div class="container width login-box" style="padding-left: 0; padding-right: 0; background: #F4F4F4">
-  <div class="card">
-    <div class="card-body">
+  <div class="login-logo-bg">
+    <center>
+      <img src="{{appLogo}}" style="max-height: 15%;max-width: 65%; padding: 15px">
+    </center>
+  </div>
+  <form class="form-signin">
+    <br>
+
+    <div style="padding: 20px;margin-top: -4%">
+      <div class="row">
+
+        <div class="col-md-6" style="float: right;">
+          {{#if isLoadingIconVisible}}
+            <img src="/loading-icon.gif" style="height: 35px;width: 35px;float: right;margin-top: -10px;">
+          {{/if}}
+        </div>
+      </div>
+
+      <hr style="margin-top: -4%;">
+
       <div class="form-group">
         <div class="row">
           <div class="col-md-3">
             <label for="menuItems" class="input-field-label">Organization</label>
           </div>
 
-          <div class="col-md-6">
+          <div class="col-md-9">
             {{nges-core/nges-searchable-dropdown
               dataList=orgList
               autocompleteOnSelect=(action 'onChangeOrganization')
@@ -44,7 +61,7 @@
             <label for="menuItems" class="input-field-label">Application</label>
           </div>
 
-          <div class="col-md-6">
+          <div class="col-md-9">
             {{nges-core/nges-searchable-dropdown
               dataList=appList
               autocompleteOnSelect=(action 'onChangeApplication')
@@ -53,7 +70,11 @@
 
         </div>
       </div>
+
+
     </div>
-  </div>
+
+    {{!--  <a href="http://localhost:4400" target="_blank" class="btn btn-lg btn-warning btn-block"> Auth Server </a> --}}
+  </form>
 </div>
 
