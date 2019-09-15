@@ -48,61 +48,6 @@
           didValidate=didValidate}}
 
 
-
-        <br>
-        <fieldset>
-          <legend class="input-field-label">Risk Status</legend>
-          <div class="form-group">
-
-            <div class="row">
-              <div class="col-sm-4">
-                <div class="row">
-                  <div class="col-sm-6">
-                    <label class="input-field-label" style="margin-top: 15px">Risk</label>
-                  </div>
-                  <div class="col-sm-6">
-                    <label style="float: right">{{selectedRisk.label}}</label>
-                    {{nges-core/nges-searchable-dropdown
-                      dataList=riskType
-                      message = "Select Risk"
-                      autocompleteOnSelect=(action 'onChangeRisk')
-                    }}
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-sm-2">
-                <label class="input-field-label">Sanction Screening</label>
-              </div>
-              <div class="col-sm-9">
-                <table class="table-all">
-                  <thead>
-                  <th>Source</th>
-                  <th>Name</th>
-                  <th>Country</th>
-                  <th>Date of Birth</th>
-                  <th>Father Name</th>
-                  <th>Score</th>
-                  </thead>
-                  <tbody>
-                  <td>{{source}}</td>
-                  <td>{{name}}</td>
-                  <td>{{country}}</td>
-                  <td>{{dob}}</td>
-                  <td>{{fname}}</td>
-                  <td>{{score}}</td>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-          </div>
-
-        </fieldset>
-
         <br>
         <!--only MLRO will see this fieldset-->
         {{#if showMLROReview}}

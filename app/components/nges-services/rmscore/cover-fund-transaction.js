@@ -16,7 +16,7 @@ export default Component.extend({
     this.set('serviceActionableRoute', {
       create: {
         routePath: 'create-cover-fund-transaction',
-        label: 'New Transaction',
+        label: 'New Cover Fund',
       },
       edit: {
         routePath: 'edit-collection',
