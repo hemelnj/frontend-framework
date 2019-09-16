@@ -43,7 +43,7 @@ module.exports = function (environment) {
     APP: {
       appName: 'RemitClick Core',
       appTitle: 'RemitClick Core',
-      appLogo: '/RemitClick Logo - 2-01.png',
+      appLogo: '/app-logo-rms-v3.png',
     },
 
 

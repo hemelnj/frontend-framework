@@ -93,8 +93,8 @@
         <br>
         <hr class="rms-bottom-hr-line">
         <button id='save' class="nges-button nges-button-success" {{action 'validate'}}>Save</button>
-        <button id='status_check' class="nges-button nges-button-success" {{action 'checkRiskStatus'}}>Risk Status Check
-        </button>
+        <!--<button id='status_check' class="nges-button nges-button-success" {{action 'checkRiskStatus'}}>Risk Status Check
+        </button>-->
 
         {{#each stateActions as |state|}}
           <button id='save' class="nges-button nges-button-success" {{action 'getNextAllowableStateIdForCurrentState'
