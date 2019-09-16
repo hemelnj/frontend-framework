@@ -201,7 +201,7 @@ ul.CTAs a {
 
 .nav-link.active{
   color: $primary-color-selected!important;
-  // background-color: $primary-color-border !important;
+  background-color: $primary-color-hover !important;
   font-weight: bolder;
   font-size: $link-font-size!important;
 }
