@@ -8,7 +8,7 @@
 .tabTableHeader .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
   color: $primary-color-selected !important;
   //background-color: $tab-title-bg;
-  background: none !important;
+  background: $primary-color-title-text !important;
   font-weight: bold;
   border: none !important;
   cursor: pointer;
