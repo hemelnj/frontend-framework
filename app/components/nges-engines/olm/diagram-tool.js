@@ -60,7 +60,7 @@ export default Component.extend({
 
       var dataURL = getRootStage().toDataURL();
 
-      var doc = new jsPDF(); // This part is your mistake
+      var doc = new jsPDF('l','pt','a4'); // This part is your mistake
       //doc.text(20, 20, 'Hello world.');
       doc.addImage(dataURL, 'JPEG', 0, 0);
       doc.save('olm_diagram.pdf');
