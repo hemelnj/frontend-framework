@@ -59,7 +59,12 @@ export default Component.extend({
       };
 
       var dataURL = getRootStage().toDataURL();
-      downloadURI(dataURL, 'stage.png');
+
+      var doc = new jsPDF(); // This part is your mistake
+      //doc.text(20, 20, 'Hello world.');
+      doc.addImage(dataURL, 'JPEG', 0, 0);
+      doc.save('olm_diagram.pdf');
+      //downloadURI(dataURL, 'olm_diagram.png');
     },
 
     zoomSliderChange(value){
