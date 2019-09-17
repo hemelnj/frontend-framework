@@ -5,6 +5,7 @@ import {inject as service} from '@ember/service';
 export default Component.extend({
   appWelcome: service('nges-core/app-welcome'),
   store: service(),
+  router: service(),
   showAlert: false,
   isRegistered: false,
   didValidate: false,
@@ -16,6 +17,8 @@ export default Component.extend({
   notifier: service(),
   serviceInitializer: service('nges-services/service-initializer'),
   peSetupService: service('nges-engines/property-extender/pe-setup'),
+
+  routePath:"welcome.application-loader.panel-loader.module-loader.service-holder-loader.menu-template-loader.submenu-template-loader.submenu-detail-template-loader",
   init() {
     this._super(...arguments);
     let serviceInformation = this.get('serviceInformation');
@@ -831,6 +834,8 @@ export default Component.extend({
 
     validate() {
 
+      let context = this;
+      context.get("router").transitionTo(this.routePath, 'create-remitter');
       this.get('model')
         .validate()
         .then(({validations}) => {

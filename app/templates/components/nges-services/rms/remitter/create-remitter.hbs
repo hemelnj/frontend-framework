@@ -561,6 +561,13 @@
           Property
         </button>
       {{else}}
+
+      {{!nges-core/nges-link-to
+        route = 'welcome.application-loader.panel-loader.module-loader.service-holder-loader.menu-template-loader.submenu-template-loader'
+        routePath = 'create-remitter'
+        label =  'Remitter Registration'
+      }}
+
         <button id='save' class="nges-button nges-button-success" {{action 'validate'}}>Save</button>
       {{/if}}
       <button id='status_check' class="nges-button nges-button-success" {{action 'checkRiskStatus'}}>Risk Status

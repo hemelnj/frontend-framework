@@ -12,14 +12,14 @@ export default [
     templates: [
       {
         code: 'remitter-reg',
-        name: 'remitter-registration',
-        label: 'Remitter Registration',
-        detailPath: '/remitter',
+        name: '/remitter/create-remitter',
+        label: 'create-remitter',
+        detailPath: '/',
         detailView: [
           {
             code: 'create-remitter',
-            name: 'create-remitter',
-            label: 'create Remitter',
+            name: 'remitter-registration',
+            label: 'Remitter Registration',
           },
           {
             code: 'edit-remitter',
