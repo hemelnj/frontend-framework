@@ -47,14 +47,14 @@ export default [
     templates: [
       {
         code: 'beneficiary-reg',
-        name: 'beneficiary-registration',
+        name: '/beneficiary/create-beneficiary',
         label: 'Beneficiary Registration',
-        detailPath: '/beneficiary',
+        detailPath: '/',
         detailView: [
           {
             code: 'create-beneficiary',
-            name: 'create-beneficiary',
-            label: 'Create Beneficiary',
+            name: 'beneficiary-registration',
+            label: 'Beneficiary Registration',
           },
           {
             code: 'edit-beneficiary',
@@ -75,13 +75,13 @@ export default [
     templates: [
       {
         code: 'remittance-collection',
-        name: 'transaction-collection',
+        name: '/remitance-transaction/remittance-collection-transaction',
         label: 'Transaction Collection',
-        detailPath: '/remitance-transaction',
+        detailPath: '/',
         detailView: [
           {
             code: 'create-collection',
-            name: 'remittance-collection-transaction',
+            name: 'transaction-collection',
             label: 'Transaction Collection',
           }
         ],
