@@ -14,6 +14,7 @@ import {
   init,
   setContext,
   setRemove,
+  getRootStage,
   setStageLayer, getPOS, setPOS, fitStageIntoParentContainer
 } from './diagram/tools';
 import {
@@ -43,6 +44,22 @@ export default Component.extend({
       this.set('classTypeId', classTypeId);
       this.didInsertElement();
       this.loadDataByClassTypeId(classTypeId)
+    },
+
+    exportImage(){
+
+      let downloadURI = function downloadURI(uri, name) {
+        var linkurl = document.createElement('a');
+        linkurl.download = name;
+        linkurl.href = uri;
+        document.body.appendChild(linkurl);
+        linkurl.click();
+        document.body.removeChild(linkurl);
+        //delete linkurl;
+      };
+
+      var dataURL = getRootStage().toDataURL();
+      downloadURI(dataURL, 'stage.png');
     },
 
     zoomSliderChange(value){

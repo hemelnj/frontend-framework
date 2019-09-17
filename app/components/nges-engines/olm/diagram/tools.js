@@ -72,6 +72,9 @@ export function setStageLayer(s, l) {
   layer = l;
 }
 
+export function getRootStage() {
+  return stage;
+}
 
 function setStateRemoveColor(fillColor) {
 
