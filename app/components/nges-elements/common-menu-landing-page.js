@@ -13,18 +13,17 @@ export default Component.extend({
   serviceInitializer: service('nges-services/service-initializer'),
   notifier: service(),
   router: service(),
-  routePath:"welcome.application-loader.panel-loader.module-loader.service-holder-loader.menu-template-loader.submenu-template-loader.submenu-detail-template-loader",
+  routePath:"welcome.application-loader.panel-loader.module-loader.service-holder-loader.menu-template-loader.submenu-template-loader",
 
   init() {
     this._super(...arguments);
 
     let routeInfo = this.get('routeInformation');
-    console.log('messager-----------outeInformationrouteInformation', routeInfo.completeTemplateName);
+    console.log('messager-----------outeInformationrouteInformation', routeInfo);
   },
 
   actions:{
     newView(){
-      console.log('message-newView-click');
       let context = this;
       context.get("router").transitionTo(this.routePath);
     },
@@ -36,8 +35,9 @@ export default Component.extend({
     gridView(){
       console.log('message-gridView-click');
       let routeInfo = this.get('routeInformation');
+      let gridView = routeInfo.templateInformation.detailView[0].code;
       let context = this;
-      context.get("router").transitionTo(this.routePath,routeInfo.completeTemplateName);
+      context.get("router").transitionTo(this.routePath+'.submenu-detail-template-loader',gridView);
     },
   }
 
