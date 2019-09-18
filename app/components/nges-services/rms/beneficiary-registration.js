@@ -15,7 +15,7 @@ export default Component.extend({
     this.set('serviceActionableRoute', {
       create: {
         routePath: 'create-beneficiary',
-        label: 'New beneficiary',
+        label: 'Beneficiaries',
       },
       edit: {
         routePath: 'edit-beneficiary',

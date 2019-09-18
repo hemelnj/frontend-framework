@@ -19,7 +19,7 @@ export default Component.extend({
     this.set('serviceActionableRoute', {
       create: {
         routePath: 'create-remitter',
-        label: 'Remitter List',
+        label: 'Remitters',
       },
       edit: {
         routePath: 'edit-remitter',

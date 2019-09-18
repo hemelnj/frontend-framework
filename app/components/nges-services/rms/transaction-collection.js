@@ -16,7 +16,7 @@ export default Component.extend({
     this.set('serviceActionableRoute', {
       create: {
         routePath: 'create-collection',
-        label: 'New Transaction',
+        label: 'Transaction Collections',
       },
       edit: {
         routePath: 'edit-collection',
