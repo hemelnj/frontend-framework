@@ -24,5 +24,6 @@ module.exports = function(defaults) {
   // along with the exports of each module as its value.
 
   app.import('node_modules/konva/konva.js');
+  app.import('node_modules/jspdf/dist/jspdf.min.js');
   return app.toTree();
 };
