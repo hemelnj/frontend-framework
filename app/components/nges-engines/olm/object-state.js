@@ -102,7 +102,7 @@ export default Component.extend({
       }];
 
 
-
+      console.log('message--stateData', JSON.stringify(stateData));
       let accessToken = this.appConfiguration.getAccessToken();
       let responseAfterAddingState = this.olmSetupService.addNewState(stateData, accessToken);
       let context = this;
