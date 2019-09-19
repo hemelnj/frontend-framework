@@ -108,8 +108,8 @@ export default Service.extend({
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
-    //let url = this.olmEngineHost + "/states";
-    let url = this.rmsOLMEngineHost + "/states";
+    let url = this.olmEngineHost + "/states";
+    //let url = this.rmsOLMEngineHost + "/states";
     return this.appRestTemplate.httpRestClient(url, "POST",
       data, {}, beforeSend
     );

@@ -78,10 +78,15 @@ export default Component.extend({
       };
 
 
+      let stateList = this.get('stateList');
+
+
+      let lastStateId = stateList[stateList.length-1].id;
+
       let stateData = [{
         "mEndEdges": null,
         "name": stateName,
-        "id": 1,
+        "id": lastStateId+1,
         "extra": "1",
         "code": stateCode,
         "classType": classType,
@@ -95,6 +100,7 @@ export default Component.extend({
         "startEdges": null,
         "statusFlag": selectedStatusFlag,
       }];
+
 
 
       let accessToken = this.appConfiguration.getAccessToken();
