@@ -20,7 +20,7 @@ export default [
           {
             code: 'create-remitter',
             name: 'remitter-registration',
-            icon:"fas fa file",
+            icon:"fas fa-bath",
             label: 'Remitter Registration',
             isVisibleInLanding:true,
           },
