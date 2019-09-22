@@ -43,6 +43,7 @@ export default Component.extend({
         crudActionsView.pushObject({
           code: detailPage.code,
           label: detailPage.label,
+          shortLabel: detailPage.shortLabel,
           icon: detailPage.icon,
           isVisibleInLanding: detailPage.isVisibleInLanding,
           name: detailPage.name,
