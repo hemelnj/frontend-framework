@@ -19,6 +19,14 @@ export default [
         detailPath: '/',
         detailView: [
           {
+            code: 'search-panel',
+            name: 'search-panel',
+            icon:"fas fa-search",
+            label: 'Search',
+            shortLabel: 'Search',
+            isVisibleInLanding:true,
+          },
+          {
             code: 'create-remitter',
             name: 'remitter-registration',
             icon:"fas fa-bath",
@@ -30,14 +38,6 @@ export default [
             code: 'edit-remitter',
             name: 'edit-remitter',
             label: 'edit Remitter',
-          },
-          {
-            code: 'search-panel',
-            name: 'search-panel',
-            icon:"fas fa-search",
-            label: 'Search',
-            shortLabel: 'Search',
-            isVisibleInLanding:true,
           },
         ]
       },
@@ -67,6 +67,14 @@ export default [
         detailPath: '/',
         detailView: [
           {
+            code: 'search-panel',
+            name: 'search-panel',
+            icon:"fas fa-search",
+            label: 'Search',
+            shortLabel: 'Search',
+            isVisibleInLanding:true,
+          },
+          {
             code: 'create-beneficiary',
             name: 'beneficiary-registration',
             icon:"fas fa-bath",
@@ -78,14 +86,6 @@ export default [
             code: 'edit-beneficiary',
             name: 'edit-beneficiary',
             label: 'edit Beneficiary',
-          },
-          {
-            code: 'search-panel',
-            name: 'search-panel',
-            icon:"fas fa-search",
-            label: 'Search',
-            shortLabel: 'Search',
-            isVisibleInLanding:true,
           },
         ]
       }
@@ -108,14 +108,6 @@ export default [
         detailPath: '/',
         detailView: [
           {
-            code: 'create-collection',
-            name: 'transaction-collection',
-            icon:"fas fa-bath",
-            isVisibleInLanding:true,
-            label: 'Transaction Collection',
-            shortLabel: 'States',
-          },
-          {
             code: 'search-panel',
             name: 'search-panel',
             icon:"fas fa-search",
@@ -123,6 +115,14 @@ export default [
             shortLabel: 'Search',
             isVisibleInLanding:true,
           },
+          {
+            code: 'create-collection',
+            name: 'transaction-collection',
+            icon:"fas fa-bath",
+            isVisibleInLanding:true,
+            label: 'Transaction Collection',
+            shortLabel: 'States',
+          }
         ],
       }
     ]
