@@ -7,23 +7,16 @@ export default Component.extend({
 
   init(){
     this._super(...arguments);
+  },
 
+  actions:{
+    onChangeSearchCriteria(value){
+      console.log('message-onChangeSearchCriteria', value);
+    },
 
-    console.log('message', ' registration page');
-
-
-
-    this.set('serviceActionableRoute', {
-      create: {
-        routePath: 'create-collection',
-        label: 'Transaction Collections',
-      },
-      edit: {
-        routePath: 'edit-collection',
-        label: 'View collection',
-      }
-    });
-
+    getSearchValue(value){
+      console.log('message-onChangeSearchValue', value);
+    }
   }
 
 })

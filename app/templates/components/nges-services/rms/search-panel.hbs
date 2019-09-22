@@ -1,1 +1,23 @@
-Search Page
+<div class="card">
+  <div class="card-body">
+    <h1 class="layout-header-title">Search</h1>
+    <hr class="header-label-line">
+
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-5">
+          {{nges-core/nges-searchable-dropdown
+            dataList=remittanceType
+            message = "Select Search Criteria"
+            autocompleteOnSelect=(action 'onChangeSearchCriteria')
+          }}
+        </div>
+        <div class="col-md-7">
+          <input type="text" class="input-field" onkeyup={{action 'getSearchValue' value='target.value'}}
+                 placeholder="Type to Search">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
