@@ -78,10 +78,20 @@ export default Component.extend({
       };
 
 
+      let stateList = this.get('stateList');
+
+      let lastStateId = 0;
+      for (let i = 0; i < stateList.length; i++) {
+        if (lastStateId < stateList[i].id) {
+          lastStateId = stateList[i].id;
+        }
+      }
+      console.log('message--lastStateId', lastStateId);
+
       let stateData = [{
         "mEndEdges": null,
         "name": stateName,
-        "id": 1,
+        "id": lastStateId + 1,
         "extra": "1",
         "code": stateCode,
         "classType": classType,
@@ -97,6 +107,7 @@ export default Component.extend({
       }];
 
 
+      //console.log('message--stateData', JSON.stringify(stateData));
       let accessToken = this.appConfiguration.getAccessToken();
       let responseAfterAddingState = this.olmSetupService.addNewState(stateData, accessToken);
       let context = this;
@@ -108,7 +119,6 @@ export default Component.extend({
           context.get('notifier').danger('Failed To Add');
         }
       });
-
 
     },
 
@@ -194,7 +204,7 @@ export default Component.extend({
     let appCode = this.appConfiguration.getApplicationCode();
     let orgCode = this.appConfiguration.getOrganizationCode();
     let engineCode = "olm";
-    let allCreatedClassTypes = this.olmSetupService.getAllClassType(orgCode,appCode,engineCode,accessToken);
+    let allCreatedClassTypes = this.olmSetupService.getAllClassType(orgCode, appCode, engineCode, accessToken);
 
     allCreatedClassTypes.then(function (msg) {
 
