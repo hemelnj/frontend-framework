@@ -13,13 +13,16 @@ export default [
       {
         code: 'remitter-reg',
         name: '/remitter/create-remitter',
+        icon:"fas fa file",
         label: 'create-remitter',
         detailPath: '/',
         detailView: [
           {
             code: 'create-remitter',
             name: 'remitter-registration',
+            icon:"fas fa file",
             label: 'Remitter Registration',
+            isVisibleInLanding:true,
           },
           {
             code: 'edit-remitter',
