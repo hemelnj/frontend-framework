@@ -6,6 +6,8 @@ let DEFAULT_SELECTED_TAB_CODE = 'allStates';
 
 export default Component.extend({
 
+
+  appTemplateSetup: service('app-template-setup'),
   appWelcome: service('nges-core/app-welcome'),
   store: service(),
   appConfiguration: service('app-configuration'),
@@ -18,8 +20,27 @@ export default Component.extend({
   init() {
     this._super(...arguments);
 
+  },
+
+  didReceiveAttrs() {
+    this._super(...arguments);
+
+
     let routeInfo = this.get('routeInformation');
-    console.log('messager-----------outeInformationrouteInformation', routeInfo);
+
+    let templateInformation = this.appTemplateSetup.getSingleTemplateName(
+      routeInfo.appCode,
+      routeInfo.appPanelCode,
+      routeInfo.appModuleCode,
+      routeInfo.appMenuTemplateCode,
+      routeInfo.appSubmenuTemplateCode
+    );
+
+    console.log('message-----555555');
+    console.log('message-----555555', templateInformation);
+
+    this.set('detailView', templateInformation.detailView);
+
   },
 
   actions:{
@@ -30,14 +51,16 @@ export default Component.extend({
 
     searchView(){
 
+      let detailView = this.get('detailView');
+      let searchView = detailView[1].code;
+      this.get("router").transitionTo(this.routePath+'.submenu-detail-template-loader',searchView);
     },
 
     gridView(){
-      console.log('message-gridView-click');
-      let routeInfo = this.get('routeInformation');
-      let gridView = routeInfo.templateInformation.detailView[0].code;
-      let context = this;
-      context.get("router").transitionTo(this.routePath+'.submenu-detail-template-loader',gridView);
+      let detailView = this.get('detailView');
+
+      let gridView = detailView[0].code;
+      this.get("router").transitionTo(this.routePath+'.submenu-detail-template-loader',gridView);
     },
   }
 
