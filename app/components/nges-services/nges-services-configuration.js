@@ -15,12 +15,14 @@ export default [
         name: '/remitter/create-remitter',
         icon:"fas fa-file",
         label: 'create-remitter',
+        shortLabel: 'New',
         detailPath: '/',
         detailView: [
           {
             code: 'create-remitter',
             name: 'remitter-registration',
             icon:"fas fa-bath",
+            shortLabel: 'States',
             label: 'Remitter Registration',
             isVisibleInLanding:true,
           },
@@ -28,7 +30,15 @@ export default [
             code: 'edit-remitter',
             name: 'edit-remitter',
             label: 'edit Remitter',
-          }
+          },
+          {
+            code: 'search-panel',
+            name: 'search-panel',
+            icon:"fas fa-search",
+            label: 'Search',
+            shortLabel: 'Search',
+            isVisibleInLanding:true,
+          },
         ]
       },
       {
@@ -53,19 +63,30 @@ export default [
         name: '/beneficiary/create-beneficiary',
         icon:"fas fa-file",
         label: 'Beneficiary Registration',
+        shortLabel: 'New',
         detailPath: '/',
         detailView: [
           {
             code: 'create-beneficiary',
             name: 'beneficiary-registration',
+            icon:"fas fa-bath",
             isVisibleInLanding:true,
             label: 'Beneficiary Registration',
+            shortLabel: 'States',
           },
           {
             code: 'edit-beneficiary',
             name: 'edit-beneficiary',
             label: 'edit Beneficiary',
-          }
+          },
+          {
+            code: 'search-panel',
+            name: 'search-panel',
+            icon:"fas fa-search",
+            label: 'Search',
+            shortLabel: 'Search',
+            isVisibleInLanding:true,
+          },
         ]
       }
     ]
@@ -83,14 +104,25 @@ export default [
         name: '/remitance-transaction/remittance-collection-transaction',
         icon:"fas fa-file",
         label: 'Transaction Collection',
+        shortLabel: 'New',
         detailPath: '/',
         detailView: [
           {
             code: 'create-collection',
             name: 'transaction-collection',
+            icon:"fas fa-bath",
             isVisibleInLanding:true,
             label: 'Transaction Collection',
-          }
+            shortLabel: 'States',
+          },
+          {
+            code: 'search-panel',
+            name: 'search-panel',
+            icon:"fas fa-search",
+            label: 'Search',
+            shortLabel: 'Search',
+            isVisibleInLanding:true,
+          },
         ],
       }
     ]
