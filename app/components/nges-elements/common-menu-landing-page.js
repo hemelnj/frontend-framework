@@ -15,7 +15,7 @@ export default Component.extend({
   serviceInitializer: service('nges-services/service-initializer'),
   notifier: service(),
   router: service(),
-  routePath:"welcome.application-loader.panel-loader.module-loader.service-holder-loader.menu-template-loader.submenu-template-loader",
+  routePath: "welcome.application-loader.panel-loader.module-loader.service-holder-loader.menu-template-loader.submenu-template-loader",
 
   init() {
     this._super(...arguments);
@@ -35,32 +35,34 @@ export default Component.extend({
       routeInfo.appMenuTemplateCode,
       routeInfo.appSubmenuTemplateCode
     );
+    let crudActionsView = [];
 
-    console.log('message-----555555');
-    console.log('message-----555555', templateInformation);
+    if(templateInformation.detailView !== undefined) {
+      for (let detailPage of templateInformation.detailView) {
 
-    this.set('detailView', templateInformation.detailView);
+        crudActionsView.pushObject({
+          code: detailPage.code,
+          label: detailPage.label,
+          icon: detailPage.icon,
+          isVisibleInLanding: detailPage.isVisibleInLanding,
+          name: detailPage.name,
+          routePath: this.routePath,
+        })
+      }
+    }
 
+    this.set('templateInformation', templateInformation);
+    this.set('crudActionsView', crudActionsView);
   },
 
-  actions:{
-    newView(){
-      let context = this;
-      context.get("router").transitionTo(this.routePath);
+  actions: {
+
+    perforMenuAction(code) {
+
+      this.get("router").transitionTo(this.routePath);
     },
-
-    searchView(){
-
-      let detailView = this.get('detailView');
-      let searchView = detailView[1].code;
-      this.get("router").transitionTo(this.routePath+'.submenu-detail-template-loader',searchView);
-    },
-
-    gridView(){
-      let detailView = this.get('detailView');
-
-      let gridView = detailView[0].code;
-      this.get("router").transitionTo(this.routePath+'.submenu-detail-template-loader',gridView);
+    performAction(code){
+      this.get("router").transitionTo(this.routePath + '.submenu-detail-template-loader', code);
     },
   }
 
