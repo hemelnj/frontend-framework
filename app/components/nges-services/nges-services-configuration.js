@@ -13,7 +13,7 @@ export default [
       {
         code: 'remitter-reg',
         name: '/remitter/create-remitter',
-        icon:"fas fa file",
+        icon:"fas fa-file",
         label: 'create-remitter',
         detailPath: '/',
         detailView: [
@@ -51,12 +51,14 @@ export default [
       {
         code: 'beneficiary-reg',
         name: '/beneficiary/create-beneficiary',
+        icon:"fas fa-file",
         label: 'Beneficiary Registration',
         detailPath: '/',
         detailView: [
           {
             code: 'create-beneficiary',
             name: 'beneficiary-registration',
+            isVisibleInLanding:true,
             label: 'Beneficiary Registration',
           },
           {
@@ -79,12 +81,14 @@ export default [
       {
         code: 'remittance-collection',
         name: '/remitance-transaction/remittance-collection-transaction',
+        icon:"fas fa-file",
         label: 'Transaction Collection',
         detailPath: '/',
         detailView: [
           {
             code: 'create-collection',
             name: 'transaction-collection',
+            isVisibleInLanding:true,
             label: 'Transaction Collection',
           }
         ],
