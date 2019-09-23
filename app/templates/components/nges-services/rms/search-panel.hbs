@@ -17,6 +17,15 @@
                 message = "Select Search Criteria"
                 autocompleteOnSelect=(action 'onChangeSearchCriteria')
               }}
+
+
+              {{nges-core/nges-autocomplete
+                dataList=stateList
+                displayName='name'
+                message='Select Name'
+                autocompleteOnSelect=(action 'onChangeSearchCriteria')
+              }}
+
             </div>
           </div>
 
@@ -33,6 +42,22 @@
         </div>
 
       </div>
+      {{nges-elements/search-common-grid
+
+        activeTabInfo = activeTabInfo
+        stateList = stateList
+        defaultFunction = defaultFunction
+        defaultLocation = defaultLocation
+        stateActions = stateActions
+
+        actionAccess = actionAccess
+        serviceActionableRoute = serviceActionableRoute
+        tabInformation=tabInformation
+
+        tableData = tableData
+
+
+      }}
     </div>
   </div>
 </div>

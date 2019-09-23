@@ -241,7 +241,6 @@ let processDataBaseOnServiceHolder = (appServiceHolders, appMenuTemplateCode, ap
             applicationRouteInformation.subFunctionCode = subMenu.code;
 
             let stateList = subMenu.stateList;
-            console.log('message---stateList------------------', stateList);
             setStates(stateList);
           }
         }

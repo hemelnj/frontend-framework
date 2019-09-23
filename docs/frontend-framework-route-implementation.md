@@ -91,7 +91,7 @@ FE{User}:-      |rms        |operation-panel  | collection              | MICROS
 ```bash
 
 
-ember g route welcome.application-loader.panel-loader.module-loader.service-holder-loader.menu-template-loader.submenu-template-loader.submenu-detail-template-loader.
+ember g route welcome/application-loader/panel-loader/module-loader/service-holder-loader/menu-template-loader/submenu-template-loader/submenu-detail-template-loader/params-loader
 
 
 
