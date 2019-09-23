@@ -1,276 +1,155 @@
 import Component from '@ember/component';
-import {inject as service} from '@ember/service';
+import config from 'frontend-engine/config/environment';
+import $ from "jquery";
+import Service, {inject as service} from '@ember/service';
 
-let DEFAULT_SELECTED_TAB_CODE = 'allStates';
-
+let DEFAULT_SELECTED_TAB_CODE = ''; // updated in on initialization time
 
 export default Component.extend({
 
-  appWelcome: service('nges-core/app-welcome'),
   store: service(),
+  isAllChecked: false,
+  isMultipleChecked: false,
+  searchKeyword: '',
+  appWelcome: service('nges-core/app-welcome'),
   appConfiguration: service('app-configuration'),
   ngesTabTableService: service('nges-elements/nges-tab-table'),
   serviceInitializer: service('nges-services/service-initializer'),
-  notifier: service(),
-
   init() {
     this._super(...arguments);
-    this.createButtonAccess();
-    this.getDefaultUserFunctionId();
-    this.getDefaultUserLocationId();
+
+
+    this.set('tableShowEntries', [5, 10, 15, 20]);
+
+    // update default globally default selection code
+    this.set('DEFAULT_SELECTED_TAB_CODE', 'allStates');
+    DEFAULT_SELECTED_TAB_CODE = this.get('DEFAULT_SELECTED_TAB_CODE');
+
+
+    this.set('isAllChecked', false);
+    this.set('isMultipleChecked', false);
+    //this.initialization();
   },
 
-  createButtonAccess() {
-    let context = this;
-    let roleId = this.appConfiguration.getUserRoleId();
-    let accessToken = this.appConfiguration.getAccessToken();
+  loadTabsInformation() {
+    let activeTabInfo = this.get('activeTabInfo');
+    let stateList = this.get('stateList');
 
-    this.serviceInitializer.getClassType(accessToken).then(function (result) {
-      let classTypeId = result.data;
-      context.serviceInitializer.getUserAbilityToCreate(accessToken, "create", classTypeId, roleId).then(function (result) {
-        try {
-          if (result.status === 204) {
-            context.set("viewCreateButton", false);
-          } else {
-            context.set("viewCreateButton", true);
-          }
-        } catch (e) {
-        }
-      });
-    });
-  },
+    let processedTabMeta = this.ngesTabTableService.getProcessedTabMeta(activeTabInfo, stateList);
+    this.set('tabsData', processedTabMeta);
 
-
-  getDefaultUserFunctionId() {
-    let context = this;
-    let accessToken = this.appConfiguration.getAccessToken();
-    let userId = this.appConfiguration.getUserId();
-    let orgId = this.appConfiguration.getOrganizationId();
-    let functionId = this.serviceInitializer.getDefaultFunctionId(accessToken, userId, orgId);
-
-    functionId.then(function (msg) {
-      console.log('message--functionId', msg.data.attributes.id);
-      context.set('defaultFunction', msg.data.attributes.id);
-    });
-  },
-  getDefaultUserLocationId() {
-    let context = this;
-    let accessToken = this.appConfiguration.getAccessToken();
-    let userId = this.appConfiguration.getUserId();
-    let orgId = this.appConfiguration.getOrganizationId();
-    let locationId = this.serviceInitializer.getDefaultLocationId(accessToken, userId, orgId);
-
-    locationId.then(function (msg) {
-      console.log('message--locationId', msg.data.attributes.id);
-      context.set('defaultLocation', msg.data.attributes.id);
-    }).catch(function (errorMsg) {
-      context.get('notifier').danger('Failed to Load User Default Location Id');
-    });
+    this.set('activeTabInfo', activeTabInfo); // set default selected tab information
   },
 
   didReceiveAttrs() {
     this._super(...arguments);
+    // this.mockTabsData();
+    this.loadTabsInformation();
 
-
-    this.initializeTabTableMeta();     // tab table initialize only once
-
-    this.initialLoadTabTableData();
-  },
-  actions: {
-    // callback call from item
-    onSelectedSingleStateCallBack(item, actionEventId, stateId) {
-      console.log('onSelectedSingleState-Item', item);
-      console.log('onSelectedSingleState-actionEventId', actionEventId);
-      console.log('onSelectedSingleState-stateId', stateId);
-
-      //console.log('message-onSelectedSingleStateCallBack', JSON.stringify(payload));
-      this.performActionEvent(item, actionEventId, stateId);
-    },
-
-    onSelectedMultipleStateCallBack(actionEventId) {
-      console.log('onSelectedMultipleState-Items', actionEventId);
-    },
-
-    onSelectedTabCallBack(tab) {
-      console.log('onSelectedTabCallBack-Items', tab);
-      this.editPermissionAccess(tab);
-    },
   },
 
-  initialLoadTabTableData() {
-    let context = this;
-
-    let defaultFunction = this.get('defaultFunction');
-    let defaultLocation = this.get('defaultLocation');
-
-
-
-    let accessToken = context.appConfiguration.getAccessToken();
-    let roleList = context.appConfiguration.getUserRoleIdList();
-    let stateList = context.getStateListIds();
-
-    // request to the server to get table data
-    this.ngesTabTableService.loadTabTableData(
-      defaultFunction,
-      defaultLocation,
-      roleList,
-      stateList,
-      accessToken
-    ).then(function (result) {
-      //console.log('message', JSON.stringify(result));
-
-      context.set('tableData', result);           // initialize tab table headers & table data
-
-    }, function (error) {
-      console.log('message', error);
-    }).then(function () {
-      //console.log('message', 'need to load States');   // todo: need to load States
-    });
-  },
 
   getStateListIds() {
     let stateList = [];
-    //let states = this.get('stateList');
-    let states = this.appWelcome.getSateList();
-
+    let states = this.get('stateList');
     for (let i = 0; i < states.length; i++) {
       stateList.push(states[i].id)
     }
     return stateList;
   },
 
-  initializeTabTableMeta() {
+  actions: {
+    onSelectedItemAction(item) {
 
 
-    // initialize stateList
-    let stateList = this.appWelcome.getSateList();
-    console.log('message--states', stateList);
+    },
+    onSearchKeyUpAction(value) {
 
-    if(stateList.length >= 2){
+      console.log('message-onSearchKeyUpAction', value);
+
+    },
 
 
-      // selected default active tab
-      let activeTabInfo = {
-        'id': stateList[1].id,
-        'name': stateList[1].name,
-        'code': stateList[1].code,
-      };
+    allSelectedAction() {
+      // console.log('allSelectedAction', this.tableData);
+      this.toggleProperty('isAllChecked'); // toggleProperty used for checkbox (checked and unchecked)
 
+      if (this.isAllChecked) {
+        this.set('tableBackupDataList', this.get('tableData'));
+        this.set('isMultipleChecked', true);
+
+      } else {
+        this.set('isMultipleChecked', false);
+        this.set('tableBackupDataList', []);
+      }
+    },
+
+    onSelectedSingleState(item, actionEventId) {
+      let stateId = this.get('activeTabInfo.id');
+      this.onSelectedSingleStateCallBack(item, actionEventId, stateId);      // callback method call in parent component
+    },
+
+    onSelectedMultipleState(actionEventId) {
+      console.log('onSelectedMultipleState-actionEventId', this.get('tableBackupDataList'));
+      console.log('onSelectedMultipleState-actionEventId', actionEventId);
+      this.set('onSelectedMultipleStateActions', actionEventId);
+
+      let selectedDataList = this.get('tableBackupDataList');
+      this.onSelectedMultipleStateCallBack(actionEventId, selectedDataList);
+    },
+
+
+    onSaveChanges() {
+
+      let itemsId = [];
+      let tableBackupDataList = this.get('tableBackupDataList');
+
+      tableBackupDataList.forEach(function (item) {
+        itemsId.push(item.id);
+      });
 
 
       /*
-      stateList.unshift({
-        'id': 11,
-        'name': 'All',
-        'code': DEFAULT_SELECTED_TAB_CODE,            //
-        'tabContentClass': 'active',   // fade
-        'tabTitleClass': 'active'       //
-      });
+      let actionEventId = this.get('onSelectedMultipleStateActions');
+      let context = this;
+      let activeTabInfo = this.get('activeTabInfo');
+      let classTypeId = '';
+      let roleId = '';
+      let stateId = activeTabInfo.id;*/
 
-      // selected default active tab
-      let activeTabInfo = {
-        'id': '00',
-        'name': 'All',
-        'code': DEFAULT_SELECTED_TAB_CODE,
-      };*/
+      console.log('message', tableBackupDataList);
+    },
 
-      this.set('stateActions', []);     // default stateActions
-      this.set('stateList', stateList);
-      this.set('activeTabInfo', activeTabInfo);
+    onSelectedShowEntries(entries) {
+      console.log('message', entries);
     }
-
-
 
   },
 
-  performActionEvent(item, actionEventId, stateId) {
+  loadStateActions(accessToken, activeStateId, roleId) {
 
-    let accessToken = this.appConfiguration.getAccessToken();
-    let roleId = this.appConfiguration.getUserRoleId();
 
     let context = this;
     context.serviceInitializer.getClassType(accessToken).then(function (result) {
       let classTypeId = result.data;
 
-      let getNextAllowableStatePayload = {
+
+      let stateActionsPayload = {
         classTypeId: classTypeId,
-        stateId: stateId,
-        roleId: roleId,
-        actionEventId: actionEventId
+        stateId: activeStateId,
+        roleId: roleId
       };
 
-      context.serviceInitializer.getNextAllowableState(accessToken, getNextAllowableStatePayload).then(function (result) {
+      context.serviceInitializer.getStateActions(accessToken, stateActionsPayload).then(function (result) {
+
         try {
-          let status = result.data.id;
-          let itemId = item.id;
-          let payload = {
-            data: {
-              type: item.type,
-              attributes: {
-                //status: status
-                olcmState: {
-                  id: status,
-                },
-              }
-            }
-          };
-          context.serviceInitializer.stateActionUpdate(accessToken, itemId, payload).then(function (result) {
-            context.get('notifier').success('Successfully Send to Next State');
-          })
+          context.set('stateActions', result.data);
         } catch (e) {
-          console.error('message', 'GetNextAllowableState Not Found');
-          context.get('notifier').danger('GetNextAllowableState Not Found');
+          context.set('stateActions', []);
         }
-      });
+      })
     });
   },
 
-
-  editPermissionAccess(tab) {
-    let context = this;
-    let roleId = this.appConfiguration.getUserRoleId();
-    let accessToken = this.appConfiguration.getAccessToken();
-    let stateId = tab.id;
-
-
-    this.serviceInitializer.getClassType(accessToken).then(function (result) {
-      let classTypeId = result.data;
-
-      let data = {
-        classTypeId: classTypeId,
-        roleId: roleId,
-        stateId: stateId,
-      };
-      context.serviceInitializer.getAllAllowableCrudAction(accessToken, data).then(function (result) {
-        try {
-          console.log('message--result', result);
-          if (result.status === 204) {
-            context.set("actionAccess", {
-              view: false,
-              edit: false,
-            });
-          } else {
-
-
-            let permission = (result) => {
-              let data = {};
-              for (let access of result.data) {
-                if (access.attributes.name.toLowerCase() === "view") {
-                  data['view'] = true;
-                }
-                if (access.attributes.name.toLowerCase() === "edit") {
-                  data['edit'] = true;
-                }
-              }
-              return data
-            };
-
-            context.set("actionAccess", permission(result));
-          }
-        } catch (e) {
-        }
-      });
-    });
-  },
 
 })
