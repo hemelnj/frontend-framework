@@ -6,17 +6,32 @@
 
     <div class="form-group">
       <div class="row">
-        <div class="col-md-5">
-          {{nges-core/nges-searchable-dropdown
-            dataList=remittanceType
-            message = "Select Search Criteria"
-            autocompleteOnSelect=(action 'onChangeSearchCriteria')
-          }}
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-3">
+              <label class="input-field-label">Search Criteria</label>
+            </div>
+            <div class="col-md-8">
+              {{nges-core/nges-searchable-dropdown
+                dataList=searchCriteria
+                message = "Select Search Criteria"
+                autocompleteOnSelect=(action 'onChangeSearchCriteria')
+              }}
+            </div>
+          </div>
+
         </div>
-        <div class="col-md-7">
-          <input type="text" class="input-field" onkeyup={{action 'getSearchValue' value='target.value'}}
-                 placeholder="Type to Search">
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-10">
+              <input type="text" class="input-field" onkeyup={{action 'getSearchValue' value='target.value'}}
+                     placeholder="Type to Search">
+            </div>
+            <div class="col-md-2">Search</div>
+          </div>
+
         </div>
+
       </div>
     </div>
   </div>
