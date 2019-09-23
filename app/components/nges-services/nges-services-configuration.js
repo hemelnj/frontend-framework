@@ -36,7 +36,7 @@ export default [
           },
           {
             code: 'edit-remitter',
-            name: 'edit-remitter',
+            name: '/remitter/edit-remitter',
             label: 'edit Remitter',
           },
         ]
@@ -84,7 +84,7 @@ export default [
           },
           {
             code: 'edit-beneficiary',
-            name: 'edit-beneficiary',
+            name: 'beneficiary/edit-beneficiary',
             label: 'edit Beneficiary',
           },
         ]
