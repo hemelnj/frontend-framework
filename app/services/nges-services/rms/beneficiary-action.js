@@ -7,9 +7,8 @@ export default Service.extend({
   appRestTemplate: service('app-rest-template'),
   serviceInitializer: service('nges-services/service-initializer'),
 
-  apiGatewayHost: config.NGES_SERVICE_HOSTS.GATEWAY_SERVICE_HOST,
   appConfiguration: service('app-configuration'),
-
+  gatewayServiceHost: config.NGES_SERVICE_HOSTS.GATEWAY_SERVICE_HOST,
 
   addNewBeneficiary(accessToken, beneficiaryData) {
     let data = JSON.stringify(beneficiaryData);

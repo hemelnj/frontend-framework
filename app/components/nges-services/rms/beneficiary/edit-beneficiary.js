@@ -13,6 +13,7 @@ export default Component.extend({
 
     let routeParams = this.appConfiguration.getRouteURLParams();
 
+    console.log('message--routeParams', routeParams);
     this.set('actionAccess',routeParams.editAccess);
 
     let beneficiaryId = routeParams.stateRecordId;
