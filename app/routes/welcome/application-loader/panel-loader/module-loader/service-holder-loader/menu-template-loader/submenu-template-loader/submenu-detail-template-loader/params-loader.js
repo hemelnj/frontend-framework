@@ -24,40 +24,8 @@ export default Route.extend({
 
 
 
-    // console.log('appCode', appCode);                                    // app->rms
-    // console.log('appPanelCode', appPanelCode);                          // panel->operation
-    // console.log('appModuleCode', appModuleCode);                        // module->collection
-    // console.log('appServiceHolderCode', appServiceHolderCode);          // FUNCTION - MICROSERVICE
-    // console.log('appMenuTemplateCode', appMenuTemplateCode);            // menu(service)->remitters
-    // console.log('appSubmenuTemplateCode', appSubmenuTemplateCode);      // submenu(function)->remitter-reg
-
-
-
-    // 1 fix cause it always insert one record
-    this.store.unloadAll('nges-core/engine-route-information');
-    this.store.createRecord('nges-core/engine-route-information', {
-      id: 1,
-      appCode: appCode,
-      appPanelCode: appPanelCode,
-      appModuleCode: appModuleCode,
-      appServiceHolderCode: appServiceHolderCode,
-      appMenuTemplateCode: appMenuTemplateCode,
-      appSubmenuTemplateCode: appSubmenuTemplateCode,
-      appTemplateDetailCode:appTemplateDetailCode,
-      appParamsCode:appParamsCode
-    });
-
-
-    let templateInformation = this.appTemplateSetup.getSingleTemplateName(
-      appCode,
-      appPanelCode,
-      appModuleCode,
-      appMenuTemplateCode,
-      appSubmenuTemplateCode
-    );
-
-
-    // store route meta information into ember data for future
+    //---- initially process route information from menu tree for easy future access
+    // So it can initialize route information, it required* for dynamic url or other things.
     this.appWelcome.setApplicationRouteInformation(
       appCode,
       appPanelCode,
@@ -66,7 +34,15 @@ export default Route.extend({
       appMenuTemplateCode,
       appSubmenuTemplateCode
     );
+    //-------------------------------------
 
+    let templateInformation = this.appTemplateSetup.getSingleTemplateName(
+      appCode,
+      appPanelCode,
+      appModuleCode,
+      appMenuTemplateCode,
+      appSubmenuTemplateCode
+    );
     let completeTemplateName = templateInformation.completeTemplateName;
 
     return {
