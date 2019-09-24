@@ -22,17 +22,6 @@ export default Route.extend({
 
 
     //---- initially process route information from menu tree for easy future access
-    // 1 fix cause it always insert one record
-    this.store.unloadAll('nges-core/engine-route-information');
-    this.store.createRecord('nges-core/engine-route-information', {
-      id: 1,
-      appCode: appCode,
-      appPanelCode: appPanelCode,
-      appModuleCode: appModuleCode,
-      appServiceHolderCode: appServiceHolderCode,
-      appMenuTemplateCode: appMenuTemplateCode,
-      appSubmenuTemplateCode: appSubmenuTemplateCode,
-    });
     this.appWelcome.setApplicationRouteInformation(
       appCode,
       appPanelCode,

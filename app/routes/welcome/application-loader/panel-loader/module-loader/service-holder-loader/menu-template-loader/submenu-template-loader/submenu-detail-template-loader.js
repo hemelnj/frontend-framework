@@ -38,25 +38,6 @@ export default Route.extend({
       appMenuTemplateCode,
       appSubmenuTemplateCode
     );
-
-    let id = 1;          // 1 fix cause it always update
-    let modelName = 'nges-core/engine-route-information';
-    let routeInformation = this.store.getReference(modelName, id);
-    routeInformation.push({
-      data: {
-        id: id,
-        type: modelName,
-        attributes: {
-          appCode: appCode,
-          appPanelCode: appPanelCode,
-          appModuleCode: appModuleCode,
-          appServiceHolderCode: appServiceHolderCode,
-          appMenuTemplateCode: appMenuTemplateCode,
-          appSubmenuTemplateCode: appSubmenuTemplateCode,
-          appTemplateDetailCode: appTemplateDetailCode,
-        }
-      }
-    });
     //-------------------------------------
 
 
