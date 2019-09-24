@@ -5,6 +5,7 @@ import Service, {inject as service} from '@ember/service';
 export default Component.extend({
 
   appWelcome: service('nges-core/app-welcome'),
+  searchValue:'',
   init(){
     this._super(...arguments);
     this.setSearchCriteria();
@@ -82,6 +83,10 @@ export default Component.extend({
 
     getSearchValue(value){
       console.log('message-onChangeSearchValue', value);
+    },
+    searchAction(){
+      let searchValue = this.get('searchValue');
+      console.log('message-onChangeSearchValue', searchValue);
     }
   }
 
