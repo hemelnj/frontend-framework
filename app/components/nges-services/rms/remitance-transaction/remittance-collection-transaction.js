@@ -326,8 +326,6 @@ export default Component.extend({
     },
 
     validate() {
-      let context = this;
-      context.get("router").transitionTo(this.routePath, 'create-collection');
       this.get('model')
         .validate()
         .then(({validations}) => {
@@ -410,6 +408,7 @@ export default Component.extend({
             afterRemitterRegistration.then(function (msg) {
             }).catch(function (msg) {
               if(msg.status===201){
+                context.get("router").transitionTo(this.routePath, 'create-collection');
                 context.get('notifier').success('Remittance Collection Successful!');
               }else{
                 context.get('notifier').danger('Remittance Collection Failed!\nError while committing the transaction.');

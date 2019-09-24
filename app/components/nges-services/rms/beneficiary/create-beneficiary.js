@@ -410,6 +410,7 @@ export default Component.extend({
                 afterBeneficiaryUpdate.then(function (msg) {
                 }).catch(function (msg) {
                   if (msg.status === 204) {
+                    context.get("router").transitionTo(this.routePath, 'create-beneficiary');
                     context.get('notifier').success('Beneficiary Data Update Successful');
                   } else {
                     context.get('notifier').danger('Beneficiary Data Update Failed!');
@@ -538,6 +539,7 @@ export default Component.extend({
             afterBeneficiaryUpdate.then(function (msg) {
             }).catch(function (msg) {
               if (msg.status === 204) {
+                context.get("router").transitionTo(this.routePath, 'create-beneficiary');
                 context.get('notifier').success('Beneficiary Data Update Successful');
               } else {
                 context.get('notifier').danger('Beneficiary Data Update Failed!');
@@ -552,9 +554,6 @@ export default Component.extend({
     },
 
     validate() {
-
-      let context = this;
-      context.get("router").transitionTo(this.routePath, 'create-beneficiary');
 
       this.get('model')
         .validate()
@@ -615,6 +614,7 @@ export default Component.extend({
             afterBeneficiaryRegistration.then(function (msg) {
             }).catch(function (msg) {
               if (msg.status === 201) {
+                context.get("router").transitionTo(this.routePath, 'create-beneficiary');
                 context.get('notifier').success('Beneficiary Registration Successful');
               } else {
                 context.get('notifier').danger('Beneficiary Registration Failed!');

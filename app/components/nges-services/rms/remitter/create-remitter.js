@@ -498,6 +498,7 @@ export default Component.extend({
                   context.get('notifier').success('Remitter Data Updated And Send to Next State');
                 }).catch(function (msg) {
                   if (msg.status === 204) {
+                    context.get("router").transitionTo(this.routePath, 'create-remitter');
                     context.get('notifier').success('Remitter Data Updated And Send to Next State');
                   } else {
                     context.get('notifier').danger('Remitter Data Update Failed!');
@@ -818,6 +819,7 @@ export default Component.extend({
               context.get('notifier').success('Remitter Data Update Successful');
             }).catch(function (msg) {
               if (msg.status === 204) {
+                context.get("router").transitionTo(this.routePath, 'create-remitter');
                 context.get('notifier').success('Remitter Data Update Successful');
               } else {
                 context.get('notifier').danger('Remitter Data Update Failed!');
@@ -833,9 +835,6 @@ export default Component.extend({
     },
 
     validate() {
-
-      let context = this;
-      context.get("router").transitionTo(this.routePath, 'create-remitter');
       this.get('model')
         .validate()
         .then(({validations}) => {
@@ -926,6 +925,7 @@ export default Component.extend({
             afterRemitterRegistration.then(function (msg) {
             }).catch(function (msg) {
               if (msg.status === 201) {
+                context.get("router").transitionTo(this.routePath, 'create-remitter');
                 context.get('notifier').success('Remitter Registration Successful');
               } else {
                 context.get('notifier').danger('Remitter Registration Failed!');
