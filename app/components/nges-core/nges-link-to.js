@@ -11,6 +11,10 @@ export default Component.extend({
   router: service(),
   routing: service('-routing'),
   urlParams: alias('routing.router.currentState.routerJsState.fullQueryParams'),
+
+  route: "welcome.application-loader.panel-loader.module-loader.service-holder-loader.menu-template-loader.submenu-template-loader.submenu-detail-template-loader.params-loader",
+
+
   init() {
     this._super(...arguments);
   },
@@ -19,7 +23,8 @@ export default Component.extend({
   actions: {
 
     onClick(routePath) {
-      //console.log('message', this.get('urlParams'));
+      console.log('message--routePath', routePath);
+
 
       let host = window.location.host;
       let href = window.location.href;
@@ -29,8 +34,13 @@ export default Component.extend({
       //console.log('message', querystring);
 
 
-      window.location.replace(href + "/" + routePath + "?" + querystring);
+      //window.location.replace(href + "/" + routePath + "?" + querystring);
 
+
+
+
+
+      this.get("router").transitionTo(this.route, routePath, querystring);
       /*this.get('router').transitionTo(
          'welcome.application-loader.panel-loader.module-loader.service-holder-loader.menu-template-loader.submenu-template-loader.submenu-detail-template-loader',
          routePath

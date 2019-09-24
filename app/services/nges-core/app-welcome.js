@@ -175,9 +175,8 @@ export default Service.extend({
   },
 
 
+  // this method only return value, if initialization from route page by calling setApplicationRouteInformation(args..)
   getServiceOrMenuInformation() {
-    // menu information(FE) === service information (Backend)
-
     return {
       serviceId: applicationRouteInformation.menuId,
       serviceCode: applicationRouteInformation.menuCode
@@ -186,7 +185,7 @@ export default Service.extend({
   ,
 
   getApplicationRouteInformation() {
-    console.log('message-applicationRouteInformation', this.get('applicationRouteInformation'));
+    // console.log('message-applicationRouteInformation', applicationRouteInformation);
     return applicationRouteInformation;
   },
 

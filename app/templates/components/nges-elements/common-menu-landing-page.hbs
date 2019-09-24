@@ -1,0 +1,22 @@
+{{!nges-core/json tableData}}
+
+<div class="card">
+
+  <div class="card-body">
+
+
+    {{!log crudActionsView}}
+
+    <div class="nges-button nges-button-success"{{action "perforMenuAction" templateInformation.code}}>{{templateInformation.shortLabel}} <i class={{templateInformation.icon}}></i> </div>
+
+
+    {{#each crudActionsView as |page|}}
+
+      {{#if page.isVisibleInLanding}}
+        <div class="nges-button nges-button-success"{{action "performAction" page.code}}>{{page.shortLabel}} <i class={{page.icon}}></i> </div>
+      {{/if}}
+
+    {{/each}}
+
+  </div>
+</div>

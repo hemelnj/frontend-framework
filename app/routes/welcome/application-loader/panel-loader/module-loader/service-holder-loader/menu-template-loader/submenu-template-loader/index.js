@@ -21,27 +21,16 @@ export default Route.extend({
     let appSubmenuTemplateCode = transition.routeInfos[7].params['submenu_template_code'];
 
 
-    // console.log('appCode', appCode);                                    // app->rms
-    // console.log('appPanelCode', appPanelCode);                          // panel->operation
-    // console.log('appModuleCode', appModuleCode);                        // module->collection
-    // console.log('appServiceHolderCode', appServiceHolderCode);          // FUNCTION - MICROSERVICE
-    // console.log('appMenuTemplateCode', appMenuTemplateCode);            // menu(service)->remitters
-    // console.log('appSubmenuTemplateCode', appSubmenuTemplateCode);      // submenu(function)->remitter-reg
-
-
-
-    // 1 fix cause it always insert one record
-    this.store.unloadAll('nges-core/engine-route-information');
-    this.store.createRecord('nges-core/engine-route-information', {
-      id: 1,
-      appCode: appCode,
-      appPanelCode: appPanelCode,
-      appModuleCode: appModuleCode,
-      appServiceHolderCode: appServiceHolderCode,
-      appMenuTemplateCode: appMenuTemplateCode,
-      appSubmenuTemplateCode: appSubmenuTemplateCode,
-    });
-
+    //---- initially process route information from menu tree for easy future access
+    this.appWelcome.setApplicationRouteInformation(
+      appCode,
+      appPanelCode,
+      appModuleCode,
+      appServiceHolderCode,
+      appMenuTemplateCode,
+      appSubmenuTemplateCode
+    );
+    //-------------------------------------
 
     let templateInformation = this.appTemplateSetup.getSingleTemplateName(
       appCode,
@@ -51,16 +40,6 @@ export default Route.extend({
       appSubmenuTemplateCode
     );
 
-
-    // store route meta information into ember data for future
-    this.appWelcome.setApplicationRouteInformation(
-      appCode,
-      appPanelCode,
-      appModuleCode,
-      appServiceHolderCode,
-      appMenuTemplateCode,
-      appSubmenuTemplateCode
-    );
 
     let completeTemplateName = templateInformation.completeTemplateName;
 

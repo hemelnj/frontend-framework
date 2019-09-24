@@ -14,6 +14,7 @@ import {
   init,
   setContext,
   setRemove,
+  getRootStage,
   setStageLayer, getPOS, setPOS, fitStageIntoParentContainer
 } from './diagram/tools';
 import {
@@ -43,6 +44,27 @@ export default Component.extend({
       this.set('classTypeId', classTypeId);
       this.didInsertElement();
       this.loadDataByClassTypeId(classTypeId)
+    },
+
+    exportImage(){
+
+      let downloadURI = function downloadURI(uri, name) {
+        var linkurl = document.createElement('a');
+        linkurl.download = name;
+        linkurl.href = uri;
+        document.body.appendChild(linkurl);
+        linkurl.click();
+        document.body.removeChild(linkurl);
+        //delete linkurl;
+      };
+
+      var dataURL = getRootStage().toDataURL();
+
+      var doc = new jsPDF('l','pt','a4'); // This part is your mistake
+      //doc.text(20, 20, 'Hello world.');
+      doc.addImage(dataURL, 'JPEG', 0, 0);
+      doc.save('olm_diagram.pdf');
+      //downloadURI(dataURL, 'olm_diagram.png');
     },
 
     zoomSliderChange(value){

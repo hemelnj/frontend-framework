@@ -3,12 +3,14 @@ import {inject as service} from '@ember/service';
 
 export default Route.extend({
 
-  appWelcome: service('nges-core/app-welcome'),
+
   appTemplateSetup: service('app-template-setup'),
-  model(service_menu, transition) {
+  appWelcome: service('nges-core/app-welcome'),
+  model(submenu_route, transition) {
+    // console.log('route-name', 'item-template-loader.item-sub-item-loader.js');
 
     let routeInfos = transition.routeInfos;
-    //console.log('routeInfos', routeInfos);
+    console.log('routeInfos-param', routeInfos);
 
 
     let appCode = transition.routeInfos[2].params['application_code'];
@@ -17,19 +19,13 @@ export default Route.extend({
     let appServiceHolderCode = transition.routeInfos[5].params['service_holder_code'];
     let appMenuTemplateCode = transition.routeInfos[6].params['menu_template_code'];          //
     let appSubmenuTemplateCode = transition.routeInfos[7].params['submenu_template_code'];
-    let appTemplateDetailCode = transition.routeInfos[8].params['submenu_detail_template_code'];   // 4 level for template_detail_view_code
+    let appTemplateDetailCode = transition.routeInfos[8].params['submenu_detail_template_code'];
+    let appParamsCode = transition.routeInfos[9].params['params_code'];
 
-
-    // console.log('appCode', appCode);                                    // app->rms
-    // console.log('appPanelCode', appPanelCode);                          // panel->operation
-    // console.log('appModuleCode', appModuleCode);                        // module->collection
-    // console.log('appServiceHolderCode', appServiceHolderCode);          // FUNCTION - MICROSERVICE
-    // console.log('appMenuTemplateCode', appMenuTemplateCode);            // menu(service)->remitters
-    // console.log('appSubmenuTemplateCode', appSubmenuTemplateCode);      // submenu(function)->remitter-reg
-    // console.log('appTemplateDetailCode', appTemplateDetailCode);        // remitter(sub-function)-reg->details-view-page
 
 
     //---- initially process route information from menu tree for easy future access
+    // So it can initialize route information, it required* for dynamic url or other things.
     this.appWelcome.setApplicationRouteInformation(
       appCode,
       appPanelCode,
@@ -40,31 +36,25 @@ export default Route.extend({
     );
     //-------------------------------------
 
-
-    let templateInformation = this.appTemplateSetup.getSingleDetailViewTemplateName(
+    let templateInformation = this.appTemplateSetup.getSingleTemplateName(
       appCode,
       appPanelCode,
       appModuleCode,
-
       appMenuTemplateCode,
-      appSubmenuTemplateCode,
-      appTemplateDetailCode
+      appSubmenuTemplateCode
     );
-
-
     let completeTemplateName = templateInformation.completeTemplateName;
 
     return {
       appCode: appCode,
       appPanelCode: appPanelCode,
-      appModuleCode: appModuleCode,
       appServiceHolderCode: appServiceHolderCode,
+      appModuleCode: appModuleCode,
       appMenuTemplateCode: appMenuTemplateCode,
-      appSubmenuTemplateCode: appSubmenuTemplateCode,
 
-      appTemplateDetailCode: appTemplateDetailCode,
+      appSubmenuTemplateCode: appSubmenuTemplateCode,
       templateInformation: templateInformation,
-      completeTemplateName: completeTemplateName
+      completeTemplateName: completeTemplateName,
     }
 
   }

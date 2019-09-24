@@ -25,7 +25,10 @@ Router.map(function () {
           this.route('service-holder-loader', {path: ':service_holder_code'}, function () {
             this.route('menu-template-loader', {path: ':menu_template_code'}, function () {
               this.route('submenu-template-loader', {path: ':submenu_template_code'}, function () {
-                this.route('submenu-detail-template-loader', {path: ':submenu_detail_template_code'});
+                this.route('submenu-detail-template-loader', {path: ':submenu_detail_template_code'}, function() {
+                    this.route('params-loader',{path: ':params_code'});
+                  }
+                );
               });
             });
           });

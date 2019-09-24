@@ -91,9 +91,32 @@ FE{User}:-      |rms        |operation-panel  | collection              | MICROS
 ```bash
 
 
-ember g route welcome.application-loader.panel-loader.module-loader.service-holder-loader.menu-template-loader.submenu-template-loader.submenu-detail-template-loader.
+ember g route welcome/application-loader/panel-loader/module-loader/service-holder-loader/menu-template-loader/submenu-template-loader/submenu-detail-template-loader/params-loader
 
 
 
 ```
 
+# Custom Transtition Route
+
+```javascript
+
+let route = "welcome.application-loader.panel-loader.module-loader.service-holder-loader.menu-template-loader.submenu-template-loader.submenu-detail-template-loader.params-loader";
+this.get("router").transitionTo(route, 'edit-page', 'value');
+
+```
+
+Output:
+
+  http://192.168.20.147:4300/rms/operation/collection/FUNCTION/remitters/remitter-reg/edit-page/value
+
+
+# Custom Path
+
+```js
+this.get("router").transitionTo('/rms/operation/collection/FUNCTION/remitters/remitter-reg/edit-page/value');
+```
+
+Output:
+
+  http://192.168.20.147:4300/rms/operation/collection/FUNCTION/remitters/remitter-reg/edit-page/value

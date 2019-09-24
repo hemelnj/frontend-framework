@@ -6,7 +6,7 @@ export default Service.extend({
   store: service(),
   appRestTemplate: service('app-rest-template'),
   olmEngineHost: config.NGES_SERVICE_HOSTS.OLM_SERVICE_HOST,
-  //rmsOLMEngineHost: config.NGES_SERVICE_HOSTS.APP_OLM_SERVICE_HOST,
+  rmsOLMEngineHost: config.NGES_SERVICE_HOSTS.APP_OLM_SERVICE_HOST,
   apiGatewayHost: config.NGES_SERVICE_HOSTS.GATEWAY_SERVICE_HOST,
 
   getAllActionEvents(accessToken) {
@@ -16,7 +16,7 @@ export default Service.extend({
     };
 
     //let url = this.olmEngineHost + "/actionevents";
-    let url = this.olmEngineHost + "/actionevents";
+    let url = this.rmsOLMEngineHost + "/actionevents";
     return this.appRestTemplate.httpRestClient(url, "GET",
       null, {}, beforeSend
     );
@@ -33,7 +33,7 @@ export default Service.extend({
     };
 
     //let url = this.olmEngineHost + "/actionevents";
-    let url = this.olmEngineHost + "/actionevents";
+    let url = this.rmsOLMEngineHost + "/actionevents";
     return this.appRestTemplate.httpRestClient(url, "POST",
       data, {}, beforeSend
     );
@@ -48,7 +48,7 @@ export default Service.extend({
     };
 
     //let url = this.olmEngineHost + "/actionevents/" + id;
-    let url = this.olmEngineHost + "/actionevents/" + id;
+    let url = this.rmsOLMEngineHost + "/actionevents/" + id;
     return this.appRestTemplate.httpRestClient(url, "PATCH",
       data, {}, beforeSend
     );
@@ -63,7 +63,7 @@ export default Service.extend({
     };
 
     //let url = this.olmEngineHost + "/states/" + id;
-    let url = this.olmEngineHost + "/states/" + id;
+    let url = this.rmsOLMEngineHost + "/states/" + id;
     return this.appRestTemplate.httpRestClient(url, "PATCH",
       data, {}, beforeSend
     );
@@ -94,7 +94,7 @@ export default Service.extend({
     };
 
     //let url = this.olmEngineHost + "/classtypes/" + classTypeId;
-    let url = this.olmEngineHost + "/classtypes/" + classTypeId;
+    let url = this.rmsOLMEngineHost + "/classtypes/" + classTypeId;
     return this.appRestTemplate.httpRestClient(url, "GET",
       null, {}, beforeSend
     );
@@ -108,8 +108,8 @@ export default Service.extend({
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
-    //let url = this.olmEngineHost + "/states";
     let url = this.olmEngineHost + "/states";
+    //let url = this.rmsOLMEngineHost + "/states";
     return this.appRestTemplate.httpRestClient(url, "POST",
       data, {}, beforeSend
     );
@@ -121,7 +121,7 @@ export default Service.extend({
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
-    let url = this.olmEngineHost + "/roles";
+    let url = this.rmsOLMEngineHost + "/roles";
     return this.appRestTemplate.httpRestClient(url, "GET",
       null, {}, beforeSend
     );
@@ -134,7 +134,7 @@ export default Service.extend({
       xhr.setRequestHeader('content-type', 'application/json');
     };
 
-    let url = this.olmEngineHost + '/diagram';
+    let url = this.rmsOLMEngineHost + '/diagram';
     return this.appRestTemplate.httpRestClient(url, "POST",
       data, {}, beforeSend
     );
