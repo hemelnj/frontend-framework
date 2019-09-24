@@ -29,7 +29,7 @@ export default Route.extend({
     // console.log('appTemplateDetailCode', appTemplateDetailCode);        // remitter(sub-function)-reg->details-view-page
 
 
-    // store route meta information into ember data for future
+    //---- initially process route information from menu tree for easy future access
     this.appWelcome.setApplicationRouteInformation(
       appCode,
       appPanelCode,
@@ -38,7 +38,6 @@ export default Route.extend({
       appMenuTemplateCode,
       appSubmenuTemplateCode
     );
-
 
     let id = 1;          // 1 fix cause it always update
     let modelName = 'nges-core/engine-route-information';
@@ -58,7 +57,7 @@ export default Route.extend({
         }
       }
     });
-
+    //-------------------------------------
 
 
     let templateInformation = this.appTemplateSetup.getSingleDetailViewTemplateName(
