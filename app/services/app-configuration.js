@@ -106,10 +106,10 @@ export default Service.extend(Authorization, {
   getRouteURLParams() {
     let url = new URL(window.location.href);
     let entries = new URLSearchParams(url.search);
-
+    entries = convert(url);
     let result = {};
     for (let entry of entries) { // each 'entry' is a [key, value] tupple
-      const [key, value] = entry;
+      const [key, value] = entry.split('=');
       result[key] = value;
     }
     return result;
@@ -329,4 +329,11 @@ let rawDataValidator = (userInformation) => {
 
     return userInformation;
   }
+};
+
+let convert = (url) => {
+  url = url.toString();
+  let tmp = url.substring(url.lastIndexOf('/') + 1);
+  let tmpArr = tmp.split('&');
+  return tmpArr;
 };
