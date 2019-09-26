@@ -230,7 +230,8 @@ export default Component.extend({
           let tempDualBoxStates = dualBoxStates;
           let subMenuList = subMenus.data.attributes.subMenuList;
 
-          console.log('message-subMenuList', subMenuList.length);
+          console.log('message-subMenuList-length', subMenuList.length);
+          console.log('message-subMenuList', subMenuList);
           console.log('message-tempDualBoxStates', tempDualBoxStates);
 
           for (let i = 0; i < tempDualBoxStates.length; i++) {
@@ -240,7 +241,6 @@ export default Component.extend({
               subMenuList[j]['menuTree'] = {
                 id: menuItemId
               };
-
 
               let subMenuStates = subMenuList[j].stateList;
               console.log('message-subMenuStates-Length', subMenuStates);
