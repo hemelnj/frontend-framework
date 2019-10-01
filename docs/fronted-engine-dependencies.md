@@ -26,7 +26,7 @@ ___
     
     npm i konva --save
     
-For KonvaJs, you need to specify its in `ember-cli-build.js`
+For `KonvaJs`, you need to specify its in `ember-cli-build.js`
 
 ```javascript
 
@@ -67,3 +67,49 @@ module.exports = function(defaults) {
 ```
 
 `Note:` Now, just rename your `css` file to `scss` and it's done.
+
+
+#### [D3.js](https://www.npmjs.com/package/ember-d3)
+  
+    ember install ember-d3
+    
+in your component .js file use like below,
+
+```js
+
+import d3 from 'd3'
+
+export default Component.extend({
+//your code for implement d3
+});
+```    
+
+    
+#### [jspdf](https://konvajs.org/docs/)
+
+    
+    npm install jspdf --save
+    
+For `jspdf`, you need to specify its in `ember-cli-build.js`
+
+```javascript
+
+module.exports = function(defaults) {
+  /...
+
+  app.import('node_modules/jspdf/dist/jspdf.min.js');
+  return app.toTree();
+};
+```    
+
+```js
+export default Component.extend({
+  generatePDF(){
+    // Default export is a4 paper, portrait, using milimeters for units
+    var doc = new jsPDF();
+     
+    doc.text('Hello world!', 10, 10);
+    doc.save('a4.pdf')
+  }
+});
+```
