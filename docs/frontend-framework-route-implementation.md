@@ -6,43 +6,11 @@ Routing is most important part for frontend engine.
 # Engine Route Implementation
 
 
-```bash
-
-
-G:-             application |     panel       | module (host-url)       | teller-function  | service       | function(stateList)       | sub-function
-FG:-            application |     panel       | module                  | service-holder   | menu          | submenu                   | details
-
-
-FE:{user}:-     rms         | user.panel      | operation.collection1   | teller-function1 | dashboard     | dashboard-registration    | remitter-details
-FE:{user}:-     rms         | user.panel      | operation.collection1   | teller-function1 | remitter      | remitter-registration     | remitter-details
-FE:{user}:-     rms         | user.panel      | operation.collection1   | teller-function1 | benificiary   | benificiary-registration  | remitter-details
-
-
-
-FE:{admin}:-    rms         | admin.panel     | admin.collection1       |        x         | olm           | diagram-tool              | x
-FE:{admin}:-    rms         | admin.panel     | admin.collection1       |        x         | collection    | country                   | x
-FE:{admin}:-    rms         | admin.panel     | admin.common parameter  |        x         | collection    | country                   | x
-
-
-
-FE{G}:-         |rms        |panel            | module                  | service-holder   |service         |function                  | details
-FE{Admin}:-     |rms        |admin-panel      | collection              | FUNCTION         |countries       |country-reg               | x
-FE{User}:-      |rms        |operation-panel  | collection              | MICROSERVICE     |remitters       |remitter-reg              | x
-
-
-```
-
-
-
-
-
-
-
 ### Fronted Engine Routing Levels
 
 ```
-  RL----------1/----------------/2--------------------/3--------------------4/----------------
-  www.nges.com/[application-panel-loader]/[microservice-loader]/[item-template-loader]/[template-view-loader]
+  RL----1------/------------2-------------/---------3-----------/----------4-----------/--------5-------------/------6------
+  www.nges.com/[application-panel-loader]/[microservice-loader]/[item-template-loader]/[template-view-loader]/[param-loader]
   
   
 ```
