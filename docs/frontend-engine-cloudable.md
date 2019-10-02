@@ -112,5 +112,5 @@ Define all of your host/service url inside `ENV` object block.
 * Make sure you do not define any of your host/service url inside any `environment`
 such as `development,production or test`.
 
-Example: [environment.js](./config/environment.js)
+Example: [environment.js](../config/environment.js)
 
