@@ -3,6 +3,10 @@
 module.exports = function (environment) {
 
 
+  //let HOST_BASE_URL = 'http://localhost';
+  let HOST_BASE_URL = 'http://192.168.20.147';
+  //let HOST_BASE_URL = 'http://192.168.20.2';
+
   let ENV = {
 
     fontawesome: {
@@ -49,24 +53,15 @@ module.exports = function (environment) {
 
     'ember-d3': {
       bundle: true
-    }
-  };
-
-
-  //let HOST_BASE_URL = 'http://localhost';
-  let HOST_BASE_URL = 'http://192.168.20.147';
-  //let HOST_BASE_URL = 'http://192.168.20.2';
-
-  //-:#############################################: development environment block
-  if (environment === 'development') {
+    },
 
     //-------------------- NGES UI HOST
-    ENV.NGES_UI_HOSTS = {
+    NGES_UI_HOSTS: {
       FRONTEND_ENGINE_UI_HOST: HOST_BASE_URL + ':4200',
-    };
+    },
 
     //-------------------- NGES BACKEND  HOST
-    ENV.NGES_SERVICE_HOSTS = {
+    NGES_SERVICE_HOSTS: {
       //OLM_SERVICE_HOST: 'http://olm-ngfs-core-framework.apps.115.127.24.184.nip.io',
       OLM_SERVICE_HOST: 'http://leadssoft.rms.olm-apps.115.127.24.184.nip.io',
       TREE_SERVICE_HOST: 'http://treeengine-ngfs-core-framework.apps.115.127.24.184.nip.io',
@@ -81,8 +76,14 @@ module.exports = function (environment) {
       RULE_ENGINE_SERVICE_HOST: 'http://droolsbackend-ngfs-core-framework.apps.115.127.24.184.nip.io',
       //RULE_ENGINE_SERVICE_HOST: 'http://192.168.20.2:8080',
 
-      GATEWAY_SERVICE_HOST:'http://gateway-ngfs-core-framework.apps.115.127.24.184.nip.io',
-    };
+      GATEWAY_SERVICE_HOST: 'http://gateway-ngfs-core-framework.apps.115.127.24.184.nip.io',
+    },
+  };
+
+
+  //-:#############################################: development environment block
+  if (environment === 'development') {
+
   }
 
 
