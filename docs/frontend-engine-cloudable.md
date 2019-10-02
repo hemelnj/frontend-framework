@@ -1,4 +1,4 @@
-##How to make frontend cloudable
+## How to make frontend cloudable
 Follow below steps to make frontend cloudable - 
 
 #### Put ``default.conf`` file in parent directory of ember project
@@ -8,7 +8,7 @@ your ember project and put below instructions inside that file.
 
 Here is required instructions for ``default.conf`` file -
 
-```
+```js
 
 server {
     listen       8080;
