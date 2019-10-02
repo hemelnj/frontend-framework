@@ -47,7 +47,7 @@ module.exports = function (environment) {
     APP: {
       appName: 'RemitClick Portal',
       appTitle: 'RemitClick Portal',
-      appLogo: '/app-logo-rms-v3.png',
+      appLogo: '/nges-remitter.png',
     },
 
 
