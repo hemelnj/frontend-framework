@@ -9,6 +9,11 @@ module.exports = function (environment) {
 
   let ENV = {
 
+    theme:{
+      themes: [ 'leads-sky', 'odoo-mixed'], // MANDATORY
+      defaultTheme: 'leads-sky', // OPTIONAL
+    },
+
     fontawesome: {
       defaultPrefix: 'fal', // light icons
       icons: {

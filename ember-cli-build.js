@@ -2,8 +2,22 @@
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
-module.exports = function(defaults) {
+module.exports = function (defaults) {
   let app = new EmberApp(defaults, {
+
+
+    outputPaths: {
+      app: {
+        css: {
+          'leads-sky': '/assets/leads-sky.css',
+          'odoo-mixed': '/assets/odoo-mixed.css'
+        }
+      },
+    },
+
+    fingerprint: {
+      exclude: ['leads-sky.css']
+    },
     // Add options here
     'ember-cli-bootstrap-4': {
       js: ['util', 'alert', 'tooltip']
