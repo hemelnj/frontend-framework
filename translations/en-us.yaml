@@ -1,10 +1,19 @@
-price_banner: costs {price, number, USD}
-Full Name: "Full Name"
+User: "User"
 Password: "Password"
+
+grettings: "NGES Rapid UI Development Framework"
+
+
+Admin Panel: "Admin Panel"
+Operation Panel: "Operation Panel"
+System Settings: "System Settings"
+Sign Out: "Sign Out"
+Change Password: "Change Password"
+
+
 Address: "Address"
 Phone Number: "Phone Number"
-Dropdown: "Dropdown "
 Submit: "Submit"
-grettings: "NGES Rapid UI Development Framework"
-System Settings: "System Settings"
+
+
 dashboard_number: Total {number}

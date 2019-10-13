@@ -10,11 +10,14 @@ export default Route.extend({
   appConfiguration: service('app-configuration'),
   appLogin: service('nges-core/app-login'),
   notifier: service(),
+  intl: service(),
+
   init(){
     console.log('message---init', 'application.js');
     let accessTokenExpireIn = this.appConfiguration.getAccessExpireIn();
     this.appConfiguration.setExpectedTokenExpireTime(accessTokenExpireIn);
   },
+
   beforeModel(){
 
     /*if (Date.now() >= expireToken * 1000) {
