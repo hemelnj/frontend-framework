@@ -8,6 +8,7 @@ export default Service.extend({
 
   apiGatewayHost: config.NGES_SERVICE_HOSTS.GATEWAY_SERVICE_HOST,
   appConfiguration: service('app-configuration'),
+  gatewayServiceHost: config.NGES_SERVICE_HOSTS.GATEWAY_SERVICE_HOST,
 
   addNewRemitter(accessToken, remitterData) {
     let data = JSON.stringify(remitterData);
