@@ -13,6 +13,8 @@ export default [
       {
         code: 'remittance-collection',
         name: 'transaction-collection',
+        icon:"fas fa-file",
+        shortLabel: 'New',
         label: 'Transaction Collection',
         detailPath: '/remitance-transaction',
         detailView: [
@@ -37,6 +39,8 @@ export default [
       {
         code: 'coverfundtransaction',
         name: 'cover-fund-transaction',
+        icon:"fas fa-file",
+        shortLabel: 'New',
         label: 'Cover Fund Transaction',
         detailPath: '/cover-fund-transaction',
         detailView: [
