@@ -1,9 +1,4 @@
 
-
-
-
-
-
 <div id="content" class={{if isSidebarHidden 'active'}}>
 
   <!-- top nav bar -->
@@ -37,6 +32,7 @@
 
             {{!nges-core/json service}}
 
+
             {{#link-to 'welcome.application-loader.panel-loader' service.routeName class="nav-link" }} {{nges-core/capitalize-first-letter service.displayName}} {{/link-to}}
 
           </li>
@@ -50,6 +46,8 @@
           signOut = signOut
           navigateToUpdatePassword = navigateToUpdatePassword
           logoutAll = logoutAll
+          changeLocaleENG=changeLocaleENG
+          changeLocaleBNG=changeLocaleBNG
         }}
       </div>
     </div>
