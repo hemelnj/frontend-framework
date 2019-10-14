@@ -7,13 +7,13 @@
 
     {{!log crudActionsView}}
 
-    <div class="nges-button nges-button-success"{{action "perforMenuAction" templateInformation.code}}>{{templateInformation.shortLabel}} <i class={{templateInformation.icon}}></i> </div>
+    <div class="nges-button nges-button-success"{{action "perforMenuAction" templateInformation.code}}>{{t templateInformation.shortLabel}} <i class={{templateInformation.icon}}></i> </div>
 
 
     {{#each crudActionsView as |page|}}
 
       {{#if page.isVisibleInLanding}}
-        <div class="nges-button nges-button-success"{{action "performAction" page.code}}>{{page.shortLabel}} <i class={{page.icon}}></i> </div>
+        <div class="nges-button nges-button-success"{{action "performAction" page.code}}>{{t page.shortLabel}} <i class={{page.icon}}></i> </div>
       {{/if}}
 
     {{/each}}
