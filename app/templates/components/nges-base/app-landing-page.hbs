@@ -1,7 +1,7 @@
 <style>
 
 
-  .width{
+  .width {
     width: 350px;
   }
 
@@ -47,6 +47,7 @@
           <div class="col-md-8">
             {{nges-core/nges-searchable-dropdown
               dataList=orgList
+              message = "Select Organization"
               autocompleteOnSelect=(action 'onChangeOrganization')
             }}
           </div>
@@ -64,6 +65,7 @@
           <div class="col-md-8">
             {{nges-core/nges-searchable-dropdown
               dataList=appList
+              message = "Select Application"
               autocompleteOnSelect=(action 'onChangeApplication')
             }}
           </div>
