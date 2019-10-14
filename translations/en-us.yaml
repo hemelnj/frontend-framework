@@ -3,7 +3,10 @@ Password: "Password"
 
 grettings: "NGES Rapid UI Development Framework"
 
+Select Organization: "Select Organization"
+Select Application: "Select Application"
 
+#
 Admin Panel: "Admin Panel"
 Operation Panel: "Operation Panel"
 System Settings: "System Settings"
