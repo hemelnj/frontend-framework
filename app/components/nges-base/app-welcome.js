@@ -22,10 +22,12 @@ export default Component.extend(Authorization, {
     },
     changeLocaleENG(value) {
       console.log('message-changeLocaleENG-welcome', value);
+      this.appConfiguration.setAppLanguage(['en-us']);
       this.get('intl').setLocale(['en-us']);
     },
     changeLocaleBNG(value) {
       console.log('message-changeLocaleBNG-welcome', value);
+      this.appConfiguration.setAppLanguage(['bn-ln']);
       this.get('intl').setLocale(['bn-ln']);
     },
     navigateToUpdatePassword() {
