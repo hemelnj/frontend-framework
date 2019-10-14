@@ -7,8 +7,8 @@ export default Route.extend({
 
   intl: service(),
   beforeModel() {
-    //console.log('message', ' loading index page');
-    this.get('intl').setLocale(['en-us']);
+    let currentLocale = this.get('intl.locale');
+    this.get('intl').setLocale(currentLocale);
   }
 
 });
