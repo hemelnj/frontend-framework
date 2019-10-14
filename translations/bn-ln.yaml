@@ -35,7 +35,19 @@ Mode of Payment: "পেমেন্ট মোড"
 Risk Status: "ঝুঁকির অবস্থা"
 Risk: "ঝুঁকি"
 Sanction Screening: "অনুমোদন স্ক্রিনিং"
-
+#placeholder
+Id: "আইডি"
+Select Type of Remittance: "রেমিটেন্সের প্রকার নির্বাচন করুন"
+Select Purpose of Remittance: "রেমিটেন্সের উদ্দেশ্য নির্বাচন করুন"
+Select Source of Fund: "তহবিলের উৎস নির্বাচন করুন"
+Select Delivery Agent: "ডেলিভারি এজেন্ট নির্বাচন করুন"
+Select Beneficiary Country: "সুবিধাভোগী দেশ নির্বাচন করুন"
+Select Beneficiary's Bank: "সুবিধাভোগকারীর ব্যাংক নির্বাচন করুন"
+Select Beneficiary's Branch: "সুবিধাভোগকারীর শাখা নির্বাচন করুন"
+Select Currency: "কারেন্সি নির্বাচন করুন"
+Select Mode of Payment: "অর্থ প্রদানের পদ্ধতি নির্বাচন করুন"
+Select Risk: "ঝুঁকি নির্বাচন করুন"
+MLRO Comment: "MLRO মন্তব্য"
 
 
 
