@@ -12,6 +12,7 @@ let orgCode = 'orgCode';
 let appCode = 'appCode';
 let orgId = 'orgId';
 let entityCode = 'entityCode';
+let appLanguage='appLanguage';
 
 let appExpectedExpireTime = 'appExpectedExpireTime';
 
@@ -19,6 +20,14 @@ export default Service.extend(Authorization, {
 
   appName: config.APP.appName,
   authEngineHost: config.NGES_SERVICE_HOSTS.AUTH_SERVICE_HOST,
+
+  setAppLanguage(language) {
+    localStorage.setItem(appLanguage, language);
+  },
+
+  getAppLanguage() {
+    return localStorage.getItem(appLanguage);
+  },
 
   setUserRoles(roleList) {
     localStorage.setItem(appUserRoles, JSON.stringify(roleList));

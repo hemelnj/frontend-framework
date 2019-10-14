@@ -41,12 +41,12 @@
 
       <hr style="margin-top: -4%;">
 
-      <label style="font-weight: bold; color: #373D42;font-size: 1.05rem">{{t "User"}}</label>
+      <label style="font-weight: bold; color: #373D42;font-size: 1.05rem">User</label>
       <input id="inputName" placeholder="Name" class="form-control" value={{userInformation.name}} style="margin-top: -2%;"
              oninput={{action (mut userInformation.name) value="target.value"}}>
 
 
-      <label style="font-weight: bold; color: #373D42;font-size: 1.05rem;margin-top: 10px;">{{t "Password"}}</label>
+      <label style="font-weight: bold; color: #373D42;font-size: 1.05rem;margin-top: 10px;">Password</label>
       <input id="inputPassword" type="password" placeholder="Password" class="form-control" style="margin-top: -2%;"
              value={{userInformation.password}}
              oninput={{action (mut userInformation.password) value="target.value"}}>
