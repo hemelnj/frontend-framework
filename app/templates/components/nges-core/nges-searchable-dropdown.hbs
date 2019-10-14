@@ -2,7 +2,7 @@
 {{!nges-core/json dataList}}
 
 <select class="js-select2" style="z-index: +999999; position: absolute" onchange={{action 'getSelectedItem' value="target.value"}}>
-  <option value="">{{message}}</option>
+  <option value="">{{ message}}</option>
   {{#each dataList as |data|}}
     <option value={{nges-engines/olm/object-to-string data}}>{{data.attributes.name}}</option>
   {{/each}}
