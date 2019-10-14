@@ -11,8 +11,33 @@ Sign Out: "সাইন আউট"
 Change Password: "পাসওয়ার্ড পরিবর্তন"
 
 
-Address: "ঠিকানা"
-Phone Number: "ফোন নম্বর"
-Submit: "সাবমিট"
+#remitter form
+#form header
+Remittance Collection Transaction: "রেমিটেন্স কালেকশন ট্রান্সেকশন"
+Remitter Id : "রেমিটার আইডি"
+Type of Remittance: "রেমিটেন্সের প্রকার"
+Purpose of Remittance: "রেমিটেন্সের উদ্দেশ্য"
+Source of Fund: "তহবিলের উৎস"
+Delivery Agent: "বিতরণ এজেন্ট"
+Beneficiary Country: "উপকারভোগী দেশ"
+Beneficiary Id: "উপকারভোগী আইডি"
+Beneficiary's Bank: "উপকারভোগকারীর ব্যাংক"
+Beneficiary's Branch: "উপকারভোগকারীর শাখা"
+Input Amount: "ইনপুট পরিমাণ"
+Currency: "মুদ্রা"
+Transfer Amount: "স্থানান্তরের পরিমাণ"
+Local Amount: "স্থানীয় পরিমাণ"
+Comission Amount: "কমিশনের পরিমাণ"
+Total Value needed to Pay: "প্রদানের জন্য মোট প্রয়োজনীয় মূল্য"
+Total Value needed to Adjust: "সামঞ্জস্য করার জন্য মোট প্রয়োজনীয় মূল্য"
+Total Pay Amount: "মোট প্রদেয় পরিমাণ"
+Mode of Payment: "পেমেন্ট মোড"
+Risk Status: "ঝুঁকির অবস্থা"
+Risk: "ঝুঁকি"
+Sanction Screening: "অনুমোদন স্ক্রিনিং"
+
+
+
+
 
 

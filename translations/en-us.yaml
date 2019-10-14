@@ -11,9 +11,34 @@ Sign Out: "Sign Out"
 Change Password: "Change Password"
 
 
-Address: "Address"
-Phone Number: "Phone Number"
-Submit: "Submit"
+#remitter form of Transaction collection
+#form header
+Remittance Collection Transaction: "Remittance Collection Transaction"
+Remitter Id : "Remitter Id"
+Type of Remittance: "Type of Remittance"
+Purpose of Remittance: "Purpose of Remittance"
+Source of Fund: "Source of Fund"
+Delivery Agent: "Delivery Agent"
+Beneficiary Country: "Beneficiary Country"
+Beneficiary Id: "Beneficiary Id"
+Beneficiary's Bank: "Beneficiary's Bank"
+Beneficiary's Branch: "Beneficiary's Branch"
+Input Amount: "Input Amount"
+Currency: "Currency"
+Transfer Amount: "Transfer Amount"
+Local Amount: "Local Amount"
+Comission Amount: "Comission Amount"
+Total Value needed to Pay: "Total Value needed to Pay"
+Total Value needed to Adjust: "Total Value needed to Adjust"
+Total Pay Amount: "Total Payable Amount"
+Mode of Payment: "Mode of Payment"
+Risk Status: "Risk Status"
+Risk: "Risk"
+Sanction Screening: "Sanction Screening"
 
 
-dashboard_number: Total {number}
+
+
+
+
+
