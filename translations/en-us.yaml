@@ -52,10 +52,15 @@ Select Mode of Payment: "Select Mode of Payment"
 Select Risk: "Select Risk"
 MLRO Comment: "MLRO Comment"
 
-#common top menu button
+#common menu landing page button
 New: "New"
 Search: "Search"
 States: "States"
+
+#form button
+Save: "Save"
+Risk Status Check: "Risk Status Check"
+
 
 
 
