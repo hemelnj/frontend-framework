@@ -1,12 +1,18 @@
-price_banner: খরচ {price, number, BDT}
-Full Name: "পুরো নাম"
-Password: "পাসওয়ার্ড "
+User: "ব্যবহারকারীর নাম"
+Password: "পাসওয়ার্ড"
+
+grettings: "এন.জি.ই.এস ৱ্যাপিড ইউ.আই ডেভেলপমেন্ট ফ্রেমওয়ার্ক"
+
+
+Admin Panel: "অ্যাডমিন প্যানেল"
+Operation Panel: "অপারেশন প্যানেল"
+System Settings: "সিস্টেম সেটিংস"
+Sign Out: "সাইন আউট"
+Change Password: "পাসওয়ার্ড পরিবর্তন"
+
+
 Address: "ঠিকানা"
 Phone Number: "ফোন নম্বর"
-Dropdown: "ড্রপডাউন "
 Submit: "সাবমিট"
-grettings: "এন.জি.ই.এস ৱ্যাপিড ইউ.আই ডেভেলপমেন্ট ফ্রেমওয়ার্ক"
-System Settings: "সিস্টেম সেটিংস"
-dashboard_number: মোট {number},
 
 

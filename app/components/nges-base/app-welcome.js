@@ -14,15 +14,18 @@ export default Component.extend(Authorization, {
   appWelcome: service('nges-core/app-welcome'),
   notifier: service(),
   router: service(),
+
   actions: {
     signOut() {
       this.appConfiguration.logoutUser();
       this.clearAuthorization();
     },
-    changeLocaleENG() {
+    changeLocaleENG(value) {
+      console.log('message-changeLocaleENG-welcome', value);
       this.get('intl').setLocale(['en-us']);
     },
-    changeLocaleBNG() {
+    changeLocaleBNG(value) {
+      console.log('message-changeLocaleBNG-welcome', value);
       this.get('intl').setLocale(['bn-ln']);
     },
     navigateToUpdatePassword() {
@@ -34,7 +37,6 @@ export default Component.extend(Authorization, {
 
   init() {
     this._super(...arguments);
-
     // initial authorization check otherwise redirect to login
     if (this.appConfiguration.getAuthorizedUserInformation() === null) {
       //this.transitionToRoute("login");
@@ -43,6 +45,8 @@ export default Component.extend(Authorization, {
       this.authorizeUserThen();
     }
   },
+
+
   authorizeUserThen() {
 
     let context = this;
