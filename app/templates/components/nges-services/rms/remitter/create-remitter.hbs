@@ -14,7 +14,7 @@
 
 <div class="card">
   <div class="card-body">
-    <h1 class="layout-header-title">Remitter Registration</h1>
+    <h1 class="layout-header-title">{{t "Remitter Registration"}}</h1>
     <hr class="header-label-line">
     <form class="form-horizontal">
 
@@ -23,7 +23,7 @@
         input-field-name="Id"
         model=model
         valuePath='remId'
-        placeholder='[Auto]'
+        placeholder='Id'
         readonly="true"
         sectionFirst = 'col-sm-2'
         sectionLast = 'col-sm-4'
@@ -32,7 +32,7 @@
       <div class="form-group">
         <div class="row">
           <div class="col-sm-2">
-            <label class="input-field-label">Type</label>
+            <label class="input-field-label">{{t "Type"}}</label>
           </div>
 
           <div class="col-sm-4">
@@ -64,10 +64,10 @@
 
       {{nges-core/nges-input-component
         type='text'
-        input-field-name="Father Name"
+        input-field-name="Name of Father"
         model=model
         valuePath='fathersName'
-        placeholder='Father Name'
+        placeholder='Name of Father'
         sectionFirst = 'col-sm-2'
         sectionLast = 'col-sm-9'
         didValidate=didValidate}}
@@ -75,10 +75,10 @@
 
       {{nges-core/nges-input-component
         type='text'
-        input-field-name="Mother Name"
+        input-field-name="Name of Mother"
         model=model
         valuePath='mothersName'
-        placeholder='Mothers Name'
+        placeholder='Name of Mother'
         sectionFirst = 'col-sm-2'
         sectionLast = 'col-sm-9'
         didValidate=didValidate}}
@@ -100,7 +100,7 @@
           <div class="row">
 
             <div class="col-sm-4">
-              <label class="input-field-label">Choose Nationality</label>
+              <label class="input-field-label">{{t "Choose Nationality"}}</label>
             </div>
 
             <div class="col-sm-6">
@@ -149,7 +149,7 @@
       <div class="form-group">
         <div class="row">
           <div class="col-sm-2">
-            <label class="input-field-label">Nature of Job</label>
+            <label class="input-field-label">{{t "Nature of Job"}}</label>
           </div>
           <div class="col-sm-9">
             {{#if selectedNOJ.label}}
@@ -203,7 +203,7 @@
         didValidate=didValidate}}
 
       <fieldset>
-        <legend class="input-field-label">Present Address</legend>
+        <legend class="input-field-label">{{t "Present Address"}}</legend>
 
 
         <div>
@@ -232,7 +232,7 @@
         <div class="form-group">
           <div class="row">
             <div class="col-sm-2">
-              <label class="input-field-label">Country</label>
+              <label class="input-field-label">{{t "Country"}}</label>
             </div>
 
             <div class="col-sm-9">
@@ -252,7 +252,7 @@
         <div class="form-group">
           <div class="row">
             <div class="col-sm-2">
-              <label class="input-field-label">State/District</label>
+              <label class="input-field-label">{{t "State/District"}}</label>
             </div>
 
             <div class="col-sm-9">
@@ -305,14 +305,14 @@
 
       <br>
       <fieldset>
-        <legend class="input-field-label">Primary Photo ID</legend>
+        <legend class="input-field-label">{{t "Primary Photo ID"}}</legend>
 
         <div class="form-group">
           <div class="row">
             <div class="col-sm-6">
               <div class="row">
                 <div class="col-sm-4">
-                  <label class="input-field-label">Type</label>
+                  <label class="input-field-label">{{t "Type"}}</label>
                 </div>
 
                 <div class="col-sm-8">
@@ -335,7 +335,7 @@
                 input-field-name="ID No 1"
                 model=model
                 valuePath='primaryPhotoId'
-                placeholder='ID'
+                placeholder='Id'
                 sectionFirst = 'col-sm-4'
                 sectionLast = 'col-sm-8'
                 didValidate=didValidate}}
@@ -374,14 +374,14 @@
       <br>
 
       <fieldset>
-        <legend class="input-field-label">Secondary Photo ID</legend>
+        <legend class="input-field-label">{{t "Secondary Photo ID"}}</legend>
 
         <div class="form-group">
           <div class="row">
             <div class="col-sm-6">
               <div class="row">
                 <div class="col-sm-4">
-                  <label class="input-field-label">Type</label>
+                  <label class="input-field-label">{{t "Type"}}</label>
                 </div>
 
                 <div class="col-sm-8">
@@ -438,14 +438,14 @@
       <br>
 
       <fieldset>
-        <legend class="input-field-label">Risk Status</legend>
+        <legend class="input-field-label">{{t "Risk Status"}}</legend>
         <div class="form-group">
 
           <div class="row">
             <div class="col-sm-4">
               <div class="row">
                 <div class="col-sm-6">
-                  <label class="input-field-label">Risk</label>
+                  <label class="input-field-label">{{t "Risk"}}</label>
                 </div>
                 <div class="col-sm-6">
                   {{#if selectedRisk.label}}
@@ -465,7 +465,7 @@
 
           <div class="row">
             <div class="col-sm-2">
-              <label class="input-field-label">Sanction Screening</label>
+              <label class="input-field-label">{{t "Sanction Screening"}}</label>
             </div>
             <div class="col-sm-9">
               <table class="table-all">
@@ -498,7 +498,7 @@
       <!--only MLRO will see this fieldset-->
       {{#if showMLROReview}}
         <fieldset>
-          <legend class="input-field-label">MLRO Review</legend>
+          <legend class="input-field-label">{{t "MLRO Comment"}}</legend>
           <div class="row">
             <div class="col-sm-3">
               <label class="form-check-label input-field-label" style="margin-left: 15px;">
@@ -536,12 +536,12 @@
       {{#if showAlert}}
         <div class='alert'>
           <div class='fa fa-times icon-remove' {{action 'toggleProperty' 'showAlert'}}></div>
-          <h1 style="color: red; font-size: 12px">Please fix all the errors above before continuing.</h1>
+          <h1 style="color: red; font-size: 12px">{{t "Please fix all the errors above before continuing."}}</h1>
         </div>
       {{/if}}
 
       {{#if isValid}}
-        <span class='valid-input fa fa-check'><h1 style="color: red;font-size: 12px">Error Message</h1></span>
+        <span class='valid-input fa fa-check'><h1 style="color: red;font-size: 12px">{{t "Error Message"}}</h1></span>
       {{/if}}
 
       <br>
@@ -556,9 +556,9 @@
 
       <br>
       {{#if actionAccess}}
-        <button id='status_check' class="nges-button nges-button-success" {{action 'updateAction'}}>Submit</button>
-        <button id='status_check' class="nges-button nges-button-success" {{action 'propertyExtend'}}>Additional
-          Property
+        <button id='status_check' class="nges-button nges-button-success" {{action 'updateAction'}}>{{t "Submit"}}</button>
+        <button id='status_check' class="nges-button nges-button-success" {{action 'propertyExtend'}}>{{t "Additional
+          Property"}}
         </button>
       {{else}}
 
@@ -568,9 +568,9 @@
         label =  'Remitter Registration'
       }}
 
-        <button id='save' class="nges-button nges-button-success" {{action 'validate'}}>Save</button>
+        <button id='save' class="nges-button nges-button-success" {{action 'validate'}}>{{t "Save"}}</button>
       {{/if}}
-      <button id='status_check' class="nges-button nges-button-success" {{action 'checkRiskStatus'}}>Risk Status
+      <button id='status_check' class="nges-button nges-button-success" {{action 'checkRiskStatus'}}>{{t "Risk Status"}}
         Check
       </button>
 
