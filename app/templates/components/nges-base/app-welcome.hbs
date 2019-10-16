@@ -19,12 +19,13 @@
 
       {{#each serviceList as |service|}}
 
+        {{log service.displayName}}
         <li class="nav-item nav-link">
           {{#link-to 'welcome.application-loader.panel-loader'
                      service.applicationRouteName
                      service.routeName
                      class="nav-link"
-          }} {{nges-core/capitalize-first-letter  service.displayName}} {{/link-to}}
+          }} {{t service.displayName}} {{/link-to}}
         </li>
 
       {{/each}}
