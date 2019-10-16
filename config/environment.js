@@ -45,9 +45,9 @@ module.exports = function (environment) {
     },
 
     APP: {
-      appName: 'RemitClick Portal',
-      appTitle: 'RemitClick Portal',
-      appLogo: '/nges-remitter.png',
+      appName: 'Frontend Framework',
+      appTitle: 'Frontend Framework',
+      appLogo: '/app-logo.png',
     },
 
 
@@ -70,7 +70,7 @@ module.exports = function (environment) {
 
 
       APP_PE_SERVICE_HOST: 'http://rms.pe-apps.115.127.24.184.nip.io',
-      //APP_OLM_SERVICE_HOST: 'http://rms.olm-apps.115.127.24.184.nip.io',
+      APP_OLM_SERVICE_HOST: 'http://rms.olm-apps.115.127.24.184.nip.io',
       APP_SERVICE_POST_HOST: '-apps.115.127.24.184.nip.io',
 
       RULE_ENGINE_SERVICE_HOST: 'http://droolsbackend-ngfs-core-framework.apps.115.127.24.184.nip.io',

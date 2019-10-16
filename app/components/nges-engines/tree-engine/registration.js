@@ -150,19 +150,7 @@ export default Component.extend({
     },
 
     savedUserInfo() {
-      let roleList = this.get('roleList');
-
-      let role=[];
-      let data={};
-      for (let i = 0; i <roleList.length ; i++) {
-        if(roleList[i].id != 18){
-          data={
-            id:roleList[i].id,
-          };
-          role.pushObject(data);
-        }
-
-      }
+      let roleList = this.get('userRole');
 
       let treeDataFunctionModified = this.get('treeDataFunctionModified');
       let treeDataLocationModified = this.get('treeDataLocationModified');
@@ -195,7 +183,7 @@ export default Component.extend({
           },
 
           "name": this.get('userName'),
-          "roleList": role
+          "roleList": roleList
         };
 
         console.log('message-submitData', JSON.stringify(submitData));

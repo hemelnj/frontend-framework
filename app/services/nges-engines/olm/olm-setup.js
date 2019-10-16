@@ -5,8 +5,8 @@ export default Service.extend({
 
   store: service(),
   appRestTemplate: service('app-rest-template'),
-  //olmEngineHost: config.NGES_SERVICE_HOSTS.OLM_SERVICE_HOST,
-  rmsOLMEngineHost: config.NGES_SERVICE_HOSTS.OLM_SERVICE_HOST,
+  olmEngineHost: config.NGES_SERVICE_HOSTS.OLM_SERVICE_HOST,
+  rmsOLMEngineHost: config.NGES_SERVICE_HOSTS.APP_OLM_SERVICE_HOST,
   apiGatewayHost: config.NGES_SERVICE_HOSTS.GATEWAY_SERVICE_HOST,
 
   getAllActionEvents(accessToken) {
@@ -80,7 +80,7 @@ export default Service.extend({
     //let url = this.rmsOLMEngineHost + "/classtypes";
 
     //let url = this.olmEngineHost + "/" + orgCode + "/" + appCode + "/" + engineCode + "/api/classtypes";
-    let url = this.rmsOLMEngineHost + "/classtypes";
+    let url = this.olmEngineHost + "/classtypes";
 
     return this.appRestTemplate.httpRestClient(url, "GET",
       null, {}, beforeSend
@@ -108,8 +108,8 @@ export default Service.extend({
       xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
     };
 
-    //let url = this.olmEngineHost + "/states";
-    let url = this.rmsOLMEngineHost + "/states";
+    let url = this.olmEngineHost + "/states";
+    //let url = this.rmsOLMEngineHost + "/states";
     return this.appRestTemplate.httpRestClient(url, "POST",
       data, {}, beforeSend
     );
