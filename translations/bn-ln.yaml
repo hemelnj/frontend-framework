@@ -1,17 +1,31 @@
+#login-page
 User: "ব্যবহারকারীর নাম"
 Password: "পাসওয়ার্ড"
 
-grettings: "এন.জি.ই.এস ৱ্যাপিড ইউ.আই ডেভেলপমেন্ট ফ্রেমওয়ার্ক"
-
+#landing-page
 Select Organization: "Select Organization"
 Select Application: "Select Application"
 
-#
+grettings: "এন.জি.ই.এস ৱ্যাপিড ইউ.আই ডেভেলপমেন্ট ফ্রেমওয়ার্ক"
+
+#top-nav-menu
 Admin Panel: "অ্যাডমিন প্যানেল"
 Operation Panel: "অপারেশন প্যানেল"
 System Settings: "সিস্টেম সেটিংস"
 Sign Out: "সাইন আউট"
 Change Password: "পাসওয়ার্ড পরিবর্তন"
+Choose Language: "ভাষা নির্বাচন"
+
+#left-side-bar
+System Parameters: "System Parameters"
+Common Parameters: "Common Parameters"
+Other Parameters: "Other Parameters"
+Batch Schedular: "Batch Schedular"
+
+
+#-------don't change anything above this line--------#
+
+#-------application developer work after this line----#
 
 
 #remitter form

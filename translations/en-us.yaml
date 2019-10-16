@@ -1,17 +1,31 @@
+#login-page
 User: "User"
 Password: "Password"
 
-grettings: "NGES Rapid UI Development Framework"
-
+#landing-page
 Select Organization: "Select Organization"
 Select Application: "Select Application"
 
-#
+grettings: "NGES Rapid UI Development Framework"
+
+#top-nav-menu
 Admin Panel: "Admin Panel"
 Operation Panel: "Operation Panel"
 System Settings: "System Settings"
 Sign Out: "Sign Out"
 Change Password: "Change Password"
+Choose Language: "Choose Language"
+
+#left-side-bar
+System Parameters: "System Parameters"
+Common Parameters: "Common Parameters"
+Other Parameters: "Other Parameters"
+Batch Schedular: "Batch Schedular"
+
+
+#-------don't change anything above this line--------#
+
+#-------application developer work after this line----#
 
 
 #remitter form of Transaction collection
