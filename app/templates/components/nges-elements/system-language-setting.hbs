@@ -1,0 +1,22 @@
+{{!nges-core/json tableData}}
+
+<div class="card">
+
+  <div class="card-body">
+    <h4 class="layout-header-title">Language Settings</h4>
+    <hr class="header-label-line">
+
+    <div class="row">
+      <div class="col-sm-3">
+        <label class="input-field-label">Language</label>
+      </div>
+      <div class="col-md-5">
+        {{nges-core/nges-searchable-dropdown
+          dataList=languageList
+          message = "Select Language"
+          autocompleteOnSelect=(action 'onSelectLanguage')
+        }}
+      </div>
+    </div>
+  </div>
+</div>

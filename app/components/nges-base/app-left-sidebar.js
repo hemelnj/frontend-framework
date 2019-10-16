@@ -22,7 +22,7 @@ export default Component.extend({
 
 
 
-    let hasSuperAdmin = this.appConfiguration.hasThisRoleByName("role_super_admin");
+    let hasSuperAdmin = this.appConfiguration.hasThisRoleByName("SI");
 
 
     let menuTemplate = [
