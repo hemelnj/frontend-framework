@@ -24,12 +24,12 @@ export default Route.extend({
     //console.log('appPanelCode', appPanelCode);                          // panel->operation
 
 
-    let serviceList = duplicateRemoveFun(this.appWelcome.getAllApplicationPanelList());//todo remove it later
-    //let serviceList = this.appWelcome.getAllApplicationPanelList();
+    //let serviceList = duplicateRemoveFun(this.appWelcome.getAllApplicationPanelList());//todo remove it later
+    let serviceList = this.appWelcome.getAllApplicationPanelList();
 
     let moduleList = this.appWelcome.getMenuListByPanelCode(appPanelCode);
 
-    let hasSuperAdmin = this.appConfiguration.hasThisRoleByName("role_super_admin");
+    let hasSuperAdmin = this.appConfiguration.hasThisRoleByName("SI");
 
 
 
