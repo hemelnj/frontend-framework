@@ -96,8 +96,9 @@
                     {{#link-to
                       'welcome.application-loader.panel-loader.module-loader.service-holder-loader.menu-template-loader.submenu-template-loader.index'
                       module.code serviceHolder.menuTreeTemplate.code serviceHolder.code subMenu.code
-                      class="nav-link nav-link-active" }} {{nges-core/capitalize-first-letter
-                      subMenu.name}}
+
+                      class="nav-link nav-link-active" }} {{t subMenu.name}}
+
                     {{/link-to}}
 
                   {{/each}}
