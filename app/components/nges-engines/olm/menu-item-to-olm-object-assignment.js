@@ -6,7 +6,7 @@ import config from 'frontend-engine/config/environment';
 export default Component.extend({
 
   treeEngineHost: config.NGES_SERVICE_HOSTS.TREE_SERVICE_HOST,
-  olcmHost: config.NGES_SERVICE_HOSTS.OLM_SERVICE_HOST,
+  //olcmHost: config.NGES_SERVICE_HOSTS.OLM_SERVICE_HOST,
   rmsHost: config.NGES_SERVICE_HOSTS.APP_OLM_SERVICE_HOST,
   rmsOLMHost: config.NGES_SERVICE_HOSTS.OLM_SERVICE_HOST,
 
@@ -16,7 +16,7 @@ export default Component.extend({
   appAuthEngine: service('nges-engines/auth-engine/app-auth-engine'),
   appConfiguration: service('app-configuration'),
 
-  notifier: service(),
+  notifier:service(),
 
   formData: {
     menuItem: null,
@@ -32,9 +32,9 @@ export default Component.extend({
 
     this.loadEntity();
 
-    let templateList = this.appTreeEngine.getResourceTemplates();
+    let templateList =  this.appTreeEngine.getResourceTemplates();
 
-    this.set('templateList', templateList);
+    this.set('templateList',  templateList);
   },
 
   didReceiveAttrs() {
@@ -45,7 +45,7 @@ export default Component.extend({
 
     let menuTreeUrl = this.treeEngineHost + '/menuTrees';
     //let menuTreeUrl = this.treeEngineHost + '/menuTrees/2'; //rms
-    let menuItems = context.appTreeEngine.getMenuItems(accessToken, menuTreeUrl).then(function (result) {
+    let menuItems = context.appTreeEngine.getMenuItems(accessToken,menuTreeUrl).then(function (result) {
       context.set('menuItems', result.data);
     }).catch(function (errorMsg) {
       context.get('notifier').danger('Failed Load Menu Items');
@@ -89,7 +89,7 @@ export default Component.extend({
     let accessToken = this.appConfiguration.getAccessToken();
     let classtypes = context.olmSetupService.getAllClassType(orgCode, appCode, engineCode, accessToken);
     classtypes.then(function (result) {
-      console.log('olmObjects', result.data);
+      console.log('olmObjects--------', result.data);
       context.set('olmObjects', result.data);
     }).catch(function (errorMsg) {
       console.log('Failed To Load OLM Objects');
@@ -157,7 +157,7 @@ export default Component.extend({
 
     console.log('message', data);
 
-    let postMenuItem = context.appTreeEngine.postMenuItemToObjectAssignment(accessToken, data, url).then(function (result) {
+    let postMenuItem = context.appTreeEngine.postMenuItemToObjectAssignment(accessToken,data,url).then(function (result) {
 
     }).catch(function (msg) {
       context.get('notifier').success('Saved Successfully');
@@ -167,7 +167,7 @@ export default Component.extend({
   },
   actions: {
     selectMenuItem(value) {
-      this.set('formData.menuItem', value);
+      this.set('formData.menuItem',value);
     },
 
     onChangeEntity(value) {
@@ -196,7 +196,7 @@ export default Component.extend({
 
     selectTemplateList(value) {
       console.log('message--selectTemplateList', value.attributes.code);
-      this.set('formData.individualSubmenuCode', value.attributes.code);
+      this.set('formData.individualSubmenuCode',value.attributes.code);
     },
     selectOlmObject(value) {
       let selectOlmObject = value;
@@ -214,25 +214,22 @@ export default Component.extend({
       let olmObjectWiseStatesUrl = context.rmsOLMHost + '/classtypes/' + selectOlmObjectId + '/allStatesInAlphabeticOrder';
 
 
-      let olmObjectWiseStates = context.appTreeEngine.getOLMObjectWiseStates(accessToken, olmObjectWiseStatesUrl);
+      let olmObjectWiseStates = context.appTreeEngine.getOLMObjectWiseStates(accessToken,olmObjectWiseStatesUrl);
 
       olmObjectWiseStates.then(function (result) {
 
         let subMenuListUrl = context.treeEngineHost + '/menuTrees/' + menuItemId;
 
-        let subMenuList = context.appTreeEngine.getSubMenuList(accessToken, subMenuListUrl);
+        let subMenuList = context.appTreeEngine.getSubMenuList(accessToken,subMenuListUrl);
 
         subMenuList.then(function (subMenus) {
-
           let dualBoxStates = result.data;
           subMenus = JSON.parse(JSON.stringify(subMenus));
+
 
           let tempDualBoxStates = dualBoxStates;
           let subMenuList = subMenus.data.attributes.subMenuList;
 
-          console.log('message-subMenuList-length', subMenuList.length);
-          console.log('message-subMenuList', subMenuList);
-          console.log('message-tempDualBoxStates', tempDualBoxStates);
 
           for (let i = 0; i < tempDualBoxStates.length; i++) {
             for (let j = 0; j < subMenuList.length; j++) {
@@ -242,18 +239,20 @@ export default Component.extend({
                 id: menuItemId
               };
 
+
               let subMenuStates = subMenuList[j].stateList;
-              console.log('message-subMenuStates-Length', subMenuStates);
+              console.log('message-subMenuStates-', subMenuStates);
+              console.log('message-subMenuStates-Length', subMenuStates.length);
+
 
               for (let k = 0; k < subMenuStates.length; k++) {
-
-
-                if (tempDualBoxStates[i].id === subMenuStates[k].id) {
+                if(subMenuStates[k].id || tempDualBoxStates[i].id){
                   console.log('message-subMenuStates[k].id', subMenuStates[k].id);
                   console.log('message-tempDualBoxStates[i].id', tempDualBoxStates[i].id);
-                  dualBoxStates.splice(i, 1);
+                  if (tempDualBoxStates[i].id !== subMenuStates[k].id) {
+                    dualBoxStates.splice(i, 1);
+                  }
                 }
-
               }
             }
           }
@@ -339,7 +338,7 @@ export default Component.extend({
         tempStatList.push(
           {
             code: stateList[i].attributes.code,
-            order: i + 1,
+            order: i+1,
             comments: stateList[i].attributes.comments,
             createdAt: stateList[i].attributes.createdAt,
             createdBy: stateList[i].attributes.createdBy,

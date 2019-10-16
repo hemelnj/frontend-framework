@@ -15,7 +15,7 @@ export default Controller.extend(Authorization, {
     this._super(...arguments);
 
     this.set('userInformation', {
-      name: 'SI',
+      name: 'portal_BT',
       password: 'password'
     })
   },
