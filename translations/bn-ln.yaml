@@ -1,28 +1,118 @@
-#login-page
 User: "ব্যবহারকারীর নাম"
 Password: "পাসওয়ার্ড"
 
-#landing-page
+grettings: "এন.জি.ই.এস ৱ্যাপিড ইউ.আই ডেভেলপমেন্ট ফ্রেমওয়ার্ক"
+
 Select Organization: "Select Organization"
 Select Application: "Select Application"
 
-grettings: "এন.জি.ই.এস ৱ্যাপিড ইউ.আই ডেভেলপমেন্ট ফ্রেমওয়ার্ক"
-
-#top-nav-menu
+#
 Admin Panel: "অ্যাডমিন প্যানেল"
 Operation Panel: "অপারেশন প্যানেল"
 System Settings: "সিস্টেম সেটিংস"
 Sign Out: "সাইন আউট"
 Change Password: "পাসওয়ার্ড পরিবর্তন"
-Choose Language: "ভাষা নির্বাচন"
-
-#left-side-bar
-System Parameters: "System Parameters"
-Common Parameters: "Common Parameters"
-Other Parameters: "Other Parameters"
-Batch Schedular: "Batch Schedular"
 
 
-#-------don't change anything above this line--------#
+#remitter form
+#form header
+Remittance Collection Transaction: "রেমিটেন্স কালেকশন ট্রান্সেকশন"
+Remitter Id : "রেমিটার আইডি"
+Type of Remittance: "রেমিটেন্সের প্রকার"
+Purpose of Remittance: "রেমিটেন্সের উদ্দেশ্য"
+Source of Fund: "তহবিলের উৎস"
+Delivery Agent: "বিতরণ এজেন্ট"
+Beneficiary Country: "উপকারভোগী দেশ"
+Beneficiary Id: "উপকারভোগী আইডি"
+Beneficiary's Bank: "উপকারভোগকারীর ব্যাংক"
+Beneficiary's Branch: "উপকারভোগকারীর শাখা"
+Input Amount: "ইনপুট পরিমাণ"
+Currency: "মুদ্রা"
+Transfer Amount: "স্থানান্তরের পরিমাণ"
+Local Amount: "স্থানীয় পরিমাণ"
+Comission Amount: "কমিশনের পরিমাণ"
+Total Value needed to Pay: "প্রদানের জন্য মোট প্রয়োজনীয় মূল্য"
+Total Value needed to Adjust: "সামঞ্জস্য করার জন্য মোট প্রয়োজনীয় মূল্য"
+Total Pay Amount: "মোট প্রদেয় পরিমাণ"
+Mode of Payment: "পেমেন্ট মোড"
+Risk Status: "ঝুঁকির অবস্থা"
+Risk: "ঝুঁকি"
+Sanction Screening: "অনুমোদন স্ক্রিনিং"
+#placeholder
+Id: "আইডি"
+Select Type of Remittance: "রেমিটেন্সের প্রকার নির্বাচন করুন"
+Select Purpose of Remittance: "রেমিটেন্সের উদ্দেশ্য নির্বাচন করুন"
+Select Source of Fund: "তহবিলের উৎস নির্বাচন করুন"
+Select Delivery Agent: "ডেলিভারি এজেন্ট নির্বাচন করুন"
+Select Beneficiary Country: "সুবিধাভোগী দেশ নির্বাচন করুন"
+Select Beneficiary's Bank: "সুবিধাভোগকারীর ব্যাংক নির্বাচন করুন"
+Select Beneficiary's Branch: "সুবিধাভোগকারীর শাখা নির্বাচন করুন"
+Select Currency: "কারেন্সি নির্বাচন করুন"
+Select Mode of Payment: "অর্থ প্রদানের পদ্ধতি নির্বাচন করুন"
+Select Risk: "ঝুঁকি নির্বাচন করুন"
+MLRO Comment: "MLRO মন্তব্য"
 
-#-------application developer work after this line----#
+
+#common menu landing page button
+New: "নতুন"
+Search: "খোঁজ করুন"
+States: "ধাপসমূহ"
+
+
+#form button
+Save: "সেভ"
+Risk Status Check: "ঝুঁকি স্ট্যাটাস চেক"
+
+
+#beneficiary registration
+Name: "নাম"
+Beneficiary Registration: "বেনিফিশিয়ারি নিবন্ধন"
+Beneficiary Name: "বেনিফিশিয়ারি নাম"
+Address 1: "ঠিকানা ১"
+Address 2: "ঠিকানা ২"
+Country: "দেশ"
+Select Country: "দেশ নির্বাচন করুন"
+State/District: "শহর/জেলা"
+Select State/District: "শহর/জেলা নির্বাচন করুন"
+City/Town: "মহানগর/শহর"
+Enter City/Town Name: "মহানগর/শহর প্রদান করুন"
+Zip Code: "জিপ কোড"
+Mobile Number: "মোবাইল নম্বর"
+Email: "ইমেইল"
+Choose Nationality: "জাতীয়তা নির্বাচন"
+Select Nationality: "জাতীয়তা নির্বাচন করুন"
+Relationship with Remitter: "রেমিটারের সাথে সম্পর্ক"
+Please fix all the errors above before continuing.: "চালিয়ে যাওয়ার পূর্বে উপরের সমস্ত ত্রুটিগুলি ঠিক করুন।"
+Error Message: "ভুল বার্তা"
+Submit: "জমা দিন"
+Additional Property: "অতিরিক্ত সম্পত্তি"
+False Positive: "ইতিবাচক মিথ্যা"
+
+
+#Remitter Registration
+Remitter Registration: "রেমিটার নিবন্ধন"
+Type: "টাইপ"
+Select Type: "টাইপ নির্বাচন করুন "
+Name of Father: "পিতার নাম"
+Name of Mother: "মাতার নাম"
+Date of Birth: "জন্মদিন"
+Email Address: "ইমেইল"
+Nature of Job: "কাজের প্রকৃতি"
+Select Nature Of Job: "কাজের প্রকৃতি নির্বাচন করুন"
+Income Range: "আয়ের সীমা"
+Expected Remitance: "প্রত্যাশিত রেমিটেন্স"
+Remarks: "মন্তব্য"
+Present Address: "বর্তমান ঠিকানা"
+Proof of Address: "ঠিকানার প্রমান"
+Primary Photo ID: "প্রাথমিক ফটো আইডি"
+Issue: "সমস্যা"
+Expiry: "মেয়াদ শেষ হওয়ার তারিখ"
+ID No 1: "আইডি নম্বর ১"
+Issue 1: "সমস্যা ১"
+Expiry 1: "মেয়াদ শেষ হওয়ার তারিখ ১"
+ID No 2: "আইডি নম্বর ২"
+Issue 2: "সমস্যা ২"
+Expiry 2: "মেয়াদ শেষ হওয়ার তারিখ ২"
+Yearly Expected Vol. of Remitance: "বার্ষিক রেমিটেন্সের প্রত্যাশিত পরিমাণ"
+Secondary Photo ID: "মাধ্যমিক ফটো আইডি"
+

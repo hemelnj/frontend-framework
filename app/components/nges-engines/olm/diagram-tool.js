@@ -276,6 +276,7 @@ export default Component.extend({
     let engineCode = "olm";
     let allCreatedClassTypes = this.olmSetupService.getAllClassType(orgCode,appCode,engineCode,accessToken);
     allCreatedClassTypes.then(function (msg) {
+      console.log('message--classtypes---', msg.data);
       context.set('classtypes', msg.data);
     }).catch(function (errorMsg) {
       context.get('notifier').danger('Failed to Load OLM Objects');

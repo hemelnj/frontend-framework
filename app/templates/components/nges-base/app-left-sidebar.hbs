@@ -48,22 +48,20 @@
 
         <!-- super-admin = role menu -->
 
+
         <!-- user-admin = roles menu -->
         {{#unless (eq module.code "user-management")}}
-
-
           <li>
             <a href="#pageSubmenu{{moduleIndex}}" data-toggle="collapse" aria-expanded="false"
-               class="dropdown-toggle dropdown-toggle-header">{{t module.name}}</a>
+               class="dropdown-toggle dropdown-toggle-header">{{nges-core/capitalize-first-letter module.name}}</a>
             <hr style="margin-top: 0px; margin-bottom: 0px; background: #d3d3d3;">
             <ul class="list-unstyled collapse show" id="pageSubmenu{{moduleIndex}}">
 
               {{#each module.serviceHolders as |serviceHolder serviceHolderIndex|}}
 
 
-                <!--microservice user :: admin panel-->
+                <!--microservice user -->
                 {{#if (eq serviceHolder.menuTreeTemplate.code "MICROSERVICE") }}
-
                   <li style="padding-left: 5px; padding-top: 5px">
                     <a href="#pageSubMenuList{{serviceHolderIndex}}" data-toggle="collapse" aria-expanded="false"
                        class="dropdown-toggle dropdown-toggle-header">{{nges-core/capitalize-first-letter
@@ -90,7 +88,7 @@
                 {{/if}}
 
 
-                <!--function admin-->
+                <!--function admin -->
                 {{#if (eq serviceHolder.menuTreeTemplate.code "FUNCTION") }}
 
                   {{#each serviceHolder.subMenuList as |subMenu|}}
@@ -98,7 +96,7 @@
                     {{#link-to
                       'welcome.application-loader.panel-loader.module-loader.service-holder-loader.menu-template-loader.submenu-template-loader.index'
                       module.code serviceHolder.menuTreeTemplate.code serviceHolder.code subMenu.code
-                      class="nav-link nav-link-active" }} {{t
+                      class="nav-link nav-link-active" }} {{nges-core/capitalize-first-letter
                       subMenu.name}}
                     {{/link-to}}
 
@@ -146,7 +144,7 @@
                       'welcome.application-loader.panel-loader.module-loader.service-holder-loader.menu-template-loader.submenu-template-loader.index'
                       'module.code' 'module.code' 'serviceHolder.menuTreeTemplate.code' 'menu.code subMenu.code'
                       class="nav-link" }} {{nges-core/capitalize-first-letter subMenu.label}}
-                    {{/link-to}}
+                      {{/link-to}}
 
                   </li>
                 {{/each}}

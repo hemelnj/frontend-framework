@@ -1,28 +1,117 @@
-#login-page
 User: "User"
 Password: "Password"
 
-#landing-page
+grettings: "NGES Rapid UI Development Framework"
+
 Select Organization: "Select Organization"
 Select Application: "Select Application"
 
-grettings: "NGES Rapid UI Development Framework"
-
-#top-nav-menu
+#
 Admin Panel: "Admin Panel"
 Operation Panel: "Operation Panel"
 System Settings: "System Settings"
 Sign Out: "Sign Out"
 Change Password: "Change Password"
-Choose Language: "Choose Language"
-
-#left-side-bar
-System Parameters: "System Parameters"
-Common Parameters: "Common Parameters"
-Other Parameters: "Other Parameters"
-Batch Schedular: "Batch Schedular"
 
 
-#-------don't change anything above this line--------#
+#remitter form of Transaction collection
+#form header
+Remittance Collection Transaction: "Remittance Collection Transaction"
+Remitter Id : "Remitter Id"
+Type of Remittance: "Type of Remittance"
+Purpose of Remittance: "Purpose of Remittance"
+Source of Fund: "Source of Fund"
+Delivery Agent: "Delivery Agent"
+Beneficiary Country: "Beneficiary Country"
+Beneficiary Id: "Beneficiary Id"
+Beneficiary's Bank: "Beneficiary's Bank"
+Beneficiary's Branch: "Beneficiary's Branch"
+Input Amount: "Input Amount"
+Currency: "Currency"
+Transfer Amount: "Transfer Amount"
+Local Amount: "Local Amount"
+Comission Amount: "Comission Amount"
+Total Value needed to Pay: "Total Value needed to Pay"
+Total Value needed to Adjust: "Total Value needed to Adjust"
+Total Pay Amount: "Total Payable Amount"
+Mode of Payment: "Mode of Payment"
+Risk Status: "Risk Status"
+Risk: "Risk"
+Sanction Screening: "Sanction Screening"
+#placeholder 
+Id: "Id"
+Select Type of Remittance: "Select Type of Remittance"
+Select Purpose of Remittance: "Select Purpose of Remittance"
+Select Source of Fund: "Select Source of Fund"
+Select Delivery Agent: "Select Delivery Agent"
+Select Beneficiary Country: "Select Beneficiary Country"
+Select Beneficiary's Bank: "Select Beneficiary's Bank"
+Select Beneficiary's Branch: "Select Beneficiary's Branch"
+Select Currency: "Select Currency"
+Select Mode of Payment: "Select Mode of Payment"
+Select Risk: "Select Risk"
+MLRO Comment: "MLRO Comment"
 
-#-------application developer work after this line----#
+#common menu landing page button
+New: "New"
+Search: "Search"
+States: "States"
+
+
+
+#form button
+Save: "Save"
+Risk Status Check: "Risk Status Check"
+
+
+#beneficiary registration
+Name: "Name"
+Beneficiary Registration: "Beneficiary Registration"
+Beneficiary Name: "Beneficiary Name"
+Address 1: "Address 1"
+Address 2: "Address 2"
+Country: "Country"
+Select Country: "Select Country"
+State/District: "State/District"
+Select State/District: "Select State/District"
+City/Town: "City/Town"
+Enter City/Town Name: "Enter City/Town Name"
+Zip Code: "Zip Code"
+Mobile Number: "Mobile Number"
+Email: "Email"
+Choose Nationality: "Choose Nationality"
+Select Nationality: "Select Nationality"
+Relationship with Remitter: "Relationship with Remitter"
+Please fix all the errors above before continuing.: "Please fix all the errors above before continuing."
+Error Message: "Error Message"
+Submit: "Submit"
+Additional Property: "Additional Property"
+False Positive: "False Positive"
+
+
+#Remitter Registration
+Remitter Registration: "Remitter Registration"
+Type: "Type"
+Select Type: "Select Type"
+Name of Father: "Name of Father"
+Name of Mother: "Name of Mother"
+Date of Birth: "Date of Birth"
+Email Address: "Email Address"
+Nature of Job: "Nature of Job"
+Select Nature Of Job: "Select Nature Of Job"
+Income Range: "Income Range"
+Expected Remitance: "Expected Remitance"
+Remarks: "Remarks"
+Present Address: "Present Address"
+Proof of Address: "Proof of Address"
+Primary Photo ID: "Primary Photo ID"
+Issue: "Issue"
+Expiry: "Expiry"
+ID No 1: "ID No 1"
+Issue 1: "Issue 1"
+Expiry 1: "Expiry 1"
+ID No 2: "ID No 2"
+Issue 2: "Issue 2"
+Expiry 2: "Expiry 2"
+Yearly Expected Vol. of Remitance: "Yearly Expected Vol. of Remitance"
+Secondary Photo ID: "Secondary Photo ID"
