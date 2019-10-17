@@ -36,96 +36,21 @@
       <h4 class="layout-header-title">User Profiles</h4>
       <hr class="header-label-line">
       <div class="row">
-        <div class="col-md-6">
-
-          <div class="col">
-            {{#if userApplicationsList}}
-              <div class="table-container"
-                   style="overflow-y: auto; max-height: 350px; overflow-x: auto; padding:1rem; margin-top:15px;">
-                <table class="table-all">
-                  <thead>
-                  <tr class="line-height-reset">
-                    <th class="table-data table-bordered">
-                      <div>
-                        Entity
-                      </div>
-                    </th>
-                    <th class="table-data table-bordered">
-                      <div>
-                        Application
-                      </div>
-                    </th>
-                    <th class="table-data table-bordered">
-                      <div>
-                        Role
-                      </div>
-                    </th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  {{#each userApplicationsList as |item index|}}
-                    <tr>
-                      <td class="table-data table-bordered">
-                        <div>
-                          {{item.entityHierarchy.id}}
-                        </div>
-                      </td>
-                      <td class="table-data table-bordered">
-                        <div>
-                          {{item.application.id}}
-                        </div>
-                      </td>
-
-                      <td class="table-data table-bordered">
-                        <div>
-
-                          {{#each item.roles as |value|}}
-                            <span>{{value.name}},</span><br>
-                          {{/each}}
-                          <!--<button data-toggle="modal" data-target="#actionEventModal" {{action 'editActionEvent'
-                                                                                                   item }}
-                                style="width: 100px; margin-bottom: 5px" class="button-all button-edit">Edit
-                        </button>-->
-                          <!--<button {{action 'deleteActionEvent'
-                                               item }} style="width: 100px; margin-bottom: 5px" class="button-all button-danger">Delete</button>-->
-                        </div>
-                      </td>
-                    </tr>
-                  {{/each}}
-
-                  </tbody>
-                </table>
-              </div>
-            {{/if}}
-
-            <div class="form-group has-search">
-              <span class="fa fa-search form-control-feedback"></span>
-              <input type="text" class="input-field" onkeyup={{action 'getFilterKey' value='target.value'}}
-                     placeholder="Type to Search">
-            </div>
+        <div class="col-md-7">
+          {{#if userApplicationsList}}
             <div class="table-container"
-                 style="overflow-y: auto; max-height: 350px; overflow-x: auto;">
+                 style="overflow-y: auto; max-height: 350px;">
               <table class="table-all">
                 <thead>
                 <tr class="line-height-reset">
                   <th class="table-data table-bordered">
                     <div>
-                      Id
+                      Entity
                     </div>
                   </th>
                   <th class="table-data table-bordered">
                     <div>
-                      Display Name
-                    </div>
-                  </th>
-                  <th class="table-data table-bordered">
-                    <div>
-                      Email
-                    </div>
-                  </th>
-                  <th class="table-data table-bordered">
-                    <div>
-                      Account Status
+                      Application
                     </div>
                   </th>
                   <th class="table-data table-bordered">
@@ -136,34 +61,24 @@
                 </tr>
                 </thead>
                 <tbody>
-                {{#each userList as |item index|}}
+                {{#each userApplicationsList as |item index|}}
                   <tr>
                     <td class="table-data table-bordered">
                       <div>
-                        {{item.attributes.id}}
+                        {{item.entityHierarchy.id}}
                       </div>
                     </td>
                     <td class="table-data table-bordered">
                       <div>
-                        {{nges-core/capitalize-first-letter item.attributes.name}}
-                      </div>
-                    </td>
-                    <td class="table-data table-bordered">
-                      <div>
-                        {{item.attributes.email}}
+                        {{item.application.id}}
                       </div>
                     </td>
 
                     <td class="table-data table-bordered">
                       <div>
-                        {{nges-core/check-account-status item.attributes.enabled}}
-                      </div>
-                    </td>
-                    <td class="table-data table-bordered">
-                      <div>
 
-                        {{#each item.attributes.roles as |value|}}
-                          <span>{{nges-core/capitalize-first-letter value.name}},</span><br>
+                        {{#each item.roles as |value|}}
+                          <span>{{value.name}},</span><br>
                         {{/each}}
                         <!--<button data-toggle="modal" data-target="#actionEventModal" {{action 'editActionEvent'
                                                                                                  item }}
@@ -179,11 +94,93 @@
                 </tbody>
               </table>
             </div>
+          {{/if}}
+
+          <div class="form-group has-search">
+            <span class="fa fa-search form-control-feedback"></span>
+            <input type="text" class="input-field" onkeyup={{action 'getFilterKey' value='target.value'}}
+                   placeholder="Type to Search">
+          </div>
+          <div class="table-container"
+               style="overflow-y: auto; max-height: 350px; overflow-x: auto;">
+            <table class="table-all">
+              <thead>
+              <tr class="line-height-reset">
+                <th class="table-data table-bordered">
+                  <div>
+                    Id
+                  </div>
+                </th>
+                <th class="table-data table-bordered">
+                  <div>
+                    Display Name
+                  </div>
+                </th>
+                <th class="table-data table-bordered">
+                  <div>
+                    Email
+                  </div>
+                </th>
+                <th class="table-data table-bordered">
+                  <div>
+                    Account Status
+                  </div>
+                </th>
+                <th class="table-data table-bordered">
+                  <div>
+                    Role
+                  </div>
+                </th>
+              </tr>
+              </thead>
+              <tbody>
+              {{#each userList as |item index|}}
+                <tr>
+                  <td class="table-data table-bordered">
+                    <div>
+                      {{item.attributes.id}}
+                    </div>
+                  </td>
+                  <td class="table-data table-bordered">
+                    <div>
+                      {{nges-core/capitalize-first-letter item.attributes.name}}
+                    </div>
+                  </td>
+                  <td class="table-data table-bordered">
+                    <div>
+                      {{item.attributes.email}}
+                    </div>
+                  </td>
+
+                  <td class="table-data table-bordered">
+                    <div>
+                      {{nges-core/check-account-status item.attributes.enabled}}
+                    </div>
+                  </td>
+                  <td class="table-data table-bordered">
+                    <div>
+
+                      {{#each item.attributes.roles as |value|}}
+                        <span>{{nges-core/capitalize-first-letter value.name}},</span><br>
+                      {{/each}}
+                      <!--<button data-toggle="modal" data-target="#actionEventModal" {{action 'editActionEvent'
+                                                                                               item }}
+                                style="width: 100px; margin-bottom: 5px" class="button-all button-edit">Edit
+                        </button>-->
+                      <!--<button {{action 'deleteActionEvent'
+                                           item }} style="width: 100px; margin-bottom: 5px" class="button-all button-danger">Delete</button>-->
+                    </div>
+                  </td>
+                </tr>
+              {{/each}}
+
+              </tbody>
+            </table>
           </div>
         </div>
 
 
-        <div class="col-md-6">
+        <div class="col-md-5">
           <div id="actionEventInfo" class="adjust-card-style field-form max-width" method="post">
             <label class="instruction-label" style="font-size: 16px">Registration</label>
             <div class="row" style="margin-top: 4px;">
@@ -221,11 +218,11 @@
 
             <div class="form-group">
               <div class="row">
-                <div class="col-sm-2">
+                <div class="col-sm-3">
                   <label class="input-field-label">Organization</label>
                 </div>
 
-                <div class="col-sm-4">
+                <div class="col-sm-9">
 
                   <select class="form-control" onchange={{action "onChangeEntity" value='target.value'}} >
                     <option>Select Entity</option>
@@ -239,11 +236,11 @@
             </div>
             <div class="form-group">
               <div class="row">
-                <div class="col-sm-2">
+                <div class="col-sm-3">
                   <label class="input-field-label">Application</label>
                 </div>
 
-                <div class="col-sm-4">
+                <div class="col-sm-9">
 
                   <select class="form-control" onchange={{action "onChangeApplication" value='target.value'}} >
                     <option>Select Application</option>
