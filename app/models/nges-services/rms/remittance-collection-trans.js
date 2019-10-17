@@ -35,7 +35,7 @@ const Validations = buildValidations({
       validator('format', {
         regex: /^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9][0-9])?$/,
         message:
-          'Please input valid amount'
+          'Please input valid transfer amount'
       })
     ]
   },
@@ -46,7 +46,7 @@ const Validations = buildValidations({
       validator('format', {
         regex: /^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9][0-9])?$/,
         message:
-          'Please input valid amount'
+          'Please input valid local amount'
       })
     ]
   },
@@ -57,7 +57,7 @@ const Validations = buildValidations({
       validator('format', {
         regex: /^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9][0-9])?$/,
         message:
-          'Please input valid amount'
+          'Please input valid comission amount'
       })
     ]
   },
@@ -68,7 +68,7 @@ const Validations = buildValidations({
       validator('format', {
         regex: /^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9][0-9])?$/,
         message:
-          'Please input valid amount'
+          'Please input valid total payable value'
       })
     ]
   },
@@ -79,7 +79,7 @@ const Validations = buildValidations({
       validator('format', {
         regex: /^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9][0-9])?$/,
         message:
-          'Please input valid amount'
+          'Please input valid adjustable amount'
       })
     ]
   },
@@ -90,7 +90,7 @@ const Validations = buildValidations({
       validator('format', {
         regex: /^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9][0-9])?$/,
         message:
-          'Please input valid amount'
+          'Please input valid total payable amount'
       })
     ]
   },
