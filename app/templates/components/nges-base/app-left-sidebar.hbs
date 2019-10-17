@@ -93,6 +93,8 @@
                 <!--function admin-->
                 {{#if (eq serviceHolder.menuTreeTemplate.code "FUNCTION") }}
 
+                  {{log module.name}}
+
                   {{#each serviceHolder.subMenuList as |subMenu|}}
 
                     {{#link-to
