@@ -34,7 +34,7 @@
               <label class="input-field-label">{{t "Type of Remittance"}}</label>
             </div>
 
-            <div class="col-sm-6">
+            <div class="col-sm-4">
               {{nges-core/nges-searchable-dropdown
                 dataList=remittanceTypeList
                 message = "Select Type of Remittance"
@@ -44,13 +44,13 @@
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" style="margin-top: -1%;">
           <div class="row">
             <div class="col-sm-2">
               <label class="input-field-label">{{t "Purpose of Remittance"}}</label>
             </div>
 
-            <div class="col-sm-6">
+            <div class="col-sm-4">
               {{nges-core/nges-searchable-dropdown
                 dataList=remittancePurposeList
                 message = "Select Purpose of Remittance"
@@ -60,12 +60,12 @@
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" style="margin-top: -1%;">
           <div class="row">
             <div class="col-sm-2">
               <label class="input-field-label">{{t "Source of Fund"}}</label>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-4">
 
               {{nges-core/nges-searchable-dropdown
                 dataList=fundSourceList
@@ -77,28 +77,12 @@
           </div>
         </div>
 
-        <div class="form-group">
-          <div class="row">
-            <div class="col-sm-2">
-              <label class="input-field-label">{{t "Delivery Agent"}}</label>
-            </div>
-            <div class="col-sm-6">
-              {{nges-core/nges-searchable-dropdown
-                dataList=deliveryAgentList
-                message = "Select Delivery Agent"
-                autocompleteOnSelect=(action 'onChangeDeliveryAgent')
-              }}
-            </div>
-          </div>
-        </div>
-
-
-        <div class="form-group">
+        <div class="form-group" style="margin-top: -1%;">
           <div class="row">
             <div class="col-sm-2">
               <label class="input-field-label">{{ t "Beneficiary Country"}}</label>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-4">
 
               {{nges-core/nges-searchable-dropdown
                 dataList=countryList
@@ -109,15 +93,33 @@
           </div>
         </div>
 
-        {{nges-core/nges-input-component
-          type='text'
-          input-field-name="Beneficiary Id"
-          model=model
-          valuePath='beneficiaryId'
-          placeholder='Beneficiary Id'
-          sectionFirst = 'col-sm-2'
-          sectionLast = 'col-sm-4'
-          didValidate=didValidate}}
+        <div class="form-group" style="margin-top: -1%;">
+          <div class="row">
+            <div class="col-sm-2">
+              <label class="input-field-label">{{t "Delivery Agent"}}</label>
+            </div>
+            <div class="col-sm-4">
+              {{nges-core/nges-searchable-dropdown
+                dataList=deliveryAgentList
+                message = "Select Delivery Agent"
+                autocompleteOnSelect=(action 'onChangeDeliveryAgent')
+              }}
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: -1%;">
+          {{nges-core/nges-input-component
+            type='text'
+            input-field-name="Beneficiary Id"
+            model=model
+            valuePath='beneficiaryId'
+            placeholder='Beneficiary Id'
+            sectionFirst = 'col-sm-2'
+            sectionLast = 'col-sm-4'
+            didValidate=didValidate}}
+        </div>
+
 
 
         <div class="form-group">
@@ -125,7 +127,7 @@
             <div class="col-sm-2">
               <label class="input-field-label">{{t "Beneficiary's Bank"}}</label>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-4">
 
               {{nges-core/nges-searchable-dropdown
                 dataList=bankList
@@ -137,12 +139,12 @@
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" style="margin-top: -1%;">
           <div class="row">
             <div class="col-sm-2">
               <label class="input-field-label">{{t "Beneficiary's Branch"}}</label>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-4">
 
               {{nges-core/nges-searchable-dropdown
                 dataList=bankBranchList
@@ -154,22 +156,25 @@
           </div>
         </div>
 
-        {{nges-core/nges-input-component
-          type='number'
-          input-field-name="Input Amount"
-          model=model
-          valuePath='inputAmount'
-          placeholder='Input Amount'
-          sectionFirst = 'col-sm-2'
-          sectionLast = 'col-sm-4'
-          didValidate=didValidate}}
+        <div style="margin-top: -1%;">
+          {{nges-core/nges-input-component
+            type='number'
+            input-field-name="Input Amount"
+            model=model
+            valuePath='inputAmount'
+            placeholder='Input Amount'
+            sectionFirst = 'col-sm-2'
+            sectionLast = 'col-sm-4'
+            didValidate=didValidate}}
+        </div>
+
 
         <div class="form-group">
           <div class="row">
             <div class="col-sm-2">
               <label class="input-field-label">{{t "Currency"}}</label>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-4">
 
 
               {{nges-core/nges-searchable-dropdown
@@ -181,15 +186,18 @@
           </div>
         </div>
 
-        {{nges-core/nges-input-component
-          type='number'
-          input-field-name="Transfer Amount"
-          model=model
-          valuePath='transferAmount'
-          placeholder='Transfer Amount'
-          sectionFirst = 'col-sm-2'
-          sectionLast = 'col-sm-6'
-          didValidate=didValidate}}
+        <div style="margin-top: -1%;">
+          {{nges-core/nges-input-component
+            type='number'
+            input-field-name="Transfer Amount"
+            model=model
+            valuePath='transferAmount'
+            placeholder='Transfer Amount'
+            sectionFirst = 'col-sm-2'
+            sectionLast = 'col-sm-4'
+            didValidate=didValidate}}
+        </div>
+
 
         {{nges-core/nges-input-component
           type='number'
@@ -198,7 +206,7 @@
           valuePath='localAmount'
           placeholder='Local Amount'
           sectionFirst = 'col-sm-2'
-          sectionLast = 'col-sm-6'
+          sectionLast = 'col-sm-4'
           didValidate=didValidate}}
 
         {{nges-core/nges-input-component
@@ -208,7 +216,7 @@
           valuePath='comissionAmount'
           placeholder='Comission Amount'
           sectionFirst = 'col-sm-2'
-          sectionLast = 'col-sm-6'
+          sectionLast = 'col-sm-4'
           didValidate=didValidate}}
 
         {{nges-core/nges-input-component
@@ -218,7 +226,7 @@
           valuePath='totalPayValue'
           placeholder='Total Value needed to Pay'
           sectionFirst = 'col-sm-2'
-          sectionLast = 'col-sm-6'
+          sectionLast = 'col-sm-4'
           didValidate=didValidate}}
 
         {{nges-core/nges-input-component
@@ -228,7 +236,7 @@
           valuePath='totalAdjustValue'
           placeholder='Total Value needed to Adjust'
           sectionFirst = 'col-sm-2'
-          sectionLast = 'col-sm-6'
+          sectionLast = 'col-sm-4'
           didValidate=didValidate}}
 
         {{nges-core/nges-input-component
@@ -238,7 +246,7 @@
           valuePath='totalPayAmount'
           placeholder='Total Pay Amount'
           sectionFirst = 'col-sm-2'
-          sectionLast = 'col-sm-6'
+          sectionLast = 'col-sm-4'
           didValidate=didValidate}}
 
 
@@ -248,7 +256,7 @@
             <label class="input-field-label">{{t "Mode of Payment"}}</label>
           </div>
 
-          <div class="col-sm-6">
+          <div class="col-sm-4">
 
             {{nges-core/nges-searchable-dropdown
               dataList=paymentModeList
