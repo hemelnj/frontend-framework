@@ -13,7 +13,7 @@ const Validations = buildValidations({
   nationalityId: validator('presence', true),
   mNumber: validator('presence', true),
   noj: validator('presence', true),
-  incomeRange: validator('presence', true),
+  //incomeRange: validator('presence', true),
   expetedRemitance: validator('presence', true),
   remarks: validator('presence', true),
   address1: validator('presence', true),
@@ -37,7 +37,38 @@ const Validations = buildValidations({
   email: [
     validator('presence', true),
     validator('format', {type: 'email'})
+  ],
+  
+incomeRange: {
+  validators: [
+    //validator('presence', true),
+    validator('format', {
+      regex: /^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9][0-9])?$/,
+      message:
+        'Please input valid amount'
+    })
   ]
+},
+expetedRemitance: {
+  validators: [
+    //validator('presence', true),
+    validator('format', {
+      regex: /^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9][0-9])?$/,
+      message:
+        'Please input valid amount'
+    })
+  ]
+},
+zipCode: {
+  validators: [
+    //validator('presence', true),
+    validator('format', {
+      regex: /^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)?$/,
+      message:
+        'Please input valid amount'
+    })
+  ]
+},
 
   /*age: [
     validator('presence', true),
