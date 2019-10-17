@@ -29,7 +29,7 @@ export default [
           {
             code: 'create-remitter',
             name: 'remitter-registration',
-            icon:"fas fa-bath",
+            icon:"fas fa-step-forward",
             shortLabel: 'States',
             label: 'Remitter Registration',
             isVisibleInLanding:true,
@@ -77,7 +77,7 @@ export default [
           {
             code: 'create-beneficiary',
             name: 'beneficiary-registration',
-            icon:"fas fa-bath",
+            icon:"fas fa-step-forward",
             isVisibleInLanding:true,
             label: 'Beneficiary Registration',
             shortLabel: 'States',
@@ -118,7 +118,7 @@ export default [
           {
             code: 'create-collection',
             name: 'transaction-collection',
-            icon:"fas fa-bath",
+            icon:"fas fa-step-forward",
             isVisibleInLanding:true,
             label: 'Transaction Collection',
             shortLabel: 'States',
