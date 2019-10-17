@@ -39,7 +39,11 @@ export default Component.extend({
   },
   actions: {
     onSelectLanguage(value){
-      console.log('message-onSelectLanguage', value);
+      console.log('message-onSelectLanguage', value.attributes.name);
+    },
+
+    save(){
+      console.log('message--save--action');
     }
   }
 
