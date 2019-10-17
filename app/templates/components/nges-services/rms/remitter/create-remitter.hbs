@@ -23,7 +23,7 @@
         input-field-name="Id"
         model=model
         valuePath='remId'
-        placeholder='Id'
+        placeholder='[Auto]'
         readonly="true"
         sectionFirst = 'col-sm-2'
         sectionLast = 'col-sm-4'
@@ -578,9 +578,9 @@
         <button id='save' class="nges-button nges-button-success" {{action 'getNextAllowableStateIdForCurrentState'
                                                                            state.attributes.id}}>{{state.attributes.name}}</button>
       {{/each}}
-      <!--<button id='duplicate_check' class="rms-button-all rms-button-save" {{action 'checkDuplicate'}}>Duplicate Check</button>
-    <button id='clear' class="rms-button-all rms-button-save" {{action 'reset'}}>Clear</button>-->
+      <!--<button id='duplicate_check' class="rms-button-all rms-button-save" {{action 'checkDuplicate'}}>Duplicate Check</button>-->
 
+      <button id='clear' class="nges-button nges-button-success" {{action 'reset'}}>Clear</button>
 
     </form>
   </div>

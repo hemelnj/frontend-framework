@@ -377,7 +377,58 @@ export default Component.extend({
 
   actions: {
     reset() {
-      this.set('model', {});
+
+      this.set('model.remId', '');
+      this.set('model.type', '');
+      this.set('selectedType.label', '');//show in ui
+      this.set('model.dob', '');
+
+      this.set('selectedNationality.label', '');//show in ui
+      this.set('model.nationality', '');
+      this.set('model.nationalityId', '');
+
+      this.set('selectedCountry.label', '');//show in ui
+      this.set('model.countryId', '');
+      this.set('model.country', '');
+
+
+      this.set('selectedNOJ.label', '');//show in ui
+      this.set('model.noj', '');
+
+      this.set('selectedState.label', '');//show in ui
+      this.set('model.state', '');
+      this.set('model.stateId', '');
+
+
+      this.set('selectedPrimaryPhotoType.label', '');//show in ui
+      this.set('model.primaryPhotoType', '');
+      this.set('model.primaryPhotoId', '');
+      this.set('model.primaryPhotoIssue', '');
+      this.set('model.primaryPhotoExpiry', '');
+
+      this.set('selectedSecondaryPhotoType.label', '');//show in ui
+      this.set('model.secondaryPhotoType', '');
+      this.set('model.secondaryPhotoId', '');
+      this.set('model.secondaryPhotoIssue', '');
+      this.set('model.secondaryPhotoExpiry', '');
+
+      this.set('selectedRisk.label', '');//show in ui
+      this.set('model.risk', '');
+
+      this.set('model.remitterName', '');
+      this.set('model.fathersName', '');
+      this.set('model.mothersName', '');
+      this.set('model.mNumber', '');
+      this.set('model.email', '');
+
+      this.set('model.incomeRange', '');
+      this.set('model.expetedRemitance', '');
+      this.set('model.remarks', '');
+      this.set('model.address1', '');
+      this.set('model.address2', '');
+      this.set('model.cityOrTown', '');
+      this.set('model.zipCode', '');
+      this.set('model.proofOfAddress', '');
     },
 
     getNextAllowableStateIdForCurrentState(actionEventId) {
