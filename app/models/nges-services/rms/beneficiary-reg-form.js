@@ -15,16 +15,26 @@ const Validations = buildValidations({
   state: validator('presence', true),
   stateId: validator('presence', true),
   cityOrTown: validator('presence', true),
-  zipCode: validator('presence', true),
-
+  
   relationWithRemitter: validator('presence', true),
   risk: validator('presence', true),
 
   email: [
     validator('presence', true),
     validator('format', {type: 'email'})
-  ]
+  ],
 
+  
+  zipCode: {
+    validators: [
+      //validator('presence', true),
+      validator('format', {
+        regex: /^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)?$/,
+        message:
+          'Please input valid Zip Code'
+      })
+    ]
+  },
   /*age: [
     validator('presence', true),
     validator('number', {

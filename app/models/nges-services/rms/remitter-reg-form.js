@@ -65,7 +65,7 @@ zipCode: {
     validator('format', {
       regex: /^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)?$/,
       message:
-        'Please input valid amount'
+        'Please input valid Zip Code'
     })
   ]
 },
