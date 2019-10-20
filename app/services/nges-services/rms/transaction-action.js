@@ -32,5 +32,22 @@ export default Service.extend({
     );
   },
 
+
+  getCollectionDataById(collectionId, accessToken) {
+    let beforeSend = function (xhr) {
+      xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+      xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
+    };
+
+    let appCode = this.appConfiguration.getApplicationCode();
+    let orgCode = this.appConfiguration.getOrganizationCode();
+
+    let url = this.gatewayServiceHost + "/" + orgCode + "/" + appCode + "/api/remittanceTransactions/"+collectionId;
+
+    return this.appRestTemplate.httpRestClient(url, "GET",
+      null, {}, beforeSend
+    );
+  }
+
 });
 

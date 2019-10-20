@@ -122,7 +122,12 @@ export default [
             isVisibleInLanding:true,
             label: 'Transaction Collection',
             shortLabel: 'States',
-          }
+          },
+          {
+            code: 'edit-collection',
+            name: 'remitance-transaction/edit-remittance-collection-transaction',
+            label: 'edit Beneficiary',
+          },
         ],
       }
     ]

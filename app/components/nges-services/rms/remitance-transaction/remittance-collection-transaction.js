@@ -18,13 +18,14 @@ export default Component.extend({
   rmsBaseService: service('nges-services/rms/rms-base-service'),
   notifier: service(),
   serviceInitializer: service('nges-services/service-initializer'),
-  routePath:"welcome.application-loader.panel-loader.module-loader.service-holder-loader.menu-template-loader.submenu-template-loader.submenu-detail-template-loader",
+  routePath: "welcome.application-loader.panel-loader.module-loader.service-holder-loader.menu-template-loader.submenu-template-loader.submenu-detail-template-loader",
 
   init() {
     this._super(...arguments);
     let serviceInformation = this.get('serviceInformation');
 
     this.set('model', this.store.createRecord('nges-services/rms/remittance-collection-trans'));
+
 
     this.initRiskStatus();
     this.setRisk();
@@ -50,11 +51,59 @@ export default Component.extend({
     let collectionData = this.get('collectionData');
     let type = collectionData.type;
     if (type === "edit") {
-      //this.setModel(beneficiaryData.data);
-      console.log('message--collectionData', collectionData.data);
+      let tabInformation = this.appConfiguration.getRouteURLParams();
+
+
+      let activeStateId = tabInformation.stateId;
+
+      this.loadStateActions(activeStateId);
+      this.set('currentStateId', activeStateId);
+
+      this.setModel(collectionData.data);
     }
   },
 
+
+  setModel(collectionData) {
+    console.log('message-collectionData', JSON.stringify(collectionData));
+
+    this.set('model.remId', collectionData.id);
+    this.set('model.remTypeId', collectionData.remittanceType.id);
+    //this.set('selectedType.label', remitterData.name);//show in ui
+    this.set('model.remPurposeId', collectionData.remittancePurpose.id);
+    //this.set('selectedType.label', remittancePurpose.name);//show in ui
+    this.set('model.fundSourceId', collectionData.fundSource.id);
+    //this.set('selectedType.label', fundSource.name);//show in ui
+    this.set('model.deliveryAgentId', collectionData.deliveryAgent.id);
+    //this.set('selectedType.label', deliveryAgent.name);//show in ui
+
+    this.set('model.beneficiaryId', collectionData.beneficiary.id);
+    this.set('model.beneficiaryCountryId', collectionData.beneficiarysCountry.id);
+    this.set('model.beneficiaryBankId', collectionData.beneficiarysBank.id);
+    this.set('model.beneficiaryBranchId', collectionData.beneficiarysBranch.id);
+
+    this.set('model.currencyId', collectionData.currency.id);
+    this.set('model.payAmountModeId', collectionData.paymentMode.id);
+
+    this.set('model.inputAmount', collectionData.inputAmount);
+    this.set('model.transferAmount', collectionData.transferAmount);
+    this.set('model.localAmount', collectionData.localAmount);
+    this.set('model.comissionAmount', collectionData.commissionAmount);
+    this.set('model.totalPayValue', collectionData.totalValueNeedToPay);
+    this.set('model.totalAdjustValue', collectionData.totalValueNeedToAdjust);
+    this.set('model.totalPayAmount', collectionData.totalPayAmount);
+
+    this.set('olcmStateId',collectionData.olcmState.id);
+    this.set('function',collectionData.function);
+    this.set('location',collectionData.location);
+    this.set('createdBy',collectionData.createdBy);
+    this.set('createdAt',collectionData.createdAt);
+    this.set('updatedBy',collectionData.updatedBy);
+    this.set('updatedAt',collectionData.updatedAt);
+    this.set('comment',collectionData.comment);
+    this.set('batchId',collectionData.batchId);
+    this.set('tracerId',collectionData.tracerId);
+  },
 
   setRisk() {
     let data = [
@@ -84,34 +133,36 @@ export default Component.extend({
     this.set("riskType", data);
   },
 
-  getUserType(){
+  getUserType() {
     let context = this;
     let roleId = this.appConfiguration.getUserRoleId();
 
-    if(roleId===5){
-      context.set("showMLROReview",true);
-    }else{
-      context.set("showMLROReview",false);
+    if (roleId === 5) {
+      context.set("showMLROReview", true);
+    } else {
+      context.set("showMLROReview", false);
     }
   },
-  getDefaultUserFunctionId(){
+
+  getDefaultUserFunctionId() {
     let context = this;
     let accessToken = this.appConfiguration.getAccessToken();
     let userId = this.appConfiguration.getUserId();
     let orgId = this.appConfiguration.getOrganizationId();
-    let functionId = this.serviceInitializer.getDefaultFunctionId(accessToken,userId,orgId);
+    let functionId = this.serviceInitializer.getDefaultFunctionId(accessToken, userId, orgId);
 
     functionId.then(function (msg) {
       console.log('message--functionId', msg.data.attributes.id);
       context.set('functionId', msg.data.attributes.id);
     });
   },
-  getDefaultUserLocationId(){
+
+  getDefaultUserLocationId() {
     let context = this;
     let accessToken = this.appConfiguration.getAccessToken();
     let userId = this.appConfiguration.getUserId();
     let orgId = this.appConfiguration.getOrganizationId();
-    let locationId = this.serviceInitializer.getDefaultLocationId(accessToken,userId,orgId);
+    let locationId = this.serviceInitializer.getDefaultLocationId(accessToken, userId, orgId);
 
     locationId.then(function (msg) {
       console.log('message--locationId', msg.data.attributes.id);
@@ -262,43 +313,68 @@ export default Component.extend({
     console.log('message-checkRiskStatus', 'checkRiskStatus');
   },
 
+  loadStateActions(activeStateId) {
+
+
+    let context = this;
+    let roleId = context.appConfiguration.getUserRoleId();
+    let accessToken = this.appConfiguration.getAccessToken();
+    context.serviceInitializer.getClassType(accessToken).then(function (result) {
+      let classTypeId = result.data;
+
+      let stateActionsPayload = {
+        classTypeId: classTypeId,
+        stateId: activeStateId,
+        roleId: roleId
+      };
+      context.serviceInitializer.getStateActions(accessToken, stateActionsPayload).then(function (result) {
+
+        try {
+          context.set('stateActions', result.data);
+        } catch (e) {
+          context.set('stateActions', []);
+        }
+      })
+    });
+  },
+
   actions: {
     reset() {
       this.set('model', {});
     },
     onChangeRisk(selectedValue) {
-       console.log('message', selectedValue);
+      console.log('message', selectedValue);
     },
 
     onChangeRemitanceType(value) {
       let context = this;
       let remittanceTypeId = value.id;
-      context.defaultInitializer('remTypeId',remittanceTypeId);
+      context.defaultInitializer('remTypeId', remittanceTypeId);
     },
     onChangeRemittancePurpose(value) {
       let context = this;
       let remittancePurposeId = value.id;
-      context.defaultInitializer('remPurposeId',remittancePurposeId);
+      context.defaultInitializer('remPurposeId', remittancePurposeId);
     },
     onChangeSourceOfFund(value) {
       let context = this;
       let fundSourceId = value.id;
-      context.defaultInitializer('fundSourceId',fundSourceId);
+      context.defaultInitializer('fundSourceId', fundSourceId);
     },
     onChangeDeliveryAgent(value) {
       let context = this;
       let deliveryAgentId = value.id;
-      context.defaultInitializer('deliveryAgentId',deliveryAgentId);
+      context.defaultInitializer('deliveryAgentId', deliveryAgentId);
     },
     onChangeBeneficiaryCountry(value) {
       let context = this;
       let beneficiaryCountryId = value.id;
-      context.defaultInitializer('beneficiaryCountryId',beneficiaryCountryId);
+      context.defaultInitializer('beneficiaryCountryId', beneficiaryCountryId);
     },
     onChangeBeneficiaryBank(value) {
       let context = this;
       let beneficiaryBankId = value.id;
-      context.defaultInitializer('beneficiaryBankId',beneficiaryBankId);
+      context.defaultInitializer('beneficiaryBankId', beneficiaryBankId);
       let accessToken = this.appConfiguration.getAccessToken();
       let bankBranches = this.rmsSetupService.getBranchByBankId(accessToken, beneficiaryBankId);
 
@@ -311,18 +387,18 @@ export default Component.extend({
     onChangeBeneficiaryBranch(value) {
       let context = this;
       let beneficiaryBranchId = value.id;
-      context.defaultInitializer('beneficiaryBranchId',beneficiaryBranchId);
+      context.defaultInitializer('beneficiaryBranchId', beneficiaryBranchId);
     },
     onChangeCurrency(value) {
       let context = this;
       let currencyId = value.id;
-      context.defaultInitializer('currencyId',currencyId);
+      context.defaultInitializer('currencyId', currencyId);
     },
 
     onChangePaymentMode(value) {
       let context = this;
       let payAmountModeId = value.id;
-      context.defaultInitializer('payAmountModeId',payAmountModeId);
+      context.defaultInitializer('payAmountModeId', payAmountModeId);
     },
 
     validate() {
@@ -387,8 +463,8 @@ export default Component.extend({
                   "paymentMode": {
                     "id": model.payAmountModeId
                   },
-                  "olcmState":{
-                    "id":this.get('statusId'),
+                  "olcmState": {
+                    "id": this.get('statusId'),
                   },
                   "function": this.get('functionId'),
                   "location": this.get('locationId'),
@@ -407,10 +483,108 @@ export default Component.extend({
             let context = this;
             afterRemitterRegistration.then(function (msg) {
             }).catch(function (msg) {
-              if(msg.status===201){
+              if (msg.status === 201) {
                 context.get("router").transitionTo(this.routePath, 'create-collection');
                 context.get('notifier').success('Remittance Collection Successful!');
-              }else{
+              } else {
+                context.get('notifier').danger('Remittance Collection Failed!\nError while committing the transaction.');
+              }
+            });
+
+          } else {
+            let context = this;
+            context.get('notifier').danger('Fill up all the fields properly');
+          }
+        });
+    },
+
+    updateAction() {
+      this.get('model')
+        .validate()
+        .then(({validations}) => {
+
+          this.set('didValidate', true);
+
+          let model = this.get('model');
+
+          if (validations.get('isValid')) {
+            this.setProperties({
+              showAlert: false,
+              isRegistered: true,
+            });
+
+            let remCollectionData = {
+              "data": {
+                "id": 1,
+                "type": "remittanceTransactions",
+                "attributes": {
+
+                  "remitter": {
+                    "id": model.remId
+                  },
+                  "remittanceType": {
+                    "id": 1
+                  },
+                  "remittancePurpose": {
+                    "id": model.remPurposeId
+                  },
+                  "fundSource": {
+                    "id": model.fundSourceId
+                  },
+                  "deliveryAgent": {
+                    "id": model.deliveryAgentId
+                  },
+                  "beneficiarysCountry": {
+                    "id": model.beneficiaryCountryId
+                  },
+                  "beneficiary": {
+                    "id": model.beneficiaryId
+                  },
+                  "beneficiarysBank": {
+                    "id": model.beneficiaryBankId
+                  },
+                  "beneficiarysBranch": {
+                    "id": model.beneficiaryBranchId
+                  },
+                  "inputAmount": Number(model.inputAmount),
+                  "currency": {
+                    "id": model.currencyId
+                  },
+                  "transferAmount": Number(model.transferAmount),
+                  "localAmount": Number(model.localAmount),
+                  "commissionAmount": Number(model.comissionAmount),
+                  "totalValueNeedToPay": Number(model.totalPayValue),
+                  "totalValueNeedToAdjust": Number(model.totalAdjustValue),
+                  "totalPayAmount": Number(model.totalPayAmount),
+                  "paymentMode": {
+                    "id": model.payAmountModeId
+                  },
+
+                  "olcmState": {
+                    "id": this.get('statusId'),
+                  },
+
+                  "function": this.get('function'),
+                  "location": this.get('location'),
+                  "createdBy": this.get('createdBy'),
+                  "createdAt": this.get('createdAt'),
+                  "updatedBy": this.get('updatedBy'),
+                  "updatedAt": this.get('updatedAt'),
+                }
+              }
+            };
+
+            console.log('message--remCollectionData', JSON.stringify(remCollectionData));
+
+            let accessToken = this.appConfiguration.getAccessToken();
+            let afterRemitterRegistration = this.transactionActionService.addNewRemittanceCollection(accessToken, remCollectionData);
+            let context = this;
+            afterRemitterRegistration.then(function (msg) {
+            }).catch(function (msg) {
+              if (msg.status === 201) {
+                context.get("router").transitionTo(this.routePath, 'create-collection');
+                context.get('notifier').success('Remittance Collection Successful!');
+              } else {
                 context.get('notifier').danger('Remittance Collection Failed!\nError while committing the transaction.');
               }
             });
@@ -428,13 +602,13 @@ export default Component.extend({
 
     checkRiskStatus() {
 
-      this.set('source','5%');
-      this.set('name','10%');
-      this.set('country','5%');
-      this.set('dob','5%');
-      this.set('fname','5%');
-      this.set('score','30%');
-      this.set('risk','low');
+      this.set('source', '5%');
+      this.set('name', '10%');
+      this.set('country', '5%');
+      this.set('dob', '5%');
+      this.set('fname', '5%');
+      this.set('score', '30%');
+      this.set('risk', 'low');
 
       console.log('message-checkRiskStatus', 'checkRiskStatus');
     }

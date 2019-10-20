@@ -370,6 +370,8 @@
         <button id='status_check' class="nges-button nges-button-success" {{action 'checkRiskStatus'}}>{{t "Risk Status Check"}}
         </button>
 
+
+
         {{#each stateActions as |state|}}
           <button id='save' class="nges-button nges-button-success" {{action 'getNextAllowableStateIdForCurrentState'
                                                                           state.attributes.id}}>{{state.attributes.name}}</button>
