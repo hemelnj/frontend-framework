@@ -3,11 +3,14 @@ import {validator, buildValidations} from 'ember-cp-validations';
 
 const {attr} = DS;
 
+const validAmountRegex = /^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9]{1,6})?$/;
+const contactNumberRegex = /^(\+\d{1,3}[- ]?)?\d{11}$/;
+const zipCodeRegex = /^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)?$/;
+
 const Validations = buildValidations({
   beneficiaryName: validator('presence', true),
   nationality: validator('presence', true),
   nationalityId: validator('presence', true),
-  mNumber: validator('presence', true),
   address1: validator('presence', true),
   address2: validator('presence', true),
   country: validator('presence', true),
@@ -24,12 +27,22 @@ const Validations = buildValidations({
     validator('format', {type: 'email'})
   ],
 
+  mNumber:{
+    validators: [
+      //validator('presence', true),
+      validator('format', {
+        regex: contactNumberRegex,
+        message:
+          'Please input valid contact number'
+      })
+    ]
+  },
   
   zipCode: {
     validators: [
       //validator('presence', true),
       validator('format', {
-        regex: /^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)?$/,
+        regex: zipCodeRegex,
         message:
           'Please input valid Zip Code'
       })

@@ -3,6 +3,10 @@ import {validator, buildValidations} from 'ember-cp-validations';
 
 const {attr} = DS;
 
+const validAmountRegex = /^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9]{1,6})?$/;
+const contactNumberRegex = /^(\+\d{1,3}[- ]?)?\d{11}$/;
+const zipCodeRegex = /^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)?$/;
+
 const Validations = buildValidations({
   type: validator('presence', true),
   remitterName: validator('presence', true),
@@ -11,10 +15,7 @@ const Validations = buildValidations({
   dob: validator('presence', true),
   nationality: validator('presence', true),
   nationalityId: validator('presence', true),
-  mNumber: validator('presence', true),
   noj: validator('presence', true),
-  //incomeRange: validator('presence', true),
-  expetedRemitance: validator('presence', true),
   remarks: validator('presence', true),
   address1: validator('presence', true),
   address2: validator('presence', true),
@@ -23,7 +24,6 @@ const Validations = buildValidations({
   state: validator('presence', true),
   stateId: validator('presence', true),
   cityOrTown: validator('presence', true),
-  zipCode: validator('presence', true),
   proofOfAddress: validator('presence', true),
   primaryPhotoType: validator('presence', true),
   primaryPhotoId: validator('presence', true),
@@ -34,41 +34,53 @@ const Validations = buildValidations({
   secondaryPhotoIssue: validator('presence', true),
   secondaryPhotoExpiry: validator('presence', true),
   risk: validator('presence', true),
+
   email: [
     validator('presence', true),
     validator('format', {type: 'email'})
   ],
-  
-incomeRange: {
-  validators: [
-    //validator('presence', true),
-    validator('format', {
-      regex: /^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9][0-9])?$/,
-      message:
-        'Please input valid income amount'
-    })
-  ]
-},
-expetedRemitance: {
-  validators: [
-    //validator('presence', true),
-    validator('format', {
-      regex: /^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9][0-9])?$/,
-      message:
-        'Please input valid expected amount of remittance'
-    })
-  ]
-},
-zipCode: {
-  validators: [
-    //validator('presence', true),
-    validator('format', {
-      regex: /^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)?$/,
-      message:
-        'Please input valid Zip Code'
-    })
-  ]
-},
+
+  mNumber: {
+    validators: [
+      //validator('presence', true),
+      validator('format', {
+        regex: contactNumberRegex,
+        message:
+          'Please input valid contact number'
+      })
+    ]
+  },
+
+  incomeRange: {
+    validators: [
+      //validator('presence', true),
+      validator('format', {
+        regex: validAmountRegex,
+        message:
+          'Please input valid income amount'
+      })
+    ]
+  },
+  expetedRemitance: {
+    validators: [
+      //validator('presence', true),
+      validator('format', {
+        regex:validAmountRegex,
+        message:
+          'Please input valid expected amount of remittance'
+      })
+    ]
+  },
+  zipCode: {
+    validators: [
+      //validator('presence', true),
+      validator('format', {
+        regex: zipCodeRegex,
+        message:
+          'Please input valid Zip Code'
+      })
+    ]
+  },
 
   /*age: [
     validator('presence', true),
@@ -126,5 +138,5 @@ export default DS.Model.extend(
     secondaryPhotoId: DS.attr("string"),
     secondaryPhotoIssue: DS.attr("string"),
     secondaryPhotoExpiry: DS.attr("string"),
-    risk:DS.attr("string"),
+    risk: DS.attr("string"),
   });

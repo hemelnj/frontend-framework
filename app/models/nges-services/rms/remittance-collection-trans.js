@@ -3,6 +3,11 @@ import {validator, buildValidations} from 'ember-cp-validations';
 
 const {attr} = DS;
 
+const validAmountRegex = /^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9]{1,6})?$/;
+const contactNumberRegex = /^(\+\d{1,3}[- ]?)?\d{11}$/;
+const zipCodeRegex = /^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)?$/;
+
+
 const Validations = buildValidations({
   remId: validator('presence', true),
   remTypeId: validator('presence', true),
@@ -14,16 +19,13 @@ const Validations = buildValidations({
   beneficiaryBankId: validator('presence', true),
   beneficiaryBranchId: validator('presence', true),
   currencyId: validator('presence', true),
-  totalPayValue: validator('presence', true),
-  totalAdjustValue: validator('presence', true),
-  totalPayAmount: validator('presence', true),
   payAmountModeId: validator('presence', true),
 
   inputAmount: {
     validators: [
       //validator('presence', true),
       validator('format', {
-        regex: /^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9][0-9])?$/,
+        regex: validAmountRegex,
         message:
           'Please input valid amount'
       })
@@ -33,7 +35,7 @@ const Validations = buildValidations({
     validators: [
       //validator('presence', true),
       validator('format', {
-        regex: /^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9][0-9])?$/,
+        regex: validAmountRegex,
         message:
           'Please input valid transfer amount'
       })
@@ -44,7 +46,7 @@ const Validations = buildValidations({
     validators: [
       //validator('presence', true),
       validator('format', {
-        regex: /^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9][0-9])?$/,
+        regex: validAmountRegex,
         message:
           'Please input valid local amount'
       })
@@ -55,7 +57,7 @@ const Validations = buildValidations({
     validators: [
       //validator('presence', true),
       validator('format', {
-        regex: /^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9][0-9])?$/,
+        regex: validAmountRegex,
         message:
           'Please input valid comission amount'
       })
@@ -66,7 +68,7 @@ const Validations = buildValidations({
     validators: [
       //validator('presence', true),
       validator('format', {
-        regex: /^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9][0-9])?$/,
+        regex: validAmountRegex,
         message:
           'Please input valid total payable value'
       })
@@ -77,7 +79,7 @@ const Validations = buildValidations({
     validators: [
       //validator('presence', true),
       validator('format', {
-        regex: /^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9][0-9])?$/,
+        regex: validAmountRegex,
         message:
           'Please input valid adjustable amount'
       })
@@ -88,7 +90,7 @@ const Validations = buildValidations({
     validators: [
       //validator('presence', true),
       validator('format', {
-        regex: /^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9][0-9])?$/,
+        regex: validAmountRegex,
         message:
           'Please input valid total payable amount'
       })
