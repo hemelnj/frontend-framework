@@ -3,6 +3,9 @@ ___
 
 
 ####References:
-> https://www.w3schools.com/js/js_conventions.asp
-> https://www.w3schools.com/js/js_best_practices.asp
-> https://developer.mozilla.org/en-US/docs/MDN/Contribute/Guidelines/Code_guidelines/JavaScript
+___
+>[How to translate your Ember.js application with ember-intl](https://www.codeandweb.com/babeledit/tutorials/how-to-translate-your-ember-app-with-ember-intl)
+
+>[ember-intl](https://github.com/ember-intl/ember-intl)
+
+>[Internationalize Ember App](https://ember-intl.github.io/ember-intl/)
