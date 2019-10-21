@@ -103,6 +103,7 @@ export default Component.extend({
 
     this.set('model.currencyId', collectionData.currency.id);
     this.set('selectedCurrency.label', collectionData.currency.name);//show in ui
+    this.set('selectedCurrency.code', collectionData.currency.code);
 
     this.set('model.payAmountModeId', collectionData.paymentMode.id);
     this.set('selectedPaymentMode.label', collectionData.paymentMode.name);//show in ui
