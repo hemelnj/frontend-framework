@@ -35,6 +35,9 @@
             </div>
 
             <div class="col-sm-4">
+              {{#if selectedRemType.label}}
+                <label style="font-size: 12px;">{{selectedRemType.label}}</label>
+              {{/if}}
               {{nges-core/nges-searchable-dropdown
                 dataList=remittanceTypeList
                 message = "Select Type of Remittance"
@@ -51,6 +54,10 @@
             </div>
 
             <div class="col-sm-4">
+              {{#if selectedRemPurpose.label}}
+                <label style="font-size: 12px;">{{selectedRemPurpose.label}}</label>
+              {{/if}}
+
               {{nges-core/nges-searchable-dropdown
                 dataList=remittancePurposeList
                 message = "Select Purpose of Remittance"
@@ -66,6 +73,9 @@
               <label class="input-field-label">{{t "Source of Fund"}}</label>
             </div>
             <div class="col-sm-4">
+              {{#if selectedFundSource.label}}
+                <label style="font-size: 12px;">{{selectedFundSource.label}}</label>
+              {{/if}}
 
               {{nges-core/nges-searchable-dropdown
                 dataList=fundSourceList
@@ -83,7 +93,9 @@
               <label class="input-field-label">{{ t "Beneficiary Country"}}</label>
             </div>
             <div class="col-sm-4">
-
+              {{#if selectedBeneficiaryCountry.label}}
+                <label style="font-size: 12px;">{{selectedBeneficiaryCountry.label}}</label>
+              {{/if}}
               {{nges-core/nges-searchable-dropdown
                 dataList=countryList
                 message = "Select Beneficiary Country"
@@ -99,6 +111,9 @@
               <label class="input-field-label">{{t "Delivery Agent"}}</label>
             </div>
             <div class="col-sm-4">
+              {{#if selectedDeliveryAgent.label}}
+                <label style="font-size: 12px;">{{selectedDeliveryAgent.label}}</label>
+              {{/if}}
               {{nges-core/nges-searchable-dropdown
                 dataList=deliveryAgentList
                 message = "Select Delivery Agent"
@@ -121,14 +136,15 @@
         </div>
 
 
-
         <div class="form-group">
           <div class="row">
             <div class="col-sm-2">
               <label class="input-field-label">{{t "Beneficiary's Bank"}}</label>
             </div>
             <div class="col-sm-4">
-
+              {{#if selectedBeneficiaryBank.label}}
+                <label style="font-size: 12px;">{{selectedBeneficiaryBank.label}}</label>
+              {{/if}}
               {{nges-core/nges-searchable-dropdown
                 dataList=bankList
                 message = "Select Beneficiary's Bank"
@@ -145,6 +161,9 @@
               <label class="input-field-label">{{t "Beneficiary's Branch"}}</label>
             </div>
             <div class="col-sm-4">
+              {{#if selectedBeneficiaryBranch.label}}
+                <label style="font-size: 12px;">{{selectedBeneficiaryBranch.label}}</label>
+              {{/if}}
 
               {{nges-core/nges-searchable-dropdown
                 dataList=bankBranchList
@@ -176,6 +195,9 @@
             </div>
             <div class="col-sm-4">
 
+              {{#if selectedCurrency.label}}
+                <label style="font-size: 12px;">{{selectedCurrency.label}}</label>
+              {{/if}}
 
               {{nges-core/nges-searchable-dropdown
                 dataList=currencyList
@@ -257,7 +279,9 @@
           </div>
 
           <div class="col-sm-4">
-
+            {{#if selectedPaymentMode.label}}
+              <label style="font-size: 12px;">{{selectedPaymentMode.label}}</label>
+            {{/if}}
             {{nges-core/nges-searchable-dropdown
               dataList=paymentModeList
               message = "Select Mode of Payment"
@@ -280,7 +304,11 @@
                     <label class="input-field-label" style="margin-top: 15px">{{t "Risk"}}</label>
                   </div>
                   <div class="col-sm-6">
-                    <label style="float: right">{{selectedRisk.label}}</label>
+
+                    {{#if selectedRisk.label}}
+                      <label style="font-size: 12px;">{{selectedRisk.label}}</label>
+                    {{/if}}
+
                     {{nges-core/nges-searchable-dropdown
                       dataList=riskType
                       message = "Select Risk"
@@ -367,19 +395,23 @@
         <br>
         <hr class="rms-bottom-hr-line">
         <button id='save' class="nges-button nges-button-success" {{action 'validate'}}>{{t "Save"}}</button>
-        <button id='status_check' class="nges-button nges-button-success" {{action 'checkRiskStatus'}}>{{t "Risk Status Check"}}
+        <button id='status_check' class="nges-button nges-button-success" {{action 'checkRiskStatus'}}>{{t
+          "Risk Status Check"}}
         </button>
 
 
 
         {{#each stateActions as |state|}}
           <button id='save' class="nges-button nges-button-success" {{action 'getNextAllowableStateIdForCurrentState'
-                                                                          state.attributes.id}}>{{state.attributes.name}}</button>
+                                                                             state.attributes.id}}>{{state.attributes.name}}</button>
         {{/each}}
 
 
         <!--<button id='clear' class="rms-button-all rms-button-save" {{action 'reset'}}>Clear</button>-->
-
+        {{#if actionAccess}}
+          <button id='status_check' class="nges-button nges-button-success" {{action 'updateAction'}}>{{t
+            "Submit"}}</button>
+        {{/if}}
       </form>
     </div>
   </div>

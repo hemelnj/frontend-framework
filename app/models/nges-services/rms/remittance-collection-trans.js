@@ -23,77 +23,77 @@ const Validations = buildValidations({
 
   inputAmount: {
     validators: [
-      //validator('presence', true),
-      validator('format', {
+      validator('presence', true),
+      /*validator('format', {
         regex: validAmountRegex,
         message:
           'Please input valid amount'
-      })
+      })*/
     ]
   },
   transferAmount: {
     validators: [
-      //validator('presence', true),
-      validator('format', {
+      validator('presence', true),
+      /*validator('format', {
         regex: validAmountRegex,
         message:
           'Please input valid transfer amount'
-      })
+      })*/
     ]
   },
 
   localAmount: {
     validators: [
-      //validator('presence', true),
-      validator('format', {
+      validator('presence', true),
+      /*validator('format', {
         regex: validAmountRegex,
         message:
           'Please input valid local amount'
-      })
+      })*/
     ]
   },
 
   comissionAmount: {
     validators: [
-      //validator('presence', true),
-      validator('format', {
+      validator('presence', true),
+      /*validator('format', {
         regex: validAmountRegex,
         message:
           'Please input valid comission amount'
-      })
+      })*/
     ]
   },
 
   totalPayValue: {
     validators: [
-      //validator('presence', true),
-      validator('format', {
+      validator('presence', true),
+      /*validator('format', {
         regex: validAmountRegex,
         message:
           'Please input valid total payable value'
-      })
+      })*/
     ]
   },
 
   totalAdjustValue: {
     validators: [
-      //validator('presence', true),
-      validator('format', {
+      validator('presence', true),
+      /*validator('format', {
         regex: validAmountRegex,
         message:
           'Please input valid adjustable amount'
-      })
+      })*/
     ]
   },
 
   totalPayAmount: {
     validators: [
-      //validator('presence', true),
-      validator('format', {
+      validator('presence', true),
+      /*validator('format', {
         regex: validAmountRegex,
         message:
           'Please input valid total payable amount'
-      })
+      })*/
     ]
   },
 

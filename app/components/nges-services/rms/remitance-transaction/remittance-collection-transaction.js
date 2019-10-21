@@ -26,6 +26,16 @@ export default Component.extend({
 
     this.set('model', this.store.createRecord('nges-services/rms/remittance-collection-trans'));
 
+    this.set('selectedRemType',{});
+    this.set('selectedRemPurpose',{});
+    this.set('selectedFundSource',{});
+    this.set('selectedBeneficiaryCountry',{});
+    this.set('selectedDeliveryAgent',{});
+    this.set('selectedBeneficiaryBank',{});
+    this.set('selectedBeneficiaryBranch',{});
+    this.set('selectedCurrency',{});
+    this.set('selectedPaymentMode',{});
+    this.set('selectedRisk',{});
 
     this.initRiskStatus();
     this.setRisk();
@@ -65,25 +75,37 @@ export default Component.extend({
 
 
   setModel(collectionData) {
-    console.log('message-collectionData', JSON.stringify(collectionData));
-
-    this.set('model.remId', collectionData.id);
+    //console.log('message-collectionData', JSON.stringify(collectionData));
+    this.set('recordId',collectionData.id);
+    this.set('model.remId', collectionData.remitter.id);
     this.set('model.remTypeId', collectionData.remittanceType.id);
-    //this.set('selectedType.label', remitterData.name);//show in ui
+    this.set('selectedRemType.label', collectionData.remittanceType.name);//show in ui
+
     this.set('model.remPurposeId', collectionData.remittancePurpose.id);
-    //this.set('selectedType.label', remittancePurpose.name);//show in ui
+    this.set('selectedRemPurpose.label', collectionData.remittancePurpose.name);//show in ui
+
     this.set('model.fundSourceId', collectionData.fundSource.id);
-    //this.set('selectedType.label', fundSource.name);//show in ui
+    this.set('selectedFundSource.label', collectionData.fundSource.name);//show in ui
+
     this.set('model.deliveryAgentId', collectionData.deliveryAgent.id);
-    //this.set('selectedType.label', deliveryAgent.name);//show in ui
+    this.set('selectedDeliveryAgent.label', collectionData.deliveryAgent.name);//show in ui
 
     this.set('model.beneficiaryId', collectionData.beneficiary.id);
+
     this.set('model.beneficiaryCountryId', collectionData.beneficiarysCountry.id);
+    this.set('selectedBeneficiaryCountry.label', collectionData.beneficiarysCountry.name);//show in ui
+
     this.set('model.beneficiaryBankId', collectionData.beneficiarysBank.id);
+    this.set('selectedBeneficiaryBank.label', collectionData.beneficiarysBank.name);//show in ui
+
     this.set('model.beneficiaryBranchId', collectionData.beneficiarysBranch.id);
+    this.set('selectedBeneficiaryBranch.label', collectionData.beneficiarysBranch.name);//show in ui
 
     this.set('model.currencyId', collectionData.currency.id);
+    this.set('selectedCurrency.label', collectionData.currency.name);//show in ui
+
     this.set('model.payAmountModeId', collectionData.paymentMode.id);
+    this.set('selectedPaymentMode.label', collectionData.paymentMode.name);//show in ui
 
     this.set('model.inputAmount', collectionData.inputAmount);
     this.set('model.transferAmount', collectionData.transferAmount);
@@ -92,6 +114,7 @@ export default Component.extend({
     this.set('model.totalPayValue', collectionData.totalValueNeedToPay);
     this.set('model.totalAdjustValue', collectionData.totalValueNeedToAdjust);
     this.set('model.totalPayAmount', collectionData.totalPayAmount);
+
 
     this.set('olcmStateId',collectionData.olcmState.id);
     this.set('function',collectionData.function);
@@ -342,39 +365,73 @@ export default Component.extend({
     reset() {
       this.set('model', {});
     },
-    onChangeRisk(selectedValue) {
-      console.log('message', selectedValue);
+
+    onChangeRisk(value) {
+      let context = this;
+      context.defaultInitializer('risk', value.attributes.name);
+      console.log('onChangeRisk', value);
+      context.set('selectedRisk', {
+        label: (value === '') ? '' : value.attributes.name,
+        value: value,
+      });
     },
 
     onChangeRemitanceType(value) {
       let context = this;
       let remittanceTypeId = value.id;
       context.defaultInitializer('remTypeId', remittanceTypeId);
+      context.set('selectedRemType', {
+        label: (value === '') ? '' : value.attributes.name,
+        value: value,
+      });
     },
     onChangeRemittancePurpose(value) {
       let context = this;
       let remittancePurposeId = value.id;
       context.defaultInitializer('remPurposeId', remittancePurposeId);
+
+      context.set('selectedRemPurpose', {
+        label: (value === '') ? '' : value.attributes.name,
+        value: value,
+      });
     },
     onChangeSourceOfFund(value) {
       let context = this;
       let fundSourceId = value.id;
       context.defaultInitializer('fundSourceId', fundSourceId);
+
+      context.set('selectedFundSource', {
+        label: (value === '') ? '' : value.attributes.name,
+        value: value,
+      });
     },
     onChangeDeliveryAgent(value) {
       let context = this;
       let deliveryAgentId = value.id;
       context.defaultInitializer('deliveryAgentId', deliveryAgentId);
+      context.set('selectedDeliveryAgent', {
+        label: (value === '') ? '' : value.attributes.name,
+        value: value,
+      });
     },
     onChangeBeneficiaryCountry(value) {
       let context = this;
       let beneficiaryCountryId = value.id;
       context.defaultInitializer('beneficiaryCountryId', beneficiaryCountryId);
+      context.set('selectedBeneficiaryCountry', {
+        label: (value === '') ? '' : value.attributes.name,
+        value: value,
+      });
     },
     onChangeBeneficiaryBank(value) {
       let context = this;
       let beneficiaryBankId = value.id;
       context.defaultInitializer('beneficiaryBankId', beneficiaryBankId);
+      context.set('selectedBeneficiaryBank', {
+        label: (value === '') ? '' : value.attributes.name,
+        value: value,
+      });
+
       let accessToken = this.appConfiguration.getAccessToken();
       let bankBranches = this.rmsSetupService.getBranchByBankId(accessToken, beneficiaryBankId);
 
@@ -388,17 +445,32 @@ export default Component.extend({
       let context = this;
       let beneficiaryBranchId = value.id;
       context.defaultInitializer('beneficiaryBranchId', beneficiaryBranchId);
+
+      context.set('selectedBeneficiaryBranch', {
+        label: (value === '') ? '' : value.attributes.name,
+        value: value,
+      });
     },
     onChangeCurrency(value) {
       let context = this;
       let currencyId = value.id;
       context.defaultInitializer('currencyId', currencyId);
+
+      context.set('selectedCurrency', {
+        label: (value === '') ? '' : value.attributes.name,
+        value: value,
+      });
     },
 
     onChangePaymentMode(value) {
       let context = this;
       let payAmountModeId = value.id;
       context.defaultInitializer('payAmountModeId', payAmountModeId);
+
+      context.set('selectedPaymentMode', {
+        label: (value === '') ? '' : value.attributes.name,
+        value: value,
+      });
     },
 
     validate() {
@@ -515,7 +587,7 @@ export default Component.extend({
 
             let remCollectionData = {
               "data": {
-                "id": 1,
+                "id": this.get('recordId'),
                 "type": "remittanceTransactions",
                 "attributes": {
 
@@ -570,24 +642,26 @@ export default Component.extend({
                   "createdAt": this.get('createdAt'),
                   "updatedBy": this.get('updatedBy'),
                   "updatedAt": this.get('updatedAt'),
+                  "batchId": this.get('batchId'),
+                  "tracerId": this.get('tracerId'),
                 }
               }
             };
 
             console.log('message--remCollectionData', JSON.stringify(remCollectionData));
 
-            let accessToken = this.appConfiguration.getAccessToken();
-            let afterRemitterRegistration = this.transactionActionService.addNewRemittanceCollection(accessToken, remCollectionData);
+            /*let accessToken = this.appConfiguration.getAccessToken();
+            let afterCollectionUpdate = this.transactionActionService.updateCollectionData(accessToken, remCollectionData);
             let context = this;
-            afterRemitterRegistration.then(function (msg) {
+            afterCollectionUpdate.then(function (msg) {
             }).catch(function (msg) {
               if (msg.status === 201) {
                 context.get("router").transitionTo(this.routePath, 'create-collection');
-                context.get('notifier').success('Remittance Collection Successful!');
+                context.get('notifier').success('Remittance Collection Update Successfully!');
               } else {
                 context.get('notifier').danger('Remittance Collection Failed!\nError while committing the transaction.');
               }
-            });
+            });*/
 
           } else {
             let context = this;

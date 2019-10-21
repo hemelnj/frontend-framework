@@ -47,7 +47,26 @@ export default Service.extend({
     return this.appRestTemplate.httpRestClient(url, "GET",
       null, {}, beforeSend
     );
-  }
+  },
+
+  updateCollectionData(accessToken, collectionData, collectionId) {
+    let data = JSON.stringify(collectionData);
+
+    let beforeSend = function (xhr) {
+      xhr.setRequestHeader('content-type', 'application/json');
+      xhr.setRequestHeader('authorization', 'Bearer ' + accessToken);
+    };
+
+    let appCode = this.appConfiguration.getApplicationCode();
+    let orgCode = this.appConfiguration.getOrganizationCode();
+
+
+    let url = this.gatewayServiceHost + "/" + orgCode + "/" + appCode + "/api/remittanceTransactions/"+collectionId;
+
+    return this.appRestTemplate.httpRestClient(url, "PUT",
+      data, {}, beforeSend
+    );
+  },
 
 });
 
