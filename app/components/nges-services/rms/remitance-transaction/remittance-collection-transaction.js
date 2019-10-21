@@ -455,9 +455,10 @@ export default Component.extend({
       let context = this;
       let currencyId = value.id;
       context.defaultInitializer('currencyId', currencyId);
-
+      console.log('message---currency', value.attributes.code);
       context.set('selectedCurrency', {
         label: (value === '') ? '' : value.attributes.name,
+        code: (value === '') ? '' : value.attributes.code,
         value: value,
       });
     },
@@ -585,9 +586,11 @@ export default Component.extend({
               isRegistered: true,
             });
 
+            let collectionId = this.get('recordId');
+
             let remCollectionData = {
               "data": {
-                "id": this.get('recordId'),
+                "id": collectionId,
                 "type": "remittanceTransactions",
                 "attributes": {
 
@@ -620,7 +623,8 @@ export default Component.extend({
                   },
                   "inputAmount": Number(model.inputAmount),
                   "currency": {
-                    "id": model.currencyId
+                    "id": model.currencyId,
+                    "code": this.get('selectedCurrency.code'),
                   },
                   "transferAmount": Number(model.transferAmount),
                   "localAmount": Number(model.localAmount),
@@ -633,7 +637,7 @@ export default Component.extend({
                   },
 
                   "olcmState": {
-                    "id": this.get('statusId'),
+                    "id": this.get('olcmStateId'),
                   },
 
                   "function": this.get('function'),
@@ -650,8 +654,8 @@ export default Component.extend({
 
             console.log('message--remCollectionData', JSON.stringify(remCollectionData));
 
-            /*let accessToken = this.appConfiguration.getAccessToken();
-            let afterCollectionUpdate = this.transactionActionService.updateCollectionData(accessToken, remCollectionData);
+            let accessToken = this.appConfiguration.getAccessToken();
+            let afterCollectionUpdate = this.transactionActionService.updateCollectionData(accessToken, remCollectionData, collectionId);
             let context = this;
             afterCollectionUpdate.then(function (msg) {
             }).catch(function (msg) {
@@ -659,9 +663,9 @@ export default Component.extend({
                 context.get("router").transitionTo(this.routePath, 'create-collection');
                 context.get('notifier').success('Remittance Collection Update Successfully!');
               } else {
-                context.get('notifier').danger('Remittance Collection Failed!\nError while committing the transaction.');
+                context.get('notifier').danger('Remittance Collection Update Failed!\nError while committing the transaction.');
               }
-            });*/
+            });
 
           } else {
             let context = this;
