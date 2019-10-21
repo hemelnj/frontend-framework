@@ -105,8 +105,21 @@ export default Component.extend({
       console.log('appCode', appData.attributes.code);
       this.appConfiguration.setApplicationCode(appData.attributes.code);
       this.set('applicationId', appData.id);
-      this.loadMenu();
+
     },
+
+    loadApplication(){
+      let context = this;
+      let applicationCode = this.appConfiguration.getApplicationCode();
+      let orgCode = this.appConfiguration.getOrganizationCode();
+      console.log('message--applicationCode', applicationCode);
+      if(applicationCode==='null' || orgCode==='null'){
+        context.get('notifier').warning('Please Select Organization and Application!');
+      }else{
+        this.loadMenu();
+      }
+
+    }
   }
 
 });
