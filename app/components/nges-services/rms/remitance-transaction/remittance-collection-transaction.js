@@ -659,7 +659,7 @@ export default Component.extend({
             let context = this;
             afterCollectionUpdate.then(function (msg) {
             }).catch(function (msg) {
-              if (msg.status === 201) {
+              if (msg.status === 204) {
                 context.get("router").transitionTo(this.routePath, 'create-collection');
                 context.get('notifier').success('Remittance Collection Update Successfully!');
               } else {
