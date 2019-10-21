@@ -103,6 +103,7 @@ export default Component.extend({
 
     this.set('model.currencyId', collectionData.currency.id);
     this.set('selectedCurrency.label', collectionData.currency.name);//show in ui
+    this.set('selectedCurrency.code', collectionData.currency.code);
 
     this.set('model.payAmountModeId', collectionData.paymentMode.id);
     this.set('selectedPaymentMode.label', collectionData.paymentMode.name);//show in ui
@@ -658,13 +659,10 @@ export default Component.extend({
             let afterCollectionUpdate = this.transactionActionService.updateCollectionData(accessToken, remCollectionData, collectionId);
             let context = this;
             afterCollectionUpdate.then(function (msg) {
+              //context.get("router").transitionTo(this.routePath, 'create-collection');
+              context.get('notifier').success('Remittance Collection Update Successfully!');
             }).catch(function (msg) {
-              if (msg.status === 201) {
-                context.get("router").transitionTo(this.routePath, 'create-collection');
-                context.get('notifier').success('Remittance Collection Update Successfully!');
-              } else {
-                context.get('notifier').danger('Remittance Collection Update Failed!\nError while committing the transaction.');
-              }
+              context.get('notifier').danger('Remittance Collection Update Failed!\nError while committing the transaction.');
             });
 
           } else {

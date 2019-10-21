@@ -4,8 +4,10 @@
 
   <div class="card-body">
 
-    {{#if viewCreateButton}}
+    <h1 class="layout-header-title">{{serviceActionableRoute.create.label}}</h1>
+    <hr class="header-label-line">
 
+    {{#if viewCreateButton}}
     {{!log serviceActionableRoute.create.routePath}}
     {{!nges-core/nges-link
       route = 'welcome.application-loader.panel-loader.module-loader.service-holder-loader.menu-template-loader.submenu-template-loader.submenu-detail-template-loader'
@@ -17,10 +19,6 @@
         routePath = serviceActionableRoute.create.routePath
         label =  serviceActionableRoute.create.label
       }}
-
-
-      <h1 class="layout-header-title">{{serviceActionableRoute.create.label}}</h1>
-
     {{/if}}
 
 
