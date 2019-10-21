@@ -394,7 +394,13 @@
         {{/if}}
         <br>
         <hr class="rms-bottom-hr-line">
-        <button id='save' class="nges-button nges-button-success" {{action 'validate'}}>{{t "Save"}}</button>
+        {{#if actionAccess}}
+          <button id='status_check' class="nges-button nges-button-success" {{action 'updateAction'}}>{{t
+            "Submit"}}</button>
+        {{else}}
+          <button id='save' class="nges-button nges-button-success" {{action 'validate'}}>{{t "Save"}}</button>
+        {{/if}}
+
         <button id='status_check' class="nges-button nges-button-success" {{action 'checkRiskStatus'}}>{{t
           "Risk Status Check"}}
         </button>
@@ -408,10 +414,7 @@
 
 
         <!--<button id='clear' class="rms-button-all rms-button-save" {{action 'reset'}}>Clear</button>-->
-        {{#if actionAccess}}
-          <button id='status_check' class="nges-button nges-button-success" {{action 'updateAction'}}>{{t
-            "Submit"}}</button>
-        {{/if}}
+
       </form>
     </div>
   </div>
