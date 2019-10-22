@@ -7,6 +7,16 @@
     border-top: 2px solid;
     border-color: #666666;
   }
+
+  legend {
+    font-family: arial;
+    color: #666;
+    background: #eee;
+    border: 3px solid #ccc;
+    border-bottom-color: #999;
+    border-right-color: #999;
+    padding: 6px 8px;
+  }
 </style>
 
 
@@ -69,7 +79,7 @@
 
           <div class="col-sm-3">
             {{#if selectedCountry.label}}
-              <label style="font-size: 12px;">{{selectedCountry.label}}</label>
+            <label style="font-size: 12px;">{{selectedCountry.label}}</label>
             {{/if}}
 
             {{nges-core/nges-searchable-dropdown
@@ -89,7 +99,7 @@
 
           <div class="col-sm-3">
             {{#if selectedState.label}}
-              <label style="font-size: 12px;">{{selectedState.label}}</label>
+            <label style="font-size: 12px;">{{selectedState.label}}</label>
             {{/if}}
 
             {{nges-core/nges-searchable-dropdown
@@ -153,7 +163,7 @@
 
         <div class="col-sm-3">
           {{#if selectedNationality.label}}
-            <label style="font-size: 12px;">{{selectedNationality.label}}</label>
+          <label style="font-size: 12px;">{{selectedNationality.label}}</label>
           {{/if}}
 
           {{nges-core/nges-searchable-dropdown
@@ -176,6 +186,7 @@
         sectionLast = 'col-sm-4'
         didValidate=didValidate}}
 
+
       <fieldset>
         <legend class="input-field-label">{{t "Risk Status"}}</legend>
         <div class="form-group">
@@ -187,7 +198,7 @@
                 </div>
                 <div class="col-sm-6">
                   {{#if selectedRisk.label}}
-                    <label style="font-size: 12px;">{{selectedRisk.label}}</label>
+                  <label style="font-size: 12px;">{{selectedRisk.label}}</label>
                   {{/if}}
 
                   {{nges-core/nges-searchable-dropdown
@@ -200,15 +211,18 @@
 
             </div>
           </div>
-<style>
-table {
-  border-collapse: collapse;
-}
+          <style>
+            table {
+              border-collapse: collapse;
+            }
 
-table, td, th, thead {
-  border: solid #0a0a0a;
-}
-</style>
+            table,
+            td,
+            th,
+            thead {
+              border: solid #0a0a0a;
+            }
+          </style>
           <div class="row">
             <div class="col-sm-2">
               <label class="input-field-label">{{t "Sanction Screening"}}</label>
@@ -216,20 +230,20 @@ table, td, th, thead {
             <div class="col-sm-9">
               <table class="table-all">
                 <thead>
-                <th>Source</th>
-                <th>Name</th>
-                <th>Country</th>
-                <th>Date of Birth</th>
-                <th>Father Name</th>
-                <th>Score</th>
+                  <th>Source</th>
+                  <th>Name</th>
+                  <th>Country</th>
+                  <th>Date of Birth</th>
+                  <th>Father Name</th>
+                  <th>Score</th>
                 </thead>
                 <tbody>
-                <td>{{source}}</td>
-                <td>{{name}}</td>
-                <td>{{country}}</td>
-                <td>{{dob}}</td>
-                <td>{{fname}}</td>
-                <td>{{score}}</td>
+                  <td>{{source}}</td>
+                  <td>{{name}}</td>
+                  <td>{{country}}</td>
+                  <td>{{dob}}</td>
+                  <td>{{fname}}</td>
+                  <td>{{score}}</td>
                 </tbody>
               </table>
             </div>
@@ -243,18 +257,18 @@ table, td, th, thead {
       <br>
       <!--only MLRO will see this fieldset-->
       {{#if showMLROReview}}
-        <fieldset>
-          <legend class="input-field-label">{{t "MLRO Comment"}}</legend>
-          <div class="row">
-            <div class="col-sm-2">
-              <label class="form-check-label input-field-label" style="margin-left: 15px;">
-                <input type="checkbox" class="form-check-input" onclick="myFunction()" style="margin-top: 14px;">
-                <label class="input-field-title" style="margin-top: 12px;">{{t "False Positive"}}</label>
-              </label>
-            </div>
-            <div class="col-sm-6">
-              <div>
-                {{nges-core/nges-input-component
+      <fieldset>
+        <legend class="input-field-label">{{t "MLRO Comment"}}</legend>
+        <div class="row">
+          <div class="col-sm-2">
+            <label class="form-check-label input-field-label" style="margin-left: 15px;">
+              <input type="checkbox" class="form-check-input" onclick="myFunction()" style="margin-top: 14px;">
+              <label class="input-field-title" style="margin-top: 12px;">{{t "False Positive"}}</label>
+            </label>
+          </div>
+          <div class="col-sm-6">
+            <div>
+              {{nges-core/nges-input-component
                   type='text'
                   input-field-name="MLRO Comment"
                   model=model
@@ -263,47 +277,53 @@ table, td, th, thead {
                   sectionFirst = 'col-sm-4'
                   sectionLast = 'col-sm-8'
                   didValidate=didValidate}}
-              </div>
             </div>
-
           </div>
 
-        </fieldset>
+        </div>
+
+      </fieldset>
       {{/if}}
 
 
       {{#if showPropertyExtender}}
 
-        {{nges-engines/property-extender/add-property
+      {{nges-engines/property-extender/add-property
           attributeList=attributeList
         }}
 
       {{/if}}
 
       {{#if showAlert}}
-        <div class='alert'>
-          <div class='fa fa-times icon-remove' {{action 'toggleProperty' 'showAlert'}}></div>
-          <h1 style="color: red; font-size: 12px">{{t "Please fix all the errors above before continuing."}}</h1>
-        </div>
+      <div class='alert'>
+        <div class='fa fa-times icon-remove' {{action 'toggleProperty' 'showAlert'}}></div>
+        <h1 style="color: red; font-size: 12px">{{t "Please fix all the errors above before continuing."}}</h1>
+      </div>
       {{/if}}
 
       {{#if isValid}}
-        <span class='valid-input fa fa-check'><h1 style="color: red;font-size: 12px">{{t "Error Message"}}</h1></span>
+      <span class='valid-input fa fa-check'>
+        <h1 style="color: red;font-size: 12px">{{t "Error Message"}}</h1>
+      </span>
       {{/if}}
 
       <br>
       <hr class="rms-bottom-hr-line">
       {{#if actionAccess}}
-        <button id='status_check' class="nges-button nges-button-success" {{action 'updateAction'}}>{{t "Submit"}}</button>
-        <button id='status_check' class="nges-button nges-button-success" {{action 'propertyExtend'}}>{{t "Additional Property"}}</button>
+      <button id='status_check' class="nges-button nges-button-success"
+        {{action 'updateAction'}}>{{t "Submit"}}</button>
+      <button id='status_check' class="nges-button nges-button-success"
+        {{action 'propertyExtend'}}>{{t "Additional Property"}}</button>
       {{else}}
-        <button id='save' class="nges-button nges-button-success" {{action 'validate'}}>{{t "Save"}}</button>
+      <button id='save' class="nges-button nges-button-success" {{action 'validate'}}>{{t "Save"}}</button>
       {{/if}}
-      <button id='status_check' class="nges-button nges-button-success " {{action 'checkRiskStatus'}}>{{t "Risk Status Check"}}
+      <button id='status_check' class="nges-button nges-button-success "
+        {{action 'checkRiskStatus'}}>{{t "Risk Status Check"}}
       </button>
 
       {{#each stateActions as |state|}}
-        <button id='save' class="nges-button nges-button-success" {{action 'getNextAllowableStateIdForCurrentState'
+      <button id='save' class="nges-button nges-button-success"
+        {{action 'getNextAllowableStateIdForCurrentState'
                                                                            state.attributes.id}}>{{state.attributes.name}}</button>
       {{/each}}
       <!--<button id='duplicate_check' class="rms-button-all rms-button-save" {{action 'checkDuplicate'}}>Duplicate Check</button>
