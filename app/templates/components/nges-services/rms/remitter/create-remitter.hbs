@@ -35,7 +35,7 @@
             <label class="input-field-label">{{t "Type"}}</label>
           </div>
 
-          <div class="col-sm-4">
+          <div class="col-sm-3">
             {{#if selectedType.label}}
               <label style="font-size: 12px;">{{selectedType.label}}</label>
             {{/if}}
@@ -50,17 +50,18 @@
         </div>
       </div>
 
-
-      {{nges-core/nges-input-component
+ <div style="margin-top: -1%;">
+   {{nges-core/nges-input-component
         type='text'
         input-field-name="Name"
         model=model
         valuePath='remitterName'
         placeholder='Remitter Name'
         sectionFirst = 'col-sm-2'
-        sectionLast = 'col-sm-9'
+        sectionLast = 'col-sm-4'
         didValidate=didValidate}}
-
+ </div>
+      
 
       {{nges-core/nges-input-component
         type='text'
@@ -69,7 +70,7 @@
         valuePath='fathersName'
         placeholder='Name of Father'
         sectionFirst = 'col-sm-2'
-        sectionLast = 'col-sm-9'
+        sectionLast = 'col-sm-4'
         didValidate=didValidate}}
 
 
@@ -80,7 +81,7 @@
         valuePath='mothersName'
         placeholder='Name of Mother'
         sectionFirst = 'col-sm-2'
-        sectionLast = 'col-sm-9'
+        sectionLast = 'col-sm-4'
         didValidate=didValidate}}
 
 
@@ -93,17 +94,17 @@
             valuePath='dob'
             placeholder='Date of Birth'
             sectionFirst = 'col-sm-4'
-            sectionLast = 'col-sm-7'
+            sectionLast = 'col-sm-6'
             didValidate=didValidate}}
         </div>
         <div class="col-md-6">
           <div class="row">
 
-            <div class="col-sm-4">
+            <div class="col-sm-3">
               <label class="input-field-label">{{t "Choose Nationality"}}</label>
             </div>
 
-            <div class="col-sm-6">
+            <div class="col-sm-7">
               {{#if selectedNationality.label}}
                 <label style="font-size: 12px;">{{selectedNationality.label}}</label>
               {{/if}}
@@ -118,8 +119,8 @@
 
         </div>
       </div>
-
-      <div class="row">
+<div class="form-group" style="margin-top: -1%;">
+  <div class="row">
         <div class="col-md-6">
           {{nges-core/nges-input-component
             type='text'
@@ -139,19 +140,21 @@
             model=model
             valuePath='email'
             placeholder='Email Address'
-            sectionFirst = 'col-sm-2'
-            sectionLast = 'col-sm-8'
+            sectionFirst = 'col-sm-3'
+            sectionLast = 'col-sm-7'
             didValidate=didValidate}}
         </div>
       </div>
+</div>
+      
 
 
-      <div class="form-group">
+      <div class="form-group" style="margin-top: -1%;">
         <div class="row">
           <div class="col-sm-2">
             <label class="input-field-label">{{t "Nature of Job"}}</label>
           </div>
-          <div class="col-sm-9">
+          <div class="col-sm-3">
             {{#if selectedNOJ.label}}
               <label style="font-size: 12px;">{{selectedNOJ.label}}</label>
             {{/if}}
@@ -166,8 +169,8 @@
         </div>
       </div>
 
-
-      <div class="row">
+<div class="form-group" style="margin-top: -1%;">
+  <div class="row">
         <div class="col-md-6">
           {{nges-core/nges-input-component
             type='number'
@@ -186,21 +189,26 @@
             model=model
             valuePath='expetedRemitance'
             placeholder='Expected Remitance'
-            sectionFirst = 'col-sm-5'
-            sectionLast = 'col-sm-5'
+            sectionFirst = 'col-sm-3'
+            sectionLast = 'col-sm-7'
             didValidate=didValidate}}
         </div>
       </div>
-
-      {{nges-core/nges-input-component
+</div>
+      
+<div style="margin-top: -1%;">
+  {{nges-core/nges-input-component
         type='text'
         input-field-name="Remarks"
         model=model
         valuePath='remarks'
         placeholder='Remarks'
         sectionFirst = 'col-sm-2'
-        sectionLast = 'col-sm-9'
+        sectionLast = 'col-sm-4'
         didValidate=didValidate}}
+
+</div>
+      
 
       <fieldset>
         <legend class="input-field-label">{{t "Present Address"}}</legend>
@@ -214,7 +222,7 @@
             valuePath='address1'
             placeholder='Address 1'
             sectionFirst = 'col-sm-2'
-            sectionLast = 'col-sm-9'
+            sectionLast = 'col-sm-4'
             didValidate=didValidate}}
         </div>
         <div>
@@ -225,7 +233,7 @@
             valuePath='address2'
             placeholder='Address 2'
             sectionFirst = 'col-sm-2'
-            sectionLast = 'col-sm-9'
+            sectionLast = 'col-sm-4'
             didValidate=didValidate}}
         </div>
 
@@ -235,7 +243,7 @@
               <label class="input-field-label">{{t "Country"}}</label>
             </div>
 
-            <div class="col-sm-9">
+            <div class="col-sm-3">
               {{#if selectedCountry.label}}
                 <label style="font-size: 12px;">{{selectedCountry.label}}</label>
               {{/if}}
@@ -249,13 +257,13 @@
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" style="margin-top: -1%;">
           <div class="row">
             <div class="col-sm-2">
               <label class="input-field-label">{{t "State/District"}}</label>
             </div>
 
-            <div class="col-sm-9">
+            <div class="col-sm-3">
               {{#if selectedState.label}}
                 <label style="font-size: 12px;">{{selectedState.label}}</label>
               {{/if}}
@@ -269,8 +277,8 @@
           </div>
         </div>
 
-
-        {{nges-core/nges-input-component
+<div style="margin-top: -1%;">
+  {{nges-core/nges-input-component
           type='text'
           input-field-name="City/Town"
           model=model
@@ -279,6 +287,8 @@
           sectionFirst = 'col-sm-2'
           sectionLast = 'col-sm-4'
           didValidate=didValidate}}
+          </div>
+        
 
 
         {{nges-core/nges-input-component
@@ -288,7 +298,7 @@
           valuePath='zipCode'
           placeholder='Zip Code'
           sectionFirst = 'col-sm-2'
-          sectionLast = 'col-sm-9'
+          sectionLast = 'col-sm-4'
           didValidate=didValidate}}
 
         {{nges-core/nges-input-component
@@ -298,16 +308,17 @@
           valuePath='proofOfAddress'
           placeholder='Proof of Address'
           sectionFirst = 'col-sm-2'
-          sectionLast = 'col-sm-9'
+          sectionLast = 'col-sm-4'
           didValidate=didValidate}}
 
       </fieldset>
 
       <br>
-      <fieldset>
-        <legend class="input-field-label">{{t "Primary Photo ID"}}</legend>
 
-        <div class="form-group">
+      <fieldset>
+        <legend class="input-field-label" >{{t "Primary Photo ID"}}</legend>
+
+        <div class="form-group"  >
           <div class="row">
             <div class="col-sm-6">
               <div class="row">
@@ -315,7 +326,7 @@
                   <label class="input-field-label">{{t "Type"}}</label>
                 </div>
 
-                <div class="col-sm-8">
+                <div class="col-sm-6">
                   {{#if selectedPrimaryPhotoType.label}}
                     <label style="font-size: 12px;">{{selectedPrimaryPhotoType.label}}</label>
                   {{/if}}
@@ -329,8 +340,8 @@
                 </div>
               </div>
 
-
-              {{nges-core/nges-input-component
+ <div style="margin-top: -1%;">
+{{nges-core/nges-input-component
                 type='text'
                 input-field-name="ID No 1"
                 model=model
@@ -338,9 +349,11 @@
                 placeholder='Id'
                 sectionFirst = 'col-sm-4'
                 sectionLast = 'col-sm-8'
-                didValidate=didValidate}}
-
-              {{nges-core/nges-input-component
+                didValidate=didValidate}} 
+</div>
+              
+<div style="margin-top: -1%;">
+  {{nges-core/nges-input-component
                 type='date'
                 input-field-name="Issue 1"
                 model=model
@@ -351,7 +364,10 @@
                 didValidate=didValidate}}
 
 
-              {{nges-core/nges-input-component
+</div>
+              
+<div style="margin-top: -1%;">
+{{nges-core/nges-input-component
                 type='date'
                 input-field-name="Expiry 1"
                 model=model
@@ -360,6 +376,8 @@
                 sectionFirst = 'col-sm-4'
                 sectionLast = 'col-sm-8'
                 didValidate=didValidate}}
+</div>
+              
 
             </div>
             <!--<div class="col-sm-6">
@@ -384,7 +402,7 @@
                   <label class="input-field-label">{{t "Type"}}</label>
                 </div>
 
-                <div class="col-sm-8">
+                <div class="col-sm-6">
                   {{#if selectedSecondaryPhotoType.label}}
                     <label style="font-size: 12px;">{{selectedSecondaryPhotoType.label}}</label>
                   {{/if}}
@@ -397,7 +415,9 @@
 
                 </div>
               </div>
-              {{nges-core/nges-input-component
+
+               <div style="margin-top: -1%;">
+{{nges-core/nges-input-component
                 type='text'
                 input-field-name="ID No 2"
                 model=model
@@ -406,6 +426,8 @@
                 sectionFirst = 'col-sm-4'
                 sectionLast = 'col-sm-8'
                 didValidate=didValidate}}
+               </div>
+              
 
               {{nges-core/nges-input-component
                 type='date'
@@ -442,9 +464,9 @@
         <div class="form-group">
 
           <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-6">
               <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                   <label class="input-field-label">{{t "Risk"}}</label>
                 </div>
                 <div class="col-sm-6">
@@ -462,14 +484,23 @@
 
             </div>
           </div>
+<style>
+table {
+  border-collapse: collapse;
+}
 
-          <div class="row">
+table, td, th, thead {
+  border: solid #0a0a0a;
+}
+</style>
+          <div class="row"  style="margin-top: -1%;">
             <div class="col-sm-2">
               <label class="input-field-label">{{t "Sanction Screening"}}</label>
             </div>
             <div class="col-sm-9">
               <table class="table-all">
-                <thead>
+                
+               <thead>
                 <th>Source</th>
                 <th>Name</th>
                 <th>Country</th>
