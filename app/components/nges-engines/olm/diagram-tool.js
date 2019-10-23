@@ -43,18 +43,6 @@ export default Component.extend({
 
     onChangeClassTypes(value) {
 
-      /*let jsonData = '[{"rank":"9","content":"Alon","UID":"5"},{"rank":"6","content":"Tala","UID":"6"}]';
-
-      $.each(JSON.parse(jsonData), function (i, item) {
-        console.log('message--item', item.rank);
-        $('<tr>').append(
-          $('<td>').text(item.rank),
-          $('<td>').text(item.content),
-          $('<td>').text(item.UID)
-        ).appendTo('#records_table');
-
-      });*/
-
       let classTypeId = value.attributes.id;
       let classTypeName = value.attributes.name;
       this.set('classTypeName', classTypeName);
@@ -82,32 +70,26 @@ export default Component.extend({
       let stateData = this.get('pdfStateData');
       let actionData = this.get('pdfActionData');
 
-      //console.log('message--stateData', stateData);
-      //console.log('message--actionData', actionData);
-
-
       let doc = new jsPDF('l', 'pt', 'a4');
 
       let width = doc.internal.pageSize.getWidth();
       let height = doc.internal.pageSize.getHeight();
 
-
-
       let dataURL = getRootStage().toDataURL();
-
 
       doc.addImage(dataURL, 'JPEG', 0, 0);
       doc.addPage('l', 'pt', 'a4',true);
-      doc.text(classTypeName, width/4, 20);
+      doc.text(classTypeName, width/4, 40);
 
       let posY;
-      doc.text("State Detail",40,45);
+      doc.setFontSize(12);
+      doc.text("State Detail",40,65);
 
       doc.autoTable({
         theme: 'grid',
         head: [['State', 'View', 'Edit']],
         body: stateData[0],
-        startY: 50,
+        startY: 70,
       });
 
       posY = doc.lastAutoTable.finalY;
@@ -120,10 +102,13 @@ export default Component.extend({
         startY: doc.autoTable.previous.finalY + 30,
       });
 
+      doc.save(classTypeName + ' olm.pdf');
 
+      this.set('pdfStateData',[]);
+      this.set('pdfActionData',[]);
 
-      doc.save(classTypeName + ' olm_diagram.pdf');
     },
+
 
     zoomSliderChange(value) {
       //console.log('message', ' zoomSliderChange  ' + value);
@@ -325,40 +310,6 @@ export default Component.extend({
     this.loadInitialData();
   },
 
-  generateTablePDF(classTypeName) {
-    console.log('message------generatePDF');
-
-
-    //let pdf = new jsPDF('l', 'pt', 'letter',true)
-
-    let stateData = this.get('pdfStateData');
-    let actionData = this.get('pdfActionData');
-
-    //console.log('message--stateData', stateData);
-    //console.log('message--actionData', actionData);
-
-    let doc = new jsPDF();
-
-    console.log('message--classTypeName', classTypeName);
-    doc.text(classTypeName, 15, 10);
-
-    doc.autoTable({
-      theme: 'grid',
-      head: [['State', 'View', 'Edit']],
-      body: stateData[0],
-    });
-
-    doc.autoTable({
-      theme: 'grid',
-      head: [['Action Event', 'Performed By']],
-      body: actionData[0],
-    });
-
-
-    //doc.save('table.pdf');
-    return doc;
-
-  },
   loadInitialData() {
 
     let context = this;
@@ -750,7 +701,10 @@ export default Component.extend({
   },
 
   processDataForPDF(mydata) {
-    //console.log('message-----testing', JSON.stringify(mydata));
+
+    this.set('pdfStateData',[]);
+    this.set('pdfActionData',[]);
+
     let stateData = [];
     let actionData = [];
     for (let i = 0; i < mydata.length; i++) {
