@@ -36,22 +36,40 @@ export default Component.extend({
   nofiy: '',
   notifier: service(),
 
+  pdfStateData: [],
+  pdfActionData: [],
 
   actions: {
 
     onChangeClassTypes(value) {
+
+      /*let jsonData = '[{"rank":"9","content":"Alon","UID":"5"},{"rank":"6","content":"Tala","UID":"6"}]';
+
+      $.each(JSON.parse(jsonData), function (i, item) {
+        console.log('message--item', item.rank);
+        $('<tr>').append(
+          $('<td>').text(item.rank),
+          $('<td>').text(item.content),
+          $('<td>').text(item.UID)
+        ).appendTo('#records_table');
+
+      });*/
+
       let classTypeId = value.attributes.id;
-      this.set('classTypeName',value.attributes.name);
+      let classTypeName = value.attributes.name;
+      this.set('classTypeName', classTypeName);
 
       this.set('classTypeId', classTypeId);
       this.didInsertElement();
-      this.loadDataByClassTypeId(classTypeId)
+      this.loadDataByClassTypeId(classTypeId);
+
     },
 
-    exportImage(){
+    exportImage() {
       let classTypeName = this.get('classTypeName');
 
-      let downloadURI = function downloadURI(uri, name) {
+      //pdfData.save();
+      /*let downloadURI = function downloadURI(uri, name) {
         var linkurl = document.createElement('a');
         linkurl.download = name;
         linkurl.href = uri;
@@ -59,18 +77,55 @@ export default Component.extend({
         linkurl.click();
         document.body.removeChild(linkurl);
         //delete linkurl;
-      };
+      };*/
 
-      var dataURL = getRootStage().toDataURL();
+      let stateData = this.get('pdfStateData');
+      let actionData = this.get('pdfActionData');
 
-      var doc = new jsPDF('l','pt','a4'); // This part is your mistake
-      //doc.text(20, 20, 'Hello world.');
+      //console.log('message--stateData', stateData);
+      //console.log('message--actionData', actionData);
+
+
+      let doc = new jsPDF('l', 'pt', 'a4');
+
+      let width = doc.internal.pageSize.getWidth();
+      let height = doc.internal.pageSize.getHeight();
+
+
+
+      let dataURL = getRootStage().toDataURL();
+
+
       doc.addImage(dataURL, 'JPEG', 0, 0);
-      doc.save(classTypeName+' olm_diagram.pdf');
-      //downloadURI(dataURL, 'olm_diagram.png');
+      doc.addPage('l', 'pt', 'a4',true);
+      doc.text(classTypeName, width/4, 20);
+
+      let posY;
+      doc.text("State Detail",40,45);
+
+      doc.autoTable({
+        theme: 'grid',
+        head: [['State', 'View', 'Edit']],
+        body: stateData[0],
+        startY: 50,
+      });
+
+      posY = doc.lastAutoTable.finalY;
+      doc.text("Action Event Detail",40,posY+25);
+
+      doc.autoTable({
+        theme: 'grid',
+        head: [['Action Event', 'Performed By']],
+        body: actionData[0],
+        startY: doc.autoTable.previous.finalY + 30,
+      });
+
+
+
+      doc.save(classTypeName + ' olm_diagram.pdf');
     },
 
-    zoomSliderChange(value){
+    zoomSliderChange(value) {
       //console.log('message', ' zoomSliderChange  ' + value);
       // todo: future we implement this feature
       this.set('zoomRangeValue', value);
@@ -151,12 +206,12 @@ export default Component.extend({
         })
         .catch(function (msg) {
 
-        if(msg.status === 201){
-          context.get('notifier').success('Successfully Save Workflow Diagram');
-        }else{
-          context.get('notifier').danger('Failed To Save Workflow Diagram');
-        }
-      })
+          if (msg.status === 201) {
+            context.get('notifier').success('Successfully Save Workflow Diagram');
+          } else {
+            context.get('notifier').danger('Failed To Save Workflow Diagram');
+          }
+        })
 
     },
     selectState(s) {
@@ -270,6 +325,40 @@ export default Component.extend({
     this.loadInitialData();
   },
 
+  generateTablePDF(classTypeName) {
+    console.log('message------generatePDF');
+
+
+    //let pdf = new jsPDF('l', 'pt', 'letter',true)
+
+    let stateData = this.get('pdfStateData');
+    let actionData = this.get('pdfActionData');
+
+    //console.log('message--stateData', stateData);
+    //console.log('message--actionData', actionData);
+
+    let doc = new jsPDF();
+
+    console.log('message--classTypeName', classTypeName);
+    doc.text(classTypeName, 15, 10);
+
+    doc.autoTable({
+      theme: 'grid',
+      head: [['State', 'View', 'Edit']],
+      body: stateData[0],
+    });
+
+    doc.autoTable({
+      theme: 'grid',
+      head: [['Action Event', 'Performed By']],
+      body: actionData[0],
+    });
+
+
+    //doc.save('table.pdf');
+    return doc;
+
+  },
   loadInitialData() {
 
     let context = this;
@@ -277,7 +366,7 @@ export default Component.extend({
     let appCode = this.appConfiguration.getApplicationCode();
     let orgCode = this.appConfiguration.getOrganizationCode();
     let engineCode = "olm";
-    let allCreatedClassTypes = this.olmSetupService.getAllClassType(orgCode,appCode,engineCode,accessToken);
+    let allCreatedClassTypes = this.olmSetupService.getAllClassType(orgCode, appCode, engineCode, accessToken);
     allCreatedClassTypes.then(function (msg) {
       context.set('classtypes', msg.data);
     }).catch(function (errorMsg) {
@@ -432,7 +521,6 @@ export default Component.extend({
     });
 
 
-
     let context = this;
 
 
@@ -460,9 +548,8 @@ export default Component.extend({
     });
 
 
-
-    stage.on("dragmove",function () {
-      let stagePos=stage.position();
+    stage.on("dragmove", function () {
+      let stagePos = stage.position();
       setPOS(stagePos);
     });
 
@@ -484,8 +571,6 @@ export default Component.extend({
     });
 
 
-
-
   },
 
   loadDataByClassTypeId(classTypeId) {
@@ -500,7 +585,7 @@ export default Component.extend({
       //context.set('stateList', msg.data);
       let states = result.data.attributes.states;
       context.set('states', states);
-      console.log('message-data', result.data);
+
 
       let startStateId;
       let endStateId;
@@ -522,9 +607,11 @@ export default Component.extend({
       setStartEndIds(startStateId, endStateId);
 
       let diagramResult = result.data.attributes;
+
+
       let edges = result.data.attributes.egdes;
 
-      if (edges.length > 0 ) {
+      if (edges.length > 0) {
 
         for (let c = 0; c < edges.length; c++) {
           let l = edges[c].extra;
@@ -652,13 +739,69 @@ export default Component.extend({
 
       }
 
-      init(mydata);   //
+
+      init(mydata);
+      context.processDataForPDF(mydata);
       context.set('colors', getStateColors());
 
     });
 
 
+  },
 
+  processDataForPDF(mydata) {
+    //console.log('message-----testing', JSON.stringify(mydata));
+    let stateData = [];
+    let actionData = [];
+    for (let i = 0; i < mydata.length; i++) {
+      let rowStateData = [];
+      let rowActionData = [];
+      let endStateInfo = mydata[i].endState;
+      let stateViewInfo = endStateInfo.view.name;
+      let stateEditInfo = endStateInfo.edit.name;
+
+      let actionName = mydata[i].actionevent.name;
+      rowActionData.push(actionName);
+      let actionRoleInfo=mydata[i].roles;
+
+      let roleInfo = "";
+      for (let j = 0; j < actionRoleInfo.length; j++) {
+        if (actionRoleInfo.length > 1) {
+          roleInfo = roleInfo + ",\n" + actionRoleInfo[j].name;
+        } else {
+          roleInfo = actionRoleInfo[j].name;
+        }
+      }
+      rowActionData.push(roleInfo);
+
+
+      rowStateData.push(endStateInfo.name);
+      let viewInfo = "";
+      for (let j = 0; j < stateViewInfo.length; j++) {
+        if (stateViewInfo.length > 1) {
+          viewInfo = viewInfo + ",\n" + stateViewInfo[j];
+        } else {
+          viewInfo = stateViewInfo[j];
+        }
+      }
+      rowStateData.push(viewInfo);
+
+      let editInfo = "";
+      for (let j = 0; j < stateEditInfo.length; j++) {
+        if (stateEditInfo.length > 1) {
+          editInfo = stateEditInfo[j]+",\n"+editInfo;
+        } else {
+          editInfo = stateEditInfo[j];
+        }
+      }
+      rowStateData.push(editInfo);
+
+      stateData.push(rowStateData);
+      actionData.push(rowActionData);
+    }
+    console.log('message---actionData', actionData);
+    this.get('pdfStateData').push(stateData);
+    this.get('pdfActionData').push(actionData);
   },
 
   stateColorPushBack(color) {
