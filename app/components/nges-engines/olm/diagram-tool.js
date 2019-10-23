@@ -41,12 +41,15 @@ export default Component.extend({
 
     onChangeClassTypes(value) {
       let classTypeId = value.attributes.id;
+      this.set('classTypeName',value.attributes.name);
+
       this.set('classTypeId', classTypeId);
       this.didInsertElement();
       this.loadDataByClassTypeId(classTypeId)
     },
 
     exportImage(){
+      let classTypeName = this.get('classTypeName');
 
       let downloadURI = function downloadURI(uri, name) {
         var linkurl = document.createElement('a');
@@ -63,7 +66,7 @@ export default Component.extend({
       var doc = new jsPDF('l','pt','a4'); // This part is your mistake
       //doc.text(20, 20, 'Hello world.');
       doc.addImage(dataURL, 'JPEG', 0, 0);
-      doc.save('olm_diagram.pdf');
+      doc.save(classTypeName+' olm_diagram.pdf');
       //downloadURI(dataURL, 'olm_diagram.png');
     },
 
