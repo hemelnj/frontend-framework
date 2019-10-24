@@ -78,25 +78,58 @@ export default Component.extend({
       let dataURL = getRootStage().toDataURL();
 
       doc.addImage(dataURL, 'JPEG', 0, 0);
-      doc.addPage('l', 'pt', 'a4',true);
+      doc.addPage();
       doc.text(classTypeName, width/4, 40);
 
       let posY;
       doc.setFontSize(12);
+      doc.setFontStyle("bold");
       doc.text("State Detail",40,65);
 
+
       doc.autoTable({
-        theme: 'grid',
+        theme: 'plain',
+        headStyles: {
+          fillColor:[255,255,255],
+          fontStyle: 'bold',
+          textColor: [0,0,0],
+          lineWidth: 0.5,
+          lineColor: [0, 0, 0]
+        },
+        bodyStyles:{
+          fillColor:[255,255,255],
+          fontStyle: 'normal',
+          textColor: [0,0,0],
+          lineWidth: 0.5,
+          lineColor: [0, 0, 0]
+        },
         head: [['State', 'View', 'Edit']],
         body: stateData[0],
         startY: 70,
       });
 
       posY = doc.lastAutoTable.finalY;
+      doc.setFontSize(12);
+      doc.setFontStyle("bold");
       doc.text("Action Event Detail",40,posY+25);
 
+
       doc.autoTable({
-        theme: 'grid',
+        theme: 'plain',
+        headStyles: {
+          fillColor:[255,255,255],
+          fontStyle: 'bold',
+          textColor: [0,0,0],
+          lineWidth: 0.5,
+          lineColor: [0, 0, 0]
+        },
+        bodyStyles:{
+          fillColor:[255,255,255],
+          fontStyle: 'normal',
+          textColor: [0,0,0],
+          lineWidth: 0.5,
+          lineColor: [0, 0, 0]
+        },
         head: [['Action Event', 'Performed By']],
         body: actionData[0],
         startY: doc.autoTable.previous.finalY + 30,
