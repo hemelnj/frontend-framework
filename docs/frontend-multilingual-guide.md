@@ -1,5 +1,5 @@
 ## Frontend Multilingual Guide
-___
+
 For multi-culture support we have use `Ember-intl` addon, which provides a helper `t` 
 (translation helper) and in this helper needs to pass the string we want to translate.
 
@@ -31,7 +31,7 @@ Example:
 ```
  
 
-####References:
+#### References:
 ___
 >[How to translate your Ember.js application with ember-intl](https://www.codeandweb.com/babeledit/tutorials/how-to-translate-your-ember-app-with-ember-intl)
 
