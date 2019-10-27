@@ -8,7 +8,7 @@
 
   }
 
-  .nav-link-item{
+  .nav-link-item {
     font-size: 12px;
   }
 
@@ -16,12 +16,11 @@
 </style>
 
 
-
 <div class="dropdown">
   <!--<div class="nav-item nav-link" style="cursor: pointer;" data-toggle="dropdown">{{userName}}</div>-->
   <div class="nav-item nav-link" style="cursor: pointer;" data-toggle="dropdown">{{t "System Settings"}}</div>
 
-  <div class="dropdown-menu" >
+  <div class="dropdown-menu">
 
 
     <!--<div class="row">
@@ -34,20 +33,26 @@
     </div>-->
 
 
-    <div class="dropdown-item" ><div style="cursor: pointer;" onclick={{action signOut}} class="nav-link-item">{{t "Sign Out"}}</div></div>
-    <!-- <div class="dropdown-item"><div style="cursor: pointer;" onclick={{action logoutAll}} class="nav-link-item">Single Logout</div></div>-->
-    <div class="dropdown-item"><div style="cursor: pointer;" onclick={{action navigateToUpdatePassword}} class="nav-link-item">{{t "Change Password"}}</div></div>
+    <div class="dropdown-item">
+      <div style="cursor: pointer;" onclick={{action signOut}} class="nav-link-item">{{t "Sign Out"}}</div>
+    </div>
+    <!-- <div class="dropdown-item"><div style="cursor: pointer;" onclick={{!action
+      logoutAll}} class="nav-link-item">Single Logout</div></div>-->
+    <div class="dropdown-item">
+      <div style="cursor: pointer;" onclick={{action navigateToUpdatePassword}} class="nav-link-item">{{t
+        "Change Password"}}</div>
+    </div>
 
     <!--<div class="dropdown-item">
       <h1 class="instruction-label">Choose Language:</h1>
     </div>
 
     <div class="dropdown-item" style="margin-top: -9px">
-      <div style="cursor: pointer;" onclick={{action changeLocaleENG "english"}} class="nav-link-item">English</div>
+      <div style="cursor: pointer;" onclick={{!action changeLocaleENG "english"}} class="nav-link-item">English</div>
     </div>
 
     <div class="dropdown-item">
-      <div style="cursor: pointer;" onclick={{action changeLocaleBNG "bangla"}} class="nav-link-item">Bangla</div>
+      <div style="cursor: pointer;" onclick={{!action changeLocaleBNG "bangla"}} class="nav-link-item">Bangla</div>
     </div>-->
   </div>
 </div>

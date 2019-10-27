@@ -10,9 +10,9 @@ export default Route.extend({
   beforeModel() {
     let currentLocale = this.appConfiguration.getAppLanguage();
     console.log('message--currentLocale', currentLocale);
-    if(currentLocale===null){
+    if (currentLocale === null) {
       this.get('intl').setLocale(['en-us']);
-    }else{
+    } else {
       this.get('intl').setLocale(currentLocale);
     }
 

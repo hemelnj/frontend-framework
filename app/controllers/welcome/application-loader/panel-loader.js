@@ -31,18 +31,6 @@ export default Controller.extend(Authorization, {
       //this.clearAuthorization();
       //window.location.replace(this.authEngineUIHost + "/update-user-credential");
     },
-
-    changeLocaleENG(value) {
-      console.log('message-panel-eng', value);
-      this.appConfiguration.setAppLanguage(['en-us']);
-      this.get('intl').setLocale(['en-us']);
-    },
-    changeLocaleBNG(value) {
-      console.log('message-panel-ban', value);
-      this.appConfiguration.setAppLanguage(['bn-ln']);
-      this.get('intl').setLocale(['bn-ln']);
-    },
-
   },
 
   init() {

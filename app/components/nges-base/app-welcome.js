@@ -20,16 +20,7 @@ export default Component.extend(Authorization, {
       this.appConfiguration.logoutUser();
       this.clearAuthorization();
     },
-    changeLocaleENG(value) {
-      console.log('message-changeLocaleENG-welcome', value);
-      this.appConfiguration.setAppLanguage(['en-us']);
-      this.get('intl').setLocale(['en-us']);
-    },
-    changeLocaleBNG(value) {
-      console.log('message-changeLocaleBNG-welcome', value);
-      this.appConfiguration.setAppLanguage(['bn-ln']);
-      this.get('intl').setLocale(['bn-ln']);
-    },
+
     navigateToUpdatePassword() {
       console.log('message-app welcome', 'navigateToUpdatePassword');
       this.get('router').transitionTo('update-password');
