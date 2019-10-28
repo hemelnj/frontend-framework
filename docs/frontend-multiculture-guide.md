@@ -48,9 +48,20 @@ Choose Language: "ভাষা নির্বাচন"
 
 Example:
 ```html
+ <button id='save' class="nges-button nges-button-success" {{action 'validate'}}>Save</button>
 ```
- 
+ Above line in a html file will create a button with name "Save", but to translate this name one needs 
+ to write the same line like mentioned below-
 
+```html
+ <button id='save' class="nges-button nges-button-success" {{action 'validate'}}>{{t "Save"}}</button>
+```
+Here, `Save` is written inside `" "` and pass this string `("Save")` to the translation helper `t`. Helper `t` will look for
+corresponding translation of `"Save"` inside translation file provided in translation folder. `t`
+helper will search for the translation inside currently enabled language translation file. For example, if
+currently enabled system language is `Bengali` then this helper will search for corresponding translation of `"Save"` inside
+`bn-ln.yaml` file. If `t` helper founds the word then it will return and show translated output to the ui otherwise
+it will throw an exception.
 #### References:
 ___
 >[How to translate your Ember.js application with ember-intl](https://www.codeandweb.com/babeledit/tutorials/how-to-translate-your-ember-app-with-ember-intl)
