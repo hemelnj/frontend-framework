@@ -3,18 +3,18 @@
 For PDF, we have used `jsPdf` in our frontend framework. `jsPdf` is a library to generate PDFs in client-side JavaScript.
 
 ##### Step 1: Install jsPdf
-```javascript
+```
 npm install jspdf --save
 ```
 ##### Step 2: Import jsPdf in `embber-build-cli.js`
 add this line in `ember-build-cli.js`
-```javascript
+```
 app.import('node_modules/jspdf/dist/jspdf.min.js');
 ```
 For table in PDF, we have used `jspdf-autotable` 
 
 ##### Step 1: Install jspdf-autotable
-```javascript
+```
 npm install jspdf-autotable
 ```
 ##### Step 2: Import jsPdf in `embber-build-cli.js`
