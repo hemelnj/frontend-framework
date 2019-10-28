@@ -1,4 +1,4 @@
-## Frontend Multilingual Guide
+## Frontend Multi-culture Guide
 
 For multi-culture support we have used `Ember-intl` addon, which provides a helper `t` 
 (translation helper) and in this helper needs to pass the string we want to translate.
