@@ -148,10 +148,14 @@ Table 2 Title
 | data3 c1 	| data3 c2 	| data3 c3 	|
 
 
-Happy PDF :wink: 
+
 
 #### References
 
 >[jsPDF Official Documentation](https://rawgit.com/MrRio/jsPDF/master/docs/)
 
 >[jsPDF Autotable Documentation](https://www.npmjs.com/package/jspdf-autotable/v/2.0.9)
+
+
+
+Happy PDF :wink: 
