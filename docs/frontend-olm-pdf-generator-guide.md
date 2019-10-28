@@ -65,14 +65,12 @@ doc.setFontStyle("bold");
 doc.text("dummy text", posX, posY);
 ```
 
-##### Create Table in 
+##### Create Table in PDF
 ```javascript
-
 let posY;
 doc.setFontSize(12);
 doc.setFontStyle("bold");
 doc.text("Table 1 Title",40,65);
-
 
 doc.autoTable({
   theme: 'plain',
@@ -103,7 +101,6 @@ posY = doc.lastAutoTable.finalY;
 doc.setFontSize(12);
 doc.setFontStyle("bold");
 doc.text("Table 2 Title",40,posY+25);
-
 
 doc.autoTable({
   theme: 'plain',
@@ -149,6 +146,8 @@ Table 2 Title
 | data1 c1 	| data1 c2 	| data1 c3 	|
 | data2 c1 	| data2 c2 	| data2 c3 	|
 | data3 c1 	| data3 c2 	| data3 c3 	|
+
+
 Happy PDF :wink: 
 
 #### References
