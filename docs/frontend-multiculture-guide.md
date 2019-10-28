@@ -62,7 +62,16 @@ helper will search for the translation inside currently enabled language transla
 currently enabled system language is `Bengali` then this helper will search for corresponding translation of `"Save"` inside
 `bn-ln.yaml` file. If `t` helper founds the word then it will return and show translated output to the ui otherwise
 it will throw an exception.
-#### References:
+
+#### Important points to mention
+Some of the frontend component already multi-culture enabled. Ex.: `top-nav-bar, input-filed, searchable-dropdown`. For
+this component one developer does not need to worry about `t` helper. They need to write translation file in translation
+folder and provide words and their corresponding translation in translation file.
+
+
+Happy Translation :wink: 
+
+#### References
 ___
 >[How to translate your Ember.js application with ember-intl](https://www.codeandweb.com/babeledit/tutorials/how-to-translate-your-ember-app-with-ember-intl)
 
