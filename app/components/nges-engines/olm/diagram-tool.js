@@ -56,17 +56,6 @@ export default Component.extend({
     exportImage() {
       let classTypeName = this.get('classTypeName');
 
-      //pdfData.save();
-      /*let downloadURI = function downloadURI(uri, name) {
-        var linkurl = document.createElement('a');
-        linkurl.download = name;
-        linkurl.href = uri;
-        document.body.appendChild(linkurl);
-        linkurl.click();
-        document.body.removeChild(linkurl);
-        //delete linkurl;
-      };*/
-
       let stateData = this.get('pdfStateData');
       let actionData = this.get('pdfActionData');
 
