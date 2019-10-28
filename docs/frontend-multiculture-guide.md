@@ -69,7 +69,6 @@ this component one developer does not need to worry about `t` helper. They need 
 folder and provide words and their corresponding translation in translation file.
 
 
-Happy Translation :wink: 
 
 #### References
 ___
@@ -78,3 +77,6 @@ ___
 >[ember-intl](https://github.com/ember-intl/ember-intl)
 
 >[Internationalize Ember App](https://ember-intl.github.io/ember-intl/)
+
+
+Happy Translation :wink: 
