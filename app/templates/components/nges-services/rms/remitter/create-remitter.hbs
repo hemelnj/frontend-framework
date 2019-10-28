@@ -8,7 +8,8 @@
     border-top: 2px solid;
     border-color: #666666;
   }
-legend {
+
+  legend {
     font-family: arial;
     color: #666;
     background: #eee;
@@ -58,18 +59,18 @@ legend {
         </div>
       </div>
 
- <div style="margin-top: -1%;">
-   {{nges-core/nges-input-component
-        type='text'
-        input-field-name="Name"
-        model=model
-        valuePath='remitterName'
-        placeholder='Remitter Name'
-        sectionFirst = 'col-sm-2'
-        sectionLast = 'col-sm-4'
-        didValidate=didValidate}}
- </div>
-      
+      <div style="margin-top: -1%;">
+        {{nges-core/nges-input-component
+          type='text'
+          input-field-name="Name"
+          model=model
+          valuePath='remitterName'
+          placeholder='Remitter Name'
+          sectionFirst = 'col-sm-2'
+          sectionLast = 'col-sm-4'
+          didValidate=didValidate}}
+      </div>
+
 
       {{nges-core/nges-input-component
         type='text'
@@ -93,7 +94,7 @@ legend {
         didValidate=didValidate}}
 
 
-      <div class="row" >
+      <div class="row">
         <div class="col-md-6">
           {{nges-core/nges-input-component
             type='date'
@@ -104,7 +105,7 @@ legend {
             sectionFirst = 'col-sm-4'
             sectionLast = 'col-sm-6'
             didValidate=didValidate}}
- 
+
         </div>
         <div class="col-md-6">
           <div class="row">
@@ -128,34 +129,33 @@ legend {
 
         </div>
       </div>
-<div class="form-group" style="margin-top: -1%;">
-  <div class="row">
-        <div class="col-md-6">
-          {{nges-core/nges-input-component
-            type='text'
-            input-field-name="Mobile Number"
-            model=model
-            valuePath='mNumber'
-            placeholder='Mobile Number'
-            sectionFirst = 'col-sm-4'
-            sectionLast = 'col-sm-8'
-            didValidate=didValidate}}
-        </div>
+      <div class="form-group" style="margin-top: -1%;">
+        <div class="row">
+          <div class="col-md-6">
+            {{nges-core/nges-input-component
+              type='text'
+              input-field-name="Mobile Number"
+              model=model
+              valuePath='mNumber'
+              placeholder='Mobile Number'
+              sectionFirst = 'col-sm-4'
+              sectionLast = 'col-sm-8'
+              didValidate=didValidate}}
+          </div>
 
-        <div class="col-md-6">
-          {{nges-core/nges-input-component
-            type='text'
-            input-field-name="Email"
-            model=model
-            valuePath='email'
-            placeholder='Email Address'
-            sectionFirst = 'col-sm-3'
-            sectionLast = 'col-sm-7'
-            didValidate=didValidate}}
+          <div class="col-md-6">
+            {{nges-core/nges-input-component
+              type='text'
+              input-field-name="Email"
+              model=model
+              valuePath='email'
+              placeholder='Email Address'
+              sectionFirst = 'col-sm-3'
+              sectionLast = 'col-sm-7'
+              didValidate=didValidate}}
+          </div>
         </div>
       </div>
-</div>
-      
 
 
       <div class="form-group" style="margin-top: -1%;">
@@ -178,46 +178,46 @@ legend {
         </div>
       </div>
 
-<div class="form-group" style="margin-top: -1%;">
-  <div class="row">
-        <div class="col-md-6">
-          {{nges-core/nges-input-component
-            type='number'
-            input-field-name="Income Range"
-            model=model
-            valuePath='incomeRange'
-            placeholder='Income Range'
-            sectionFirst = 'col-sm-4'
-            sectionLast = 'col-sm-8'
-            didValidate=didValidate}}
-        </div>
-        <div class="col-md-6">
-          {{nges-core/nges-input-component
-            type='number'
-            input-field-name="Yearly Expected Remittance"
-            model=model
-            valuePath='expetedRemitance'
-            placeholder='Expected Remittance'
-            sectionFirst = 'col-sm-3'
-            sectionLast = 'col-sm-7'
-            didValidate=didValidate}}
+      <div class="form-group" style="margin-top: -1%;">
+        <div class="row">
+          <div class="col-md-6">
+            {{nges-core/nges-input-component
+              type='number'
+              input-field-name="Income Range"
+              model=model
+              valuePath='incomeRange'
+              placeholder='Income Range'
+              sectionFirst = 'col-sm-4'
+              sectionLast = 'col-sm-8'
+              didValidate=didValidate}}
+          </div>
+          <div class="col-md-6">
+            {{nges-core/nges-input-component
+              type='number'
+              input-field-name="Yearly Expected Remittance"
+              model=model
+              valuePath='expetedRemitance'
+              placeholder='Expected Remittance'
+              sectionFirst = 'col-sm-3'
+              sectionLast = 'col-sm-7'
+              didValidate=didValidate}}
+          </div>
         </div>
       </div>
-</div>
-      
-<div style="margin-top: -1%;">
-  {{nges-core/nges-input-component
-        type='text'
-        input-field-name="Remarks"
-        model=model
-        valuePath='remarks'
-        placeholder='Remarks'
-        sectionFirst = 'col-sm-2'
-        sectionLast = 'col-sm-4'
-        didValidate=didValidate}}
 
-</div>
-      
+      <div style="margin-top: -1%;">
+        {{nges-core/nges-input-component
+          type='text'
+          input-field-name="Remarks"
+          model=model
+          valuePath='remarks'
+          placeholder='Remarks'
+          sectionFirst = 'col-sm-2'
+          sectionLast = 'col-sm-4'
+          didValidate=didValidate}}
+
+      </div>
+
 
       <fieldset>
         <legend class="input-field-label">{{t "Present Address"}}</legend>
@@ -286,18 +286,18 @@ legend {
           </div>
         </div>
 
-<div style="margin-top: -1%;">
-  {{nges-core/nges-input-component
-          type='text'
-          input-field-name="City/Town"
-          model=model
-          valuePath='cityOrTown'
-          placeholder='Enter City/Town Name'
-          sectionFirst = 'col-sm-2'
-          sectionLast = 'col-sm-4'
-          didValidate=didValidate}}
-          </div>
-        
+        <div style="margin-top: -1%;">
+          {{nges-core/nges-input-component
+            type='text'
+            input-field-name="City/Town"
+            model=model
+            valuePath='cityOrTown'
+            placeholder='Enter City/Town Name'
+            sectionFirst = 'col-sm-2'
+            sectionLast = 'col-sm-4'
+            didValidate=didValidate}}
+        </div>
+
 
 
         {{nges-core/nges-input-component
@@ -325,9 +325,9 @@ legend {
       <br>
 
       <fieldset>
-        <legend class="input-field-label" >{{t "Primary Photo ID"}}</legend>
+        <legend class="input-field-label">{{t "Primary Photo ID"}}</legend>
 
-        <div class="form-group"  >
+        <div class="form-group">
           <div class="row">
             <div class="col-sm-6">
               <div class="row">
@@ -349,44 +349,44 @@ legend {
                 </div>
               </div>
 
- <div style="margin-top: -1%;">
-{{nges-core/nges-input-component
-                type='text'
-                input-field-name="ID No 1"
-                model=model
-                valuePath='primaryPhotoId'
-                placeholder='Id'
-                sectionFirst = 'col-sm-4'
-                sectionLast = 'col-sm-8'
-                didValidate=didValidate}} 
-</div>
-              
-<div style="margin-top: -1%;">
-  {{nges-core/nges-input-component
-                type='date'
-                input-field-name="Issue 1"
-                model=model
-                valuePath='primaryPhotoIssue'
-                placeholder='Issue'
-                sectionFirst = 'col-sm-4'
-                sectionLast = 'col-sm-8'
-                didValidate=didValidate}}
+              <div style="margin-top: -1%;">
+                {{nges-core/nges-input-component
+                  type='text'
+                  input-field-name="ID No 1"
+                  model=model
+                  valuePath='primaryPhotoId'
+                  placeholder='Id'
+                  sectionFirst = 'col-sm-4'
+                  sectionLast = 'col-sm-8'
+                  didValidate=didValidate}}
+              </div>
+
+              <div style="margin-top: -1%;">
+                {{nges-core/nges-input-component
+                  type='date'
+                  input-field-name="Issue 1"
+                  model=model
+                  valuePath='primaryPhotoIssue'
+                  placeholder='Issue'
+                  sectionFirst = 'col-sm-4'
+                  sectionLast = 'col-sm-8'
+                  didValidate=didValidate}}
 
 
-</div>
-              
-<div style="margin-top: -1%;">
-{{nges-core/nges-input-component
-                type='date'
-                input-field-name="Expiry 1"
-                model=model
-                valuePath='primaryPhotoExpiry'
-                placeholder='Expiry'
-                sectionFirst = 'col-sm-4'
-                sectionLast = 'col-sm-8'
-                didValidate=didValidate}}
-</div>
-              
+              </div>
+
+              <div style="margin-top: -1%;">
+                {{nges-core/nges-input-component
+                  type='date'
+                  input-field-name="Expiry 1"
+                  model=model
+                  valuePath='primaryPhotoExpiry'
+                  placeholder='Expiry'
+                  sectionFirst = 'col-sm-4'
+                  sectionLast = 'col-sm-8'
+                  didValidate=didValidate}}
+              </div>
+
 
             </div>
             <!--<div class="col-sm-6">
@@ -425,18 +425,18 @@ legend {
                 </div>
               </div>
 
-               <div style="margin-top: -1%;">
-{{nges-core/nges-input-component
-                type='text'
-                input-field-name="ID No 2"
-                model=model
-                valuePath='secondaryPhotoId'
-                placeholder='ID'
-                sectionFirst = 'col-sm-4'
-                sectionLast = 'col-sm-8'
-                didValidate=didValidate}}
-               </div>
-              
+              <div style="margin-top: -1%;">
+                {{nges-core/nges-input-component
+                  type='text'
+                  input-field-name="ID No 2"
+                  model=model
+                  valuePath='secondaryPhotoId'
+                  placeholder='ID'
+                  sectionFirst = 'col-sm-4'
+                  sectionLast = 'col-sm-8'
+                  didValidate=didValidate}}
+              </div>
+
 
               {{nges-core/nges-input-component
                 type='date'
@@ -493,23 +493,23 @@ legend {
 
             </div>
           </div>
-<style>
-table {
-  border-collapse: collapse;
-}
+          <style>
+            table {
+              border-collapse: collapse;
+            }
 
-table, td, th, thead {
-  border: solid #0a0a0a;
-}
-</style>
-          <div class="row"  style="margin-top: -1%;">
+            table, td, th, thead {
+              border: solid #0a0a0a;
+            }
+          </style>
+          <div class="row" style="margin-top: -1%;">
             <div class="col-sm-2">
               <label class="input-field-label">{{t "Sanction Screening"}}</label>
             </div>
             <div class="col-sm-9">
               <table class="table-all">
-                
-               <thead>
+
+                <thead>
                 <th>Source</th>
                 <th>Name</th>
                 <th>Country</th>
@@ -596,7 +596,8 @@ table, td, th, thead {
 
       <br>
       {{#if actionAccess}}
-        <button id='status_check' class="nges-button nges-button-success" {{action 'updateAction'}}>{{t "Submit"}}</button>
+        <button id='status_check' class="nges-button nges-button-success" {{action 'updateAction'}}>{{t
+          "Submit"}}</button>
         <button id='status_check' class="nges-button nges-button-success" {{action 'propertyExtend'}}>{{t "Additional
           Property"}}
         </button>
@@ -618,7 +619,8 @@ table, td, th, thead {
         <button id='save' class="nges-button nges-button-success" {{action 'getNextAllowableStateIdForCurrentState'
                                                                            state.attributes.id}}>{{state.attributes.name}}</button>
       {{/each}}
-      <!--<button id='duplicate_check' class="rms-button-all rms-button-save" {{action 'checkDuplicate'}}>Duplicate Check</button>-->
+      <!--<button id='duplicate_check' class="rms-button-all rms-button-save" {{action
+        'checkDuplicate'}}>Duplicate Check</button>-->
 
       <button id='clear' class="nges-button nges-button-success" {{action 'reset'}}>Clear</button>
 
