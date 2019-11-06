@@ -7,7 +7,7 @@ export default [
     appPanelCode: 'admin-panel',
     appModuleCode: 'common',
     appMenuTemplateCode: 'olm',
-    name: 'RMS',
+    name: 'Business Process Management',
     templatePath: enginePath + '/olm',
     templates: [
       {
@@ -45,7 +45,7 @@ export default [
     appPanelCode: 'admin-panel',
     appModuleCode: 'common',
     appMenuTemplateCode: 'auth-engine',
-    name: 'AuthEngine',
+    name: 'User Administration',
     templatePath: enginePath + '/auth-engine',
     templates: [
       {
@@ -59,6 +59,13 @@ export default [
         code: 'user-creation',
         name: 'component-user',
         label: 'User Profiles',
+        detailPath: '/',
+        detailView: []
+      },
+      {
+        code: 'language-settings',
+        name: 'system-language-setting',
+        label: 'Language',
         detailPath: '/',
         detailView: []
       },

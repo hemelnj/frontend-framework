@@ -4,7 +4,7 @@
   <a href="#pageSubmenu_user_administration" data-toggle="collapse" aria-expanded="true"
      class="dropdown-toggle dropdown-toggle-header">User Administration</a>
   <hr style="margin-top: 1px; margin-bottom: 0px; background: #d3d3d3;">
-  <ul class="list-unstyled collapse show" id="pageSubmenu_user_administration">
+  <ul class="list-unstyled collapse" id="pageSubmenu_user_administration">
 
     <li>
 
@@ -20,6 +20,11 @@
         moduleCode 'service-holder' 'auth-engine' 'user-creation' class="nav-link" }}
         User Profiles {{/link-to}}
 
+
+      {{#link-to
+        'welcome.application-loader.panel-loader.module-loader.service-holder-loader.menu-template-loader.submenu-template-loader.index'
+        moduleCode 'service-holder' 'auth-engine' 'language-settings' class="nav-link" }}
+        User Language {{/link-to}}
 
 
       {{#link-to

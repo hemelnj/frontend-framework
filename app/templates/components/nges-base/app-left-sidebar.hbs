@@ -48,25 +48,27 @@
 
         <!-- super-admin = role menu -->
 
-
         <!-- user-admin = roles menu -->
         {{#unless (eq module.code "user-management")}}
+
+
           <li>
             <a href="#pageSubmenu{{moduleIndex}}" data-toggle="collapse" aria-expanded="false"
-               class="dropdown-toggle dropdown-toggle-header">{{nges-core/capitalize-first-letter module.name}}</a>
+               class="dropdown-toggle dropdown-toggle-header">{{t  module.name}}</a>
             <hr style="margin-top: 0px; margin-bottom: 0px; background: #d3d3d3;">
-            <ul class="list-unstyled collapse show" id="pageSubmenu{{moduleIndex}}">
+            <ul class="list-unstyled collapse" id="pageSubmenu{{moduleIndex}}">
 
               {{#each module.serviceHolders as |serviceHolder serviceHolderIndex|}}
 
 
-                <!--microservice user -->
+                <!--microservice user :: admin panel-->
                 {{#if (eq serviceHolder.menuTreeTemplate.code "MICROSERVICE") }}
+
                   <li style="padding-left: 5px; padding-top: 5px">
                     <a href="#pageSubMenuList{{serviceHolderIndex}}" data-toggle="collapse" aria-expanded="false"
                        class="dropdown-toggle dropdown-toggle-header">{{nges-core/capitalize-first-letter
                       serviceHolder.name}}</a>
-                    <ul class="list-unstyled collapse show" id="pageSubMenuList{{serviceHolderIndex}}">
+                    <ul class="list-unstyled collapse" id="pageSubMenuList{{serviceHolderIndex}}">
 
                       {{#each serviceHolder.children as |menu menuIndex|}}
 
@@ -88,16 +90,17 @@
                 {{/if}}
 
 
-                <!--function admin -->
+                <!--function admin-->
                 {{#if (eq serviceHolder.menuTreeTemplate.code "FUNCTION") }}
+
+                  {{log module.name}}
 
                   {{#each serviceHolder.subMenuList as |subMenu|}}
 
                     {{#link-to
                       'welcome.application-loader.panel-loader.module-loader.service-holder-loader.menu-template-loader.submenu-template-loader.index'
                       module.code serviceHolder.menuTreeTemplate.code serviceHolder.code subMenu.code
-                      class="nav-link nav-link-active" }} {{nges-core/capitalize-first-letter
-                      subMenu.name}}
+                      class="nav-link nav-link-active" }} {{t subMenu.name}}
                     {{/link-to}}
 
                   {{/each}}
@@ -129,12 +132,12 @@
       {{#each menuTemplate as |menu|}}
 
         {{#if (eq menu.appPanelInformation.appPanelCode  'admin-panel')}}
-          {{#if accessRole}}
+
             <li>
               <a href="#pageSubmenu_{{menu.code}}" data-toggle="collapse" aria-expanded="true"
                  class="dropdown-toggle dropdown-toggle-header">{{nges-core/capitalize-first-letter menu.label}}</a>
               <hr style="margin-top: 1px; margin-bottom: 0px; background: #d3d3d3;">
-              <ul class="list-unstyled collapse show" id="pageSubmenu_{{menu.code}}">
+              <ul class="list-unstyled collapse" id="pageSubmenu_{{menu.code}}">
 
                 {{!log menu}}
                 {{#each menu.subMenuList as |subMenu menuIndex|}}
@@ -144,13 +147,13 @@
                       'welcome.application-loader.panel-loader.module-loader.service-holder-loader.menu-template-loader.submenu-template-loader.index'
                       'module.code' 'module.code' 'serviceHolder.menuTreeTemplate.code' 'menu.code subMenu.code'
                       class="nav-link" }} {{nges-core/capitalize-first-letter subMenu.label}}
-                      {{/link-to}}
+                    {{/link-to}}
 
                   </li>
                 {{/each}}
               </ul>
             </li>
-          {{/if}}
+
         {{/if}}
       {{/each}}
 

@@ -25,5 +25,7 @@ module.exports = function(defaults) {
 
   app.import('node_modules/konva/konva.js');
   app.import('node_modules/jspdf/dist/jspdf.min.js');
+  app.import('node_modules/jspdf-autotable/dist/jspdf.plugin.autotable.min.js');
+
   return app.toTree();
 };
