@@ -77,6 +77,10 @@ export default Component.extend({
     this.initialLoadTabTableData();
   },
   actions: {
+
+    exportToPDF(objectName){
+      console.log('message-----------------objectName', objectName);
+    },
     // callback call from item
     onSelectedSingleStateCallBack(item, actionEventId, stateId) {
       console.log('onSelectedSingleState-Item', item);
