@@ -23,6 +23,12 @@
 
     <br>
 
+    {{#if serviceActionableRoute.export.buttonVisible}}
+      <div class="nges-button nges-button-success" {{action
+        "exportToPDF" serviceActionableRoute.export.object}}>{{serviceActionableRoute.export.buttonName}}</div>
+    {{/if}}
+
+    <br>
 
     {{nges-elements/nges-tab-table
 
