@@ -59,7 +59,6 @@ export default Service.extend({
   getAllApplicationPanelList() {
     let serviceData = this.appConfiguration.getMenuTreeInformation();
     let appCode = this.appConfiguration.getApplicationCode();
-    console.log('message--service', JSON.stringify(serviceData));
 
     let serviceList = [];
     for (let serviceIndex = 0; serviceIndex < serviceData.length; serviceIndex++) {
