@@ -58,22 +58,26 @@ export default Service.extend({
 
   getAllApplicationPanelList() {
     let serviceData = this.appConfiguration.getMenuTreeInformation();
-
+    let appCode = this.appConfiguration.getApplicationCode();
+    console.log('message--service', JSON.stringify(serviceData));
 
     let serviceList = [];
     for (let serviceIndex = 0; serviceIndex < serviceData.length; serviceIndex++) {
 
-      let serviceBusiness = serviceData[serviceIndex]['children'];
+      if (serviceData[serviceIndex].code === appCode) {
+        let serviceBusiness = serviceData[serviceIndex]['children'];
 
-      for (let serviceBusinessIndex = 0; serviceBusinessIndex < serviceBusiness.length; serviceBusinessIndex++) {
-        serviceList.push({
-          id: serviceBusiness[serviceBusinessIndex]['id'],
-          routeName: serviceBusiness[serviceBusinessIndex]['code'],
-          applicationRouteName: serviceData[serviceIndex]['code'],
-          name: serviceBusiness[serviceBusinessIndex]['name'],
-          displayName: serviceBusiness[serviceBusinessIndex]['name']
-        })
+        for (let serviceBusinessIndex = 0; serviceBusinessIndex < serviceBusiness.length; serviceBusinessIndex++) {
+          serviceList.push({
+            id: serviceBusiness[serviceBusinessIndex]['id'],
+            routeName: serviceBusiness[serviceBusinessIndex]['code'],
+            applicationRouteName: serviceData[serviceIndex]['code'],
+            name: serviceBusiness[serviceBusinessIndex]['name'],
+            displayName: serviceBusiness[serviceBusinessIndex]['name']
+          })
+        }
       }
+
 
     }
 
