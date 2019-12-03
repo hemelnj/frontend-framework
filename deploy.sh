@@ -26,9 +26,9 @@ ember build --prod
 docker build -t frontend .
 
 # tag image for upload
-docker tag frontend docker-registry-default.router.default.svc.cluster.local/ngfs-core-framework/frontend:latest
+docker tag frontend docker-registry-default.router.default.svc.cluster.local/demo-project/frontend:latest
 
 # push image to the registry console
-docker push docker-registry-default.router.default.svc.cluster.local/ngfs-core-framework/frontend:latest
+docker push docker-registry-default.router.default.svc.cluster.local/demo-project/frontend:latest
 
 echo "IMAGES BUILD AND PUSHED SUCCESSFULL"
