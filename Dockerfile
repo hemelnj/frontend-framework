@@ -1,5 +1,5 @@
-FROM nginxinc/openshift-nginx:stable
-
+#FROM nginxinc/openshift-nginx:stable
+FROM nginx:stable-alpine
 # users are not allowed to listen on priviliged ports
 COPY default.conf /etc/nginx/conf.d/
 
