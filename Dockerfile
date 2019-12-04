@@ -5,7 +5,7 @@ COPY default.conf /etc/nginx/conf.d/
 
 EXPOSE 8080
 
-COPY dist /usr/share/nginx/html
+COPY dist /usr/share/nginx/
 
-ENTRYPOINT [ "nginx", "-g", "daemon off;" ]
+ENTRYPOINT [ "nginx", "-g", "'daemon off';" ]
 
